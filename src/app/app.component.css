@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  color: #2f3b45;
+  background: #fff9f3;
+}
+
+.hero {
+  max-width: 760px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+.hero-copy {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: #475569;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    margin-top: 2rem;
+  }
+}
