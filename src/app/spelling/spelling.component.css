@@ -1,0 +1,228 @@
+.spelling-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+label {
+  font-weight: 700;
+  color: #2f3b45;
+}
+
+select,
+input {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 180px;
+  font: inherit;
+}
+
+input[type="number"] {
+  min-width: 150px;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.generate-button {
+  background: #5b8def;
+  color: white;
+}
+
+.print-button {
+  background: #f28c82;
+  color: white;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.worksheet {
+  border: 1px solid rgba(47, 59, 69, 0.12);
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.worksheet-header {
+  margin-bottom: 1rem;
+}
+
+.worksheet-instruction {
+  margin: 0 0 0.5rem;
+  color: #5b8def;
+  font-weight: 600;
+}
+
+.problem-row {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.image-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90px;
+  border: 1px solid rgba(47, 59, 69, 0.12);
+  border-radius: 12px;
+  background: #fff9f3;
+}
+
+.emoji {
+  font-size: 2.4rem;
+}
+
+.answer-area {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.action-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  justify-self: end;
+  min-width: 0;
+}
+
+.hint-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(47, 59, 69, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(47, 59, 69, 0.12);
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #c65b4f;
+}
+
+.hint-bubble {
+  position: absolute;
+  right: 2.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: #fff7eb;
+  color: #7a4b1f;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(47, 59, 69, 0.12);
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+}
+
+.line {
+  display: block;
+  width: 24px;
+  border-bottom: 2px solid #2f3b45;
+  margin-top: 16px;
+}
+
+.line.combined {
+  width: 36px;
+}
+
+@media print {
+  .controls {
+    display: none;
+  }
+
+  .spelling-card {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .worksheet {
+    border: none;
+    box-shadow: none;
+  }
+
+  .problem-row {
+    page-break-inside: avoid;
+  }
+
+  .action-area,
+  .hint-bubble,
+  .action-button {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .problem-row {
+    grid-template-columns: 1fr;
+  }
+
+  .action-area {
+    margin-left: 0;
+    margin-top: 0.35rem;
+    justify-content: flex-start;
+  }
+}
