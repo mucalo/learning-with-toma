@@ -1,0 +1,220 @@
+{
+  "brand": {
+    "name": "Learning with Toma",
+    "tagline": "Beautiful learning activities in seconds.",
+    "mission": "Help parents, speech-language professionals, and educators create engaging, personalized learning activities for every child.",
+    "vision": "Make quality learning materials accessible, beautiful, and effortless to create.",
+    "positioning": "A friendly AI-powered platform for creating personalized printable learning activities for children.",
+    "personality": [
+      "warm",
+      "encouraging",
+      "trustworthy",
+      "curious",
+      "calm",
+      "thoughtful",
+      "playful",
+      "optimistic"
+    ],
+    "values": [
+      "Every child learns differently.",
+      "Learning should feel joyful.",
+      "Professionals deserve better tools.",
+      "Parents should feel supported, not overwhelmed.",
+      "Beautiful materials inspire engagement."
+    ]
+  },
+  "voice": {
+    "tone": [
+      "friendly",
+      "clear",
+      "positive",
+      "empathetic",
+      "simple",
+      "professional"
+    ],
+    "avoid": [
+      "clinical",
+      "cold",
+      "corporate",
+      "technical jargon",
+      "fear-based messaging"
+    ]
+  },
+  "colors": {
+    "primary": {
+      "name": "Sky Blue",
+      "hex": "#5B8DEF"
+    },
+    "secondary": {
+      "name": "Soft Coral",
+      "hex": "#F28C82"
+    },
+    "background": {
+      "name": "Warm Cream",
+      "hex": "#FFF9F3"
+    },
+    "text": {
+      "name": "Slate",
+      "hex": "#2F3B45"
+    },
+    "accent": [
+      {
+        "name": "Sage",
+        "hex": "#A7C7A5"
+      },
+      {
+        "name": "Sunshine",
+        "hex": "#F6D365"
+      },
+      {
+        "name": "Lavender",
+        "hex": "#C8B6FF"
+      }
+    ],
+    "status": {
+      "success": "#7CB342",
+      "warning": "#F4B400",
+      "error": "#E57373",
+      "info": "#5B8DEF"
+    }
+  },
+  "typography": {
+    "headings": {
+      "primary": "Nunito",
+      "fallback": [
+        "Avenir Next",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "weight": [
+        700,
+        800
+      ]
+    },
+    "body": {
+      "primary": "Inter",
+      "fallback": [
+        "Segoe UI",
+        "Roboto",
+        "Arial",
+        "sans-serif"
+      ],
+      "weight": [
+        400,
+        500
+      ]
+    },
+    "buttons": {
+      "font": "Nunito",
+      "weight": 700
+    }
+  },
+  "logo": {
+    "style": "Minimal hand-drawn illustration",
+    "elements": [
+      "child",
+      "open book",
+      "small heart",
+      "soft smile"
+    ],
+    "stroke": {
+      "width": 2,
+      "linecap": "round",
+      "linejoin": "round"
+    },
+    "color": "currentColor"
+  },
+  "illustration": {
+    "style": "Simple line art",
+    "strokeWidth": 2,
+    "cornerRadius": 16,
+    "motifs": [
+      "books",
+      "stars",
+      "paper airplane",
+      "heart",
+      "leaf",
+      "spark",
+      "pencil",
+      "speech bubble"
+    ]
+  },
+  "iconography": {
+    "style": "Outlined",
+    "strokeWidth": 2,
+    "cornerStyle": "rounded",
+    "sizeGrid": 24
+  },
+  "layout": {
+    "borderRadius": {
+      "small": 8,
+      "medium": 16,
+      "large": 24
+    },
+    "spacing": {
+      "base": 8,
+      "scale": [
+        8,
+        16,
+        24,
+        32,
+        48,
+        64
+      ]
+    },
+    "shadow": {
+      "color": "rgba(47,59,69,0.08)",
+      "blur": 20,
+      "offsetY": 8
+    }
+  },
+  "imagery": {
+    "style": "Natural, authentic, bright",
+    "subjects": [
+      "parents and children learning together",
+      "educators preparing activities",
+      "children solving worksheets",
+      "books",
+      "paper",
+      "pencils"
+    ],
+    "avoid": [
+      "overly staged stock photos",
+      "medical settings",
+      "sterile offices"
+    ]
+  },
+  "ui": {
+    "style": "Minimal",
+    "cards": true,
+    "whiteSpace": "generous",
+    "animations": "subtle",
+    "buttons": {
+      "shape": "rounded",
+      "size": "large"
+    }
+  },
+  "mascot": {
+    "name": "Toma",
+    "description": "A curious child who loves discovering new things.",
+    "traits": [
+      "kind",
+      "curious",
+      "encouraging",
+      "celebrates small wins"
+    ],
+    "usage": [
+      "empty states",
+      "loading screens",
+      "success messages",
+      "welcome illustrations"
+    ]
+  },
+  "messaging": {
+    "homepageHeadline": "Beautiful learning activities in seconds.",
+    "homepageSubheadline": "Create personalized printable learning activities for children with the help of AI.",
+    "ctaPrimary": "Create your first activity",
+    "ctaSecondary": "Explore examples"
+  }
+}
+
