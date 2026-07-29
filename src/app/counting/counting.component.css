@@ -1,0 +1,245 @@
+.counting-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+  color: #2f3b45;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 180px;
+  font: inherit;
+}
+
+.field input[type="number"] {
+  min-width: 150px;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.generate-button {
+  background: #5b8def;
+  color: white;
+}
+
+.print-button {
+  background: #f28c82;
+  color: white;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.worksheet {
+  border: 1px solid rgba(47, 59, 69, 0.12);
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.worksheet-header {
+  margin-bottom: 1rem;
+}
+
+.worksheet-instruction {
+  margin: 0 0 0.5rem;
+  color: #5b8def;
+  font-weight: 600;
+}
+
+.problem-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.items-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed rgba(91, 141, 239, 0.3);
+  border-radius: 12px;
+  background: rgba(91, 141, 239, 0.03);
+  overflow: hidden;
+}
+
+.item-emoji {
+  position: absolute;
+  display: inline-block;
+  line-height: 1;
+}
+
+.answer-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.answer-line {
+  width: 60px;
+  height: 2px;
+  background: #1f3b4d;
+  border-bottom: 3px solid #1f3b4d;
+}
+
+.action-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: end;
+}
+
+.hint-wrapper {
+  position: relative;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(47, 59, 69, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(47, 59, 69, 0.12);
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+.hint-bubble {
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1f3b4d;
+  color: white;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.hint-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 0.3rem solid transparent;
+  border-right: 0.3rem solid transparent;
+  border-top: 0.3rem solid #1f3b4d;
+}
+
+@media print {
+  .back-link-container {
+    display: none;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .problem-row {
+    page-break-inside: avoid;
+    border: none;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .action-area {
+    display: none;
+  }
+
+  .items-container {
+    background: white;
+    border: none;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    min-height: 180px;
+  }
+
+  .item-emoji {
+    position: absolute;
+  }
+
+  .answer-area {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+

@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SpellingComponent } from './spelling/spelling.component';
+import { HomeComponent } from './home/home.component';
+import { CountingComponent } from './counting/counting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    SpellingComponent
+    SpellingComponent,
+    HomeComponent,
+    CountingComponent
   ],
   imports: [
     BrowserModule,

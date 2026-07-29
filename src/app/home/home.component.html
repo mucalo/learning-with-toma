@@ -1,0 +1,21 @@
+<section class="home-page" aria-label="Learning activities">
+  <div class="home-intro">
+    <h1>Choose an activity</h1>
+    <p>Select a learning activity to get started.</p>
+  </div>
+
+  <div class="activity-grid">
+    <a
+      *ngFor="let activity of activities"
+      class="activity-card"
+      [routerLink]="activity.route"
+      [attr.aria-label]="activity.title"
+    >
+      <div class="activity-illustration" aria-hidden="true">{{ activity.emoji }}</div>
+      <div class="activity-content">
+        <h2>{{ activity.title }}</h2>
+        <p>{{ activity.description }}</p>
+      </div>
+    </a>
+  </div>
+</section>
