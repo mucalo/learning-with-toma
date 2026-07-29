@@ -12,6 +12,11 @@
   gap: 0.35rem;
 }
 
+.brand-title {
+  text-decoration: none;
+  color: inherit;
+}
+
 h1 {
   margin: 0;
   font-size: 2.2rem;
