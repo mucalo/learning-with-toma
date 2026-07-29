@@ -200,6 +200,10 @@ input[type="number"] {
 }
 
 @media print {
+  .back-link-container {
+    display: none;
+  }
+
   .controls {
     display: none;
   }
