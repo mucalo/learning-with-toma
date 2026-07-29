@@ -25,6 +25,12 @@ export class HomeComponent {
       description: 'Count objects and write the number.',
       route: '/counting',
       emoji: '🔢'
+    },
+    {
+      title: 'Biggest and Smallest',
+      description: 'Circle the biggest and smallest objects.',
+      route: '/biggest-smallest',
+      emoji: '📏'
     }
   ];
 }

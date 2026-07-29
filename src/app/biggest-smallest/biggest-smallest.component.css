@@ -1,0 +1,157 @@
+.biggest-smallest-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+  color: #2f3b45;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 180px;
+  font: inherit;
+}
+
+.field input[type="number"] {
+  min-width: 150px;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.generate-button {
+  background: #5b8def;
+  color: white;
+}
+
+.print-button {
+  background: #f28c82;
+  color: white;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc2626;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  background: #fee2e2;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #dc2626;
+}
+
+.worksheet {
+  border: 1px solid rgba(47, 59, 69, 0.12);
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.worksheet-header {
+  margin-bottom: 1rem;
+}
+
+.worksheet-instruction {
+  margin: 0 0 0.5rem;
+  color: #5b8def;
+  font-weight: 600;
+}
+
+.problem-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1.25rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.items-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed rgba(91, 141, 239, 0.3);
+  border-radius: 12px;
+  background: rgba(91, 141, 239, 0.03);
+  overflow: hidden;
+}
+
+.item-emoji {
+  position: absolute;
+  display: inline-block;
+  line-height: 1;
+}
+
+@media print {
+  .back-link-container {
+    display: none;
+  }
+
+  .controls {
+    display: none;
+  }
+
+  .problem-row {
+    page-break-inside: avoid;
+    border: none;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .items-container {
+    background: white;
+    border: none;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    min-height: 180px;
+  }
+
+  .item-emoji {
+    position: absolute;
+  }
+}

@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SpellingComponent } from './spelling/spelling.component';
 import { HomeComponent } from './home/home.component';
 import { CountingComponent } from './counting/counting.component';
+import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CountingComponent } from './counting/counting.component';
     FooterComponent,
     SpellingComponent,
     HomeComponent,
-    CountingComponent
+    CountingComponent,
+    BiggestSmallestComponent
   ],
   imports: [
     BrowserModule,

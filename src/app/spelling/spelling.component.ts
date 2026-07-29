@@ -238,17 +238,52 @@ export class SpellingComponent {
       return;
     }
 
-    const shuffledPool = [...pool].sort(() => Math.random() - 0.5);
+    this.generatedItems = [];
+    let previousEmoji = '';
+    const usedIndices = new Set<number>();
 
-    this.generatedItems = Array.from({ length: safeCount }, (_, index) => {
-      const source = shuffledPool[index % shuffledPool.length];
-      return {
+    for (let i = 0; i < safeCount; i++) {
+      const source = this.getNextDifferentItem(pool, previousEmoji, usedIndices);
+      if (!source) break;
+
+      this.generatedItems.push({
         word: source.word,
         emoji: source.emoji,
         letters: this.getDisplayLetterGroups(source.word, this.language).map(group => group.value),
         displayGroups: this.getDisplayLetterGroups(source.word, this.language)
-      };
-    });
+      });
+
+      previousEmoji = source.emoji;
+    }
+  }
+
+  private getNextDifferentItem(pool: SpellingItem[], previousEmoji: string, usedIndices: Set<number>): SpellingItem | null {
+    const availableIndices = Array.from({ length: pool.length }, (_, i) => i).filter(i => !usedIndices.has(i));
+    
+    if (availableIndices.length === 0) {
+      return null;
+    }
+
+    let attempts = 0;
+    const maxAttempts = 50;
+    let selectedIndex = -1;
+
+    while (attempts < maxAttempts) {
+      const randomIdx = Math.floor(Math.random() * availableIndices.length);
+      selectedIndex = availableIndices[randomIdx];
+      
+      if (pool[selectedIndex].emoji !== previousEmoji) {
+        break;
+      }
+      attempts++;
+    }
+
+    if (selectedIndex >= 0) {
+      usedIndices.add(selectedIndex);
+      return pool[selectedIndex];
+    }
+
+    return null;
   }
 
   revealWord(item: SpellingItem): void {

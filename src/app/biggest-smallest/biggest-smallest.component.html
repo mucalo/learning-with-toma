@@ -1,0 +1,51 @@
+<section class="biggest-smallest-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">← Back to menu</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="language">Select language</label>
+      <select id="language" [(ngModel)]="language">
+        <option *ngFor="let option of languageOptions" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="problemCount">Number of problems</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="maxItems">Max items per problem</label>
+      <input id="maxItems" type="number" min="3" max="20" [(ngModel)]="maxItems" />
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">Generate</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">Print</button>
+  </div>
+
+  <div class="error-message" *ngIf="validationError">{{ validationError }}</div>
+
+  <div class="worksheet" *ngIf="generatedItems.length > 0">
+    <div class="worksheet-header">
+      <p class="worksheet-instruction">{{ instructionText }}</p>
+    </div>
+
+    <div class="problem-row" *ngFor="let item of generatedItems; let i = index">
+      <div class="items-container" aria-label="Items to compare sizes">
+        <span 
+          *ngFor="let positioned of item.positioned" 
+          class="item-emoji"
+          [style.left.px]="positioned.x"
+          [style.top.px]="positioned.y"
+          [style.font-size.rem]="positioned.size"
+        >
+          {{ positioned.emoji }}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

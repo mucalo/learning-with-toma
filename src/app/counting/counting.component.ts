@@ -56,19 +56,37 @@ export class CountingComponent {
     const safeCount = Math.max(1, Math.min(100, Number(this.problemCount) || 1));
     const safeMaxItems = Math.max(1, Math.min(20, Number(this.maxItems) || 1));
 
-    this.generatedItems = Array.from({ length: safeCount }, (_, index) => {
+    this.generatedItems = [];
+    let previousEmoji = '';
+
+    for (let i = 0; i < safeCount; i++) {
       const count = Math.floor(Math.random() * safeMaxItems) + 1;
-      const selectedEmoji = this.itemEmojis[Math.floor(Math.random() * this.itemEmojis.length)];
-      const items: string[] = Array.from({ length: count }, () => selectedEmoji);
+      const emoji = this.getNextDifferentEmoji(previousEmoji);
+      const items: string[] = Array.from({ length: count }, () => emoji);
       const positioned = this.positionItems(items);
 
-      return {
-        id: `counting-${index}`,
+      this.generatedItems.push({
+        id: `counting-${i}`,
         count,
         items,
         positioned
-      };
-    });
+      });
+
+      previousEmoji = emoji;
+    }
+  }
+
+  private getNextDifferentEmoji(previousEmoji: string): string {
+    let emoji = this.itemEmojis[Math.floor(Math.random() * this.itemEmojis.length)];
+    let attempts = 0;
+    const maxAttempts = 50;
+
+    while (emoji === previousEmoji && attempts < maxAttempts) {
+      emoji = this.itemEmojis[Math.floor(Math.random() * this.itemEmojis.length)];
+      attempts++;
+    }
+
+    return emoji;
   }
 
   private positionItems(items: string[]): PositionedEmoji[] {
