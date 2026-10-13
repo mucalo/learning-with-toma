@@ -22,6 +22,7 @@ export interface Translations {
     spelling: { title: string; description: string };
     counting: { title: string; description: string };
     biggestSmallest: { title: string; description: string };
+    sequence: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -48,6 +49,23 @@ export interface Translations {
     itemsToCompare: string;
     minItemsError: string;
   };
+  sequence: {
+    instruction: string;
+    elementType: string;
+    shapes: string;
+    numbers: string;
+    letters: string;
+    patternLength: string;
+    lengthMode: string;
+    exactly: string;
+    upTo: string;
+    sequenceLabel: string;
+    blank: string;
+    showAnswer: string;
+    triangle: string;
+    circle: string;
+    square: string;
+  };
 }
 
 const english: Translations = {
@@ -67,7 +85,8 @@ const english: Translations = {
   activities: {
     spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
     counting: { title: 'Counting', description: 'Count objects and write the number.' },
-    biggestSmallest: { title: 'Biggest and Smallest', description: 'Circle the biggest and smallest objects.' }
+    biggestSmallest: { title: 'Biggest and Smallest', description: 'Circle the biggest and smallest objects.' },
+    sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -93,6 +112,23 @@ const english: Translations = {
     maxItems: 'Max items per problem',
     itemsToCompare: 'Items to compare sizes',
     minItemsError: 'Maximum items per problem must be at least 3.'
+  },
+  sequence: {
+    instruction: 'Look at the pattern and continue the sequence.',
+    elementType: 'Elements',
+    shapes: 'Shapes',
+    numbers: 'Numbers',
+    letters: 'Letters',
+    patternLength: 'Items in the pattern',
+    lengthMode: 'Pattern length',
+    exactly: 'Exactly',
+    upTo: 'Up to',
+    sequenceLabel: 'Sequence to continue',
+    blank: 'Empty space',
+    showAnswer: 'Show the answer',
+    triangle: 'Triangle',
+    circle: 'Circle',
+    square: 'Square'
   }
 };
 
@@ -113,7 +149,8 @@ const croatian: Translations = {
   activities: {
     spelling: { title: 'Pisanje riječi', description: 'Vježbaj pisanje riječi uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroji predmete i napiši broj.' },
-    biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' }
+    biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
+    sequence: { title: 'Nastavi niz', description: 'Prepoznaj uzorak i nastavi niz.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -139,6 +176,23 @@ const croatian: Translations = {
     maxItems: 'Najviše predmeta po zadatku',
     itemsToCompare: 'Predmeti za usporedbu veličine',
     minItemsError: 'Najveći broj predmeta po zadatku mora biti barem 3.'
+  },
+  sequence: {
+    instruction: 'Pogledaj uzorak i nastavi niz.',
+    elementType: 'Elementi',
+    shapes: 'Oblici',
+    numbers: 'Brojevi',
+    letters: 'Slova',
+    patternLength: 'Broj elemenata u uzorku',
+    lengthMode: 'Duljina uzorka',
+    exactly: 'Točno',
+    upTo: 'Najviše',
+    sequenceLabel: 'Niz koji treba nastaviti',
+    blank: 'Prazno mjesto',
+    showAnswer: 'Prikaži odgovor',
+    triangle: 'Trokut',
+    circle: 'Krug',
+    square: 'Kvadrat'
   }
 };
 
@@ -159,7 +213,8 @@ const serbian: Translations = {
   activities: {
     spelling: { title: 'Pisanje reči', description: 'Vežbaj pisanje reči uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroj predmete i napiši broj.' },
-    biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' }
+    biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
+    sequence: { title: 'Nastavi niz', description: 'Prepoznaj obrazac i nastavi niz.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -185,6 +240,23 @@ const serbian: Translations = {
     maxItems: 'Najviše predmeta po zadatku',
     itemsToCompare: 'Predmeti za poređenje veličine',
     minItemsError: 'Najveći broj predmeta po zadatku mora biti najmanje 3.'
+  },
+  sequence: {
+    instruction: 'Pogledaj obrazac i nastavi niz.',
+    elementType: 'Elementi',
+    shapes: 'Oblici',
+    numbers: 'Brojevi',
+    letters: 'Slova',
+    patternLength: 'Broj elemenata u obrascu',
+    lengthMode: 'Dužina obrasca',
+    exactly: 'Tačno',
+    upTo: 'Najviše',
+    sequenceLabel: 'Niz koji treba nastaviti',
+    blank: 'Prazno mesto',
+    showAnswer: 'Prikaži odgovor',
+    triangle: 'Trougao',
+    circle: 'Krug',
+    square: 'Kvadrat'
   }
 };
 

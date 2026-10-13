@@ -17,7 +17,8 @@ export class HomeComponent {
   readonly activities: ActivityCard[] = [
     { key: 'spelling', route: '/spelling', emoji: '✏️' },
     { key: 'counting', route: '/counting', emoji: '🔢' },
-    { key: 'biggestSmallest', route: '/biggest-smallest', emoji: '📏' }
+    { key: 'biggestSmallest', route: '/biggest-smallest', emoji: '📏' },
+    { key: 'sequence', route: '/sequence', emoji: '🔺' }
   ];
 
   constructor(readonly i18n: LanguageService) {}

@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { CountingComponent } from './counting/counting.component';
 import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.component';
 import { WorksheetComponent } from './worksheet/worksheet.component';
+import { SequenceComponent } from './sequence/sequence.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { WorksheetComponent } from './worksheet/worksheet.component';
     HomeComponent,
     CountingComponent,
     BiggestSmallestComponent,
-    WorksheetComponent
+    WorksheetComponent,
+    SequenceComponent
   ],
   imports: [
     BrowserModule,

@@ -19,8 +19,9 @@ The site is deployed to GitHub Pages at `/learning-with-toma/`.
 | `#/spelling` | Spelling | Sees an emoji picture and writes the word, one line per letter. In Croatian and Serbian, the digraphs `lj`, `nj` and `dž` share a single wider line. | Number of problems, max letters per word |
 | `#/counting` | Counting | Counts the emojis scattered in a box and writes the number. | Number of problems, max items (1–20) |
 | `#/biggest-smallest` | Biggest & Smallest | Circles the biggest item in green and the smallest in blue. | Number of problems, max items (3–20) |
+| `#/sequence` | Continue the Sequence | Sees a pattern repeated twice (e.g. `AAB AAB`) and continues it for three more repeats in empty boxes, which wrap onto extra lines as needed. | Number of problems, element type (shapes ▲●■ / numbers / letters), items in the pattern (2–5). From 3 items: *exactly N*, or *up to N* (each line picks a length from 2 to N) |
 
-Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling and Counting rows also have a **?** button that shows the answer and a **✕** button that removes the row.
+Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting and Sequence rows also have a **?** button that shows the answer and a **✕** button that removes the row.
 
 ## Languages
 
@@ -69,6 +70,7 @@ src/
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
     ├── biggest-smallest/        # Biggest & Smallest activity
+    ├── sequence/                # Continue the Sequence activity
     └── worksheet/               # shared worksheet layout (instruction on every printed page)
 brand.json                       # brand guide: colours, fonts, voice, mascot
 .github/

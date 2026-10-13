@@ -4,12 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { SpellingComponent } from './spelling/spelling.component';
 import { CountingComponent } from './counting/counting.component';
 import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.component';
+import { SequenceComponent } from './sequence/sequence.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'spelling', component: SpellingComponent },
   { path: 'counting', component: CountingComponent },
-  { path: 'biggest-smallest', component: BiggestSmallestComponent }
+  { path: 'biggest-smallest', component: BiggestSmallestComponent },
+  { path: 'sequence', component: SequenceComponent }
 ];
 
 @NgModule({

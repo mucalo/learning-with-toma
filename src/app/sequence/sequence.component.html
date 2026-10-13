@@ -1,0 +1,77 @@
+<section class="sequence-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="elementType">{{ i18n.t.sequence.elementType }}</label>
+      <select id="elementType" [(ngModel)]="elementType">
+        <option *ngFor="let type of elementTypes" [ngValue]="type">{{ i18n.t.sequence[type] }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="patternLength">{{ i18n.t.sequence.patternLength }}</label>
+      <select id="patternLength" [(ngModel)]="patternLength">
+        <option *ngFor="let length of patternLengths" [ngValue]="length">{{ length }}</option>
+      </select>
+    </div>
+
+    <div class="field" *ngIf="showLengthMode">
+      <label for="lengthMode">{{ i18n.t.sequence.lengthMode }}</label>
+      <select id="lengthMode" [(ngModel)]="lengthMode">
+        <option *ngFor="let mode of lengthModes" [ngValue]="mode">{{ i18n.t.sequence[mode] }} {{ patternLength }}</option>
+      </select>
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.sequence.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="sequence" [attr.aria-label]="i18n.t.sequence.sequenceLabel">
+          <span class="cell" *ngFor="let value of item.shown">
+            <ng-container *ngTemplateOutlet="symbol; context: { $implicit: value, type: item.type }"></ng-container>
+          </span>
+          <span class="cell blank" *ngFor="let value of item.continuation" [attr.aria-label]="i18n.t.sequence.blank">
+            <span class="answer" *ngIf="item.answerRevealed">
+              <ng-container *ngTemplateOutlet="symbol; context: { $implicit: value, type: item.type }"></ng-container>
+            </span>
+          </span>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.sequence.showAnswer">
+            ?
+          </button>
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>
+
+<ng-template #symbol let-value let-type="type">
+  <ng-container *ngIf="type === 'shapes'; else text">
+    <svg *ngIf="value === 'triangle'" class="shape triangle" viewBox="0 0 24 24" role="img" [attr.aria-label]="shapeLabel(value)">
+      <polygon points="12,3.5 21,20 3,20" />
+    </svg>
+    <svg *ngIf="value === 'circle'" class="shape circle" viewBox="0 0 24 24" role="img" [attr.aria-label]="shapeLabel(value)">
+      <circle cx="12" cy="12" r="8.5" />
+    </svg>
+    <svg *ngIf="value === 'square'" class="shape square" viewBox="0 0 24 24" role="img" [attr.aria-label]="shapeLabel(value)">
+      <rect x="4" y="4" width="16" height="16" rx="1.5" />
+    </svg>
+  </ng-container>
+  <ng-template #text><span class="glyph">{{ value }}</span></ng-template>
+</ng-template>
