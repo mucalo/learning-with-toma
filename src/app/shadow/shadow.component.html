@@ -1,0 +1,64 @@
+<section class="shadow-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="pairCount">{{ i18n.t.shadow.pairCount }}</label>
+      <select id="pairCount" [(ngModel)]="pairCount">
+        <option *ngFor="let count of pairCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="difficulty">{{ i18n.t.shadow.difficulty }}</label>
+      <select id="difficulty" [(ngModel)]="difficulty">
+        <option *ngFor="let option of difficulties" [ngValue]="option">{{ i18n.t.shadow[option] }}</option>
+      </select>
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.shadow.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="matching">
+          <!-- Emoji are hidden from screen readers here: their names would give the answer away. -->
+          <ul class="row pictures" [style.grid-template-columns]="gridColumns(item)" [attr.aria-label]="i18n.t.shadow.picturesLabel">
+            <li *ngFor="let picture of item.pictures" class="cell picture"><span aria-hidden="true">{{ picture }}</span></li>
+          </ul>
+
+          <div class="drawing-space">
+            <svg *ngIf="item.answerRevealed" class="answer-lines" [attr.viewBox]="'0 0 ' + item.pictures.length + ' 10'" preserveAspectRatio="none" aria-hidden="true">
+              <svg:line
+                *ngFor="let shadowIndex of item.answer; let p = index"
+                [attr.x1]="p + 0.5" y1="0" [attr.x2]="shadowIndex + 0.5" y2="10"
+              />
+            </svg>
+          </div>
+
+          <ul class="row shadows" [style.grid-template-columns]="gridColumns(item)" [attr.aria-label]="i18n.t.shadow.shadowsLabel">
+            <li *ngFor="let shadow of item.shadows" class="cell shadow"><span aria-hidden="true">{{ shadow }}</span></li>
+          </ul>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.shadow.showAnswer">
+            ?
+          </button>
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

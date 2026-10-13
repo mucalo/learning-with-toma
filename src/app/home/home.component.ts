@@ -20,7 +20,8 @@ export class HomeComponent {
     { key: 'biggestSmallest', route: '/biggest-smallest', emoji: '📏' },
     { key: 'sequence', route: '/sequence', emoji: '🔺' },
     { key: 'intruder', route: '/intruder', emoji: '🔍' },
-    { key: 'line', route: '/line', emoji: '〰️' }
+    { key: 'line', route: '/line', emoji: '〰️' },
+    { key: 'shadow', route: '/shadow', emoji: '👤' }
   ];
 
   constructor(readonly i18n: LanguageService) {}

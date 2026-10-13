@@ -14,6 +14,7 @@ import { WorksheetComponent } from './worksheet/worksheet.component';
 import { SequenceComponent } from './sequence/sequence.component';
 import { IntruderComponent } from './intruder/intruder.component';
 import { LineComponent } from './line/line.component';
+import { ShadowComponent } from './shadow/shadow.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LineComponent } from './line/line.component';
     WorksheetComponent,
     SequenceComponent,
     IntruderComponent,
-    LineComponent
+    LineComponent,
+    ShadowComponent
   ],
   imports: [
     BrowserModule,

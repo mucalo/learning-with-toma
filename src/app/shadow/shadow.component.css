@@ -1,0 +1,173 @@
+.shadow-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 150px;
+  font: inherit;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  background: #5b8def;
+}
+
+.print-button {
+  background: #f28c82;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.matching {
+  flex: 1;
+  max-width: 640px;
+}
+
+.row {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 2.8rem;
+  line-height: 1.2;
+}
+
+/* Dots to start and end each connecting line. */
+.picture::after,
+.shadow::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: -0.25rem;
+  border-radius: 50%;
+  background: #2f3b45;
+}
+
+.picture::after {
+  bottom: -0.6rem;
+}
+
+.shadow::before {
+  top: -0.6rem;
+}
+
+.shadow span {
+  filter: brightness(0);
+  opacity: 0.85;
+}
+
+.drawing-space {
+  height: 4.5rem;
+  margin: 0.6rem 0;
+}
+
+.answer-lines {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.answer-lines line {
+  stroke: #f28c82;
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.action-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+@media print {
+  .back-link-container,
+  .controls,
+  .action-area,
+  .answer-lines {
+    display: none;
+  }
+
+  /* Keep a clear divider: without it, shadows look like they could belong to the next problem's pictures. */
+  .problem-row {
+    padding: 1.75rem 0;
+    border-top: 2px dashed rgba(47, 59, 69, 0.35);
+  }
+}

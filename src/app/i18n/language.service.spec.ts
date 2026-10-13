@@ -22,6 +22,10 @@ describe('LanguageService', () => {
     service.language = 'serbian';
     expect(service.t.common.print).toBe('Štampaj');
     expect(document.documentElement.lang).toBe('sr-Latn');
+    expect(document.title).toBe('Učimo s Tomom');
+
+    service.language = 'english';
+    expect(document.title).toBe('Learning with Toma');
   });
 
   it('should provide a non-empty translation for every key in every language', () => {

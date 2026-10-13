@@ -7,6 +7,7 @@ import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.co
 import { SequenceComponent } from './sequence/sequence.component';
 import { IntruderComponent } from './intruder/intruder.component';
 import { LineComponent } from './line/line.component';
+import { ShadowComponent } from './shadow/shadow.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'biggest-smallest', component: BiggestSmallestComponent },
   { path: 'sequence', component: SequenceComponent },
   { path: 'intruder', component: IntruderComponent },
-  { path: 'line', component: LineComponent }
+  { path: 'line', component: LineComponent },
+  { path: 'shadow', component: ShadowComponent }
 ];
 
 @NgModule({

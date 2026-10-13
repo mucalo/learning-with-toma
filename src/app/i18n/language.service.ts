@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { DEFAULT_LANGUAGE, LANGUAGES, LanguageKey } from './languages';
 import { TRANSLATIONS, Translations } from './translations';
 
@@ -13,7 +14,7 @@ export class LanguageService {
   readonly languages = LANGUAGES;
   private current: LanguageKey = DEFAULT_LANGUAGE;
 
-  constructor() {
+  constructor(private readonly title: Title) {
     this.language = this.readStoredLanguage() ?? DEFAULT_LANGUAGE;
   }
 
@@ -28,6 +29,8 @@ export class LanguageService {
 
     this.current = value;
     this.storeLanguage(value);
+
+    this.title.setTitle(TRANSLATIONS[value].header.appTitle);
 
     const option = LANGUAGES.find(language => language.value === value);
     if (option && typeof document !== 'undefined') {

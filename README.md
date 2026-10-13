@@ -22,8 +22,9 @@ The site is deployed to GitHub Pages at `/learning-with-toma/`.
 | `#/sequence` | Continue the Sequence | Sees a pattern repeated twice (e.g. `AAB AAB`) and continues it for three more repeats in empty boxes, which wrap onto extra lines as needed. | Number of problems, element type (shapes ▲●■ / numbers / letters), items in the pattern (2–5). From 3 items: *exactly N*, or *up to N* (each line picks a length from 2 to N) |
 | `#/intruder` | Find the Intruder | Sees pictures from one theme (summer, winter, farm animals, fruit, school, transport, sea creatures, clothes, sports) mixed with pictures that clearly don't belong, and circles the intruders. Intruders are hand-picked per theme in `intruder.component.ts`. | Number of problems, theme pictures (3–8), intruders (1–4, always fewer than theme pictures) |
 | `#/line` | Complete the Line | Traces a line pattern (zig-zag, waves, arches, cups, castle, sawtooth or loops) drawn twice as a thick line and twice as a dashed line, then continues it to the edge of the page. | Number of problems, shape (*Mixed*, which picks at random per line, or one specific shape), size (small / medium / large), guide lines above and below the pattern (on/off) |
+| `#/shadow` | Match the Shadow | Draws a line from each coloured picture to its black silhouette. The silhouettes are in a different order, and none sits directly below its own picture. | Number of problems, pairs per problem (3–5), difficulty: *easy* (pictures from different groups, very different shapes) or *hard* (pictures from one group, e.g. all animals, so similar shapes) |
 
-Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence and Intruder rows also have a **?** button that shows the answer. Those rows and Complete the Line rows have a **✕** button that removes the row.
+Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence, Intruder and Shadow rows also have a **?** button that shows the answer. Those rows and Complete the Line rows have a **✕** button that removes the row.
 
 ## Languages
 
@@ -75,6 +76,7 @@ src/
     ├── sequence/                # Continue the Sequence activity
     ├── intruder/                # Find the Intruder activity (themes + intruders data)
     ├── line/                    # Complete the Line activity (line pattern geometry)
+    ├── shadow/                  # Match the Shadow activity (silhouette-friendly picture groups)
     └── worksheet/               # shared worksheet layout (instruction on every printed page)
 brand.json                       # brand guide: colours, fonts, voice, mascot
 .github/

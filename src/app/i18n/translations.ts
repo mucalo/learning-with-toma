@@ -6,6 +6,7 @@ import { LanguageKey } from './languages';
  */
 export interface Translations {
   header: {
+    appTitle: string;
     subtitle: string;
     languageLabel: string;
   };
@@ -25,6 +26,7 @@ export interface Translations {
     sequence: { title: string; description: string };
     intruder: { title: string; description: string };
     line: { title: string; description: string };
+    shadow: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -109,10 +111,21 @@ export interface Translations {
       loops: string;
     };
   };
+  shadow: {
+    instruction: string;
+    pairCount: string;
+    difficulty: string;
+    easy: string;
+    hard: string;
+    picturesLabel: string;
+    shadowsLabel: string;
+    showAnswer: string;
+  };
 }
 
 const english: Translations = {
   header: {
+    appTitle: 'Learning with Toma',
     subtitle: 'Helping children learn with warmth and care',
     languageLabel: 'Language'
   },
@@ -131,7 +144,8 @@ const english: Translations = {
     biggestSmallest: { title: 'Biggest and Smallest', description: 'Circle the biggest and smallest objects.' },
     sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' },
     intruder: { title: 'Find the Intruder', description: 'Spot the pictures that don\'t fit the theme.' },
-    line: { title: 'Complete the Line', description: 'Trace the pattern and continue it to the edge.' }
+    line: { title: 'Complete the Line', description: 'Trace the pattern and continue it to the edge.' },
+    shadow: { title: 'Match the Shadow', description: 'Connect each picture to its shadow.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -215,18 +229,29 @@ const english: Translations = {
       sawtooth: 'Sawtooth',
       loops: 'Loops'
     }
+  },
+  shadow: {
+    instruction: 'Draw a line from each picture to its shadow.',
+    pairCount: 'Pairs per problem',
+    difficulty: 'Difficulty',
+    easy: 'Easy – different shapes',
+    hard: 'Hard – similar shapes',
+    picturesLabel: 'Pictures',
+    shadowsLabel: 'Shadows',
+    showAnswer: 'Show the answer'
   }
 };
 
 const croatian: Translations = {
   header: {
-    subtitle: 'Pomažemo djeci da uče uz toplinu i brigu',
+    appTitle: 'Učimo s Tomom',
+    subtitle: 'Pomažemo djeci učiti uz toplinu i brigu',
     languageLabel: 'Jezik'
   },
   footer: {
     message: 'Ako ovaj rad pomaže djetetu, roditelju ili stručnjaku da se osjeća podržano, mala donacija može pomoći da se nastavi s pažnjom i brigom.'
   },
-  donate: 'Donirajte i pomozite djeci da uče',
+  donate: 'Donirajte i pomozite djeci učiti',
   home: {
     heading: 'Odaberi aktivnost',
     intro: 'Odaberi aktivnost za učenje i započni.',
@@ -238,7 +263,8 @@ const croatian: Translations = {
     biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
     sequence: { title: 'Nastavi niz', description: 'Prepoznaj uzorak i nastavi niz.' },
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
-    line: { title: 'Dovrši crtu', description: 'Prijeđi preko uzorka i nastavi ga do ruba.' }
+    line: { title: 'Dovrši crtu', description: 'Prijeđi preko uzorka i nastavi ga do ruba.' },
+    shadow: { title: 'Pronađi sjenu', description: 'Poveži sličice s njihovim sjenama.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -322,11 +348,22 @@ const croatian: Translations = {
       sawtooth: 'Pila',
       loops: 'Petlje'
     }
+  },
+  shadow: {
+    instruction: 'Poveži svaku sličicu s njezinom sjenom.',
+    pairCount: 'Parova po zadatku',
+    difficulty: 'Težina',
+    easy: 'Lagano – različiti oblici',
+    hard: 'Teško – slični oblici',
+    picturesLabel: 'Sličice',
+    shadowsLabel: 'Sjene',
+    showAnswer: 'Prikaži odgovor'
   }
 };
 
 const serbian: Translations = {
   header: {
+    appTitle: 'Učimo s Tomom',
     subtitle: 'Pomažemo deci da uče uz toplinu i brigu',
     languageLabel: 'Jezik'
   },
@@ -345,7 +382,8 @@ const serbian: Translations = {
     biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
     sequence: { title: 'Nastavi niz', description: 'Prepoznaj obrazac i nastavi niz.' },
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
-    line: { title: 'Dovrši liniju', description: 'Pređi preko obrasca i nastavi ga do ivice.' }
+    line: { title: 'Dovrši liniju', description: 'Pređi preko obrasca i nastavi ga do ivice.' },
+    shadow: { title: 'Pronađi senku', description: 'Poveži sličice sa njihovim senkama.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -429,6 +467,16 @@ const serbian: Translations = {
       sawtooth: 'Testera',
       loops: 'Petlje'
     }
+  },
+  shadow: {
+    instruction: 'Poveži svaku sličicu sa njenom senkom.',
+    pairCount: 'Parova po zadatku',
+    difficulty: 'Težina',
+    easy: 'Lako – različiti oblici',
+    hard: 'Teško – slični oblici',
+    picturesLabel: 'Sličice',
+    shadowsLabel: 'Senke',
+    showAnswer: 'Prikaži odgovor'
   }
 };
 
