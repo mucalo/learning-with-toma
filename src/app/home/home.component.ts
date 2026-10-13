@@ -22,7 +22,9 @@ export class HomeComponent {
     { key: 'intruder', route: '/intruder', emoji: '🔍' },
     { key: 'line', route: '/line', emoji: '〰️' },
     { key: 'shadow', route: '/shadow', emoji: '👤' },
-    { key: 'maze', route: '/maze', emoji: '🧩' }
+    { key: 'maze', route: '/maze', emoji: '🧩' },
+    { key: 'where', route: '/where', emoji: '📍' },
+    { key: 'copyPattern', route: '/copy-pattern', emoji: '📐' }
   ];
 
   constructor(readonly i18n: LanguageService) {}

@@ -1,0 +1,190 @@
+.where-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field > label,
+.positions legend {
+  font-weight: 700;
+}
+
+.field input[type="number"],
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 150px;
+  font: inherit;
+}
+
+.positions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.9rem;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.positions legend {
+  padding: 0;
+  margin-bottom: 0.35rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.9rem;
+}
+
+.checkbox input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #5b8def;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  background: #5b8def;
+}
+
+.print-button {
+  background: #f28c82;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.content {
+  flex: 1;
+}
+
+.sentence {
+  margin: 0 0 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.scenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scene {
+  width: 9.5rem;
+  border: 2px solid rgba(47, 59, 69, 0.15);
+  border-radius: 12px;
+}
+
+.scene.correct {
+  border: 3px solid #e57373;
+}
+
+.scene svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.floor {
+  stroke: #9aa5b1;
+  stroke-width: 1.5;
+}
+
+.thing {
+  fill: #e8c9a0;
+  stroke: #2f3b45;
+  stroke-width: 1.5;
+}
+
+.character {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.action-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+@media print {
+  .back-link-container,
+  .controls,
+  .action-area {
+    display: none;
+  }
+
+  .scene.correct {
+    border: 2px solid rgba(47, 59, 69, 0.15);
+  }
+
+  .problem-row {
+    border: none;
+  }
+}

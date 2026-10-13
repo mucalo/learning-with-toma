@@ -9,6 +9,8 @@ import { IntruderComponent } from './intruder/intruder.component';
 import { LineComponent } from './line/line.component';
 import { ShadowComponent } from './shadow/shadow.component';
 import { MazeComponent } from './maze/maze.component';
+import { WhereComponent } from './where/where.component';
+import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'intruder', component: IntruderComponent },
   { path: 'line', component: LineComponent },
   { path: 'shadow', component: ShadowComponent },
-  { path: 'maze', component: MazeComponent }
+  { path: 'maze', component: MazeComponent },
+  { path: 'where', component: WhereComponent },
+  { path: 'copy-pattern', component: CopyPatternComponent }
 ];
 
 @NgModule({

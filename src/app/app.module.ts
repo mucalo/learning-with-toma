@@ -16,6 +16,8 @@ import { IntruderComponent } from './intruder/intruder.component';
 import { LineComponent } from './line/line.component';
 import { ShadowComponent } from './shadow/shadow.component';
 import { MazeComponent } from './maze/maze.component';
+import { WhereComponent } from './where/where.component';
+import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MazeComponent } from './maze/maze.component';
     IntruderComponent,
     LineComponent,
     ShadowComponent,
-    MazeComponent
+    MazeComponent,
+    WhereComponent,
+    CopyPatternComponent
   ],
   imports: [
     BrowserModule,

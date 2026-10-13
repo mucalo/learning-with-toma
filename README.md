@@ -24,8 +24,10 @@ The site is deployed to GitHub Pages at `/learning-with-toma/`.
 | `#/line` | Complete the Line | Traces a line pattern (zig-zag, waves, arches, cups, castle, sawtooth or loops) drawn twice as a thick line and twice as a dashed line, then continues it to the edge of the page. | Number of problems, shape (*Mixed*, which picks at random per line, or one specific shape), size (small / medium / large), guide lines above and below the pattern (on/off) |
 | `#/shadow` | Match the Shadow | Draws a line from each coloured picture to its black silhouette. The silhouettes are in a different order, and none sits directly below its own picture. | Number of problems, pairs per problem (3–5), difficulty: *easy* (pictures from different groups, very different shapes) or *hard* (pictures from one group, e.g. all animals, so similar shapes) |
 | `#/maze` | Maze | Draws the way from an animal (top-left) to its food (bottom-right), e.g. 🐝 → 🌻. Every maze is randomly generated with exactly one route. Mazes always print two per A4 page. | Number of mazes, size (5×5 up to 16×16) |
+| `#/where` | Where Is It? | Reads a sentence such as *"The cat is under the table."* and circles the matching scene. Every scene shows the same character and object in a different position. Objects are drawn as line art so positions are exact, and Croatian/Serbian sentences use the correct case (*na stolu* / *ispod stola*). | Number of problems, pictures per problem (2–4), which position words to include (on / under / next to / above, at least two) |
+| `#/copy-pattern` | Copy the Pattern | Copies a line drawing from one dot grid onto an empty one beside it. Drawings are either random shapes (always connected, with no repeated or crossing lines) or one of 20 hand-made recognisable figures (house, boat, fish, heart, rocket, castle, stairs…) defined in `FIGURES`. | Number of problems, grid size (3×3 to 6×6), drawings (random shapes / pictures / mixed), number of lines (random shapes only), diagonal lines (on/off; off also limits pictures to straight-line ones) |
 
-Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence, Intruder, Shadow and Maze rows also have a **?** button that shows the answer. Those rows and Complete the Line rows have a **✕** button that removes the row.
+Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence, Intruder, Shadow, Maze and Where Is It? rows also have a **?** button that shows the answer. Those rows, Complete the Line rows and Copy the Pattern rows have a **✕** button that removes the row.
 
 ## Languages
 
@@ -79,6 +81,8 @@ src/
     ├── line/                    # Complete the Line activity (line pattern geometry)
     ├── shadow/                  # Match the Shadow activity (silhouette-friendly picture groups)
     ├── maze/                    # Maze activity (maze generator and solver)
+    ├── where/                   # Where Is It? activity (scenes, noun cases, sentence grammar per language)
+    ├── copy-pattern/            # Copy the Pattern activity (dot-grid figure generator)
     └── worksheet/               # shared worksheet layout (instruction on every printed page)
 brand.json                       # brand guide: colours, fonts, voice, mascot
 .github/

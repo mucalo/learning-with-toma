@@ -28,6 +28,8 @@ export interface Translations {
     line: { title: string; description: string };
     shadow: { title: string; description: string };
     maze: { title: string; description: string };
+    where: { title: string; description: string };
+    copyPattern: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -135,6 +137,33 @@ export interface Translations {
     mazeLabel: string;
     showAnswer: string;
   };
+  where: {
+    instruction: string;
+    sceneCount: string;
+    positionsLabel: string;
+    positions: {
+      on: string;
+      under: string;
+      nextTo: string;
+      above: string;
+    };
+    sceneLabel: string;
+    showAnswer: string;
+  };
+  copyPattern: {
+    instruction: string;
+    gridSize: string;
+    lineCount: string;
+    diagonals: string;
+    modelLabel: string;
+    copyLabel: string;
+    drawingType: string;
+    drawingTypes: {
+      random: string;
+      pictures: string;
+      mixed: string;
+    };
+  };
 }
 
 const english: Translations = {
@@ -160,7 +189,9 @@ const english: Translations = {
     intruder: { title: 'Find the Intruder', description: 'Spot the pictures that don\'t fit the theme.' },
     line: { title: 'Complete the Line', description: 'Trace the pattern and continue it to the edge.' },
     shadow: { title: 'Match the Shadow', description: 'Connect each picture to its shadow.' },
-    maze: { title: 'Maze', description: 'Find the way through the maze.' }
+    maze: { title: 'Maze', description: 'Find the way through the maze.' },
+    where: { title: 'Where Is It?', description: 'Find the picture that matches the sentence.' },
+    copyPattern: { title: 'Copy the Pattern', description: 'Copy a line drawing onto a dot grid.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -267,6 +298,33 @@ const english: Translations = {
     },
     mazeLabel: 'Maze',
     showAnswer: 'Show the way'
+  },
+  where: {
+    instruction: 'Circle the picture that matches the sentence.',
+    sceneCount: 'Pictures per problem',
+    positionsLabel: 'Position words',
+    positions: {
+      on: 'on',
+      under: 'under',
+      nextTo: 'next to',
+      above: 'above'
+    },
+    sceneLabel: 'Picture',
+    showAnswer: 'Show the answer'
+  },
+  copyPattern: {
+    instruction: 'Copy the drawing onto the empty dots.',
+    gridSize: 'Grid size',
+    lineCount: 'Number of lines',
+    diagonals: 'Diagonal lines',
+    modelLabel: 'Drawing to copy',
+    copyLabel: 'Empty grid',
+    drawingType: 'Drawings',
+    drawingTypes: {
+      random: 'Random shapes',
+      pictures: 'Pictures (house, boat…)',
+      mixed: 'Mixed'
+    }
   }
 };
 
@@ -293,7 +351,9 @@ const croatian: Translations = {
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
     line: { title: 'Dovrši crtu', description: 'Prijeđi preko uzorka i nastavi ga do ruba.' },
     shadow: { title: 'Pronađi sjenu', description: 'Poveži sličice s njihovim sjenama.' },
-    maze: { title: 'Labirint', description: 'Pronađi put kroz labirint.' }
+    maze: { title: 'Labirint', description: 'Pronađi put kroz labirint.' },
+    where: { title: 'Gdje je?', description: 'Pronađi sliku koja odgovara rečenici.' },
+    copyPattern: { title: 'Precrtaj uzorak', description: 'Precrtaj crtež na mrežu točkica.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -400,6 +460,33 @@ const croatian: Translations = {
     },
     mazeLabel: 'Labirint',
     showAnswer: 'Prikaži put'
+  },
+  where: {
+    instruction: 'Zaokruži sliku koja odgovara rečenici.',
+    sceneCount: 'Slika po zadatku',
+    positionsLabel: 'Prijedlozi',
+    positions: {
+      on: 'na',
+      under: 'ispod',
+      nextTo: 'pokraj',
+      above: 'iznad'
+    },
+    sceneLabel: 'Slika',
+    showAnswer: 'Prikaži odgovor'
+  },
+  copyPattern: {
+    instruction: 'Precrtaj crtež na prazne točkice.',
+    gridSize: 'Veličina mreže',
+    lineCount: 'Broj crta',
+    diagonals: 'Kose crte',
+    modelLabel: 'Crtež za precrtavanje',
+    copyLabel: 'Prazna mreža',
+    drawingType: 'Crteži',
+    drawingTypes: {
+      random: 'Nasumični oblici',
+      pictures: 'Sličice (kuća, brod…)',
+      mixed: 'Mješovito'
+    }
   }
 };
 
@@ -426,7 +513,9 @@ const serbian: Translations = {
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
     line: { title: 'Dovrši liniju', description: 'Pređi preko obrasca i nastavi ga do ivice.' },
     shadow: { title: 'Pronađi senku', description: 'Poveži sličice sa njihovim senkama.' },
-    maze: { title: 'Lavirint', description: 'Pronađi put kroz lavirint.' }
+    maze: { title: 'Lavirint', description: 'Pronađi put kroz lavirint.' },
+    where: { title: 'Gde je?', description: 'Pronađi sliku koja odgovara rečenici.' },
+    copyPattern: { title: 'Precrtaj obrazac', description: 'Precrtaj crtež na mrežu tačkica.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -533,6 +622,33 @@ const serbian: Translations = {
     },
     mazeLabel: 'Lavirint',
     showAnswer: 'Prikaži put'
+  },
+  where: {
+    instruction: 'Zaokruži sliku koja odgovara rečenici.',
+    sceneCount: 'Slika po zadatku',
+    positionsLabel: 'Predlozi',
+    positions: {
+      on: 'na',
+      under: 'ispod',
+      nextTo: 'pored',
+      above: 'iznad'
+    },
+    sceneLabel: 'Slika',
+    showAnswer: 'Prikaži odgovor'
+  },
+  copyPattern: {
+    instruction: 'Precrtaj crtež na prazne tačkice.',
+    gridSize: 'Veličina mreže',
+    lineCount: 'Broj linija',
+    diagonals: 'Kose linije',
+    modelLabel: 'Crtež za precrtavanje',
+    copyLabel: 'Prazna mreža',
+    drawingType: 'Crteži',
+    drawingTypes: {
+      random: 'Nasumični oblici',
+      pictures: 'Sličice (kuća, brod…)',
+      mixed: 'Mešovito'
+    }
   }
 };
 

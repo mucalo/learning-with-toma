@@ -1,0 +1,71 @@
+<section class="copy-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="gridSize">{{ i18n.t.copyPattern.gridSize }}</label>
+      <select id="gridSize" [ngModel]="gridSize" (ngModelChange)="onGridSizeChange($event)">
+        <option *ngFor="let size of gridSizes" [ngValue]="size">{{ size }} × {{ size }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="drawingType">{{ i18n.t.copyPattern.drawingType }}</label>
+      <select id="drawingType" [(ngModel)]="drawingType">
+        <option *ngFor="let type of drawingTypes" [ngValue]="type">{{ drawingTypeLabel(type) }}</option>
+      </select>
+    </div>
+
+    <div class="field" *ngIf="drawingType !== 'pictures'">
+      <label for="lineCount">{{ i18n.t.copyPattern.lineCount }}</label>
+      <select id="lineCount" [(ngModel)]="lineCount">
+        <option *ngFor="let count of lineCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <label class="checkbox-field">
+      <input type="checkbox" [ngModel]="diagonals" (ngModelChange)="onDiagonalsChange($event)" />
+      {{ i18n.t.copyPattern.diagonals }}
+    </label>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.copyPattern.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="grids">
+          <svg class="grid" [attr.viewBox]="viewBox(item)" [style.width]="gridWidth(item)" role="img" [attr.aria-label]="i18n.t.copyPattern.modelLabel">
+            <svg:line
+              *ngFor="let s of item.segments"
+              class="stroke"
+              [attr.x1]="s.from.x * spacing" [attr.y1]="s.from.y * spacing"
+              [attr.x2]="s.to.x * spacing" [attr.y2]="s.to.y * spacing"
+            />
+            <svg:circle *ngFor="let d of dots(item)" class="dot" [attr.cx]="d.x * spacing" [attr.cy]="d.y * spacing" r="1.1" />
+          </svg>
+
+          <span class="arrow" aria-hidden="true">→</span>
+
+          <svg class="grid" [attr.viewBox]="viewBox(item)" [style.width]="gridWidth(item)" role="img" [attr.aria-label]="i18n.t.copyPattern.copyLabel">
+            <svg:circle *ngFor="let d of dots(item)" class="dot" [attr.cx]="d.x * spacing" [attr.cy]="d.y * spacing" r="1.1" />
+          </svg>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

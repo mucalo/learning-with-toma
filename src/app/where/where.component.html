@@ -1,0 +1,67 @@
+<section class="where-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="sceneCount">{{ i18n.t.where.sceneCount }}</label>
+      <select id="sceneCount" [(ngModel)]="sceneCount">
+        <option *ngFor="let count of sceneCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <fieldset class="field positions">
+      <legend>{{ i18n.t.where.positionsLabel }}</legend>
+      <label *ngFor="let position of positions" class="checkbox">
+        <input
+          type="checkbox"
+          [checked]="selectedPositions[position]"
+          [disabled]="!canToggle(position)"
+          (change)="togglePosition(position)"
+        />
+        {{ positionLabel(position) }}
+      </label>
+    </fieldset>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.where.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="content">
+          <p class="sentence">{{ sentence(item) }}</p>
+          <ul class="scenes">
+            <li *ngFor="let scene of item.scenes" class="scene" [class.correct]="item.answerRevealed && scene.position === item.target">
+              <svg [attr.viewBox]="viewBox" role="img" [attr.aria-label]="i18n.t.where.sceneLabel">
+                <svg:line class="floor" x1="4" [attr.y1]="floorY" [attr.x2]="sceneWidth - 4" [attr.y2]="floorY" />
+                <svg:rect
+                  *ngFor="let r of item.thing.rects"
+                  class="thing"
+                  [attr.x]="r.x" [attr.y]="r.y" [attr.width]="r.width" [attr.height]="r.height" rx="1.5"
+                />
+                <svg:text class="character" [attr.x]="scene.spot.x" [attr.y]="scene.spot.y" [attr.font-size]="scene.spot.size">{{ item.character.emoji }}</svg:text>
+              </svg>
+            </li>
+          </ul>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.where.showAnswer">
+            ?
+          </button>
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>
