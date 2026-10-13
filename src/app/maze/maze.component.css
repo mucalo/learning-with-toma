@@ -1,0 +1,155 @@
+.maze-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 150px;
+  font: inherit;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  background: #5b8def;
+}
+
+.print-button {
+  background: #f28c82;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.maze {
+  display: block;
+  width: min(100%, 460px);
+  height: auto;
+  fill: none;
+}
+
+.walls {
+  stroke: #2f3b45;
+  stroke-width: 3;
+  stroke-linecap: square;
+  vector-effect: non-scaling-stroke;
+}
+
+.solution {
+  stroke: #f28c82;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.picture {
+  fill: #2f3b45;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.action-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+@media print {
+  .back-link-container,
+  .controls,
+  .action-area,
+  .solution {
+    display: none;
+  }
+
+  .maze-card {
+    margin: 0;
+    padding: 0;
+  }
+
+  /*
+   * Two mazes per A4 page. The printable height is about 267mm with our page margins, and the
+   * repeated instruction takes ~12mm, so 2 × 105mm leaves 40mm+ spare for printer minimum margins,
+   * other browsers and US Letter paper. Don't push these sizes up to "just fit": it breaks easily.
+   */
+  .problem-row {
+    height: 105mm;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+  }
+
+  .maze {
+    width: auto;
+    height: 97mm;
+  }
+}

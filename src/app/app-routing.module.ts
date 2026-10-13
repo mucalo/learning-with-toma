@@ -8,6 +8,7 @@ import { SequenceComponent } from './sequence/sequence.component';
 import { IntruderComponent } from './intruder/intruder.component';
 import { LineComponent } from './line/line.component';
 import { ShadowComponent } from './shadow/shadow.component';
+import { MazeComponent } from './maze/maze.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'sequence', component: SequenceComponent },
   { path: 'intruder', component: IntruderComponent },
   { path: 'line', component: LineComponent },
-  { path: 'shadow', component: ShadowComponent }
+  { path: 'shadow', component: ShadowComponent },
+  { path: 'maze', component: MazeComponent }
 ];
 
 @NgModule({

@@ -21,7 +21,8 @@ export class HomeComponent {
     { key: 'sequence', route: '/sequence', emoji: '🔺' },
     { key: 'intruder', route: '/intruder', emoji: '🔍' },
     { key: 'line', route: '/line', emoji: '〰️' },
-    { key: 'shadow', route: '/shadow', emoji: '👤' }
+    { key: 'shadow', route: '/shadow', emoji: '👤' },
+    { key: 'maze', route: '/maze', emoji: '🧩' }
   ];
 
   constructor(readonly i18n: LanguageService) {}

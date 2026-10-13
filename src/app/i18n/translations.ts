@@ -27,6 +27,7 @@ export interface Translations {
     intruder: { title: string; description: string };
     line: { title: string; description: string };
     shadow: { title: string; description: string };
+    maze: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -121,6 +122,19 @@ export interface Translations {
     shadowsLabel: string;
     showAnswer: string;
   };
+  maze: {
+    instruction: string;
+    size: string;
+    sizes: {
+      tiny: string;
+      small: string;
+      medium: string;
+      large: string;
+      huge: string;
+    };
+    mazeLabel: string;
+    showAnswer: string;
+  };
 }
 
 const english: Translations = {
@@ -145,7 +159,8 @@ const english: Translations = {
     sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' },
     intruder: { title: 'Find the Intruder', description: 'Spot the pictures that don\'t fit the theme.' },
     line: { title: 'Complete the Line', description: 'Trace the pattern and continue it to the edge.' },
-    shadow: { title: 'Match the Shadow', description: 'Connect each picture to its shadow.' }
+    shadow: { title: 'Match the Shadow', description: 'Connect each picture to its shadow.' },
+    maze: { title: 'Maze', description: 'Find the way through the maze.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -239,6 +254,19 @@ const english: Translations = {
     picturesLabel: 'Pictures',
     shadowsLabel: 'Shadows',
     showAnswer: 'Show the answer'
+  },
+  maze: {
+    instruction: 'Help the animal find the way to its food.',
+    size: 'Maze size',
+    sizes: {
+      tiny: 'Very small',
+      small: 'Small',
+      medium: 'Medium',
+      large: 'Large',
+      huge: 'Very large'
+    },
+    mazeLabel: 'Maze',
+    showAnswer: 'Show the way'
   }
 };
 
@@ -264,7 +292,8 @@ const croatian: Translations = {
     sequence: { title: 'Nastavi niz', description: 'Prepoznaj uzorak i nastavi niz.' },
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
     line: { title: 'Dovrši crtu', description: 'Prijeđi preko uzorka i nastavi ga do ruba.' },
-    shadow: { title: 'Pronađi sjenu', description: 'Poveži sličice s njihovim sjenama.' }
+    shadow: { title: 'Pronađi sjenu', description: 'Poveži sličice s njihovim sjenama.' },
+    maze: { title: 'Labirint', description: 'Pronađi put kroz labirint.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -358,6 +387,19 @@ const croatian: Translations = {
     picturesLabel: 'Sličice',
     shadowsLabel: 'Sjene',
     showAnswer: 'Prikaži odgovor'
+  },
+  maze: {
+    instruction: 'Pomozi životinji pronaći put do hrane.',
+    size: 'Veličina labirinta',
+    sizes: {
+      tiny: 'Vrlo mali',
+      small: 'Mali',
+      medium: 'Srednji',
+      large: 'Veliki',
+      huge: 'Vrlo veliki'
+    },
+    mazeLabel: 'Labirint',
+    showAnswer: 'Prikaži put'
   }
 };
 
@@ -383,7 +425,8 @@ const serbian: Translations = {
     sequence: { title: 'Nastavi niz', description: 'Prepoznaj obrazac i nastavi niz.' },
     intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
     line: { title: 'Dovrši liniju', description: 'Pređi preko obrasca i nastavi ga do ivice.' },
-    shadow: { title: 'Pronađi senku', description: 'Poveži sličice sa njihovim senkama.' }
+    shadow: { title: 'Pronađi senku', description: 'Poveži sličice sa njihovim senkama.' },
+    maze: { title: 'Lavirint', description: 'Pronađi put kroz lavirint.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -477,6 +520,19 @@ const serbian: Translations = {
     picturesLabel: 'Sličice',
     shadowsLabel: 'Senke',
     showAnswer: 'Prikaži odgovor'
+  },
+  maze: {
+    instruction: 'Pomozi životinji da pronađe put do hrane.',
+    size: 'Veličina lavirinta',
+    sizes: {
+      tiny: 'Veoma mali',
+      small: 'Mali',
+      medium: 'Srednji',
+      large: 'Veliki',
+      huge: 'Veoma veliki'
+    },
+    mazeLabel: 'Lavirint',
+    showAnswer: 'Prikaži put'
   }
 };
 
