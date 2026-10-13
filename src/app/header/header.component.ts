@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LanguageService } from '../i18n/language.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() title = 'Learning with Toma';
-  @Input() subtitle = 'Helping children learn with warmth and care';
-  @Input() ctaText = 'Donate to help children learn';
   @Input() ctaUrl = 'https://buymeacoffee.com/mariomucalo';
+
+  constructor(readonly i18n: LanguageService) {}
 }

@@ -1,7 +1,7 @@
-<section class="home-page" aria-label="Learning activities">
+<section class="home-page" [attr.aria-label]="i18n.t.home.activitiesLabel">
   <div class="home-intro">
-    <h1>Choose an activity</h1>
-    <p>Select a learning activity to get started.</p>
+    <h1>{{ i18n.t.home.heading }}</h1>
+    <p>{{ i18n.t.home.intro }}</p>
   </div>
 
   <div class="activity-grid">
@@ -9,12 +9,12 @@
       *ngFor="let activity of activities"
       class="activity-card"
       [routerLink]="activity.route"
-      [attr.aria-label]="activity.title"
+      [attr.aria-label]="i18n.t.activities[activity.key].title"
     >
       <div class="activity-illustration" aria-hidden="true">{{ activity.emoji }}</div>
       <div class="activity-content">
-        <h2>{{ activity.title }}</h2>
-        <p>{{ activity.description }}</p>
+        <h2>{{ i18n.t.activities[activity.key].title }}</h2>
+        <p>{{ i18n.t.activities[activity.key].description }}</p>
       </div>
     </a>
   </div>

@@ -1,15 +1,26 @@
 <header class="topbar">
   <div class="brand-block">
     <a routerLink="/" class="brand-title"><h1>{{ title }}</h1></a>
-    <p class="subtitle">{{ subtitle }}</p>
+    <p class="subtitle">{{ i18n.t.header.subtitle }}</p>
   </div>
 
-  <a
-    class="donate-button"
-    [href]="ctaUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    {{ ctaText }}
-  </a>
+  <div class="header-actions">
+    <div class="language-field">
+      <label for="language">{{ i18n.t.header.languageLabel }}</label>
+      <select id="language" [(ngModel)]="i18n.language">
+        <option *ngFor="let option of i18n.languages" [value]="option.value">
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <a
+      class="donate-button"
+      [href]="ctaUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ i18n.t.donate }}
+    </a>
+  </div>
 </header>

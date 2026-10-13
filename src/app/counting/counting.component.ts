@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../i18n/language.service';
 
 interface PositionedEmoji {
   emoji: string;
@@ -15,24 +16,17 @@ interface CountingItem {
   answerRevealed?: boolean;
 }
 
-type LanguageKey = 'english' | 'croatian' | 'serbian';
-
 @Component({
   selector: 'app-counting',
   templateUrl: './counting.component.html',
   styleUrls: ['./counting.component.css']
 })
 export class CountingComponent {
-  language: LanguageKey = 'english';
   problemCount = 10;
   maxItems = 10;
   generatedItems: CountingItem[] = [];
 
-  readonly languageOptions = [
-    { value: 'english', label: 'English' },
-    { value: 'croatian', label: 'Croatian' },
-    { value: 'serbian', label: 'Serbian' }
-  ];
+  constructor(readonly i18n: LanguageService) {}
 
   private readonly itemEmojis = [
     '🍎', '🍌', '🍒', '🍓', '🍊',
@@ -40,17 +34,6 @@ export class CountingComponent {
     '⭐', '🌙', '☀️', '🌸', '🌻',
     '🎈', '🎁', '🎨', '🎭', '🎪'
   ];
-
-  get instructionText(): string {
-    switch (this.language) {
-      case 'croatian':
-        return 'Broji broj predmeta.';
-      case 'serbian':
-        return 'Broji broj predmeta.';
-      default:
-        return 'Count the number of items.';
-    }
-  }
 
   generateProblems(): void {
     const safeCount = Math.max(1, Math.min(100, Number(this.problemCount) || 1));

@@ -1,39 +1,30 @@
 <section class="counting-card">
   <div class="back-link-container">
-    <a routerLink="/" class="back-link">← Back to menu</a>
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
   </div>
 
   <div class="controls">
     <div class="field">
-      <label for="language">Select language</label>
-      <select id="language" [(ngModel)]="language">
-        <option *ngFor="let option of languageOptions" [value]="option.value">
-          {{ option.label }}
-        </option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="problemCount">Number of problems</label>
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
       <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
     </div>
 
     <div class="field">
-      <label for="maxItems">Max items per problem</label>
+      <label for="maxItems">{{ i18n.t.counting.maxItems }}</label>
       <input id="maxItems" type="number" min="1" max="20" [(ngModel)]="maxItems" />
     </div>
 
-    <button type="button" class="generate-button" (click)="generateProblems()">Generate</button>
-    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">Print</button>
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
   </div>
 
   <div class="worksheet" *ngIf="generatedItems.length > 0">
     <div class="worksheet-header">
-      <p class="worksheet-instruction">{{ instructionText }}</p>
+      <p class="worksheet-instruction">{{ i18n.t.counting.instruction }}</p>
     </div>
 
     <div class="problem-row" *ngFor="let item of generatedItems; let i = index">
-      <div class="items-container" aria-label="Items to count">
+      <div class="items-container" [attr.aria-label]="i18n.t.counting.itemsToCount">
         <span 
           *ngFor="let positioned of item.positioned" 
           class="item-emoji"
@@ -51,7 +42,7 @@
 
       <div class="action-area">
         <div class="hint-wrapper">
-          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" aria-label="Show the answer">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.counting.showAnswer">
             ?
           </button>
           <div class="hint-bubble" *ngIf="item.answerRevealed">
@@ -59,7 +50,7 @@
           </div>
         </div>
 
-        <button type="button" class="action-button remove-button" (click)="removeItem(i)" aria-label="Remove this row">
+        <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
           ✕
         </button>
       </div>

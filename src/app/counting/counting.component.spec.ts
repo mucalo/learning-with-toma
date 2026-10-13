@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { LanguageService } from '../i18n/language.service';
 import { CountingComponent } from './counting.component';
 
 describe('CountingComponent', () => {
@@ -14,6 +15,7 @@ describe('CountingComponent', () => {
   });
 
   beforeEach(() => {
+    TestBed.inject(LanguageService).language = 'english';
     fixture = TestBed.createComponent(CountingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -55,13 +57,13 @@ describe('CountingComponent', () => {
   });
 
   it('should display instruction text in selected language', () => {
-    component.language = 'english';
-    expect(component.instructionText).toBe('Count the number of items.');
+    component.i18n.language = 'english';
+    expect(component.i18n.t.counting.instruction).toBe('Count the number of items.');
 
-    component.language = 'croatian';
-    expect(component.instructionText).toBe('Broji broj predmeta.');
+    component.i18n.language = 'croatian';
+    expect(component.i18n.t.counting.instruction).toBe('Broji broj predmeta.');
 
-    component.language = 'serbian';
-    expect(component.instructionText).toBe('Broji broj predmeta.');
+    component.i18n.language = 'serbian';
+    expect(component.i18n.t.counting.instruction).toBe('Broji broj predmeta.');
   });
 });

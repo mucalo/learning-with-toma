@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LanguageKey } from '../i18n/languages';
+import { LanguageService } from '../i18n/language.service';
 
 interface SpellingItem {
   word: string;
@@ -13,24 +15,17 @@ interface DisplayLetterGroup {
   isCombined: boolean;
 }
 
-type LanguageKey = 'english' | 'croatian' | 'serbian';
-
 @Component({
   selector: 'app-spelling',
   templateUrl: './spelling.component.html',
   styleUrls: ['./spelling.component.css']
 })
 export class SpellingComponent {
-  language: LanguageKey = 'english';
   problemCount = 10;
   maxLetters = 10;
   generatedItems: SpellingItem[] = [];
 
-  readonly languageOptions = [
-    { value: 'english', label: 'English' },
-    { value: 'croatian', label: 'Croatian' },
-    { value: 'serbian', label: 'Serbian' }
-  ];
+  constructor(readonly i18n: LanguageService) {}
 
   private readonly wordBank: Record<LanguageKey, SpellingItem[]> = {
     english: [
@@ -217,21 +212,11 @@ export class SpellingComponent {
     return item.letters.map(letter => ({ value: letter, isCombined: false }));
   }
 
-  get instructionText(): string {
-    switch (this.language) {
-      case 'croatian':
-        return 'Napiši što je na slici.';
-      case 'serbian':
-        return 'Napiši šta je na slici.';
-      default:
-        return 'Write what is in the image.';
-    }
-  }
-
   generateProblems(): void {
+    const language = this.i18n.language;
     const safeCount = Math.max(1, Math.min(100, Number(this.problemCount) || 1));
     const safeMaxLetters = Math.max(1, Math.min(10, Number(this.maxLetters) || 1));
-    const pool = this.wordBank[this.language].filter(item => item.letters.length <= safeMaxLetters);
+    const pool = this.wordBank[language].filter(item => item.letters.length <= safeMaxLetters);
 
     if (pool.length === 0) {
       this.generatedItems = [];
@@ -246,11 +231,12 @@ export class SpellingComponent {
       const source = this.getNextDifferentItem(pool, previousEmoji, usedIndices);
       if (!source) break;
 
+      const displayGroups = this.getDisplayLetterGroups(source.word, language);
       this.generatedItems.push({
         word: source.word,
         emoji: source.emoji,
-        letters: this.getDisplayLetterGroups(source.word, this.language).map(group => group.value),
-        displayGroups: this.getDisplayLetterGroups(source.word, this.language)
+        letters: displayGroups.map(group => group.value),
+        displayGroups
       });
 
       previousEmoji = source.emoji;

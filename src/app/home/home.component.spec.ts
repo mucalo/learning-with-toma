@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from './home.component';
+import { LanguageService } from '../i18n/language.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,6 +15,7 @@ describe('HomeComponent', () => {
   });
 
   beforeEach(() => {
+    TestBed.inject(LanguageService).language = 'english';
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -22,6 +24,6 @@ describe('HomeComponent', () => {
   it('should render a spelling activity card link', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Spelling');
-    expect(compiled.querySelector('a[routerLink="/spelling"]')).toBeTruthy();
+    expect(compiled.querySelector('a[href$="/spelling"]')).toBeTruthy();
   });
 });

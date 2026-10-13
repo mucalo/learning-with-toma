@@ -1,10 +1,5 @@
-<app-header
-  title="Learning with Toma"
-  subtitle="Helping children learn with warmth and care"
-  ctaText="Donate to help children learn"
-  [ctaUrl]="buyMeACoffeeUrl"
-></app-header>
+<app-header [ctaUrl]="buyMeACoffeeUrl"></app-header>
 
 <router-outlet></router-outlet>
 
-<app-footer></app-footer>
+<app-footer [ctaUrl]="buyMeACoffeeUrl"></app-footer>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { LanguageService } from '../i18n/language.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BiggestSmallestComponent } from './biggest-smallest.component';
 
@@ -15,6 +16,7 @@ describe('BiggestSmallestComponent', () => {
   });
 
   beforeEach(() => {
+    TestBed.inject(LanguageService).language = 'english';
     fixture = TestBed.createComponent(BiggestSmallestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -27,14 +29,14 @@ describe('BiggestSmallestComponent', () => {
   it('should validate minimum items requirement', () => {
     component.maxItems = 2;
     component.generateProblems();
-    expect(component.validationError).toBe('Maximum items per problem must be at least 3.');
+    expect(component.showMinItemsError).toBeTrue();
     expect(component.generatedItems.length).toBe(0);
   });
 
   it('should clear validation error on successful generation', () => {
     component.maxItems = 5;
     component.generateProblems();
-    expect(component.validationError).toBe('');
+    expect(component.showMinItemsError).toBeFalse();
     expect(component.generatedItems.length).toBeGreaterThan(0);
   });
 
@@ -67,27 +69,50 @@ describe('BiggestSmallestComponent', () => {
     expect(smallestCount).toBe(1);
   });
 
+  it('should always keep exactly one largest and one smallest item, even in crowded rows', () => {
+    component.maxItems = 20;
+    component.problemCount = 100;
+    component.generateProblems();
+
+    component.generatedItems.forEach(item => {
+      const sizes = item.positioned.map(p => p.size);
+      const largest = item.positioned.filter(p => p.isLargest);
+      const smallest = item.positioned.filter(p => p.isSmallest);
+
+      expect(largest.length).toBe(1);
+      expect(smallest.length).toBe(1);
+      expect(largest[0].size).toBe(Math.max(...sizes));
+      expect(smallest[0].size).toBe(Math.min(...sizes));
+      expect(item.count).toBe(item.positioned.length);
+      expect(item.count).toBeGreaterThanOrEqual(3);
+    });
+  });
+
   it('should generate instruction text with fixed colours', () => {
-    component.language = 'english';
-    const text = component.instructionText;
+    component.i18n.language = 'english';
+    const text = component.i18n.t.biggestSmallest.instruction;
     expect(text).toContain('green');
     expect(text).toContain('blue');
   });
 
   it('should support multiple languages with fixed colours', () => {
-    component.language = 'english';
-    const englishText = component.instructionText;
+    component.i18n.language = 'english';
+    const englishText = component.i18n.t.biggestSmallest.instruction;
     expect(englishText).toContain('Circle');
     expect(englishText).toContain('green');
     expect(englishText).toContain('blue');
 
-    component.language = 'croatian';
-    const croatianText = component.instructionText;
+    component.i18n.language = 'croatian';
+    const croatianText = component.i18n.t.biggestSmallest.instruction;
     expect(croatianText).toContain('Označi');
+    expect(croatianText).toContain('zelenom');
+    expect(croatianText).toContain('plavom');
 
-    component.language = 'serbian';
-    const serbianText = component.instructionText;
+    component.i18n.language = 'serbian';
+    const serbianText = component.i18n.t.biggestSmallest.instruction;
     expect(serbianText).toContain('Označi');
+    expect(serbianText).toContain('zelenom');
+    expect(serbianText).toContain('plavom');
   });
 
   it('should ensure no overlapping items', () => {

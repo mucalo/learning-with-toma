@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../i18n/language.service';
 
 interface PositionedEmoji {
   emoji: string;
@@ -9,6 +10,13 @@ interface PositionedEmoji {
   isSmallest: boolean;
 }
 
+interface Rect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
 interface ProblemItem {
   id: string;
   count: number;
@@ -16,27 +24,20 @@ interface ProblemItem {
   positioned: PositionedEmoji[];
 }
 
-type LanguageKey = 'english' | 'croatian' | 'serbian';
-
 @Component({
   selector: 'app-biggest-smallest',
   templateUrl: './biggest-smallest.component.html',
   styleUrls: ['./biggest-smallest.component.css']
 })
 export class BiggestSmallestComponent {
-  language: LanguageKey = 'english';
   problemCount = 10;
   maxItems = 10;
   readonly biggestColour = 'green';
   readonly smallestColour = 'blue';
   generatedItems: ProblemItem[] = [];
-  validationError = '';
+  showMinItemsError = false;
 
-  readonly languageOptions = [
-    { value: 'english', label: 'English' },
-    { value: 'croatian', label: 'Croatian' },
-    { value: 'serbian', label: 'Serbian' }
-  ];
+  constructor(readonly i18n: LanguageService) {}
 
   private readonly itemEmojis = [
     '🍎', '🍌', '🍒', '🍓', '🍊',
@@ -45,24 +46,13 @@ export class BiggestSmallestComponent {
     '🎈', '🎁', '🎨', '🎭', '🎪'
   ];
 
-  get instructionText(): string {
-    switch (this.language) {
-      case 'croatian':
-        return 'Označi kružnicom najveći predmet zelenom bojom, a najmanju plavu bojom.';
-      case 'serbian':
-        return 'Označi krugom najveći predmet zelenom bojom, a najmanji plavu bojom.';
-      default:
-        return 'Circle the biggest object with green colour and the smallest with blue colour.';
-    }
-  }
-
   generateProblems(): void {
-    this.validationError = '';
-    
+    this.showMinItemsError = false;
+
     const safeMaxItems = Math.max(3, Math.min(20, Number(this.maxItems) || 3));
-    
+
     if (Number(this.maxItems) < 3) {
-      this.validationError = 'Maximum items per problem must be at least 3.';
+      this.showMinItemsError = true;
       return;
     }
 
@@ -76,10 +66,11 @@ export class BiggestSmallestComponent {
       const items: string[] = Array.from({ length: count }, () => emoji);
       const positioned = this.positionItems(items);
 
+      // Some items may not fit in the box, so report what was actually drawn.
       this.generatedItems.push({
         id: `biggest-smallest-${i}`,
-        count,
-        items,
+        count: positioned.length,
+        items: items.slice(0, positioned.length),
         positioned
       });
 
@@ -111,49 +102,72 @@ export class BiggestSmallestComponent {
     const sizes = this.generateDistinctSizes(items.length, MIN_SIZE, MAX_SIZE);
 
     const positioned: PositionedEmoji[] = [];
-    const usedAreas: Array<{ x: number; y: number; w: number; h: number }> = [];
+    const usedAreas: Rect[] = [];
 
-    const largestSize = Math.max(...sizes);
-    const smallestSize = Math.min(...sizes);
+    // Place the largest item first (an empty box always has room for it), then the rest from
+    // smallest to largest so the smallest is placed second and as many items as possible fit.
+    // Items that still don't fit are dropped, but never the largest or the smallest.
+    const ascending = [...sizes].sort((a, b) => a - b);
+    const placementOrder = [ascending[ascending.length - 1], ...ascending.slice(0, -1)];
 
-    for (let i = 0; i < items.length; i++) {
-      const emoji = items[i];
-      const size = sizes[i];
-      const estimatedWidth = size * 16 * 1.1;
-      const estimatedHeight = size * 16 * 1.1;
+    placementOrder.forEach((size, index) => {
+      const dimension = size * 16 * 1.1; // rough estimate: 1rem = 16px, +10% for spacing
+      const spot = this.findFreeSpot(dimension, usedAreas, CONTAINER_WIDTH, CONTAINER_HEIGHT, PADDING);
 
-      let positioned_item: PositionedEmoji | null = null;
-      let attempts = 0;
-      const maxAttempts = 50;
-
-      while (!positioned_item && attempts < maxAttempts) {
-        const x = Math.random() * (CONTAINER_WIDTH - estimatedWidth - PADDING * 2) + PADDING;
-        const y = Math.random() * (CONTAINER_HEIGHT - estimatedHeight - PADDING * 2) + PADDING;
-
-        const newArea = { x, y, w: estimatedWidth, h: estimatedHeight };
-        const hasOverlap = usedAreas.some(area => this.checkOverlap(newArea, area));
-
-        if (!hasOverlap) {
-          positioned_item = {
-            emoji,
-            x,
-            y,
-            size,
-            isLargest: size === largestSize,
-            isSmallest: size === smallestSize
-          };
-          usedAreas.push(newArea);
-        }
-
-        attempts++;
+      if (spot) {
+        usedAreas.push(spot);
+        positioned.push({ emoji: items[index], x: spot.x, y: spot.y, size, isLargest: false, isSmallest: false });
       }
+    });
 
-      if (positioned_item) {
-        positioned.push(positioned_item);
+    // Mark extremes among the items that were actually placed.
+    const placedSizes = positioned.map(item => item.size);
+    const largestSize = Math.max(...placedSizes);
+    const smallestSize = Math.min(...placedSizes);
+    positioned.forEach(item => {
+      item.isLargest = item.size === largestSize;
+      item.isSmallest = item.size === smallestSize;
+    });
+
+    // Shuffle so the DOM order doesn't reveal which item is which.
+    return positioned.sort(() => Math.random() - 0.5);
+  }
+
+  private findFreeSpot(dimension: number, usedAreas: Rect[], width: number, height: number, padding: number): Rect | null {
+    const maxX = width - dimension - padding;
+    const maxY = height - dimension - padding;
+
+    if (maxX < padding || maxY < padding) {
+      return null;
+    }
+
+    const isFree = (area: Rect) => !usedAreas.some(used => this.checkOverlap(area, used));
+
+    for (let attempt = 0; attempt < 50; attempt++) {
+      const area = {
+        x: padding + Math.random() * (maxX - padding),
+        y: padding + Math.random() * (maxY - padding),
+        w: dimension,
+        h: dimension
+      };
+
+      if (isFree(area)) {
+        return area;
       }
     }
 
-    return positioned;
+    // Random attempts failed; scan the box systematically so a free spot is never missed.
+    const GRID_STEP = 4;
+    for (let y = padding; y <= maxY; y += GRID_STEP) {
+      for (let x = padding; x <= maxX; x += GRID_STEP) {
+        const area = { x, y, w: dimension, h: dimension };
+        if (isFree(area)) {
+          return area;
+        }
+      }
+    }
+
+    return null;
   }
 
   private generateDistinctSizes(count: number, min: number, max: number): number[] {
@@ -172,7 +186,7 @@ export class BiggestSmallestComponent {
     return sizes.sort(() => Math.random() - 0.5);
   }
 
-  private checkOverlap(rect1: { x: number; y: number; w: number; h: number }, rect2: { x: number; y: number; w: number; h: number }): boolean {
+  private checkOverlap(rect1: Rect, rect2: Rect): boolean {
     return !(rect1.x + rect1.w < rect2.x || rect1.x > rect2.x + rect2.w ||
              rect1.y + rect1.h < rect2.y || rect1.y > rect2.y + rect2.h);
   }

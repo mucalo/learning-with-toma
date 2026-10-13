@@ -33,6 +33,33 @@ h1 {
   color: #5b8def;
 }
 
+.header-actions {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.language-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.language-field label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #2f3b45;
+}
+
+.language-field select {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+}
+
 .donate-button {
   display: inline-flex;
   align-items: center;
