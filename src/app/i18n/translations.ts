@@ -23,6 +23,8 @@ export interface Translations {
     counting: { title: string; description: string };
     biggestSmallest: { title: string; description: string };
     sequence: { title: string; description: string };
+    intruder: { title: string; description: string };
+    line: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -66,6 +68,47 @@ export interface Translations {
     circle: string;
     square: string;
   };
+  intruder: {
+    instruction: string;
+    themeCount: string;
+    intruderCount: string;
+    picturesLabel: string;
+    intruderLabel: string;
+    showAnswer: string;
+    themeLabel: string;
+    themes: {
+      summer: string;
+      winter: string;
+      farm: string;
+      fruit: string;
+      school: string;
+      transport: string;
+      sea: string;
+      clothes: string;
+      sports: string;
+    };
+  };
+  line: {
+    instruction: string;
+    guidesInstruction: string;
+    showGuides: string;
+    lineLabel: string;
+    shape: string;
+    size: string;
+    mixed: string;
+    small: string;
+    medium: string;
+    large: string;
+    patterns: {
+      zigzag: string;
+      wave: string;
+      arches: string;
+      cups: string;
+      castle: string;
+      sawtooth: string;
+      loops: string;
+    };
+  };
 }
 
 const english: Translations = {
@@ -86,7 +129,9 @@ const english: Translations = {
     spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
     counting: { title: 'Counting', description: 'Count objects and write the number.' },
     biggestSmallest: { title: 'Biggest and Smallest', description: 'Circle the biggest and smallest objects.' },
-    sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' }
+    sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' },
+    intruder: { title: 'Find the Intruder', description: 'Spot the pictures that don\'t fit the theme.' },
+    line: { title: 'Complete the Line', description: 'Trace the pattern and continue it to the edge.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -129,6 +174,47 @@ const english: Translations = {
     triangle: 'Triangle',
     circle: 'Circle',
     square: 'Square'
+  },
+  intruder: {
+    instruction: 'Circle what doesn\'t belong.',
+    themeCount: 'Theme pictures',
+    intruderCount: 'Intruders',
+    picturesLabel: 'Pictures',
+    intruderLabel: 'Intruder',
+    showAnswer: 'Show the answer',
+    themeLabel: 'Theme',
+    themes: {
+      summer: 'Summer',
+      winter: 'Winter',
+      farm: 'Farm animals',
+      fruit: 'Fruit',
+      school: 'School',
+      transport: 'Transport',
+      sea: 'Sea creatures',
+      clothes: 'Clothes',
+      sports: 'Sports'
+    }
+  },
+  line: {
+    instruction: 'Trace over the dashed line, then continue the pattern to the edge of the page.',
+    guidesInstruction: 'Stay between the two lines.',
+    showGuides: 'Guide lines (top and bottom)',
+    lineLabel: 'Line pattern to trace and continue',
+    shape: 'Shape',
+    size: 'Size',
+    mixed: 'Mixed',
+    small: 'Small',
+    medium: 'Medium',
+    large: 'Large',
+    patterns: {
+      zigzag: 'Zig-zag',
+      wave: 'Waves',
+      arches: 'Arches',
+      cups: 'Cups',
+      castle: 'Castle',
+      sawtooth: 'Sawtooth',
+      loops: 'Loops'
+    }
   }
 };
 
@@ -150,7 +236,9 @@ const croatian: Translations = {
     spelling: { title: 'Pisanje riječi', description: 'Vježbaj pisanje riječi uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroji predmete i napiši broj.' },
     biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
-    sequence: { title: 'Nastavi niz', description: 'Prepoznaj uzorak i nastavi niz.' }
+    sequence: { title: 'Nastavi niz', description: 'Prepoznaj uzorak i nastavi niz.' },
+    intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
+    line: { title: 'Dovrši crtu', description: 'Prijeđi preko uzorka i nastavi ga do ruba.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -193,6 +281,47 @@ const croatian: Translations = {
     triangle: 'Trokut',
     circle: 'Krug',
     square: 'Kvadrat'
+  },
+  intruder: {
+    instruction: 'Zaokruži što ne pripada.',
+    themeCount: 'Sličice iz teme',
+    intruderCount: 'Uljezi',
+    picturesLabel: 'Sličice',
+    intruderLabel: 'Uljez',
+    showAnswer: 'Prikaži odgovor',
+    themeLabel: 'Tema',
+    themes: {
+      summer: 'Ljeto',
+      winter: 'Zima',
+      farm: 'Domaće životinje',
+      fruit: 'Voće',
+      school: 'Škola',
+      transport: 'Prijevozna sredstva',
+      sea: 'Morske životinje',
+      clothes: 'Odjeća',
+      sports: 'Sport'
+    }
+  },
+  line: {
+    instruction: 'Prijeđi olovkom preko isprekidane crte, a zatim nastavi uzorak do ruba papira.',
+    guidesInstruction: 'Ostani između dviju crta.',
+    showGuides: 'Pomoćne crte (gore i dolje)',
+    lineLabel: 'Crta koju treba podebljati i nastaviti',
+    shape: 'Oblik',
+    size: 'Veličina',
+    mixed: 'Mješovito',
+    small: 'Mala',
+    medium: 'Srednja',
+    large: 'Velika',
+    patterns: {
+      zigzag: 'Cik-cak',
+      wave: 'Valovi',
+      arches: 'Lukovi',
+      cups: 'Zdjelice',
+      castle: 'Dvorac',
+      sawtooth: 'Pila',
+      loops: 'Petlje'
+    }
   }
 };
 
@@ -214,7 +343,9 @@ const serbian: Translations = {
     spelling: { title: 'Pisanje reči', description: 'Vežbaj pisanje reči uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroj predmete i napiši broj.' },
     biggestSmallest: { title: 'Najveće i najmanje', description: 'Zaokruži najveći i najmanji predmet.' },
-    sequence: { title: 'Nastavi niz', description: 'Prepoznaj obrazac i nastavi niz.' }
+    sequence: { title: 'Nastavi niz', description: 'Prepoznaj obrazac i nastavi niz.' },
+    intruder: { title: 'Pronađi uljeza', description: 'Pronađi sličice koje ne pripadaju temi.' },
+    line: { title: 'Dovrši liniju', description: 'Pređi preko obrasca i nastavi ga do ivice.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -257,6 +388,47 @@ const serbian: Translations = {
     triangle: 'Trougao',
     circle: 'Krug',
     square: 'Kvadrat'
+  },
+  intruder: {
+    instruction: 'Zaokruži šta ne pripada.',
+    themeCount: 'Sličice iz teme',
+    intruderCount: 'Uljezi',
+    picturesLabel: 'Sličice',
+    intruderLabel: 'Uljez',
+    showAnswer: 'Prikaži odgovor',
+    themeLabel: 'Tema',
+    themes: {
+      summer: 'Leto',
+      winter: 'Zima',
+      farm: 'Domaće životinje',
+      fruit: 'Voće',
+      school: 'Škola',
+      transport: 'Prevozna sredstva',
+      sea: 'Morske životinje',
+      clothes: 'Odeća',
+      sports: 'Sport'
+    }
+  },
+  line: {
+    instruction: 'Pređi olovkom preko isprekidane linije, pa nastavi obrazac do ivice papira.',
+    guidesInstruction: 'Ostani između dve linije.',
+    showGuides: 'Pomoćne linije (gore i dole)',
+    lineLabel: 'Linija koju treba precrtati i nastaviti',
+    shape: 'Oblik',
+    size: 'Veličina',
+    mixed: 'Mešovito',
+    small: 'Mala',
+    medium: 'Srednja',
+    large: 'Velika',
+    patterns: {
+      zigzag: 'Cik-cak',
+      wave: 'Talasi',
+      arches: 'Lukovi',
+      cups: 'Činijice',
+      castle: 'Zamak',
+      sawtooth: 'Testera',
+      loops: 'Petlje'
+    }
   }
 };
 

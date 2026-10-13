@@ -1,0 +1,56 @@
+<section class="line-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="shape">{{ i18n.t.line.shape }}</label>
+      <select id="shape" [(ngModel)]="shape">
+        <option *ngFor="let option of shapes" [ngValue]="option">{{ shapeLabel(option) }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="size">{{ i18n.t.line.size }}</label>
+      <select id="size" [(ngModel)]="size">
+        <option *ngFor="let option of sizes" [ngValue]="option">{{ sizeLabel(option) }}</option>
+      </select>
+    </div>
+
+    <label class="checkbox-field">
+      <input type="checkbox" [(ngModel)]="showGuides" />
+      {{ i18n.t.line.showGuides }}
+    </label>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <svg class="line-svg" [attr.viewBox]="item.viewBox" role="img" [attr.aria-label]="i18n.t.line.lineLabel">
+          <svg:g *ngIf="showGuides" class="guides">
+            <svg:line x1="0" [attr.y1]="item.guideTop" [attr.x2]="viewWidth" [attr.y2]="item.guideTop" />
+            <svg:line x1="0" [attr.y1]="item.guideBottom" [attr.x2]="viewWidth" [attr.y2]="item.guideBottom" />
+          </svg:g>
+          <svg:path class="solid" [attr.d]="item.solidPath" />
+          <svg:path class="dashed" [attr.d]="item.dashedPath" [attr.stroke-dasharray]="item.dash" />
+          <svg:circle class="start" [attr.cx]="item.start.x" [attr.cy]="item.start.y" r="7" />
+        </svg>
+
+        <div class="action-area">
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

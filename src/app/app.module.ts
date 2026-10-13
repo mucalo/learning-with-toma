@@ -12,6 +12,8 @@ import { CountingComponent } from './counting/counting.component';
 import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.component';
 import { WorksheetComponent } from './worksheet/worksheet.component';
 import { SequenceComponent } from './sequence/sequence.component';
+import { IntruderComponent } from './intruder/intruder.component';
+import { LineComponent } from './line/line.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SequenceComponent } from './sequence/sequence.component';
     CountingComponent,
     BiggestSmallestComponent,
     WorksheetComponent,
-    SequenceComponent
+    SequenceComponent,
+    IntruderComponent,
+    LineComponent
   ],
   imports: [
     BrowserModule,

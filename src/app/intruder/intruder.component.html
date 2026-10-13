@@ -1,0 +1,60 @@
+<section class="intruder-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="themeCount">{{ i18n.t.intruder.themeCount }}</label>
+      <select id="themeCount" [ngModel]="themeCount" (ngModelChange)="onThemeCountChange($event)">
+        <option *ngFor="let count of themeCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="intruderCount">{{ i18n.t.intruder.intruderCount }}</label>
+      <select id="intruderCount" [(ngModel)]="intruderCount">
+        <option *ngFor="let count of intruderCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.intruder.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="content">
+          <ul class="pictures" [attr.aria-label]="i18n.t.intruder.picturesLabel">
+            <li
+              *ngFor="let picture of item.pictures"
+              class="picture"
+              [class.revealed]="item.answerRevealed && picture.isIntruder"
+              [attr.aria-label]="item.answerRevealed && picture.isIntruder ? i18n.t.intruder.intruderLabel : null"
+            >
+              {{ picture.emoji }}
+            </li>
+          </ul>
+          <p class="theme-tag" *ngIf="item.answerRevealed">
+            {{ i18n.t.intruder.themeLabel }}: {{ themeName(item.theme) }}
+          </p>
+        </div>
+
+        <div class="action-area">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.intruder.showAnswer">
+            ?
+          </button>
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

@@ -18,7 +18,9 @@ export class HomeComponent {
     { key: 'spelling', route: '/spelling', emoji: '✏️' },
     { key: 'counting', route: '/counting', emoji: '🔢' },
     { key: 'biggestSmallest', route: '/biggest-smallest', emoji: '📏' },
-    { key: 'sequence', route: '/sequence', emoji: '🔺' }
+    { key: 'sequence', route: '/sequence', emoji: '🔺' },
+    { key: 'intruder', route: '/intruder', emoji: '🔍' },
+    { key: 'line', route: '/line', emoji: '〰️' }
   ];
 
   constructor(readonly i18n: LanguageService) {}

@@ -1,0 +1,146 @@
+.intruder-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 150px;
+  font: inherit;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  background: #5b8def;
+}
+
+.print-button {
+  background: #f28c82;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.content {
+  flex: 1;
+}
+
+.pictures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.picture {
+  width: 4.25rem;
+  height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  border: 3px solid transparent;
+  border-radius: 50%;
+}
+
+.picture.revealed {
+  border-color: #e57373;
+}
+
+.theme-tag {
+  margin: 0.5rem 0 0;
+  color: #5b8def;
+  font-weight: 600;
+}
+
+.action-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+@media print {
+  .back-link-container,
+  .controls,
+  .action-area,
+  .theme-tag {
+    display: none;
+  }
+
+  .picture.revealed {
+    border-color: transparent;
+  }
+
+  .problem-row {
+    border: none;
+    padding: 1.25rem 0;
+  }
+}
