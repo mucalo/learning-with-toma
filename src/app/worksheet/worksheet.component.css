@@ -1,0 +1,47 @@
+.worksheet {
+  border: 1px solid rgba(47, 59, 69, 0.12);
+  background: white;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.worksheet-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.worksheet-header {
+  padding: 0 0 1rem;
+  text-align: left;
+  font-weight: normal;
+}
+
+.worksheet-instruction {
+  margin: 0 0 0.5rem;
+  color: #5b8def;
+  font-weight: 600;
+}
+
+.worksheet-row > td {
+  padding: 0;
+}
+
+@media print {
+  .worksheet {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  /* Repeat the instruction at the top of every printed page. */
+  .worksheet-table thead {
+    display: table-header-group;
+  }
+
+  /* Never split a problem across two pages. */
+  .worksheet-row {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

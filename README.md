@@ -20,7 +20,7 @@ The site is deployed to GitHub Pages at `/learning-with-toma/`.
 | `#/counting` | Counting | Counts the emojis scattered in a box and writes the number. | Number of problems, max items (1–20) |
 | `#/biggest-smallest` | Biggest & Smallest | Circles the biggest item in green and the smallest in blue. | Number of problems, max items (3–20) |
 
-Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing. Spelling and Counting rows also have a **?** button that shows the answer and a **✕** button that removes the row.
+Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling and Counting rows also have a **?** button that shows the answer and a **✕** button that removes the row.
 
 ## Languages
 
@@ -68,7 +68,8 @@ src/
     ├── home/                    # grid of activity cards
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
-    └── biggest-smallest/        # Biggest & Smallest activity
+    ├── biggest-smallest/        # Biggest & Smallest activity
+    └── worksheet/               # shared worksheet layout (instruction on every printed page)
 brand.json                       # brand guide: colours, fonts, voice, mascot
 .github/
 ├── copilot-instructions.md      # product purpose, audience and contribution rules
@@ -99,8 +100,18 @@ Content that varies by language but isn't plain UI text stays in the activity, k
 2. Add a route in `app-routing.module.ts`.
 3. Add a card to `activities` in `home/home.component.ts`, and its `title`/`description` under `activities` in **every** language in `translations.ts`.
 4. Add the activity's own text (instruction, labels, aria-labels) as a new section of `Translations`.
-5. Follow the existing activities' pattern: a back link, a `.controls` bar (number of problems, a difficulty option, **Generate**, **Print**), then a `.worksheet` with an instruction header and one `.problem-row` per problem.
-6. Clamp numeric inputs in code, not only through `min`/`max` attributes, since users can type any value.
+5. Follow the existing activities' pattern: a back link, a `.controls` bar (number of problems, a difficulty option, **Generate**, **Print**), then the worksheet itself.
+6. **Always render the worksheet with the shared `<app-worksheet>` component.** Don't build your own. It puts the instruction at the top of every printed page and keeps each problem on one page:
+
+   ```html
+   <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.myActivity.instruction" [items]="generatedItems">
+     <ng-template let-item let-i="index">
+       <div class="problem-row">...one problem...</div>
+     </ng-template>
+   </app-worksheet>
+   ```
+
+7. Clamp numeric inputs in code, not only through `min`/`max` attributes, since users can type any value.
 
 ## Design guidelines
 

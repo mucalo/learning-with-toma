@@ -20,23 +20,21 @@
 
   <div class="error-message" *ngIf="showMinItemsError">{{ i18n.t.biggestSmallest.minItemsError }}</div>
 
-  <div class="worksheet" *ngIf="generatedItems.length > 0">
-    <div class="worksheet-header">
-      <p class="worksheet-instruction">{{ i18n.t.biggestSmallest.instruction }}</p>
-    </div>
-
-    <div class="problem-row" *ngFor="let item of generatedItems; let i = index">
-      <div class="items-container" [attr.aria-label]="i18n.t.biggestSmallest.itemsToCompare">
-        <span 
-          *ngFor="let positioned of item.positioned" 
-          class="item-emoji"
-          [style.left.px]="positioned.x"
-          [style.top.px]="positioned.y"
-          [style.font-size.rem]="positioned.size"
-        >
-          {{ positioned.emoji }}
-        </span>
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.biggestSmallest.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="items-container" [attr.aria-label]="i18n.t.biggestSmallest.itemsToCompare">
+          <span 
+            *ngFor="let positioned of item.positioned" 
+            class="item-emoji"
+            [style.left.px]="positioned.x"
+            [style.top.px]="positioned.y"
+            [style.font-size.rem]="positioned.size"
+          >
+            {{ positioned.emoji }}
+          </span>
+        </div>
       </div>
-    </div>
-  </div>
+    </ng-template>
+  </app-worksheet>
 </section>

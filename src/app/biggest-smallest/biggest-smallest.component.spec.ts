@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../i18n/language.service';
+import { WorksheetComponent } from '../worksheet/worksheet.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BiggestSmallestComponent } from './biggest-smallest.component';
 
@@ -11,7 +12,7 @@ describe('BiggestSmallestComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule],
-      declarations: [BiggestSmallestComponent]
+      declarations: [BiggestSmallestComponent, WorksheetComponent]
     }).compileComponents();
   });
 

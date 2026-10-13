@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../i18n/language.service';
+import { WorksheetComponent } from '../worksheet/worksheet.component';
 import { CountingComponent } from './counting.component';
 
 describe('CountingComponent', () => {
@@ -10,7 +11,7 @@ describe('CountingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [CountingComponent]
+      declarations: [CountingComponent, WorksheetComponent]
     }).compileComponents();
   });
 

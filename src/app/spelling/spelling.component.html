@@ -18,36 +18,34 @@
     <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
   </div>
 
-  <div class="worksheet" *ngIf="generatedItems.length > 0">
-    <div class="worksheet-header">
-      <p class="worksheet-instruction">{{ i18n.t.spelling.instruction }}</p>
-    </div>
-
-    <div class="problem-row" *ngFor="let item of generatedItems; let i = index">
-      <div class="image-area" [attr.aria-label]="i18n.t.spelling.picture">
-        <span class="emoji">{{ item.emoji }}</span>
-      </div>
-
-      <div class="answer-area">
-        <div class="lines" *ngFor="let group of getDisplayGroups(item)">
-          <span class="line" [class.combined]="group.isCombined"></span>
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.spelling.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="image-area" [attr.aria-label]="i18n.t.spelling.picture">
+          <span class="emoji">{{ item.emoji }}</span>
         </div>
-      </div>
 
-      <div class="action-area">
-        <div class="hint-wrapper">
-          <button type="button" class="action-button hint-button" (click)="revealWord(item)" [attr.aria-label]="i18n.t.spelling.showWord">
-            ?
-          </button>
-          <div class="hint-bubble" *ngIf="item.wordRevealed">
-            {{ item.word }}
+        <div class="answer-area">
+          <div class="lines" *ngFor="let group of getDisplayGroups(item)">
+            <span class="line" [class.combined]="group.isCombined"></span>
           </div>
         </div>
 
-        <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
-          ✕
-        </button>
+        <div class="action-area">
+          <div class="hint-wrapper">
+            <button type="button" class="action-button hint-button" (click)="revealWord(item)" [attr.aria-label]="i18n.t.spelling.showWord">
+              ?
+            </button>
+            <div class="hint-bubble" *ngIf="item.wordRevealed">
+              {{ item.word }}
+            </div>
+          </div>
+
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
+    </ng-template>
+  </app-worksheet>
 </section>

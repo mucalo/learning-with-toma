@@ -18,42 +18,40 @@
     <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
   </div>
 
-  <div class="worksheet" *ngIf="generatedItems.length > 0">
-    <div class="worksheet-header">
-      <p class="worksheet-instruction">{{ i18n.t.counting.instruction }}</p>
-    </div>
-
-    <div class="problem-row" *ngFor="let item of generatedItems; let i = index">
-      <div class="items-container" [attr.aria-label]="i18n.t.counting.itemsToCount">
-        <span 
-          *ngFor="let positioned of item.positioned" 
-          class="item-emoji"
-          [style.left.px]="positioned.x"
-          [style.top.px]="positioned.y"
-          [style.font-size.rem]="positioned.size"
-        >
-          {{ positioned.emoji }}
-        </span>
-      </div>
-
-      <div class="answer-area">
-        <div class="answer-line"></div>
-      </div>
-
-      <div class="action-area">
-        <div class="hint-wrapper">
-          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.counting.showAnswer">
-            ?
-          </button>
-          <div class="hint-bubble" *ngIf="item.answerRevealed">
-            {{ item.count }}
-          </div>
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.counting.instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <div class="items-container" [attr.aria-label]="i18n.t.counting.itemsToCount">
+          <span 
+            *ngFor="let positioned of item.positioned" 
+            class="item-emoji"
+            [style.left.px]="positioned.x"
+            [style.top.px]="positioned.y"
+            [style.font-size.rem]="positioned.size"
+          >
+            {{ positioned.emoji }}
+          </span>
         </div>
 
-        <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
-          ✕
-        </button>
+        <div class="answer-area">
+          <div class="answer-line"></div>
+        </div>
+
+        <div class="action-area">
+          <div class="hint-wrapper">
+            <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.counting.showAnswer">
+              ?
+            </button>
+            <div class="hint-bubble" *ngIf="item.answerRevealed">
+              {{ item.count }}
+            </div>
+          </div>
+
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
+    </ng-template>
+  </app-worksheet>
 </section>

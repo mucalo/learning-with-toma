@@ -76,23 +76,6 @@ input[type="number"] {
   cursor: not-allowed;
 }
 
-.worksheet {
-  border: 1px solid rgba(47, 59, 69, 0.12);
-  background: white;
-  border-radius: 16px;
-  padding: 1.25rem;
-}
-
-.worksheet-header {
-  margin-bottom: 1rem;
-}
-
-.worksheet-instruction {
-  margin: 0 0 0.5rem;
-  color: #5b8def;
-  font-weight: 600;
-}
-
 .problem-row {
   display: grid;
   grid-template-columns: 120px 1fr auto;
@@ -212,11 +195,6 @@ input[type="number"] {
     max-width: none;
     padding: 0;
     margin: 0;
-  }
-
-  .worksheet {
-    border: none;
-    box-shadow: none;
   }
 
   .problem-row {

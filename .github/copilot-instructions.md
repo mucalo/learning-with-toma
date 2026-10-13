@@ -34,6 +34,7 @@ Learning with Toma is a website that provides a platform where users can generat
 - Make small, focused improvements rather than unnecessary changes.
 - Preserve consistency with the existing style and structure.
 - Favor accessibility, clarity, and usefulness over visual clutter.
+- Every exercise must render its worksheet with the shared `<app-worksheet>` component (`src/app/worksheet/`), so the instruction is printed at the top of every page and problems are never split across pages.
 
 ## Notes
 If the website’s goals or audience change, update this file so future changes stay aligned with the intended direction.

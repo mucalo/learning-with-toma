@@ -1,0 +1,21 @@
+<div class="worksheet">
+  <!-- A table is used for its print behaviour: <thead> repeats on every printed page. -->
+  <table class="worksheet-table" role="presentation">
+    <thead>
+      <tr>
+        <th class="worksheet-header">
+          <p class="worksheet-instruction">{{ instruction }}</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; let i = index" class="worksheet-row">
+        <td>
+          <ng-container *ngIf="rowTemplate">
+            <ng-container *ngTemplateOutlet="rowTemplate; context: { $implicit: item, index: i }"></ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

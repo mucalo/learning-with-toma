@@ -10,6 +10,7 @@ import { SpellingComponent } from './spelling/spelling.component';
 import { HomeComponent } from './home/home.component';
 import { CountingComponent } from './counting/counting.component';
 import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.component';
+import { WorksheetComponent } from './worksheet/worksheet.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BiggestSmallestComponent } from './biggest-smallest/biggest-smallest.co
     SpellingComponent,
     HomeComponent,
     CountingComponent,
-    BiggestSmallestComponent
+    BiggestSmallestComponent,
+    WorksheetComponent
   ],
   imports: [
     BrowserModule,
