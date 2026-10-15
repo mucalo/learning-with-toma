@@ -1,5 +1,27 @@
+/*
+ * The home page is a stack of full-width bands, one per section. Bands alternate between the
+ * page background and a soft blue tint; the content of every band is centred at the same width.
+ */
+.home-section {
+  padding: 3rem 1.5rem;
+}
+
+.home-section:nth-of-type(even) {
+  background: #eef4fd;
+  border-top: 1px solid #dde8f8;
+  border-bottom: 1px solid #dde8f8;
+}
+
+/* The last band runs straight into the footer, cancelling the footer's top margin and doubled border. */
 .home-page {
-  padding: 2rem 1.5rem 3rem;
+  margin-bottom: -3rem;
+}
+
+.home-section:last-child {
+  border-bottom: none;
+}
+
+.section-inner {
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -68,4 +90,114 @@
   margin: 0;
   color: #4f626d;
   font-size: 0.95rem;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 2.5rem;
+}
+
+.about-photos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 0.5rem;
+}
+
+/* Photos sit like sheets of paper on a table, alternately tilted left and right. */
+.about-figure {
+  width: 100%;
+  max-width: 270px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(31, 59, 77, 0.16);
+  transform: rotate(-3deg);
+}
+
+.about-figure:nth-child(even) {
+  transform: rotate(3deg);
+}
+
+.about-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.about-text strong {
+  font-weight: 700;
+  color: #1f3b4d;
+}
+
+/* Same size as the "Choose an activity" heading, so every section starts the same way. */
+.about-section h2 {
+  margin: 0 0 1rem;
+  color: #1f3b4d;
+  font-size: 2rem;
+}
+
+.about-text {
+  color: #2f3b45;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.about-text p {
+  margin: 0 0 1rem;
+}
+
+.about-list {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+  list-style: none;
+  counter-reset: reason;
+}
+
+.about-list li {
+  counter-increment: reason;
+}
+
+.about-list li::before {
+  content: counter(reason, lower-alpha) ") ";
+  font-weight: 700;
+  color: #5b8def;
+}
+
+@media (max-width: 800px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Below the text, the photos sit side by side while there's room. */
+  .about-photos {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-figure {
+    width: calc(50% - 1.25rem);
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-figure {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-section {
+    padding: 2rem 1.25rem;
+  }
 }

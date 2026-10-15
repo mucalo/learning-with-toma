@@ -4,6 +4,18 @@
     <p class="subtitle">{{ i18n.t.header.subtitle }}</p>
   </div>
 
+  <nav class="main-menu" [attr.aria-label]="i18n.t.menu.label">
+    <a
+      *ngFor="let section of sections"
+      class="menu-link"
+      routerLink="/"
+      [fragment]="section.id"
+      (click)="scrollTo(section.id)"
+    >
+      {{ i18n.t.menu.items[section.key] }}
+    </a>
+  </nav>
+
   <div class="header-actions">
     <div class="language-field">
       <label for="language">{{ i18n.t.header.languageLabel }}</label>

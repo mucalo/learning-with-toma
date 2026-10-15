@@ -1,21 +1,53 @@
-<section class="home-page" [attr.aria-label]="i18n.t.home.activitiesLabel">
-  <div class="home-intro">
-    <h1>{{ i18n.t.home.heading }}</h1>
-    <p>{{ i18n.t.home.intro }}</p>
-  </div>
-
-  <div class="activity-grid">
-    <a
-      *ngFor="let activity of activities"
-      class="activity-card"
-      [routerLink]="activity.route"
-      [attr.aria-label]="i18n.t.activities[activity.key].title"
-    >
-      <div class="activity-illustration" aria-hidden="true">{{ activity.emoji }}</div>
-      <div class="activity-content">
-        <h2>{{ i18n.t.activities[activity.key].title }}</h2>
-        <p>{{ i18n.t.activities[activity.key].description }}</p>
+<div class="home-page">
+  <section id="activities" class="home-section" [attr.aria-label]="i18n.t.home.activitiesLabel">
+    <div class="section-inner">
+      <div class="home-intro">
+        <h1>{{ i18n.t.home.heading }}</h1>
+        <p>{{ i18n.t.home.intro }}</p>
       </div>
-    </a>
-  </div>
-</section>
+
+      <div class="activity-grid">
+        <a
+          *ngFor="let activity of activities"
+          class="activity-card"
+          [routerLink]="activity.route"
+          [attr.aria-label]="i18n.t.activities[activity.key].title"
+        >
+          <div class="activity-illustration" aria-hidden="true">{{ activity.emoji }}</div>
+          <div class="activity-content">
+            <h2>{{ i18n.t.activities[activity.key].title }}</h2>
+            <p>{{ i18n.t.activities[activity.key].description }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="home-section about-section" aria-labelledby="about-heading">
+    <div class="section-inner about-layout">
+      <div class="about-text">
+        <h2 id="about-heading">{{ i18n.t.about.heading }}</h2>
+        <p *ngFor="let paragraph of i18n.t.about.opening">
+          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
+        </p>
+        <ol class="about-list">
+          <li *ngFor="let reason of i18n.t.about.drawingReasons">
+            <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: reason }"></ng-container>
+          </li>
+        </ol>
+        <p *ngFor="let paragraph of i18n.t.about.closing">
+          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
+        </p>
+      </div>
+
+      <div class="about-photos">
+        <figure class="about-figure" *ngFor="let photo of aboutPhotos; let i = index">
+          <img [src]="photo" width="300" height="400" loading="lazy" [alt]="i18n.t.about.photoAlts[i]" />
+        </figure>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Renders translated text with its **key phrases** in bold. -->
+<ng-template #emphasized let-text><ng-container *ngFor="let part of text | emphasis"><strong *ngIf="part.bold">{{ part.text }}</strong><ng-container *ngIf="!part.bold">{{ part.text }}</ng-container></ng-container></ng-template>

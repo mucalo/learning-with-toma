@@ -70,9 +70,9 @@ src/
     │   ├── languages.ts         # LanguageKey type + list of supported languages
     │   ├── translations.ts      # all UI text for every language
     │   └── language.service.ts  # current language, persistence, <html lang>
-    ├── header/                  # title, subtitle, language selector, donate link
+    ├── header/                  # title, subtitle, menu, language selector, donate link
     ├── footer/                  # donation message
-    ├── home/                    # grid of activity cards
+    ├── home/                    # single-page home: activity cards + About; home-sections.ts drives the menu
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
     ├── biggest-smallest/        # Biggest & Smallest activity
@@ -126,6 +126,14 @@ Content that varies by language but isn't plain UI text stays in the activity, k
    ```
 
 7. Clamp numeric inputs in code, not only through `min`/`max` attributes, since users can type any value.
+
+## Adding a home page section
+
+The home page is a single page. Each item in the header menu scrolls to one of its sections, and from other pages it goes to `#/#<section-id>`.
+
+1. Add a `<section id="my-section" class="home-section">` with its heading to `home/home.component.html`.
+2. Add `{ id: 'my-section', key: 'mySection' }` to `HOME_SECTIONS` in `home/home-sections.ts`.
+3. Add the menu label under `menu.items`, and the section's own text, in **every** language in `translations.ts`.
 
 ## Design guidelines
 

@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from './home.component';
 import { LanguageService } from '../i18n/language.service';
+import { HOME_SECTIONS } from './home-sections';
+import { EmphasisPipe } from '../i18n/emphasis.pipe';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -10,7 +12,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [HomeComponent]
+      declarations: [HomeComponent, EmphasisPipe]
     }).compileComponents();
   });
 
@@ -25,5 +27,25 @@ describe('HomeComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Spelling');
     expect(compiled.querySelector('a[href$="/spelling"]')).toBeTruthy();
+  });
+
+  it('should render every menu section on the page', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    for (const section of HOME_SECTIONS) {
+      expect(compiled.querySelector(`#${section.id}`)).withContext(section.id).toBeTruthy();
+    }
+  });
+
+  it('should render the about section', () => {
+    const about = (fixture.nativeElement as HTMLElement).querySelector('#about') as HTMLElement;
+    expect(about.querySelector('h2')?.textContent).toContain('About Learning with Toma');
+    expect(about.querySelectorAll('.about-list li').length).toBe(2);
+    expect(about.querySelectorAll('.about-figure img').length).toBe(component.aboutPhotos.length);
+  });
+
+  it('should show key phrases in bold without the ** markers', () => {
+    const about = (fixture.nativeElement as HTMLElement).querySelector('#about') as HTMLElement;
+    expect(about.querySelector('strong')?.textContent).toBe('loved solving little puzzles, tasks and problems on paper');
+    expect(about.textContent).not.toContain('**');
   });
 });

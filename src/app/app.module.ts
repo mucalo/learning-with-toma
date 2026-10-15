@@ -18,6 +18,7 @@ import { ShadowComponent } from './shadow/shadow.component';
 import { MazeComponent } from './maze/maze.component';
 import { WhereComponent } from './where/where.component';
 import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
+import { EmphasisPipe } from './i18n/emphasis.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
     ShadowComponent,
     MazeComponent,
     WhereComponent,
-    CopyPatternComponent
+    CopyPatternComponent,
+    EmphasisPipe
   ],
   imports: [
     BrowserModule,

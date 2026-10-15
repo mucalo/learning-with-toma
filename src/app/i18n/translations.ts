@@ -19,6 +19,23 @@ export interface Translations {
     intro: string;
     activitiesLabel: string;
   };
+  /** Header menu; each item scrolls to a section of the home page (see `home/home-sections.ts`). */
+  menu: {
+    label: string;
+    items: {
+      activities: string;
+      about: string;
+    };
+  };
+  about: {
+    heading: string;
+    /** Paragraphs before the list of reasons why drawing problems by hand didn't work out. */
+    opening: string[];
+    drawingReasons: string[];
+    closing: string[];
+    /** Alt text for each photo beside the text (`aboutPhotos` in the home component). */
+    photoAlts: string[];
+  };
   activities: {
     spelling: { title: string; description: string };
     counting: { title: string; description: string };
@@ -180,6 +197,35 @@ const english: Translations = {
     heading: 'Choose an activity',
     intro: 'Select a learning activity to get started.',
     activitiesLabel: 'Learning activities'
+  },
+  menu: {
+    label: 'Main menu',
+    items: {
+      activities: 'Activities',
+      about: 'About'
+    }
+  },
+  about: {
+    heading: 'About Learning with Toma',
+    opening: [
+      'All three of my kids **loved solving little puzzles, tasks and problems on paper** when they were small. Simple things like “draw a circle”, “complete the word” or “find the biggest item”. It made them genuinely happy, right up until they were about six or seven. (These days they’re in a phase where they’d answer that in an extremely annoying voice: “Six seveeeen!”)',
+      'We used to buy them activity workbooks, but they’d always find my wife and me having coffee at 9 on a Sunday morning and ask, “**Hey, Dad, can you give us some problems to solve?**” And at 9 on a Sunday morning you can’t exactly pop out for a new workbook.',
+      'So I started **drawing the problems for them by hand**. However:'
+    ],
+    drawingReasons: [
+      'that got repetitive really fast, because **I really can’t draw**, and',
+      '**I couldn’t draw as fast as they could solve.**'
+    ],
+    closing: [
+      'Being a software developer, I started looking for **a way to automate it**, and maybe make it a bit easier for other parents to keep their kids busy while they try to have a normal, uninterrupted conversation over coffee. My advice, though: **keep the conversation short**. It won’t stay uninterrupted for long! :)',
+      'One very important thing: my son is **neuroatypical** (I won’t go into details), and he really dislikes drawing and anything to do with pencils. But developing **graphomotor and fine motor skills** at an early age is crucially important, and **practising with a pencil in your fingers is vital!** Luckily, at some point, out of nowhere, he became interested in letters and writing… and these little exercises **held his focus longer than anything else** we tried.',
+      'So, not to ramble on for too long: **I built this website for myself**, so I can quickly make little problems for my youngest daughter (the other two have outgrown them, for now ;)). But I hope there are **other parents out there who will find it useful too**.',
+      'And I hope some kids out there will **have fun with these**!'
+    ],
+    photoAlts: [
+      'A worksheet I drew by hand for my kids',
+      'Another worksheet I drew by hand for my kids'
+    ]
   },
   activities: {
     spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
@@ -343,6 +389,35 @@ const croatian: Translations = {
     intro: 'Odaberi aktivnost za učenje i započni.',
     activitiesLabel: 'Aktivnosti za učenje'
   },
+  menu: {
+    label: 'Glavni izbornik',
+    items: {
+      activities: 'Aktivnosti',
+      about: 'O projektu'
+    }
+  },
+  about: {
+    heading: 'O projektu Učimo s Tomom',
+    opening: [
+      'Svo troje moje djece **obožavalo je rješavati male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni riječ” ili „pronađi najveći predmet”. To ih je iskreno veselilo, sve dok nisu imali šest-sedam godina. (Sad su u fazi kad bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
+      'Kupovali smo im radne bilježnice, ali uvijek bi nas pronašli dok supruga i ja pijemo kavu u nedjelju u 9 ujutro i pitali: „**Tata, možeš nam dati neke zadatke?**” A u nedjelju u 9 ujutro baš i ne možeš skoknuti po novu radnu bilježnicu.',
+      'Zato sam im počeo **crtati zadatke rukom**. Međutim:'
+    ],
+    drawingReasons: [
+      'to je jako brzo postalo jednolično, jer **stvarno ne znam crtati**, i',
+      '**nisam mogao crtati brže nego što su oni rješavali.**'
+    ],
+    closing: [
+      'Kako sam i sam programer, počeo sam tražiti **način da to automatiziram**, i da možda drugim roditeljima malo olakšam da zaposle djecu dok pokušavaju normalno, bez prekidanja, porazgovarati uz kavu. Ali moj savjet: **neka razgovor bude kratak**, neće dugo ostati neprekinut! :)',
+      'Jedna jako važna napomena: moj sin je **neuroatipičan** (neću ulaziti u detalje) i jako ne voli crtanje i sve što ima veze s olovkom. A razvoj **grafomotorike i fine motorike** u ranoj dobi iznimno je važan, i **vježbanje s olovkom u prstima je ključno!** Srećom, u jednom trenutku, niotkuda, zainteresirao se za slova i pisanje… i ovi mali zadaci **zadržali su mu pažnju dulje od bilo čega drugog** što smo pokušali.',
+      'Da ne duljim previše: **ovu sam stranicu napravio za sebe**, da mogu brzo napraviti male zadatke za svoju najmlađu kćer (starije dvoje ih je zasad preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti korisna**.',
+      'I nadam se da će se neka djeca uz ovo **dobro zabaviti**!'
+    ],
+    photoAlts: [
+      'Radni list koji sam rukom nacrtao za svoju djecu',
+      'Još jedan radni list koji sam rukom nacrtao za svoju djecu'
+    ]
+  },
   activities: {
     spelling: { title: 'Pisanje riječi', description: 'Vježbaj pisanje riječi uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroji predmete i napiši broj.' },
@@ -504,6 +579,35 @@ const serbian: Translations = {
     heading: 'Izaberi aktivnost',
     intro: 'Izaberi aktivnost za učenje i započni.',
     activitiesLabel: 'Aktivnosti za učenje'
+  },
+  menu: {
+    label: 'Glavni meni',
+    items: {
+      activities: 'Aktivnosti',
+      about: 'O projektu'
+    }
+  },
+  about: {
+    heading: 'O projektu Učimo s Tomom',
+    opening: [
+      'Svo troje moje dece **obožavalo je da rešava male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni reč” ili „pronađi najveći predmet”. To ih je iskreno radovalo, sve dok nisu napunili šest-sedam godina. (Sada su u fazi kada bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
+      'Kupovali smo im radne sveske, ali uvek bi nas pronašli dok supruga i ja pijemo kafu u nedelju u 9 ujutru i pitali: „**Tata, možeš li da nam daš neke zadatke?**” A u nedelju u 9 ujutru baš i ne možeš da skokneš po novu radnu svesku.',
+      'Zato sam počeo da im **crtam zadatke rukom**. Međutim:'
+    ],
+    drawingReasons: [
+      'to je vrlo brzo postalo jednolično, jer **stvarno ne znam da crtam**, i',
+      '**nisam mogao da crtam brže nego što su oni rešavali.**'
+    ],
+    closing: [
+      'Pošto sam i sam programer, počeo sam da tražim **način da to automatizujem**, i da možda drugim roditeljima malo olakšam da zaposle decu dok pokušavaju da normalno, bez prekidanja, porazgovaraju uz kafu. Ali moj savet: **neka razgovor bude kratak**, neće dugo ostati neprekinut! :)',
+      'Jedna veoma važna napomena: moj sin je **neuroatipičan** (neću da ulazim u detalje) i baš ne voli crtanje i sve što ima veze sa olovkom. A razvoj **grafomotorike i fine motorike** u ranom uzrastu izuzetno je važan, i **vežbanje sa olovkom u prstima je ključno!** Srećom, u jednom trenutku, niotkuda, zainteresovao se za slova i pisanje… i ovi mali zadaci **zadržali su mu pažnju duže od bilo čega drugog** što smo pokušali.',
+      'Da ne dužim previše: **ovaj sajt sam napravio za sebe**, da mogu brzo da napravim male zadatke za svoju najmlađu ćerku (starije dvoje ih je za sada preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti koristan**.',
+      'I nadam se da će se neka deca uz ovo **lepo zabaviti**!'
+    ],
+    photoAlts: [
+      'Radni list koji sam rukom nacrtao za svoju decu',
+      'Još jedan radni list koji sam rukom nacrtao za svoju decu'
+    ]
   },
   activities: {
     spelling: { title: 'Pisanje reči', description: 'Vežbaj pisanje reči uz pomoć slika.' },

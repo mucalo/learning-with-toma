@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
+import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +10,15 @@ import { LanguageService } from '../i18n/language.service';
 export class HeaderComponent {
   @Input() ctaUrl = 'https://buymeacoffee.com/mariomucalo';
 
+  readonly sections = HOME_SECTIONS;
+
   constructor(readonly i18n: LanguageService) {}
+
+  /**
+   * The link itself navigates to the home page with the section as fragment. When we are already
+   * on the home page, scroll straight away (this also works when clicking the same item twice).
+   */
+  scrollTo(id: string): void {
+    scrollToSection(id);
+  }
 }
