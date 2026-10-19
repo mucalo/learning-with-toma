@@ -20,8 +20,9 @@ describe('HeaderComponent', () => {
 
   it('should link each menu item to its home page section', () => {
     const links = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll<HTMLAnchorElement>('.menu-link'));
-    expect(links.map(link => link.textContent?.trim())).toEqual(['Activities', 'About']);
+    expect(links.map(link => link.textContent?.trim())).toEqual(['Activities', 'About', 'How can I help?']);
     expect(links[0].getAttribute('href')).toBe('/#activities');
     expect(links[1].getAttribute('href')).toBe('/#about');
+    expect(links[2].getAttribute('href')).toBe('/#help');
   });
 });

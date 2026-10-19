@@ -143,4 +143,9 @@
     border: none;
     padding: 1.25rem 0;
   }
+
+  /* A solid line between problems (not above the first), so each row reads as its own task. */
+  :host ::ng-deep .worksheet-row + .worksheet-row .problem-row {
+    border-top: 1px solid #9aa5b1;
+  }
 }

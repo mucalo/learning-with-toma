@@ -26,8 +26,10 @@ The site is deployed to GitHub Pages at `/learning-with-toma/`.
 | `#/maze` | Maze | Draws the way from an animal (top-left) to its food (bottom-right), e.g. 🐝 → 🌻. Every maze is randomly generated with exactly one route. Mazes always print two per A4 page. | Number of mazes, size (5×5 up to 16×16) |
 | `#/where` | Where Is It? | Reads a sentence such as *"The cat is under the table."* and circles the matching scene. Every scene shows the same character and object in a different position. Objects are drawn as line art so positions are exact, and Croatian/Serbian sentences use the correct case (*na stolu* / *ispod stola*). | Number of problems, pictures per problem (2–4), which position words to include (on / under / next to / above, at least two) |
 | `#/copy-pattern` | Copy the Pattern | Copies a line drawing from one dot grid onto an empty one beside it. Drawings are either random shapes (always connected, with no repeated or crossing lines) or one of 20 hand-made recognisable figures (house, boat, fish, heart, rocket, castle, stairs…) defined in `FIGURES`. | Number of problems, grid size (3×3 to 6×6), drawings (random shapes / pictures / mixed), number of lines (random shapes only), diagonal lines (on/off; off also limits pictures to straight-line ones) |
+| `#/trace` | Trace the Letters | Traces a letter or number shown as dotted copies on handwriting lines, starting at the coloured dot of each stroke, then writes it alone in the space left at the end of the row. The first copy is solid, with numbered start dots showing the writing order. Letters are hand-drawn single-line strokes (`trace/glyphs.ts`), including Č, Ć, Đ, Š, Ž and the digraphs Dž, Lj, Nj. | Number of problems, what to practise (capital letters / small letters / numbers), order (alphabetical / random), size (small / medium / large), only these letters or numbers (optional, e.g. `b d p`) |
+| `#/dot-to-dot` | Dot to Dot | Joins numbered (or lettered) dots in order to reveal a picture: house, car, boat, star, mushroom, fish, rocket, cat, heart, fir tree, apple or butterfly (`dot-to-dot/dot-figures.ts`). Extra dots are added along the longest edges to reach the chosen count. Pictures are randomly mirrored and print two per A4 page. | Number of problems, dots marked with (numbers / letters of the current alphabet), number of dots (10–30) |
 
-Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence, Intruder, Shadow, Maze and Where Is It? rows also have a **?** button that shows the answer. Those rows, Complete the Line rows and Copy the Pattern rows have a **✕** button that removes the row.
+Every worksheet has a **Print** button. The header, footer and on-screen controls are hidden when printing, the instruction is repeated at the top of every printed page, and a problem is never split across two pages. Spelling, Counting, Sequence, Intruder, Shadow, Maze, Where Is It? and Dot to Dot rows also have a **?** button that shows the answer. Those rows, Complete the Line, Copy the Pattern and Trace the Letters rows have a **✕** button that removes the row.
 
 ## Languages
 
@@ -72,7 +74,7 @@ src/
     │   └── language.service.ts  # current language, persistence, <html lang>
     ├── header/                  # title, subtitle, menu, language selector, donate link
     ├── footer/                  # donation message
-    ├── home/                    # single-page home: activity cards + About; home-sections.ts drives the menu
+    ├── home/                    # single-page home: activities, About, How can I help? (help-section/); home-sections.ts drives the menu
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
     ├── biggest-smallest/        # Biggest & Smallest activity
@@ -83,6 +85,8 @@ src/
     ├── maze/                    # Maze activity (maze generator and solver)
     ├── where/                   # Where Is It? activity (scenes, noun cases, sentence grammar per language)
     ├── copy-pattern/            # Copy the Pattern activity (dot-grid figure generator)
+    ├── trace/                   # Trace the Letters activity (hand-drawn single-line letters and digits)
+    ├── dot-to-dot/              # Dot to Dot activity (picture outlines, dot spacing, label placement)
     └── worksheet/               # shared worksheet layout (instruction on every printed page)
 brand.json                       # brand guide: colours, fonts, voice, mascot
 .github/
@@ -131,7 +135,7 @@ Content that varies by language but isn't plain UI text stays in the activity, k
 
 The home page is a single page. Each item in the header menu scrolls to one of its sections, and from other pages it goes to `#/#<section-id>`.
 
-1. Add a `<section id="my-section" class="home-section">` with its heading to `home/home.component.html`.
+1. Add a `<section id="my-section" class="home-section my-section">` with a `section-inner` wrapper and a `section-heading` to `home/home.component.html`, and give `.my-section` its own soft background in `home.component.css`.
 2. Add `{ id: 'my-section', key: 'mySection' }` to `HOME_SECTIONS` in `home/home-sections.ts`.
 3. Add the menu label under `menu.items`, and the section's own text, in **every** language in `translations.ts`.
 

@@ -25,6 +25,7 @@ export interface Translations {
     items: {
       activities: string;
       about: string;
+      help: string;
     };
   };
   about: {
@@ -35,6 +36,35 @@ export interface Translations {
     closing: string[];
     /** Alt text for each photo beside the text (`aboutPhotos` in the home component). */
     photoAlts: string[];
+  };
+  /** "How can I help?" section of the home page. Text may mark key phrases in bold with `**…**`. */
+  help: {
+    heading: string;
+    donate: {
+      title: string;
+      paragraphs: string[];
+    };
+    share: {
+      title: string;
+      paragraphs: string[];
+      /** Accessible label of each share button; `{network}` becomes e.g. "Facebook". */
+      shareOn: string;
+      email: string;
+      copyLink: string;
+      linkCopied: string;
+      /** Opens the device's own share sheet. */
+      more: string;
+      /** Text that goes with the shared link. */
+      message: string;
+    };
+    feedback: {
+      title: string;
+      /** `{email}` becomes the contact e-mail address, as a link. */
+      intro: string;
+      items: string[];
+      button: string;
+      emailSubject: string;
+    };
   };
   activities: {
     spelling: { title: string; description: string };
@@ -47,6 +77,8 @@ export interface Translations {
     maze: { title: string; description: string };
     where: { title: string; description: string };
     copyPattern: { title: string; description: string };
+    trace: { title: string; description: string };
+    dotToDot: { title: string; description: string };
   };
   common: {
     backToMenu: string;
@@ -181,6 +213,58 @@ export interface Translations {
       mixed: string;
     };
   };
+  trace: {
+    instructionLetters: string;
+    instructionNumbers: string;
+    type: string;
+    types: {
+      uppercase: string;
+      lowercase: string;
+      numbers: string;
+    };
+    order: string;
+    orders: {
+      alphabet: string;
+      random: string;
+    };
+    size: string;
+    sizes: {
+      small: string;
+      medium: string;
+      large: string;
+    };
+    onlyTheseLetters: string;
+    onlyTheseLettersExample: string;
+    onlyTheseNumbers: string;
+    /** `{character}` becomes the letter or number on the row. */
+    rowLabel: string;
+  };
+  dotToDot: {
+    instructionNumbers: string;
+    instructionLetters: string;
+    labelType: string;
+    labelTypes: {
+      numbers: string;
+      letters: string;
+    };
+    dotCount: string;
+    pictureLabel: string;
+    showAnswer: string;
+    figures: {
+      house: string;
+      car: string;
+      boat: string;
+      star: string;
+      mushroom: string;
+      fish: string;
+      rocket: string;
+      cat: string;
+      heart: string;
+      tree: string;
+      apple: string;
+      butterfly: string;
+    };
+  };
 }
 
 const english: Translations = {
@@ -202,7 +286,8 @@ const english: Translations = {
     label: 'Main menu',
     items: {
       activities: 'Activities',
-      about: 'About'
+      about: 'About',
+      help: 'How can I help?'
     }
   },
   about: {
@@ -227,6 +312,39 @@ const english: Translations = {
       'Another worksheet I drew by hand for my kids'
     ]
   },
+  help: {
+    heading: 'How can I help?',
+    donate: {
+      title: 'Donate',
+      paragraphs: [
+        'Donate a small sum (or, even better, a **small recurring sum** :)) to help run the project. Tokens do cost some money (yes, a lot of this has been built with the help of AI :)), and so do servers, domains… And I do drink a lot of coffee while I work on this, so there’s that as well :)',
+        'On a serious note: if your kid(s) enjoyed playing with these worksheets, **please help keep this site running**.'
+      ]
+    },
+    share: {
+      title: 'Spread the word',
+      paragraphs: [
+        'Share Learning with Toma on your social networks, in your WhatsApp, Viber or other groups (especially the ones with parents of little kids), with schools, kindergartens… I’d love for **as many people as possible** to have the chance to play with their kids using these worksheets, and I’d love to know that they helped improve the **graphomotor, focus and logic skills** of as many children as possible!'
+      ],
+      shareOn: 'Share on {network}',
+      email: 'Share by e-mail',
+      copyLink: 'Copy link',
+      linkCopied: 'Link copied!',
+      more: 'More…',
+      message: 'Free printable worksheets for kids – Learning with Toma'
+    },
+    feedback: {
+      title: 'Send feedback',
+      intro: 'Feel free to reach out at {email} and let me know what you think. I’ll cherish:',
+      items: [
+        '**any constructive feedback**, e.g. “My kid (age 6) loved Find the Intruder, but Copy the Pattern didn’t go as well, because she couldn’t recognise the patterns.” This helps me improve the activities for other kids down the road.',
+        '**any testimonials** I can publicly put on the website, e.g. “My son (6) and I spent three afternoons this week playing with these. The worksheets are an amazing thing to have around the house. – Irene, mom of John (6)”. The more of these I get, the more assured I am that the project is on the right track.',
+        '**any photos or videos** I can publicly use for promotion. Obviously, none of us want to send photos of our kids or have companies and projects post them online. But I’ll take any real photos or videos with faces blurred, just the backs of heads, just the hands… Anything real is awesome, because it’s the only thing that tells the true story!'
+      ],
+      button: 'Send feedback, a testimonial or photos',
+      emailSubject: 'Learning with Toma – feedback'
+    }
+  },
   activities: {
     spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
     counting: { title: 'Counting', description: 'Count objects and write the number.' },
@@ -237,7 +355,9 @@ const english: Translations = {
     shadow: { title: 'Match the Shadow', description: 'Connect each picture to its shadow.' },
     maze: { title: 'Maze', description: 'Find the way through the maze.' },
     where: { title: 'Where Is It?', description: 'Find the picture that matches the sentence.' },
-    copyPattern: { title: 'Copy the Pattern', description: 'Copy a line drawing onto a dot grid.' }
+    copyPattern: { title: 'Copy the Pattern', description: 'Copy a line drawing onto a dot grid.' },
+    trace: { title: 'Trace the Letters', description: 'Trace dotted letters and numbers, then write them alone.' },
+    dotToDot: { title: 'Dot to Dot', description: 'Join the dots in order to reveal a picture.' }
   },
   common: {
     backToMenu: '← Back to menu',
@@ -371,6 +491,57 @@ const english: Translations = {
       pictures: 'Pictures (house, boat…)',
       mixed: 'Mixed'
     }
+  },
+  trace: {
+    instructionLetters: 'Trace the dotted letters, starting at the coloured dot. Then write the letter on your own.',
+    instructionNumbers: 'Trace the dotted numbers, starting at the coloured dot. Then write the number on your own.',
+    type: 'What to practise',
+    types: {
+      uppercase: 'Capital letters',
+      lowercase: 'Small letters',
+      numbers: 'Numbers'
+    },
+    order: 'Order',
+    orders: {
+      alphabet: 'In order',
+      random: 'Random'
+    },
+    size: 'Size',
+    sizes: {
+      small: 'Small',
+      medium: 'Medium',
+      large: 'Large'
+    },
+    onlyTheseLetters: 'Only these letters (optional)',
+    onlyTheseLettersExample: 'e.g. b d p',
+    onlyTheseNumbers: 'Only these numbers (optional)',
+    rowLabel: 'Trace {character}'
+  },
+  dotToDot: {
+    instructionNumbers: 'Join the dots in order, starting at 1. What picture did you find?',
+    instructionLetters: 'Join the dots in alphabetical order, starting at A. What picture did you find?',
+    labelType: 'Dots marked with',
+    labelTypes: {
+      numbers: 'Numbers (1, 2, 3…)',
+      letters: 'Letters (A, B, C…)'
+    },
+    dotCount: 'Number of dots',
+    pictureLabel: 'Dots to join',
+    showAnswer: 'Show the picture',
+    figures: {
+      house: 'House',
+      car: 'Car',
+      boat: 'Sailing boat',
+      star: 'Star',
+      mushroom: 'Mushroom',
+      fish: 'Fish',
+      rocket: 'Rocket',
+      cat: 'Cat',
+      heart: 'Heart',
+      tree: 'Fir tree',
+      apple: 'Apple',
+      butterfly: 'Butterfly'
+    }
   }
 };
 
@@ -393,7 +564,8 @@ const croatian: Translations = {
     label: 'Glavni izbornik',
     items: {
       activities: 'Aktivnosti',
-      about: 'O projektu'
+      about: 'O projektu',
+      help: 'Kako mogu pomoći?'
     }
   },
   about: {
@@ -418,6 +590,39 @@ const croatian: Translations = {
       'Još jedan radni list koji sam rukom nacrtao za svoju djecu'
     ]
   },
+  help: {
+    heading: 'Kako mogu pomoći?',
+    donate: {
+      title: 'Donirajte',
+      paragraphs: [
+        'Donirajte mali iznos (ili, još bolje, **mali mjesečni iznos** :)) i pomozite da projekt živi. Tokeni koštaju (da, puno toga je napravljeno uz pomoć umjetne inteligencije :)), a koštaju i serveri, domene… I da, popijem jako puno kave dok radim na ovome, pa i to :)',
+        'A sad ozbiljno: ako su se vaša djeca zabavila uz ove radne listove, **pomozite da ova stranica nastavi raditi**.'
+      ]
+    },
+    share: {
+      title: 'Proširite glas',
+      paragraphs: [
+        'Podijelite Učimo s Tomom na svojim društvenim mrežama, u WhatsApp, Viber i drugim grupama (posebno onima s roditeljima male djece), sa školama, vrtićima… Volio bih da **što više ljudi** ima priliku igrati se sa svojom djecom uz ove radne listove, i volio bih znati da su pomogli razviti **grafomotoriku, koncentraciju i logičko razmišljanje** kod što više djece!'
+      ],
+      shareOn: 'Podijeli na {network}',
+      email: 'Podijeli e-poštom',
+      copyLink: 'Kopiraj poveznicu',
+      linkCopied: 'Poveznica kopirana!',
+      more: 'Više…',
+      message: 'Besplatni radni listovi za djecu za ispis – Učimo s Tomom'
+    },
+    feedback: {
+      title: 'Pošaljite povratnu informaciju',
+      intro: 'Slobodno mi se javite na {email} i recite mi što mislite. Posebno će mi značiti:',
+      items: [
+        '**svaka konstruktivna povratna informacija**, npr. „Moje dijete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj uzorak nije prošao tako dobro jer nije prepoznavala uzorke.” To mi pomaže poboljšati aktivnosti za drugu djecu.',
+        '**svako iskustvo** koje mogu javno objaviti na stranici, npr. „Moj sin (6) i ja proveli smo tri popodneva ovaj tjedan igrajući se s ovim. Radni listovi su divna stvar za imati kod kuće. – Ana, mama Luke (6)”. Što ih više dobijem, to sam sigurniji da je projekt na dobrom putu.',
+        '**sve fotografije ili videozapise** koje mogu javno koristiti za promociju. Naravno, nitko od nas ne želi slati fotografije svoje djece niti da ih tvrtke i projekti objavljuju na internetu. Ali rado ću uzeti bilo kakve stvarne fotografije ili videozapise sa zamućenim licima, samo s potiljkom, samo s rukama… Sve što je stvarno je super, jer jedino to priča pravu priču!'
+      ],
+      button: 'Pošaljite povratnu informaciju, iskustvo ili fotografije',
+      emailSubject: 'Učimo s Tomom – povratna informacija'
+    }
+  },
   activities: {
     spelling: { title: 'Pisanje riječi', description: 'Vježbaj pisanje riječi uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroji predmete i napiši broj.' },
@@ -428,7 +633,9 @@ const croatian: Translations = {
     shadow: { title: 'Pronađi sjenu', description: 'Poveži sličice s njihovim sjenama.' },
     maze: { title: 'Labirint', description: 'Pronađi put kroz labirint.' },
     where: { title: 'Gdje je?', description: 'Pronađi sliku koja odgovara rečenici.' },
-    copyPattern: { title: 'Precrtaj uzorak', description: 'Precrtaj crtež na mrežu točkica.' }
+    copyPattern: { title: 'Precrtaj uzorak', description: 'Precrtaj crtež na mrežu točkica.' },
+    trace: { title: 'Prati slova', description: 'Prati slova i brojke po točkicama, a zatim ih napiši samostalno.' },
+    dotToDot: { title: 'Spoji točkice', description: 'Spoji točkice redom i otkrij sliku.' }
   },
   common: {
     backToMenu: '← Natrag na izbornik',
@@ -562,6 +769,57 @@ const croatian: Translations = {
       pictures: 'Sličice (kuća, brod…)',
       mixed: 'Mješovito'
     }
+  },
+  trace: {
+    instructionLetters: 'Prati slova po točkicama, počni od obojene točkice. Zatim samostalno napiši slovo.',
+    instructionNumbers: 'Prati brojke po točkicama, počni od obojene točkice. Zatim samostalno napiši brojku.',
+    type: 'Što vježbamo',
+    types: {
+      uppercase: 'Velika slova',
+      lowercase: 'Mala slova',
+      numbers: 'Brojke'
+    },
+    order: 'Redoslijed',
+    orders: {
+      alphabet: 'Po redu',
+      random: 'Nasumično'
+    },
+    size: 'Veličina',
+    sizes: {
+      small: 'Mala',
+      medium: 'Srednja',
+      large: 'Velika'
+    },
+    onlyTheseLetters: 'Samo ova slova (neobavezno)',
+    onlyTheseLettersExample: 'npr. b d p',
+    onlyTheseNumbers: 'Samo ove brojke (neobavezno)',
+    rowLabel: 'Prati {character}'
+  },
+  dotToDot: {
+    instructionNumbers: 'Spoji točkice redom, počni od 1. Što se krije na slici?',
+    instructionLetters: 'Spoji točkice redom po abecedi, počni od A. Što se krije na slici?',
+    labelType: 'Točkice označene',
+    labelTypes: {
+      numbers: 'Brojevima (1, 2, 3…)',
+      letters: 'Slovima (A, B, C…)'
+    },
+    dotCount: 'Broj točkica',
+    pictureLabel: 'Točkice za spajanje',
+    showAnswer: 'Prikaži sliku',
+    figures: {
+      house: 'Kuća',
+      car: 'Auto',
+      boat: 'Jedrilica',
+      star: 'Zvijezda',
+      mushroom: 'Gljiva',
+      fish: 'Riba',
+      rocket: 'Raketa',
+      cat: 'Mačka',
+      heart: 'Srce',
+      tree: 'Bor',
+      apple: 'Jabuka',
+      butterfly: 'Leptir'
+    }
   }
 };
 
@@ -584,7 +842,8 @@ const serbian: Translations = {
     label: 'Glavni meni',
     items: {
       activities: 'Aktivnosti',
-      about: 'O projektu'
+      about: 'O projektu',
+      help: 'Kako mogu da pomognem?'
     }
   },
   about: {
@@ -609,6 +868,39 @@ const serbian: Translations = {
       'Još jedan radni list koji sam rukom nacrtao za svoju decu'
     ]
   },
+  help: {
+    heading: 'Kako mogu da pomognem?',
+    donate: {
+      title: 'Donirajte',
+      paragraphs: [
+        'Donirajte mali iznos (ili, još bolje, **mali mesečni iznos** :)) i pomozite da projekat živi. Tokeni koštaju (da, mnogo toga je napravljeno uz pomoć veštačke inteligencije :)), a koštaju i serveri, domeni… I da, popijem baš mnogo kafe dok radim na ovome, pa i to :)',
+        'A sad ozbiljno: ako su se vaša deca zabavila uz ove radne listove, **pomozite da ovaj sajt nastavi da radi**.'
+      ]
+    },
+    share: {
+      title: 'Proširite glas',
+      paragraphs: [
+        'Podelite Učimo s Tomom na svojim društvenim mrežama, u WhatsApp, Viber i drugim grupama (posebno onim sa roditeljima male dece), sa školama, vrtićima… Voleo bih da **što više ljudi** ima priliku da se igra sa svojom decom uz ove radne listove, i voleo bih da znam da su pomogli da se razviju **grafomotorika, koncentracija i logičko razmišljanje** kod što više dece!'
+      ],
+      shareOn: 'Podeli na {network}',
+      email: 'Podeli imejlom',
+      copyLink: 'Kopiraj link',
+      linkCopied: 'Link je kopiran!',
+      more: 'Više…',
+      message: 'Besplatni radni listovi za decu za štampu – Učimo s Tomom'
+    },
+    feedback: {
+      title: 'Pošaljite utiske',
+      intro: 'Slobodno mi se javite na {email} i recite mi šta mislite. Posebno će mi značiti:',
+      items: [
+        '**svaki konstruktivan komentar**, npr. „Moje dete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj obrazac nije prošao tako dobro jer nije prepoznavala obrasce.” To mi pomaže da poboljšam aktivnosti za drugu decu.',
+        '**svako iskustvo** koje mogu javno da objavim na sajtu, npr. „Moj sin (6) i ja proveli smo tri popodneva ove nedelje igrajući se sa ovim. Radni listovi su divna stvar za imati kod kuće. – Jelena, mama Marka (6)”. Što ih više dobijem, to sam sigurniji da je projekat na dobrom putu.',
+        '**sve fotografije ili video snimke** koje mogu javno da koristim za promociju. Naravno, niko od nas ne želi da šalje fotografije svoje dece niti da ih kompanije i projekti objavljuju na internetu. Ali rado ću uzeti bilo kakve stvarne fotografije ili snimke sa zamućenim licima, samo sa potiljkom, samo sa rukama… Sve što je stvarno je super, jer jedino to priča pravu priču!'
+      ],
+      button: 'Pošaljite utiske, iskustvo ili fotografije',
+      emailSubject: 'Učimo s Tomom – utisci'
+    }
+  },
   activities: {
     spelling: { title: 'Pisanje reči', description: 'Vežbaj pisanje reči uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroj predmete i napiši broj.' },
@@ -619,7 +911,9 @@ const serbian: Translations = {
     shadow: { title: 'Pronađi senku', description: 'Poveži sličice sa njihovim senkama.' },
     maze: { title: 'Lavirint', description: 'Pronađi put kroz lavirint.' },
     where: { title: 'Gde je?', description: 'Pronađi sliku koja odgovara rečenici.' },
-    copyPattern: { title: 'Precrtaj obrazac', description: 'Precrtaj crtež na mrežu tačkica.' }
+    copyPattern: { title: 'Precrtaj obrazac', description: 'Precrtaj crtež na mrežu tačkica.' },
+    trace: { title: 'Prati slova', description: 'Prati slova i brojeve po tačkicama, pa ih napiši samostalno.' },
+    dotToDot: { title: 'Spoji tačkice', description: 'Spoji tačkice redom i otkrij sliku.' }
   },
   common: {
     backToMenu: '← Nazad na meni',
@@ -752,6 +1046,57 @@ const serbian: Translations = {
       random: 'Nasumični oblici',
       pictures: 'Sličice (kuća, brod…)',
       mixed: 'Mešovito'
+    }
+  },
+  trace: {
+    instructionLetters: 'Prati slova po tačkicama, počni od obojene tačkice. Zatim samostalno napiši slovo.',
+    instructionNumbers: 'Prati brojeve po tačkicama, počni od obojene tačkice. Zatim samostalno napiši broj.',
+    type: 'Šta vežbamo',
+    types: {
+      uppercase: 'Velika slova',
+      lowercase: 'Mala slova',
+      numbers: 'Brojevi'
+    },
+    order: 'Redosled',
+    orders: {
+      alphabet: 'Po redu',
+      random: 'Nasumično'
+    },
+    size: 'Veličina',
+    sizes: {
+      small: 'Mala',
+      medium: 'Srednja',
+      large: 'Velika'
+    },
+    onlyTheseLetters: 'Samo ova slova (opciono)',
+    onlyTheseLettersExample: 'npr. b d p',
+    onlyTheseNumbers: 'Samo ovi brojevi (opciono)',
+    rowLabel: 'Prati {character}'
+  },
+  dotToDot: {
+    instructionNumbers: 'Spoji tačkice redom, počni od 1. Šta se krije na slici?',
+    instructionLetters: 'Spoji tačkice redom po abecedi, počni od A. Šta se krije na slici?',
+    labelType: 'Tačkice označene',
+    labelTypes: {
+      numbers: 'Brojevima (1, 2, 3…)',
+      letters: 'Slovima (A, B, C…)'
+    },
+    dotCount: 'Broj tačkica',
+    pictureLabel: 'Tačkice za spajanje',
+    showAnswer: 'Prikaži sliku',
+    figures: {
+      house: 'Kuća',
+      car: 'Auto',
+      boat: 'Jedrilica',
+      star: 'Zvezda',
+      mushroom: 'Pečurka',
+      fish: 'Riba',
+      rocket: 'Raketa',
+      cat: 'Mačka',
+      heart: 'Srce',
+      tree: 'Jelka',
+      apple: 'Jabuka',
+      butterfly: 'Leptir'
     }
   }
 };

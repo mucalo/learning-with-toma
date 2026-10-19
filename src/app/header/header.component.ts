@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
+import { BUY_ME_A_COFFEE_URL } from '../links';
 import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
 
 @Component({
@@ -8,7 +9,7 @@ import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Input() ctaUrl = 'https://buymeacoffee.com/mariomucalo';
+  @Input() ctaUrl = BUY_ME_A_COFFEE_URL;
 
   readonly sections = HOME_SECTIONS;
 

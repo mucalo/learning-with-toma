@@ -11,6 +11,8 @@ import { ShadowComponent } from './shadow/shadow.component';
 import { MazeComponent } from './maze/maze.component';
 import { WhereComponent } from './where/where.component';
 import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
+import { TraceComponent } from './trace/trace.component';
+import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'shadow', component: ShadowComponent },
   { path: 'maze', component: MazeComponent },
   { path: 'where', component: WhereComponent },
-  { path: 'copy-pattern', component: CopyPatternComponent }
+  { path: 'copy-pattern', component: CopyPatternComponent },
+  { path: 'trace', component: TraceComponent },
+  { path: 'dot-to-dot', component: DotToDotComponent }
 ];
 
 @NgModule({

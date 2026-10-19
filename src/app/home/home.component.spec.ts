@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { LanguageService } from '../i18n/language.service';
 import { HOME_SECTIONS } from './home-sections';
 import { EmphasisPipe } from '../i18n/emphasis.pipe';
+import { HelpSectionComponent } from './help-section/help-section.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +13,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [HomeComponent, EmphasisPipe]
+      declarations: [HomeComponent, HelpSectionComponent, EmphasisPipe]
     }).compileComponents();
   });
 

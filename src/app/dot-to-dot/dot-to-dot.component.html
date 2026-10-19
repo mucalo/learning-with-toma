@@ -1,0 +1,63 @@
+<section class="dots-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="labelType">{{ i18n.t.dotToDot.labelType }}</label>
+      <select id="labelType" [ngModel]="labelType" (ngModelChange)="onLabelTypeChange($event)">
+        <option *ngFor="let type of labelTypes" [ngValue]="type">{{ labelTypeLabel(type) }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="dotCount">{{ i18n.t.dotToDot.dotCount }}</label>
+      <select id="dotCount" [(ngModel)]="dotCount">
+        <option *ngFor="let count of dotCounts" [ngValue]="count">{{ count }}</option>
+      </select>
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <figure class="picture">
+          <svg class="dots-svg" viewBox="-12 -12 124 124" role="img" [attr.aria-label]="i18n.t.dotToDot.pictureLabel">
+            <svg:g *ngIf="item.details" [attr.transform]="item.mirrored ? 'translate(100 0) scale(-1 1)' : null">
+              <svg:path class="details" [attr.d]="item.details" />
+            </svg:g>
+
+            <ng-container *ngIf="item.answerRevealed">
+              <svg:polygon *ngIf="item.closed" class="answer" [attr.points]="outline(item)" />
+              <svg:polyline *ngIf="!item.closed" class="answer" [attr.points]="outline(item)" />
+            </ng-container>
+
+            <svg:g *ngFor="let dot of item.dots; let first = first">
+              <svg:circle class="dot" [class.first]="first" [attr.cx]="dot.x" [attr.cy]="dot.y" [attr.r]="first ? 2 : 1.4" />
+              <svg:text class="label" [class.first]="first" [attr.x]="dot.labelX" [attr.y]="dot.labelY">{{ dot.label }}</svg:text>
+            </svg:g>
+          </svg>
+          <figcaption *ngIf="item.answerRevealed" class="answer-name">{{ figureName(item) }}</figcaption>
+        </figure>
+
+        <div class="action-area">
+          <button type="button" class="action-button hint-button" (click)="revealAnswer(item)" [attr.aria-label]="i18n.t.dotToDot.showAnswer">
+            ?
+          </button>
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

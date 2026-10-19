@@ -19,6 +19,9 @@ import { MazeComponent } from './maze/maze.component';
 import { WhereComponent } from './where/where.component';
 import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
 import { EmphasisPipe } from './i18n/emphasis.pipe';
+import { HelpSectionComponent } from './home/help-section/help-section.component';
+import { TraceComponent } from './trace/trace.component';
+import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { EmphasisPipe } from './i18n/emphasis.pipe';
     MazeComponent,
     WhereComponent,
     CopyPatternComponent,
-    EmphasisPipe
+    EmphasisPipe,
+    HelpSectionComponent,
+    TraceComponent,
+    DotToDotComponent
   ],
   imports: [
     BrowserModule,

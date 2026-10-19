@@ -26,7 +26,9 @@ export class HomeComponent implements AfterViewInit {
     { key: 'shadow', route: '/shadow', emoji: '👤' },
     { key: 'maze', route: '/maze', emoji: '🧩' },
     { key: 'where', route: '/where', emoji: '📍' },
-    { key: 'copyPattern', route: '/copy-pattern', emoji: '📐' }
+    { key: 'copyPattern', route: '/copy-pattern', emoji: '📐' },
+    { key: 'trace', route: '/trace', emoji: '✍️' },
+    { key: 'dotToDot', route: '/dot-to-dot', emoji: '⭐' }
   ];
 
   /** Photos beside the About text; their alt texts are `about.photoAlts`, in the same order. */

@@ -1,0 +1,86 @@
+<section class="trace-card">
+  <div class="back-link-container">
+    <a routerLink="/" class="back-link">{{ i18n.t.common.backToMenu }}</a>
+  </div>
+
+  <div class="controls">
+    <div class="field">
+      <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
+      <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
+    </div>
+
+    <div class="field">
+      <label for="traceType">{{ i18n.t.trace.type }}</label>
+      <select id="traceType" [(ngModel)]="traceType">
+        <option *ngFor="let type of traceTypes" [ngValue]="type">{{ typeLabel(type) }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="order">{{ i18n.t.trace.order }}</label>
+      <select id="order" [(ngModel)]="order">
+        <option *ngFor="let option of orders" [ngValue]="option">{{ orderLabel(option) }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="size">{{ i18n.t.trace.size }}</label>
+      <select id="size" [(ngModel)]="size">
+        <option *ngFor="let option of sizes" [ngValue]="option">{{ sizeLabel(option) }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="customCharacters">{{ traceType === 'numbers' ? i18n.t.trace.onlyTheseNumbers : i18n.t.trace.onlyTheseLetters }}</label>
+      <input
+        id="customCharacters"
+        type="text"
+        maxlength="60"
+        [placeholder]="traceType === 'numbers' ? '3 5 8' : i18n.t.trace.onlyTheseLettersExample"
+        [(ngModel)]="customCharacters"
+      />
+    </div>
+
+    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
+    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+  </div>
+
+  <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="instruction" [items]="generatedItems">
+    <ng-template let-item let-i="index">
+      <div class="problem-row">
+        <svg class="trace-svg" [attr.viewBox]="viewBox" role="img" [attr.aria-label]="rowLabel(item)">
+          <!-- Handwriting lines: top, dashed middle, baseline and descender -->
+          <svg:g class="guides">
+            <svg:line x1="0" [attr.y1]="guides.top" [attr.x2]="viewWidth" [attr.y2]="guides.top" />
+            <svg:line class="middle" x1="0" [attr.y1]="guides.middle" [attr.x2]="viewWidth" [attr.y2]="guides.middle" />
+            <svg:line class="baseline" x1="0" [attr.y1]="guides.baseline" [attr.x2]="viewWidth" [attr.y2]="guides.baseline" />
+            <svg:line x1="0" [attr.y1]="guides.descender" [attr.x2]="viewWidth" [attr.y2]="guides.descender" />
+          </svg:g>
+
+          <!-- Model: solid, with numbered start dots showing the writing order -->
+          <svg:g class="model" [attr.transform]="translate(item.modelX)">
+            <svg:path *ngFor="let stroke of item.layout.strokes" [attr.d]="stroke.d" [attr.transform]="translate(stroke.offset)" />
+            <svg:circle *ngFor="let dot of item.layout.dots" class="letter-dot" [attr.cx]="dot[0]" [attr.cy]="dot[1]" r="5.5" />
+            <svg:g *ngFor="let stroke of item.layout.strokes">
+              <svg:circle class="start" [attr.cx]="stroke.start[0]" [attr.cy]="stroke.start[1]" r="6" />
+              <svg:text *ngIf="item.layout.strokes.length > 1" class="order" [attr.x]="stroke.start[0] + stroke.labelDx" [attr.y]="stroke.start[1] - 8">{{ stroke.order }}</svg:text>
+            </svg:g>
+          </svg:g>
+
+          <!-- Dotted copies to trace, each with start dots -->
+          <svg:g *ngFor="let x of item.copyXs" class="copy" [attr.transform]="translate(x)">
+            <svg:path *ngFor="let stroke of item.layout.strokes" [attr.d]="stroke.d" [attr.transform]="translate(stroke.offset)" />
+            <svg:circle *ngFor="let dot of item.layout.dots" class="letter-dot-outline" [attr.cx]="dot[0]" [attr.cy]="dot[1]" r="5" />
+            <svg:circle *ngFor="let stroke of item.layout.strokes" class="start" [attr.cx]="stroke.start[0]" [attr.cy]="stroke.start[1]" r="4.5" />
+          </svg:g>
+        </svg>
+
+        <div class="action-area">
+          <button type="button" class="action-button remove-button" (click)="removeItem(i)" [attr.aria-label]="i18n.t.common.removeRow">
+            ✕
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </app-worksheet>
+</section>

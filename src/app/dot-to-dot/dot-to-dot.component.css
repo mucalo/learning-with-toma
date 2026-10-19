@@ -1,0 +1,186 @@
+.dots-card {
+  margin: 2rem auto 0;
+  max-width: 980px;
+  padding: 0 2rem 2rem;
+}
+
+.back-link-container {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #5b8def;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input,
+.field select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d9dce2;
+  border-radius: 8px;
+  min-width: 150px;
+  font: inherit;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkbox-field input {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #5b8def;
+}
+
+.generate-button,
+.print-button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 999px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  background: #5b8def;
+}
+
+.print-button {
+  background: #f28c82;
+}
+
+.print-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.problem-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+}
+
+.picture {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+}
+
+.dots-svg {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.dot {
+  fill: #2f3b45;
+}
+
+.dot.first {
+  fill: #f28c82;
+}
+
+.label {
+  fill: #2f3b45;
+  font-family: "Nunito", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 4.2px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.label.first {
+  fill: #e0675b;
+  font-weight: 800;
+}
+
+.details {
+  fill: none;
+  stroke: #2f3b45;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.answer {
+  fill: none;
+  stroke: #f28c82;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+.answer-name {
+  margin-top: 0.25rem;
+  color: #e0675b;
+  font-weight: 700;
+}
+
+.action-area {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hint-button {
+  background: #e9f2ff;
+  color: #5b8def;
+}
+
+.remove-button {
+  background: #fde7e4;
+  color: #f28c82;
+}
+
+@media print {
+  .back-link-container,
+  .controls,
+  .action-area,
+  .answer,
+  .answer-name {
+    display: none;
+  }
+
+  .problem-row {
+    border: none;
+    padding: 1rem 0;
+  }
+
+  .dots-svg {
+    /* Two pictures per A4 page. */
+    max-width: 11.5cm;
+  }
+}

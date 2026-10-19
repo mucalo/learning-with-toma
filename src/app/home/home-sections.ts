@@ -9,7 +9,8 @@ export interface HomeSection {
 /** Sections of the home page, in the order they appear in the header menu. */
 export const HOME_SECTIONS: HomeSection[] = [
   { id: 'activities', key: 'activities' },
-  { id: 'about', key: 'about' }
+  { id: 'about', key: 'about' },
+  { id: 'help', key: 'help' }
 ];
 
 /** Scrolls to a home page section, if it is on the page. Returns whether it was found. */

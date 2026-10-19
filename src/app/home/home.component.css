@@ -1,24 +1,27 @@
 /*
- * The home page is a stack of full-width bands, one per section. Bands alternate between the
- * page background and a soft blue tint; the content of every band is centred at the same width.
+ * The home page is a stack of flat, full-width bands, one per section, each with its own soft
+ * background. The content of every band is centred at the same width.
  */
 .home-section {
   padding: 3rem 1.5rem;
+  border-top: 1px solid rgba(47, 59, 69, 0.08);
 }
 
-.home-section:nth-of-type(even) {
+.home-section:first-child {
+  border-top: none;
+}
+
+.about-section {
   background: #eef4fd;
-  border-top: 1px solid #dde8f8;
-  border-bottom: 1px solid #dde8f8;
 }
 
-/* The last band runs straight into the footer, cancelling the footer's top margin and doubled border. */
+.help-section {
+  background: #fdf0ec;
+}
+
+/* The last band runs straight into the footer, cancelling the footer's top margin. */
 .home-page {
   margin-bottom: -3rem;
-}
-
-.home-section:last-child {
-  border-bottom: none;
 }
 
 .section-inner {
@@ -139,8 +142,8 @@
 }
 
 /* Same size as the "Choose an activity" heading, so every section starts the same way. */
-.about-section h2 {
-  margin: 0 0 1rem;
+.section-heading {
+  margin: 0 0 1.25rem;
   color: #1f3b4d;
   font-size: 2rem;
 }

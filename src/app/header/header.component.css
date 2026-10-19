@@ -102,6 +102,19 @@ h1 {
   background: #e97b6f;
 }
 
+/* On medium screens the menu gets a row of its own below the title, so nothing has to wrap. */
+@media (max-width: 1240px) and (min-width: 641px) {
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .main-menu {
+    order: 3;
+    flex-basis: 100%;
+    margin: 1rem 0 0 -1rem;
+  }
+}
+
 @media (max-width: 640px) {
   .topbar {
     flex-direction: column;
