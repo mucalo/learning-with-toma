@@ -39,6 +39,10 @@
     display: table-header-group;
   }
 
+  .worksheet-instruction {
+    text-transform: uppercase;
+  }
+
   /* Never split a problem across two pages. */
   .worksheet-row {
     break-inside: avoid;

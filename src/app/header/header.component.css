@@ -1,87 +1,168 @@
+/* Wide screens: title, menu and actions on one line. */
 .topbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  gap: 1rem;
+  padding: 1.1rem 1.5rem;
   border-bottom: 1px solid rgba(47, 59, 69, 0.1);
 }
 
-.brand-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
 .brand-title {
+  flex: none;
   text-decoration: none;
   color: inherit;
 }
 
 h1 {
   margin: 0;
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   line-height: 1.1;
   font-weight: 800;
   color: #2f3b45;
+  white-space: nowrap;
 }
 
-.subtitle {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 600;
-  color: #5b8def;
+button {
+  font: inherit;
+  cursor: pointer;
 }
+
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.caret {
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+
+[aria-expanded="true"] > .caret {
+  transform: rotate(180deg);
+}
+
+/* Menu */
 
 .main-menu {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 1.5rem 0 auto;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0 auto;
 }
 
 .menu-link {
-  padding: 0.6rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0.75rem;
+  border: none;
   border-radius: 999px;
+  background: none;
   color: #2f3b45;
   text-decoration: none;
   font-family: "Nunito", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
+  white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .menu-link:hover,
-.menu-link:focus-visible {
+.menu-link:focus-visible,
+.activities-toggle[aria-expanded="true"] {
   background: #e8f0fd;
-  color: #5b8def;
+  color: #3b6fd8;
 }
+
+.activities-item {
+  position: relative;
+}
+
+.activities-menu {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  left: 0;
+  z-index: 20;
+  width: min(660px, 90vw);
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 1px solid #d9e7f0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(47, 59, 69, 0.16);
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activities-menu-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  color: #2f3b45;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.activities-menu-link:hover,
+.activities-menu-link:focus-visible {
+  background: #f1f6fe;
+}
+
+.activities-menu-link.is-current {
+  background: #e8f0fd;
+  color: #3b6fd8;
+  font-weight: 700;
+}
+
+.activity-emoji {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #dff3ff, #f7fcff);
+  font-size: 1.15rem;
+}
+
+.all-activities-link {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0.75rem 0.6rem 0;
+  border-top: 1px solid #eef1f4;
+  color: #3b6fd8;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.all-activities-link:hover,
+.all-activities-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* Actions */
 
 .header-actions {
   display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.language-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.language-field label {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: #2f3b45;
-}
-
-.language-field select {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #d9dce2;
-  border-radius: 8px;
-  background: #ffffff;
-  font: inherit;
+  flex: none;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .donate-button {
@@ -95,6 +176,7 @@ h1 {
   text-decoration: none;
   font-weight: 700;
   font-size: 0.95rem;
+  white-space: nowrap;
   box-shadow: 0 8px 20px rgba(242, 140, 130, 0.2);
 }
 
@@ -102,31 +184,103 @@ h1 {
   background: #e97b6f;
 }
 
-/* On medium screens the menu gets a row of its own below the title, so nothing has to wrap. */
-@media (max-width: 1240px) and (min-width: 641px) {
+.menu-toggle {
+  display: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid #d9dce2;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #2f3b45;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  border-color: #5b8def;
+  color: #3b6fd8;
+}
+
+/*
+ * Smaller screens: title and actions on the first line; the menu folds away behind ☰ and opens as
+ * a full-width panel underneath. The actions' wrapper steps aside so its items join the grid.
+ */
+@media (max-width: 1260px) {
   .topbar {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto auto;
+    grid-template-areas:
+      "title language donate toggle"
+      "menu menu menu menu";
+    column-gap: 0.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .brand-title { grid-area: title; }
+  .header-actions { display: contents; }
+  .language-picker { grid-area: language; }
+  .donate-button { grid-area: donate; }
+
+  .menu-toggle {
+    grid-area: toggle;
+    display: inline-grid;
   }
 
   .main-menu {
-    order: 3;
-    flex-basis: 100%;
-    margin: 1rem 0 0 -1rem;
+    grid-area: menu;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+    padding-top: 0.75rem;
+  }
+
+  .menu-open .main-menu {
+    display: flex;
+  }
+
+  .menu-link {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+
+  .activities-menu {
+    position: static;
+    width: auto;
+    padding: 0.25rem 0 0.5rem 0.5rem;
+    border: none;
+    box-shadow: none;
+  }
+
+  .activities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 640px) {
+/* Phones: the donate button gets a full-width line of its own, so it stays easy to find. */
+@media (max-width: 600px) {
   .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .main-menu {
-    margin: 0 0 0 -1rem;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "title language toggle"
+      "menu menu menu"
+      "donate donate donate";
   }
 
   h1 {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
+    white-space: normal;
+  }
+
+  .donate-button {
+    margin-top: 0.75rem;
+  }
+
+  .activities-grid {
+    grid-template-columns: 1fr;
   }
 }

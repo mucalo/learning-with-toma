@@ -1,0 +1,36 @@
+<nav class="activity-nav" [attr.aria-label]="i18n.t.activityNav.label">
+  <a class="all-activities" routerLink="/" fragment="activities">{{ i18n.t.activityNav.allActivities }}</a>
+
+  <!-- Arrows are a mouse convenience: keyboard users tab through the links, which scroll into view. -->
+  <button type="button" class="scroll-button" tabindex="-1" aria-hidden="true" [disabled]="!canScrollBack" (click)="scroll(-1)">‹</button>
+
+  <div
+    #scroller
+    class="scroller"
+    [class.fade-start]="canScrollBack"
+    [class.fade-end]="canScrollForward"
+    (scroll)="updateArrows()"
+  >
+    <ul #track class="activity-links">
+      <li *ngFor="let activity of activities">
+        <a
+          class="activity-link"
+          [routerLink]="activity.route"
+          routerLinkActive="is-current"
+          #link="routerLinkActive"
+          [attr.aria-current]="link.isActive ? 'page' : null"
+        >
+          <span aria-hidden="true">{{ activity.emoji }}</span>
+          {{ i18n.t.activities[activity.key].title }}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <button type="button" class="scroll-button" tabindex="-1" aria-hidden="true" [disabled]="!canScrollForward" (click)="scroll(1)">›</button>
+</nav>
+
+<h2 *ngIf="current" class="activity-title">
+  <span aria-hidden="true">{{ current.emoji }}</span>
+  {{ i18n.t.activities[current.key].title }}
+</h2>

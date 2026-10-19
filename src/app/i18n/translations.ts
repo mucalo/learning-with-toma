@@ -7,7 +7,6 @@ import { LanguageKey } from './languages';
 export interface Translations {
   header: {
     appTitle: string;
-    subtitle: string;
     languageLabel: string;
   };
   footer: {
@@ -22,10 +21,15 @@ export interface Translations {
   /** Header menu; each item scrolls to a section of the home page (see `home/home-sections.ts`). */
   menu: {
     label: string;
+    /** Accessible label of the ☰ button that opens the menu on small screens. */
+    openMenu: string;
+    /** Last link in the Activities dropdown, to the activity cards on the home page. */
+    allActivities: string;
     items: {
       activities: string;
       about: string;
       help: string;
+      contact: string;
     };
   };
   about: {
@@ -66,6 +70,25 @@ export interface Translations {
       emailSubject: string;
     };
   };
+  /** "Contact" section of the home page. */
+  contact: {
+    heading: string;
+    paragraphs: string[];
+    /** Shown just before the contact e-mail address. */
+    emailLabel: string;
+  };
+  /** Testimonials shown among the activity cards on the home page (see `home/home-tiles.ts`). */
+  testimonials: {
+    /** Small label above every testimonial. */
+    label: string;
+    items: Array<{
+      quote: string;
+      /** Who said it; names are not translated. */
+      name: string;
+      /** Who they are, e.g. "mother of Kylie (5)". */
+      relation: string;
+    }>;
+  };
   activities: {
     spelling: { title: string; description: string };
     counting: { title: string; description: string };
@@ -80,8 +103,12 @@ export interface Translations {
     trace: { title: string; description: string };
     dotToDot: { title: string; description: string };
   };
+  /** Links to every activity at the top of each activity page. */
+  activityNav: {
+    label: string;
+    allActivities: string;
+  };
   common: {
-    backToMenu: string;
     numberOfProblems: string;
     generate: string;
     print: string;
@@ -270,7 +297,6 @@ export interface Translations {
 const english: Translations = {
   header: {
     appTitle: 'Learning with Toma',
-    subtitle: 'Helping children learn with warmth and care',
     languageLabel: 'Language'
   },
   footer: {
@@ -284,10 +310,13 @@ const english: Translations = {
   },
   menu: {
     label: 'Main menu',
+    openMenu: 'Menu',
+    allActivities: 'See all activities on the home page',
     items: {
       activities: 'Activities',
       about: 'About',
-      help: 'How can I help?'
+      help: 'How can I help?',
+      contact: 'Contact'
     }
   },
   about: {
@@ -345,6 +374,23 @@ const english: Translations = {
       emailSubject: 'Learning with Toma – feedback'
     }
   },
+  contact: {
+    heading: 'Contact',
+    paragraphs: [
+      'I’m always happy to hear from you! Whether you have a question, an idea for a new activity, or you’ve noticed something that doesn’t work quite right, feel free to get in touch.',
+      'I read every message and I’ll do my best to reply as soon as I can.'
+    ],
+    emailLabel: 'Write to me at'
+  },
+  testimonials: {
+    label: 'Kind words',
+    items: [
+      { quote: 'This is bringing my kid and me hours of playtime weekly. She just loves it!', name: 'Mary', relation: 'mother of Kylie (5)' },
+      { quote: 'Mak was playing with this for an unusually long time and loved the activities, especially “Find the Intruder”!', name: 'Nela', relation: 'mother of Mak (5)' },
+      { quote: 'The letters and the lines are still bumpy :) but Mary Jane is doing it with a smile on her face, which helps me a lot!', name: 'Peter', relation: 'father of Mary Jane (7)' },
+      { quote: 'This is awesome, I’m running out of printing paper! My kids just adore it!', name: 'Ivana', relation: 'mother of Petar (6) and Maja (4)' }
+    ]
+  },
   activities: {
     spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
     counting: { title: 'Counting', description: 'Count objects and write the number.' },
@@ -359,8 +405,11 @@ const english: Translations = {
     trace: { title: 'Trace the Letters', description: 'Trace dotted letters and numbers, then write them alone.' },
     dotToDot: { title: 'Dot to Dot', description: 'Join the dots in order to reveal a picture.' }
   },
+  activityNav: {
+    label: 'Activities',
+    allActivities: '← All activities'
+  },
   common: {
-    backToMenu: '← Back to menu',
     numberOfProblems: 'Number of problems',
     generate: 'Generate',
     print: 'Print',
@@ -548,7 +597,6 @@ const english: Translations = {
 const croatian: Translations = {
   header: {
     appTitle: 'Učimo s Tomom',
-    subtitle: 'Pomažemo djeci učiti uz toplinu i brigu',
     languageLabel: 'Jezik'
   },
   footer: {
@@ -562,10 +610,13 @@ const croatian: Translations = {
   },
   menu: {
     label: 'Glavni izbornik',
+    openMenu: 'Izbornik',
+    allActivities: 'Pogledaj sve aktivnosti na početnoj stranici',
     items: {
       activities: 'Aktivnosti',
       about: 'O projektu',
-      help: 'Kako mogu pomoći?'
+      help: 'Kako mogu pomoći?',
+      contact: 'Kontakt'
     }
   },
   about: {
@@ -623,6 +674,23 @@ const croatian: Translations = {
       emailSubject: 'Učimo s Tomom – povratna informacija'
     }
   },
+  contact: {
+    heading: 'Kontakt',
+    paragraphs: [
+      'Uvijek se veselim vašim porukama! Imate li pitanje, ideju za novu aktivnost ili ste primijetili da nešto ne radi baš kako treba, slobodno mi se javite.',
+      'Pročitam svaku poruku i potrudit ću se odgovoriti što prije.'
+    ],
+    emailLabel: 'Pišite mi na'
+  },
+  testimonials: {
+    label: 'Lijepe riječi',
+    items: [
+      { quote: 'Uz ovo moje dijete i ja svaki tjedan provedemo sate u igri. Ona to jednostavno obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
+      { quote: 'Mak se ovime igrao neobično dugo i aktivnosti su mu se jako svidjele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
+      { quote: 'Slova i crte još uvijek malo vijugaju :) ali Mary Jane to radi s osmijehom na licu, što mi jako puno pomaže!', name: 'Peter', relation: 'tata Mary Jane (7)' },
+      { quote: 'Ovo je fantastično, ponestaje mi papira za ispis! Moja djeca to jednostavno obožavaju!', name: 'Ivana', relation: 'mama Petra (6) i Maje (4)' }
+    ]
+  },
   activities: {
     spelling: { title: 'Pisanje riječi', description: 'Vježbaj pisanje riječi uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroji predmete i napiši broj.' },
@@ -637,8 +705,11 @@ const croatian: Translations = {
     trace: { title: 'Prati slova', description: 'Prati slova i brojke po točkicama, a zatim ih napiši samostalno.' },
     dotToDot: { title: 'Spoji točkice', description: 'Spoji točkice redom i otkrij sliku.' }
   },
+  activityNav: {
+    label: 'Aktivnosti',
+    allActivities: '← Sve aktivnosti'
+  },
   common: {
-    backToMenu: '← Natrag na izbornik',
     numberOfProblems: 'Broj zadataka',
     generate: 'Generiraj',
     print: 'Ispiši',
@@ -826,7 +897,6 @@ const croatian: Translations = {
 const serbian: Translations = {
   header: {
     appTitle: 'Učimo s Tomom',
-    subtitle: 'Pomažemo deci da uče uz toplinu i brigu',
     languageLabel: 'Jezik'
   },
   footer: {
@@ -840,10 +910,13 @@ const serbian: Translations = {
   },
   menu: {
     label: 'Glavni meni',
+    openMenu: 'Meni',
+    allActivities: 'Pogledaj sve aktivnosti na početnoj strani',
     items: {
       activities: 'Aktivnosti',
       about: 'O projektu',
-      help: 'Kako mogu da pomognem?'
+      help: 'Kako mogu da pomognem?',
+      contact: 'Kontakt'
     }
   },
   about: {
@@ -901,6 +974,23 @@ const serbian: Translations = {
       emailSubject: 'Učimo s Tomom – utisci'
     }
   },
+  contact: {
+    heading: 'Kontakt',
+    paragraphs: [
+      'Uvek se radujem vašim porukama! Bilo da imate pitanje, ideju za novu aktivnost ili ste primetili da nešto ne radi baš kako treba, slobodno mi se javite.',
+      'Pročitam svaku poruku i potrudiću se da odgovorim što pre.'
+    ],
+    emailLabel: 'Pišite mi na'
+  },
+  testimonials: {
+    label: 'Lepe reči',
+    items: [
+      { quote: 'Uz ovo moje dete i ja svake nedelje provedemo sate u igri. Ona to prosto obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
+      { quote: 'Mak se ovim igrao neobično dugo i aktivnosti su mu se baš svidele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
+      { quote: 'Slova i linije još uvek malo vijugaju :) ali Mary Jane to radi sa osmehom na licu, što mi mnogo pomaže!', name: 'Peter', relation: 'tata Mary Jane (7)' },
+      { quote: 'Ovo je fantastično, nestaje mi papira za štampanje! Moja deca to prosto obožavaju!', name: 'Ivana', relation: 'mama Petra (6) i Maje (4)' }
+    ]
+  },
   activities: {
     spelling: { title: 'Pisanje reči', description: 'Vežbaj pisanje reči uz pomoć slika.' },
     counting: { title: 'Brojanje', description: 'Prebroj predmete i napiši broj.' },
@@ -915,8 +1005,11 @@ const serbian: Translations = {
     trace: { title: 'Prati slova', description: 'Prati slova i brojeve po tačkicama, pa ih napiši samostalno.' },
     dotToDot: { title: 'Spoji tačkice', description: 'Spoji tačkice redom i otkrij sliku.' }
   },
+  activityNav: {
+    label: 'Aktivnosti',
+    allActivities: '← Sve aktivnosti'
+  },
   common: {
-    backToMenu: '← Nazad na meni',
     numberOfProblems: 'Broj zadataka',
     generate: 'Generiši',
     print: 'Štampaj',

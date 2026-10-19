@@ -1,38 +1,71 @@
-<header class="topbar">
-  <div class="brand-block">
-    <a routerLink="/" class="brand-title"><h1>{{ i18n.t.header.appTitle }}</h1></a>
-    <p class="subtitle">{{ i18n.t.header.subtitle }}</p>
-  </div>
+<header class="topbar" [class.menu-open]="menuOpen">
+  <a routerLink="/" class="brand-title"><h1>{{ i18n.t.header.appTitle }}</h1></a>
 
-  <nav class="main-menu" [attr.aria-label]="i18n.t.menu.label">
+  <nav id="main-menu" class="main-menu" [attr.aria-label]="i18n.t.menu.label">
+    <div class="activities-item">
+      <button
+        type="button"
+        class="menu-link activities-toggle"
+        aria-controls="activities-menu"
+        [attr.aria-expanded]="activitiesOpen"
+        (click)="toggleActivities()"
+      >
+        {{ i18n.t.menu.items.activities }}
+        <span class="caret" aria-hidden="true">▾</span>
+      </button>
+
+      <div id="activities-menu" class="activities-menu" *ngIf="activitiesOpen">
+        <ul class="activities-grid">
+          <li *ngFor="let activity of activities">
+            <a
+              class="activities-menu-link"
+              [routerLink]="activity.route"
+              routerLinkActive="is-current"
+              #link="routerLinkActive"
+              [attr.aria-current]="link.isActive ? 'page' : null"
+              (click)="closeAll()"
+            >
+              <span class="activity-emoji" aria-hidden="true">{{ activity.emoji }}</span>
+              {{ i18n.t.activities[activity.key].title }}
+            </a>
+          </li>
+        </ul>
+        <a class="all-activities-link" routerLink="/" fragment="activities" (click)="goToSection('activities')">
+          {{ i18n.t.menu.allActivities }} →
+        </a>
+      </div>
+    </div>
+
     <a
       *ngFor="let section of sections"
       class="menu-link"
       routerLink="/"
       [fragment]="section.id"
-      (click)="scrollTo(section.id)"
+      (click)="goToSection(section.id)"
     >
       {{ i18n.t.menu.items[section.key] }}
     </a>
   </nav>
 
   <div class="header-actions">
-    <div class="language-field">
-      <label for="language">{{ i18n.t.header.languageLabel }}</label>
-      <select id="language" [(ngModel)]="i18n.language">
-        <option *ngFor="let option of i18n.languages" [value]="option.value">
-          {{ option.label }}
-        </option>
-      </select>
-    </div>
+    <app-language-picker class="language-picker"></app-language-picker>
 
-    <a
-      class="donate-button"
-      [href]="ctaUrl"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a class="donate-button" [href]="ctaUrl" target="_blank" rel="noopener noreferrer">
       {{ i18n.t.donate }}
     </a>
+
+    <button
+      type="button"
+      class="menu-toggle"
+      aria-controls="main-menu"
+      [attr.aria-label]="i18n.t.menu.openMenu"
+      [attr.aria-expanded]="menuOpen"
+      (click)="toggleMenu()"
+    >
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path *ngIf="!menuOpen" d="M4 7h16M4 12h16M4 17h16" />
+        <path *ngIf="menuOpen" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
   </div>
 </header>

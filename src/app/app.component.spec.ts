@@ -4,13 +4,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { LanguagePickerComponent } from './header/language-picker/language-picker.component';
 import { LanguageService } from './i18n/language.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FormsModule, RouterTestingModule],
-      declarations: [AppComponent, HeaderComponent, FooterComponent]
+      declarations: [AppComponent, HeaderComponent, LanguagePickerComponent, FooterComponent]
     }).compileComponents();
 
     TestBed.inject(LanguageService).language = 'english';
@@ -33,7 +34,7 @@ describe('AppComponent', () => {
     TestBed.inject(LanguageService).language = 'croatian';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('header label')?.textContent).toContain('Jezik');
+    expect(compiled.querySelector('header a.menu-link')?.textContent).toContain('O projektu');
     expect(compiled.querySelector('header h1')?.textContent).toContain('Učimo s Tomom');
   });
 });

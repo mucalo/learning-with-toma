@@ -20,6 +20,8 @@ import { WhereComponent } from './where/where.component';
 import { CopyPatternComponent } from './copy-pattern/copy-pattern.component';
 import { EmphasisPipe } from './i18n/emphasis.pipe';
 import { HelpSectionComponent } from './home/help-section/help-section.component';
+import { ActivityNavComponent } from './activity-nav/activity-nav.component';
+import { LanguagePickerComponent } from './header/language-picker/language-picker.component';
 import { TraceComponent } from './trace/trace.component';
 import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
 
@@ -42,6 +44,8 @@ import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
     CopyPatternComponent,
     EmphasisPipe,
     HelpSectionComponent,
+    ActivityNavComponent,
+    LanguagePickerComponent,
     TraceComponent,
     DotToDotComponent
   ],

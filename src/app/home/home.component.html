@@ -7,18 +7,32 @@
       </div>
 
       <div class="activity-grid">
-        <a
-          *ngFor="let activity of activities"
-          class="activity-card"
-          [routerLink]="activity.route"
-          [attr.aria-label]="i18n.t.activities[activity.key].title"
-        >
-          <div class="activity-illustration" aria-hidden="true">{{ activity.emoji }}</div>
-          <div class="activity-content">
-            <h2>{{ i18n.t.activities[activity.key].title }}</h2>
-            <p>{{ i18n.t.activities[activity.key].description }}</p>
-          </div>
-        </a>
+        <ng-container *ngFor="let tile of tiles">
+          <a
+            *ngIf="tile.kind === 'activity'"
+            class="activity-card"
+            [routerLink]="tile.activity.route"
+            [attr.aria-label]="i18n.t.activities[tile.activity.key].title"
+          >
+            <div class="activity-illustration" aria-hidden="true">{{ tile.activity.emoji }}</div>
+            <div class="activity-content">
+              <h2>{{ i18n.t.activities[tile.activity.key].title }}</h2>
+              <p>{{ i18n.t.activities[tile.activity.key].description }}</p>
+            </div>
+          </a>
+
+          <figure *ngIf="tile.kind === 'testimonial' && i18n.t.testimonials.items[tile.index] as testimonial" class="testimonial-card">
+            <p class="testimonial-label">{{ i18n.t.testimonials.label }}</p>
+            <span class="testimonial-mark" aria-hidden="true">“</span>
+            <blockquote class="testimonial-quote">
+              <p>{{ testimonial.quote }}</p>
+            </blockquote>
+            <figcaption class="testimonial-author">
+              <span class="testimonial-name">{{ testimonial.name }}</span>
+              <span class="testimonial-relation">{{ testimonial.relation }}</span>
+            </figcaption>
+          </figure>
+        </ng-container>
       </div>
     </div>
   </section>
@@ -52,6 +66,17 @@
     <div class="section-inner">
       <h2 id="help-heading" class="section-heading">{{ i18n.t.help.heading }}</h2>
       <app-help-section></app-help-section>
+    </div>
+  </section>
+
+  <section id="contact" class="home-section contact-section" aria-labelledby="contact-heading">
+    <div class="section-inner contact-text">
+      <h2 id="contact-heading" class="section-heading">{{ i18n.t.contact.heading }}</h2>
+      <p *ngFor="let paragraph of i18n.t.contact.paragraphs">{{ paragraph }}</p>
+      <p class="contact-email">
+        {{ i18n.t.contact.emailLabel }}
+        <a class="email-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+      </p>
     </div>
   </section>
 </div>

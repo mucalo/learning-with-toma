@@ -10,7 +10,8 @@ export interface HomeSection {
 export const HOME_SECTIONS: HomeSection[] = [
   { id: 'activities', key: 'activities' },
   { id: 'about', key: 'about' },
-  { id: 'help', key: 'help' }
+  { id: 'help', key: 'help' },
+  { id: 'contact', key: 'contact' }
 ];
 
 /** Scrolls to a home page section, if it is on the page. Returns whether it was found. */

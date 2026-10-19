@@ -33,7 +33,7 @@ Every worksheet has a **Print** button. The header, footer and on-screen control
 
 ## Languages
 
-The app currently supports **English, Croatian (Hrvatski) and Serbian (Srpski, Latin script)**. You switch language with the selector in the header. The choice applies to the whole site, including the worksheet content (for example the spelling word list), and is saved in `localStorage`.
+The app currently supports **English, Croatian (Hrvatski) and Serbian (Srpski, Latin script)**. You switch language with the flag button in the header. The choice applies to the whole site, including the worksheet content (for example the spelling word list), and is saved in `localStorage`.
 
 Keeping every language complete is a core project rule (see [`.github/copilot-instructions.md`](.github/copilot-instructions.md)). **When you add or change any UI text, update all languages in the same change.**
 
@@ -72,9 +72,11 @@ src/
     │   ├── languages.ts         # LanguageKey type + list of supported languages
     │   ├── translations.ts      # all UI text for every language
     │   └── language.service.ts  # current language, persistence, <html lang>
-    ├── header/                  # title, subtitle, menu, language selector, donate link
+    ├── activities.ts            # the list of activities (home cards, header dropdown, activity links)
+    ├── activity-nav/            # links to every activity at the top of each activity page
+    ├── header/                  # title, menu with Activities dropdown, language picker (language-picker/), donate link
     ├── footer/                  # donation message
-    ├── home/                    # single-page home: activities, About, How can I help? (help-section/); home-sections.ts drives the menu
+    ├── home/                    # single-page home: activities, About, How can I help? (help-section/), Contact; home-sections.ts drives the menu
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
     ├── biggest-smallest/        # Biggest & Smallest activity
@@ -116,9 +118,9 @@ Content that varies by language but isn't plain UI text stays in the activity, k
 
 1. Generate a component: `npx ng generate component my-activity` (it gets added to `AppModule`).
 2. Add a route in `app-routing.module.ts`.
-3. Add a card to `activities` in `home/home.component.ts`, and its `title`/`description` under `activities` in **every** language in `translations.ts`.
+3. Add it to `ACTIVITIES` in `activities.ts` (this adds the home page card, the header dropdown entry and the activity link), and its `title`/`description` under `activities` in **every** language in `translations.ts`.
 4. Add the activity's own text (instruction, labels, aria-labels) as a new section of `Translations`.
-5. Follow the existing activities' pattern: a back link, a `.controls` bar (number of problems, a difficulty option, **Generate**, **Print**), then the worksheet itself.
+5. Follow the existing activities' pattern: `<app-activity-nav>` (links to every activity), a `.controls` bar (number of problems, a difficulty option, **Generate**, **Print**), then the worksheet itself.
 6. **Always render the worksheet with the shared `<app-worksheet>` component.** Don't build your own. It puts the instruction at the top of every printed page and keeps each problem on one page:
 
    ```html

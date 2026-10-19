@@ -12,14 +12,18 @@ export interface LanguageOption {
   value: LanguageKey;
   /** Name of the language written in that language, so users can always find their own. */
   label: string;
+  /** Short code shown on the language button in the header. */
+  shortLabel: string;
+  /** Flag icon shown in the language picker. */
+  flag: string;
   /** BCP 47 code used for the `<html lang>` attribute. */
   htmlLang: string;
 }
 
 export const LANGUAGES: LanguageOption[] = [
-  { value: 'english', label: 'English', htmlLang: 'en' },
-  { value: 'croatian', label: 'Hrvatski', htmlLang: 'hr' },
-  { value: 'serbian', label: 'Srpski', htmlLang: 'sr-Latn' }
+  { value: 'english', label: 'English', shortLabel: 'EN', flag: 'assets/flags/gb.svg', htmlLang: 'en' },
+  { value: 'croatian', label: 'Hrvatski', shortLabel: 'HR', flag: 'assets/flags/hr.svg', htmlLang: 'hr' },
+  { value: 'serbian', label: 'Srpski', shortLabel: 'SR', flag: 'assets/flags/rs.svg', htmlLang: 'sr-Latn' }
 ];
 
 export const DEFAULT_LANGUAGE: LanguageKey = 'english';

@@ -1,0 +1,95 @@
+:host {
+  position: relative;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid #d9dce2;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #2f3b45;
+  font-family: "Nunito", "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.language-toggle:hover,
+.language-toggle:focus-visible,
+.language-toggle[aria-expanded="true"] {
+  border-color: #5b8def;
+  color: #3b6fd8;
+}
+
+/* A thin outline keeps the white stripes visible on the white button. */
+.flag {
+  flex: none;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(47, 59, 69, 0.15);
+}
+
+.caret {
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+
+[aria-expanded="true"] > .caret {
+  transform: rotate(180deg);
+}
+
+.language-list {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 20;
+  min-width: 10rem;
+  margin: 0;
+  padding: 0.35rem;
+  border: 1px solid #d9e7f0;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(47, 59, 69, 0.16);
+  list-style: none;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: #2f3b45;
+  text-align: left;
+}
+
+.language-option:hover,
+.language-option:focus-visible {
+  background: #f1f6fe;
+}
+
+.language-option[aria-pressed="true"] {
+  background: #e8f0fd;
+  color: #3b6fd8;
+  font-weight: 700;
+}

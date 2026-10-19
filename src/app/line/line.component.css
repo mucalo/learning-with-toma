@@ -4,16 +4,6 @@
   padding: 0 2rem 2rem;
 }
 
-.back-link-container {
-  margin-bottom: 1.5rem;
-}
-
-.back-link {
-  color: #5b8def;
-  text-decoration: none;
-  font-weight: 600;
-}
-
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -129,7 +119,6 @@
 }
 
 @media print {
-  .back-link-container,
   .controls,
   .action-area {
     display: none;
