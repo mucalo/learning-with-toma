@@ -108,26 +108,16 @@
   background: linear-gradient(160deg, #fff6dc, #fffcf4);
 }
 
-.testimonial-label {
-  align-self: flex-start;
-  margin: 0;
-  padding: 0.2rem 0.7rem;
-  border-radius: 999px;
-  background: #fde3df;
-  color: #a8443a;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
+/* Floated so the quote starts beside the mark instead of below it. */
 .testimonial-mark {
-  height: 2.4rem;
-  margin-top: 0.4rem;
+  float: left;
+  height: 1.4rem;
+  margin: 0.05rem 0.35rem 0 -0.1rem;
   color: #f28c82;
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 4.5rem;
-  line-height: 1;
+  font-size: 3.6rem;
+  font-style: normal;
+  line-height: 0.9;
 }
 
 .testimonial-quote {

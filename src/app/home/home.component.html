@@ -22,10 +22,8 @@
           </a>
 
           <figure *ngIf="tile.kind === 'testimonial' && i18n.t.testimonials.items[tile.index] as testimonial" class="testimonial-card">
-            <p class="testimonial-label">{{ i18n.t.testimonials.label }}</p>
-            <span class="testimonial-mark" aria-hidden="true">“</span>
             <blockquote class="testimonial-quote">
-              <p>{{ testimonial.quote }}</p>
+              <p><span class="testimonial-mark" aria-hidden="true">“</span>{{ testimonial.quote }}</p>
             </blockquote>
             <figcaption class="testimonial-author">
               <span class="testimonial-name">{{ testimonial.name }}</span>

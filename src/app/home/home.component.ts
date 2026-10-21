@@ -18,7 +18,8 @@ export class HomeComponent implements AfterViewInit {
   readonly tiles: HomeTile<Activity>[];
 
   /** Photos beside the About text; their alt texts are `about.photoAlts`, in the same order. */
-  readonly aboutPhotos = ['assets/about-worksheet.svg', 'assets/about-worksheet-2.svg'];
+  /** A hand-drawn worksheet first, then a child solving a printed one. */
+  readonly aboutPhotos = ['assets/about-hand-drawn.jpg', 'assets/about-child-solving.jpg'];
 
   readonly contactEmail = CONTACT_EMAIL;
 

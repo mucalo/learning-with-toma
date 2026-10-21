@@ -79,8 +79,6 @@ export interface Translations {
   };
   /** Testimonials shown among the activity cards on the home page (see `home/home-tiles.ts`). */
   testimonials: {
-    /** Small label above every testimonial. */
-    label: string;
     items: Array<{
       quote: string;
       /** Who said it; names are not translated. */
@@ -305,7 +303,7 @@ const english: Translations = {
   donate: 'Donate to help children learn',
   home: {
     heading: 'Choose an activity',
-    intro: 'Select a learning activity to get started.',
+    intro: 'Pick an activity → Generate a worksheet → Print it → Learn and have fun together!',
     activitiesLabel: 'Learning activities'
   },
   menu: {
@@ -338,7 +336,7 @@ const english: Translations = {
     ],
     photoAlts: [
       'A worksheet I drew by hand for my kids',
-      'Another worksheet I drew by hand for my kids'
+      'A child solving a printed worksheet'
     ]
   },
   help: {
@@ -383,7 +381,6 @@ const english: Translations = {
     emailLabel: 'Write to me at'
   },
   testimonials: {
-    label: 'Kind words',
     items: [
       { quote: 'This is bringing my kid and me hours of playtime weekly. She just loves it!', name: 'Mary', relation: 'mother of Kylie (5)' },
       { quote: 'Mak was playing with this for an unusually long time and loved the activities, especially “Find the Intruder”!', name: 'Nela', relation: 'mother of Mak (5)' },
@@ -605,7 +602,7 @@ const croatian: Translations = {
   donate: 'Donirajte i pomozite djeci učiti',
   home: {
     heading: 'Odaberi aktivnost',
-    intro: 'Odaberi aktivnost za učenje i započni.',
+    intro: 'Odaberi aktivnost → Izradi radni list → Ispiši ga → Učite i zabavite se zajedno!',
     activitiesLabel: 'Aktivnosti za učenje'
   },
   menu: {
@@ -638,7 +635,7 @@ const croatian: Translations = {
     ],
     photoAlts: [
       'Radni list koji sam rukom nacrtao za svoju djecu',
-      'Još jedan radni list koji sam rukom nacrtao za svoju djecu'
+      'Dijete rješava ispisani radni list'
     ]
   },
   help: {
@@ -683,7 +680,6 @@ const croatian: Translations = {
     emailLabel: 'Pišite mi na'
   },
   testimonials: {
-    label: 'Lijepe riječi',
     items: [
       { quote: 'Uz ovo moje dijete i ja svaki tjedan provedemo sate u igri. Ona to jednostavno obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
       { quote: 'Mak se ovime igrao neobično dugo i aktivnosti su mu se jako svidjele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
@@ -905,7 +901,7 @@ const serbian: Translations = {
   donate: 'Donirajte i pomozite deci da uče',
   home: {
     heading: 'Izaberi aktivnost',
-    intro: 'Izaberi aktivnost za učenje i započni.',
+    intro: 'Izaberi aktivnost → Napravi radni list → Odštampaj ga → Učite i zabavite se zajedno!',
     activitiesLabel: 'Aktivnosti za učenje'
   },
   menu: {
@@ -938,7 +934,7 @@ const serbian: Translations = {
     ],
     photoAlts: [
       'Radni list koji sam rukom nacrtao za svoju decu',
-      'Još jedan radni list koji sam rukom nacrtao za svoju decu'
+      'Dete rešava odštampani radni list'
     ]
   },
   help: {
@@ -983,7 +979,6 @@ const serbian: Translations = {
     emailLabel: 'Pišite mi na'
   },
   testimonials: {
-    label: 'Lepe reči',
     items: [
       { quote: 'Uz ovo moje dete i ja svake nedelje provedemo sate u igri. Ona to prosto obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
       { quote: 'Mak se ovim igrao neobično dugo i aktivnosti su mu se baš svidele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
