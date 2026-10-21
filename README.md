@@ -8,7 +8,7 @@ You choose an activity, set a few options and click **Generate**. The app create
 
 **Who it's for:** speech-language pathologists and therapists, special-education teachers, kindergarten and early-childhood educators, psychologists, and parents.
 
-The site is deployed to GitHub Pages at `/learning-with-toma/`.
+The site is deployed to GitHub Pages at [learningwithtoma.com](https://learningwithtoma.com) (custom domain, served from the root).
 
 ---
 
@@ -154,7 +154,7 @@ Prefer accessibility and clarity over decoration. Use real `<label>`s, translate
 
 ## Deployment
 
-Every push to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with `--base-href /learning-with-toma/` and publishes `dist/learning-with-toma` to the `gh-pages` branch. Routing uses hash URLs (`/#/spelling`), so deep links work on GitHub Pages without server rewrites.
+Every push to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow builds with the default base href `/` (the site is served from the root of the custom domain) and publishes `dist/learning-with-toma` to the `gh-pages` branch. Routing uses hash URLs (`/#/spelling`), so deep links work on GitHub Pages without server rewrites. `src/CNAME` is copied into the build so each deploy keeps the custom domain.
 
 ## Contributing
 
