@@ -41,7 +41,7 @@ export interface Translations {
     /** Alt text for each photo beside the text (`aboutPhotos` in the home component). */
     photoAlts: string[];
   };
-  /** "How can I help?" section of the home page. Text may mark key phrases in bold with `**…**`. */
+  /** "Want to help?" section of the home page. Text may mark key phrases in bold with `**…**`. */
   help: {
     heading: string;
     donate: {
@@ -313,7 +313,7 @@ const english: Translations = {
     items: {
       activities: 'Activities',
       about: 'About',
-      help: 'How can I help?',
+      help: 'Want to help?',
       contact: 'Contact'
     }
   },
@@ -340,7 +340,7 @@ const english: Translations = {
     ]
   },
   help: {
-    heading: 'How can I help?',
+    heading: 'Want to help?',
     donate: {
       title: 'Donate',
       paragraphs: [
@@ -612,7 +612,7 @@ const croatian: Translations = {
     items: {
       activities: 'Aktivnosti',
       about: 'O projektu',
-      help: 'Kako mogu pomoći?',
+      help: 'Želite pomoći?',
       contact: 'Kontakt'
     }
   },
@@ -639,7 +639,7 @@ const croatian: Translations = {
     ]
   },
   help: {
-    heading: 'Kako mogu pomoći?',
+    heading: 'Želite pomoći?',
     donate: {
       title: 'Donirajte',
       paragraphs: [
@@ -911,7 +911,7 @@ const serbian: Translations = {
     items: {
       activities: 'Aktivnosti',
       about: 'O projektu',
-      help: 'Kako mogu da pomognem?',
+      help: 'Želite da pomognete?',
       contact: 'Kontakt'
     }
   },
@@ -938,7 +938,7 @@ const serbian: Translations = {
     ]
   },
   help: {
-    heading: 'Kako mogu da pomognem?',
+    heading: 'Želite da pomognete?',
     donate: {
       title: 'Donirajte',
       paragraphs: [

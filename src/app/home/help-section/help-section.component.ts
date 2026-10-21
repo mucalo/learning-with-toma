@@ -22,7 +22,7 @@ const SHARE_NETWORKS: ShareNetwork[] = [
   { name: 'LinkedIn', icon: SHARE_ICONS.linkedin, evenOdd: true, color: '#0a66c2', href: url => `https://www.linkedin.com/sharing/share-offsite/?url=${url}` }
 ];
 
-/** "How can I help?": donate, spread the word, send feedback. Shown on the home page. */
+/** "Want to help?": donate, spread the word, send feedback. Shown on the home page. */
 @Component({
   selector: 'app-help-section',
   templateUrl: './help-section.component.html',

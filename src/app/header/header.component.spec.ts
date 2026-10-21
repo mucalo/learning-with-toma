@@ -35,7 +35,7 @@ describe('HeaderComponent', () => {
   it('should link each menu item to its home page section', () => {
     const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('a.menu-link'));
     expect(element.querySelector('.activities-toggle')?.textContent).toContain('Activities');
-    expect(links.map(link => link.textContent?.trim())).toEqual(['About', 'How can I help?', 'Contact']);
+    expect(links.map(link => link.textContent?.trim())).toEqual(['About', 'Want to help?', 'Contact']);
     expect(links.map(link => link.getAttribute('href'))).toEqual(['/#about', '/#help', '/#contact']);
   });
 

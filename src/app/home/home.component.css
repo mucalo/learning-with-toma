@@ -1,6 +1,6 @@
 /*
- * The home page is a stack of flat, full-width bands, one per section, each with its own soft
- * background. The content of every band is centred at the same width.
+ * The home page is a stack of flat, full-width bands, one per section, alternating between the
+ * page's cream background and soft blue. The content of every band is centred at the same width.
  */
 .home-section {
   padding: 3rem 1.5rem;
@@ -14,10 +14,6 @@
 .about-section,
 .contact-section {
   background: #eef4fd;
-}
-
-.help-section {
-  background: #fdf0ec;
 }
 
 /* The last band runs straight into the footer, cancelling the footer's top margin. */

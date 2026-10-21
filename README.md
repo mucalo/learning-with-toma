@@ -76,7 +76,7 @@ src/
     ├── activity-nav/            # links to every activity at the top of each activity page
     ├── header/                  # title, menu with Activities dropdown, language picker (language-picker/), donate link
     ├── footer/                  # donation message
-    ├── home/                    # single-page home: activities, About, How can I help? (help-section/), Contact; home-sections.ts drives the menu
+    ├── home/                    # single-page home: activities, About, Want to help? (help-section/), Contact; home-sections.ts drives the menu
     ├── spelling/                # Spelling activity (includes per-language word banks)
     ├── counting/                # Counting activity
     ├── biggest-smallest/        # Biggest & Smallest activity
@@ -137,7 +137,7 @@ Content that varies by language but isn't plain UI text stays in the activity, k
 
 The home page is a single page. Each item in the header menu scrolls to one of its sections, and from other pages it goes to `#/#<section-id>`.
 
-1. Add a `<section id="my-section" class="home-section my-section">` with a `section-inner` wrapper and a `section-heading` to `home/home.component.html`, and give `.my-section` its own soft background in `home.component.css`.
+1. Add a `<section id="my-section" class="home-section my-section">` with a `section-inner` wrapper and a `section-heading` to `home/home.component.html`. Sections alternate between the cream page background and soft blue (`#eef4fd`), so give `.my-section` the blue background in `home.component.css` if the section above it is cream.
 2. Add `{ id: 'my-section', key: 'mySection' }` to `HOME_SECTIONS` in `home/home-sections.ts`.
 3. Add the menu label under `menu.items`, and the section's own text, in **every** language in `translations.ts`.
 
@@ -164,4 +164,4 @@ Every push to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows
 
 ## Support
 
-The project is free. If it helps you, you can support it on [Buy Me a Coffee](https://buymeacoffee.com/mariomucalo).
+The project is free. If it helps you, you can support it on [Buy Me a Coffee](https://buymeacoffee.com/learningwithtoma).

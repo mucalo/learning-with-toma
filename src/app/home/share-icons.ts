@@ -1,5 +1,5 @@
 /**
- * 24×24 SVG paths for the share buttons in the "How can I help?" section.
+ * 24×24 SVG paths for the share buttons in the "Want to help?" section.
  * Brand icons come from Simple Icons (https://simpleicons.org, CC0); LinkedIn, e-mail, link and
  * share are simple drawings of our own.
  */
