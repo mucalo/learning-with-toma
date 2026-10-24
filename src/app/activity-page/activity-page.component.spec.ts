@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
@@ -84,6 +84,17 @@ describe('ActivityPageComponent', () => {
     print.click();
     expect(fixture.componentInstance.printed).toBeTrue();
   });
+
+  it('should bring the top of the preview into view after generating', fakeAsync(() => {
+    const preview = element.querySelector('.preview') as HTMLElement;
+    const scrollIntoView = spyOn(preview, 'scrollIntoView');
+
+    buttons()[0].click();
+    fixture.detectChanges();
+    tick();
+
+    expect(scrollIntoView).toHaveBeenCalledWith(jasmine.objectContaining({ block: 'start' }));
+  }));
 
   it('should show three tips and one activity from each other category to try next', () => {
     expect(element.querySelectorAll('.tips li').length).toBe(3);

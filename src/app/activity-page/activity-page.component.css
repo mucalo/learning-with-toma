@@ -149,6 +149,8 @@
 }
 
 .preview-area {
+  /* The worksheet appearing shouldn't make the browser shift the page; Generate scrolls on purpose. */
+  overflow-anchor: none;
   min-height: 420px;
   padding: 28px;
   border-radius: var(--radius-card);

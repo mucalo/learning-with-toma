@@ -27,7 +27,7 @@
         </div>
 
         <div class="panel-actions">
-          <button type="button" class="btn btn-accent btn-large" (click)="generate.emit()">
+          <button type="button" class="btn btn-accent btn-large" (click)="onGenerate()">
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z" /><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" /></svg>
             {{ i18n.t.activityPage.generate }}
           </button>
@@ -49,7 +49,7 @@
         </div>
       </aside>
 
-      <section class="preview" aria-labelledby="preview-heading">
+      <section #preview class="preview" aria-labelledby="preview-heading">
         <div class="preview-head">
           <h2 id="preview-heading">{{ i18n.t.activityPage.preview }}</h2>
           <span *ngIf="hasWorksheet && pageCount > 0" class="page-count">{{ pageCountLabel }}</span>

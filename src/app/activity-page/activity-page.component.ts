@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
+import { scrollBehavior } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
 
 /**
@@ -23,6 +24,8 @@ export class ActivityPageComponent {
   @Output() generate = new EventEmitter<void>();
   @Output() print = new EventEmitter<void>();
 
+  @ViewChild('preview') preview?: ElementRef<HTMLElement>;
+
   current: Activity = ACTIVITIES[0];
   /** Set by the worksheet once its rows are laid out on pages. */
   pageCount = 0;
@@ -36,6 +39,16 @@ export class ActivityPageComponent {
     this.tryNext = CATEGORIES
       .map(category => ACTIVITIES.find(activity => activity.category === category && activity.key !== key))
       .filter((activity): activity is Activity => !!activity);
+  }
+
+  /**
+   * Generates the worksheet, then brings the top of the preview into view, just below the header:
+   * the button is often lower down the panel, and on small screens the preview is below it.
+   */
+  onGenerate(): void {
+    this.generate.emit();
+    // After the worksheet has rendered.
+    setTimeout(() => this.preview?.nativeElement.scrollIntoView({ behavior: scrollBehavior(), block: 'start' }));
   }
 
   /** "3 pages · A4", with the plural form the current language needs (1 stranica, 2 stranice, 5 stranica). */
