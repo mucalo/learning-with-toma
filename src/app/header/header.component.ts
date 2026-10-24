@@ -3,7 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { isActivityUrl } from '../activities';
 import { LanguageService } from '../i18n/language.service';
-import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
+import { HOME_SECTIONS, scrollBehavior, scrollToSection } from '../home/home-sections';
 
 /**
  * Sticky header: logo, links to the home page sections, language picker and a Support button that
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnDestroy {
   /** The logo goes to the top of the home page, also when we are already there. */
   goHome(): void {
     this.menuOpen = false;
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: scrollBehavior() });
   }
 
   /**

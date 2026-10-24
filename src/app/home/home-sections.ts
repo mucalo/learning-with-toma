@@ -14,6 +14,11 @@ export const HOME_SECTIONS: HomeSection[] = [
   { id: 'help', key: 'help' }
 ];
 
+/** Smooth scrolling, unless the user prefers reduced motion. */
+export function scrollBehavior(): ScrollBehavior {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+}
+
 /** Scrolls to a home page section, if it is on the page. Returns whether it was found. */
 export function scrollToSection(id: string): boolean {
   const element = document.getElementById(id);
@@ -21,7 +26,6 @@ export function scrollToSection(id: string): boolean {
     return false;
   }
 
-  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-  element.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  element.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
   return true;
 }

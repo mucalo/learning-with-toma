@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { isActivityUrl } from '../activities';
-import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
+import { HOME_SECTIONS, scrollBehavior, scrollToSection } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
 import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../links';
 
@@ -46,7 +46,7 @@ export class FooterComponent implements OnDestroy {
   }
 
   toTop(): void {
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: scrollBehavior() });
   }
 
   ngOnDestroy(): void {
