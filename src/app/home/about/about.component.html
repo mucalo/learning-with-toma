@@ -15,7 +15,7 @@
     <div class="about-body">
       <div class="about-photos">
         <figure *ngFor="let photo of aboutPhotos; let i = index" class="about-figure">
-          <img [src]="photo" width="720" height="960" loading="lazy" [alt]="i18n.t.about.photos[i].alt" />
+          <img [src]="photo" width="1200" height="1500" loading="lazy" [alt]="i18n.t.about.photos[i].alt" />
           <figcaption>{{ i18n.t.about.photos[i].caption }}</figcaption>
         </figure>
       </div>
