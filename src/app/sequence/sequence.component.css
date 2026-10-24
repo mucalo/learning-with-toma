@@ -6,11 +6,15 @@
   border-top: 1px dashed rgba(47, 59, 69, 0.16);
 }
 
+/*
+ * Always one line of CELLS_PER_LINE boxes (see the component), spread across the full width so the
+ * last empty box ends at the edge of the line.
+ */
 .sequence {
   flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
+  display: grid;
+  grid-template-columns: repeat(15, 2.5rem);
+  justify-content: space-between;
 }
 
 .cell {
@@ -85,6 +89,14 @@
 .problem-row {
   border: none;
   padding: 1.25rem 0;
+}
+
+/*
+ * A solid line below each problem, as in Find the Intruder, so each line reads as its own task.
+ * The same on every row, so a row is equally tall wherever it lands on a page.
+ */
+.problem-row {
+  border-bottom: 1px solid #9aa5b1;
 }
 
 /* Buttons and revealed answers are only for the screen. */

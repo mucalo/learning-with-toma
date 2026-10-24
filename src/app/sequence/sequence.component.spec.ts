@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../i18n/language.service';
 import { WorksheetComponent } from '../worksheet/worksheet.component';
-import { isValidPattern, SequenceComponent } from './sequence.component';
+import { CELLS_PER_LINE, isValidPattern, SequenceComponent } from './sequence.component';
 
 describe('SequenceComponent', () => {
   let component: SequenceComponent;
@@ -49,7 +49,8 @@ describe('SequenceComponent', () => {
           expect(item.type).toBe(elementType);
           expect(item.pattern.length).toBe(patternLength);
           expect(item.shown).toEqual([...item.pattern, ...item.pattern]);
-          expect(item.continuation).toEqual([...item.pattern, ...item.pattern, ...item.pattern]);
+          expect(item.shown.length + item.continuation.length).toBe(CELLS_PER_LINE);
+          item.continuation.forEach((value, i) => expect(value).toBe(item.pattern[i % item.pattern.length]));
           expect(isValidPattern(item.pattern)).withContext(item.pattern.join('')).toBeTrue();
           if (patternLength === 2) {
             expect(item.pattern[0]).not.toBe(item.pattern[1]);
@@ -78,7 +79,7 @@ describe('SequenceComponent', () => {
     expect([...lengths].sort()).toEqual([2, 3, 4, 5]);
     component.generatedItems.forEach(item => {
       expect(isValidPattern(item.pattern)).toBeTrue();
-      expect(item.continuation.length).toBe(item.pattern.length * 3);
+      expect(item.shown.length + item.continuation.length).toBe(CELLS_PER_LINE);
     });
   });
 
@@ -146,6 +147,23 @@ describe('SequenceComponent', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('.cell:not(.blank) svg[role="img"]').length).toBe(6);
-    expect(compiled.querySelectorAll('.cell.blank').length).toBe(9);
+    expect(compiled.querySelectorAll('.cell.blank').length).toBe(CELLS_PER_LINE - 6);
+  });
+
+  it('should fit every line on one row, ending at the edge of the line', () => {
+    component.patternLength = 2;
+    component.problemCount = 1;
+    component.generateProblems();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const sequence = compiled.querySelector('.sequence') as HTMLElement;
+    // As wide as a line on an A4 sheet (210mm minus 12mm margins on each side).
+    sequence.style.width = '186mm';
+    const cells = Array.from(sequence.querySelectorAll<HTMLElement>('.cell'));
+    const tops = new Set(cells.map(cell => cell.offsetTop));
+    expect(tops.size).toBe(1);
+    const last = cells[cells.length - 1].getBoundingClientRect();
+    expect(Math.abs(last.right - sequence.getBoundingClientRect().right)).toBeLessThan(1);
   });
 });

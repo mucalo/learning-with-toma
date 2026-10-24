@@ -7,8 +7,12 @@ export type ElementType = 'shapes' | 'numbers' | 'letters';
 export type LengthMode = 'exactly' | 'upTo';
 type Shape = 'triangle' | 'circle' | 'square';
 
-/** How many times the child continues the pattern, i.e. how many recurrences of blanks follow. */
-export const CONTINUATION_REPEATS = 3;
+/**
+ * Boxes on one line of the worksheet: the pattern shown twice, then empty boxes up to the end of
+ * the line. Worksheets are always A4, so a line is always 186mm (about 703px) wide, which fits 15
+ * boxes of 2.5rem with their gaps. Keep in step with `.sequence` in the component's styles.
+ */
+export const CELLS_PER_LINE = 15;
 
 interface SequenceItem {
   id: string;
@@ -17,7 +21,7 @@ interface SequenceItem {
   pattern: string[];
   /** The pattern repeated twice, shown at the start of the line. */
   shown: string[];
-  /** The expected continuation, one empty box per element. */
+  /** The expected continuation, one empty box per element, filling the rest of the line. */
   continuation: string[];
   answerRevealed?: boolean;
 }
@@ -93,7 +97,8 @@ export class SequenceComponent {
         type: this.elementType,
         pattern,
         shown: [...pattern, ...pattern],
-        continuation: Array.from({ length: CONTINUATION_REPEATS }, () => pattern).flat()
+        // The shown part is whole recurrences, so the blanks carry on from the pattern's start.
+        continuation: Array.from({ length: CELLS_PER_LINE - 2 * pattern.length }, (_, index) => pattern[index % pattern.length])
       });
     }
   }
