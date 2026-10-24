@@ -1,56 +1,3 @@
-.sequence-card {
-  margin: 2rem auto 0;
-  max-width: 980px;
-  padding: 0 2rem 2rem;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: end;
-  margin-bottom: 1.5rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.field label {
-  font-weight: 700;
-}
-
-.field input,
-.field select {
-  padding: 0.7rem 0.8rem;
-  border: 1px solid #d9dce2;
-  border-radius: 8px;
-  min-width: 150px;
-  font: inherit;
-}
-
-.generate-button,
-.print-button {
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 999px;
-  color: white;
-  cursor: pointer;
-  font-weight: 700;
-  background: #5b8def;
-}
-
-.print-button {
-  background: #f28c82;
-}
-
-.print-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .problem-row {
   display: flex;
   align-items: center;
@@ -92,9 +39,17 @@
   stroke-linejoin: round;
 }
 
-.triangle { fill: #f6d365; }
-.circle { fill: #c8e0ff; }
-.square { fill: #a7c7a5; }
+.triangle {
+  fill: #f6d365;
+}
+
+.circle {
+  fill: #c8e0ff;
+}
+
+.square {
+  fill: #a7c7a5;
+}
 
 .glyph {
   font-family: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
@@ -126,15 +81,16 @@
   color: #f28c82;
 }
 
+/* The worksheet as it prints, which is also how it shows on screen. */
+.problem-row {
+  border: none;
+  padding: 1.25rem 0;
+}
+
+/* Buttons and revealed answers are only for the screen. */
 @media print {
-  .controls,
   .action-area,
   .answer {
     display: none;
-  }
-
-  .problem-row {
-    border: none;
-    padding: 1.25rem 0;
   }
 }

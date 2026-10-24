@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './header.component';
 import { LanguageService } from '../i18n/language.service';
@@ -12,7 +13,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule.withRoutes(ACTIVITIES.map(activity => ({ path: activity.route.slice(1), children: [] })))],
       declarations: [HeaderComponent, LanguagePickerComponent]
     }).compileComponents();
 
@@ -34,36 +35,28 @@ describe('HeaderComponent', () => {
 
   it('should link each menu item to its home page section', () => {
     const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('a.menu-link'));
-    expect(element.querySelector('.activities-toggle')?.textContent).toContain('Activities');
-    expect(links.map(link => link.textContent?.trim())).toEqual(['About', 'Want to help?', 'Contact']);
-    expect(links.map(link => link.getAttribute('href'))).toEqual(['/#about', '/#help', '/#contact']);
+    expect(links.map(link => link.textContent?.trim())).toEqual(['Activities', 'Testimonials', 'About', 'Want to help?']);
+    expect(links.map(link => link.getAttribute('href'))).toEqual(['/#activities', '/#testimonials', '/#about', '/#help']);
   });
 
-  it('should open the Activities dropdown with a link to every activity', () => {
-    expect(element.querySelector('.activities-menu')).toBeNull();
-
-    click('.activities-toggle');
-
-    const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('.activities-menu-link'));
-    expect(element.querySelector('.activities-toggle')?.getAttribute('aria-expanded')).toBe('true');
-    expect(links.map(link => link.getAttribute('href'))).toEqual(ACTIVITIES.map(activity => activity.route));
-    expect(element.querySelector('.all-activities-link')?.getAttribute('href')).toBe('/#activities');
+  it('should lead the Support button to the "Want to help?" section', () => {
+    const support = element.querySelector<HTMLAnchorElement>('.support-link');
+    expect(support?.textContent?.trim()).toBe('Support');
+    expect(support?.getAttribute('href')).toBe('/#help');
   });
 
-  it('should close open menus on Escape and on clicks outside the header', () => {
-    click('.activities-toggle');
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-    fixture.detectChanges();
-    expect(element.querySelector('.activities-menu')).toBeNull();
+  it('should highlight Activities and offer a way back on activity pages', async () => {
+    expect(element.querySelector('.all-activities')).toBeNull();
 
-    click('.activities-toggle');
-    document.body.click();
+    await TestBed.inject(Router).navigateByUrl(ACTIVITIES[0].route);
     fixture.detectChanges();
-    expect(element.querySelector('.activities-menu')).toBeNull();
+
+    expect(element.querySelector('.menu-link.is-current')?.textContent?.trim()).toBe('Activities');
+    expect(element.querySelector('.all-activities')?.getAttribute('href')).toBe('/#activities');
   });
 
   it('should switch language from the language picker', () => {
-    expect(element.querySelector('.language-toggle')?.textContent).toContain('EN');
+    expect(element.querySelector('.language-toggle')?.textContent).toContain('English');
 
     click('.language-toggle');
     const options = Array.from(element.querySelectorAll<HTMLButtonElement>('.language-option'));
@@ -73,21 +66,21 @@ describe('HeaderComponent', () => {
 
     expect(i18n.language).toBe('croatian');
     expect(element.querySelector('.language-list')).toBeNull();
-    expect(element.querySelector('.language-toggle')?.textContent).toContain('HR');
-    expect(element.querySelector('a.menu-link')?.textContent).toContain('O projektu');
+    expect(element.querySelector('.language-toggle')?.textContent).toContain('Hrvatski');
+    expect(element.querySelector('.logo-text')?.textContent).toContain('Učimo');
+    expect(element.querySelector('a.menu-link')?.textContent).toContain('Aktivnosti');
   });
 
-  it('should close the Activities dropdown when the language picker opens', () => {
-    click('.activities-toggle');
-    click('.language-toggle');
-    expect(element.querySelector('.activities-menu')).toBeNull();
-    expect(element.querySelector('.language-list')).not.toBeNull();
+  it('should keep the small-screen menu open when the click lands on the ☰ icon itself', () => {
+    (element.querySelector('.menu-toggle path') as SVGElement).dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    fixture.detectChanges();
+    expect(element.querySelector('.site-header')?.classList).toContain('menu-open');
   });
 
   it('should open and close the small-screen menu', () => {
     click('.menu-toggle');
-    expect(element.querySelector('.topbar')?.classList).toContain('menu-open');
+    expect(element.querySelector('.site-header')?.classList).toContain('menu-open');
     click('.menu-toggle');
-    expect(element.querySelector('.topbar')?.classList).not.toContain('menu-open');
+    expect(element.querySelector('.site-header')?.classList).not.toContain('menu-open');
   });
 });

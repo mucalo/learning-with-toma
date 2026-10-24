@@ -24,6 +24,11 @@ import { ActivityNavComponent } from './activity-nav/activity-nav.component';
 import { LanguagePickerComponent } from './header/language-picker/language-picker.component';
 import { TraceComponent } from './trace/trace.component';
 import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
+import { HeroComponent } from './home/hero/hero.component';
+import { ActivityIconComponent } from './activity-icon/activity-icon.component';
+import { TestimonialsComponent } from './home/testimonials/testimonials.component';
+import { AboutComponent } from './home/about/about.component';
+import { ActivityPageComponent } from './activity-page/activity-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,12 @@ import { DotToDotComponent } from './dot-to-dot/dot-to-dot.component';
     ActivityNavComponent,
     LanguagePickerComponent,
     TraceComponent,
-    DotToDotComponent
+    DotToDotComponent,
+    HeroComponent,
+    ActivityIconComponent,
+    TestimonialsComponent,
+    AboutComponent,
+    ActivityPageComponent
   ],
   imports: [
     BrowserModule,

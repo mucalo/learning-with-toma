@@ -1,0 +1,94 @@
+<div class="activity-page">
+  <div class="container">
+    <app-activity-nav></app-activity-nav>
+
+    <header class="activity-head">
+      <span class="head-icon" [ngClass]="'cat-' + current.category">
+        <app-activity-icon [activity]="current.key" [size]="56"></app-activity-icon>
+      </span>
+      <div>
+        <h1>{{ i18n.t.activities[current.key].title }}</h1>
+        <p>{{ i18n.t.activities[current.key].description }} {{ i18n.t.activityInfo[current.key].benefit }}</p>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="settings-panel" aria-labelledby="settings-heading">
+        <h2 id="settings-heading">{{ i18n.t.activityPage.makeWorksheet }}</h2>
+
+        <div class="settings-fields">
+          <div class="field">
+            <label for="worksheetLanguage">{{ i18n.t.activityPage.language }}</label>
+            <select id="worksheetLanguage" [ngModel]="i18n.language" (ngModelChange)="i18n.language = $event">
+              <option *ngFor="let option of i18n.languages" [ngValue]="option.value" [attr.lang]="option.htmlLang">{{ option.label }}</option>
+            </select>
+          </div>
+          <ng-content select="[settings]"></ng-content>
+        </div>
+
+        <div class="panel-actions">
+          <button type="button" class="btn btn-accent btn-large" (click)="generate.emit()">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z" /><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z" /></svg>
+            {{ i18n.t.activityPage.generate }}
+          </button>
+          <button type="button" class="btn btn-outline btn-large" [disabled]="!hasWorksheet" (click)="print.emit()">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6" /><rect x="3" y="9" width="18" height="8" rx="2" /><path d="M7 14h10v7H7z" /></svg>
+            {{ i18n.t.activityPage.print }}
+          </button>
+        </div>
+
+        <!-- Shown once there is a worksheet, when it has just been useful. -->
+        <div *ngIf="hasWorksheet" class="support-note">
+          <span class="support-heart" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" /></svg>
+          </span>
+          <div>
+            <p><strong>{{ i18n.t.activityPage.supportBold }}</strong> {{ i18n.t.activityPage.supportText }}</p>
+            <a routerLink="/" fragment="help">{{ i18n.t.activityPage.supportLink }} →</a>
+          </div>
+        </div>
+      </aside>
+
+      <section class="preview" aria-labelledby="preview-heading">
+        <div class="preview-head">
+          <h2 id="preview-heading">{{ i18n.t.activityPage.preview }}</h2>
+          <span *ngIf="hasWorksheet && pageCount > 0" class="page-count">{{ pageCountLabel }}</span>
+        </div>
+        <div class="preview-area">
+          <ng-content></ng-content>
+          <p *ngIf="!hasWorksheet" class="preview-empty">{{ i18n.t.activityPage.emptyPreview }}</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="tips" aria-labelledby="tips-heading">
+      <h2 id="tips-heading">{{ i18n.t.activityPage.tips }}</h2>
+      <ul>
+        <li *ngFor="let tip of i18n.t.activityInfo[current.key].tips">
+          <h3>{{ tip.title }}</h3>
+          <p>{{ tip.text }}</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="try-next" aria-labelledby="try-next-heading">
+      <div class="try-next-head">
+        <h2 id="try-next-heading">{{ i18n.t.activityPage.tryNext }}</h2>
+        <a routerLink="/" fragment="activities">{{ seeAllLabel }}</a>
+      </div>
+      <ul>
+        <li *ngFor="let activity of tryNext">
+          <a class="try-card" [routerLink]="activity.route">
+            <span class="try-icon" [ngClass]="'cat-' + activity.category">
+              <app-activity-icon [activity]="activity.key" [size]="40"></app-activity-icon>
+            </span>
+            <span>
+              <span class="try-title">{{ i18n.t.activities[activity.key].title }}</span>
+              <span class="try-category">{{ i18n.t.activitiesSection.categories[activity.category] }}</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>

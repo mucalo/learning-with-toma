@@ -1,32 +1,46 @@
-/* A quiet, single-line strip: small text, so the activity itself stays the focus. */
 :host {
   display: block;
-  margin-bottom: 1.25rem;
 }
 
 .activity-nav {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.78rem;
+  gap: 10px;
 }
 
-.all-activities {
+.scroll-button {
+  display: flex;
   flex: none;
-  margin-right: 0.4rem;
-  color: #5b8def;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  border: 1.5px solid var(--input-line);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ink);
 }
 
-.all-activities:hover,
-.all-activities:focus-visible {
-  text-decoration: underline;
+.scroll-button:hover:not(:disabled) {
+  border-color: var(--ink);
 }
 
+.scroll-button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.scroll-button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The row scrolls sideways; edges fade out on the side that has more. */
 .scroller {
-  position: relative;
   flex: 1;
   min-width: 0;
   overflow-x: auto;
@@ -37,102 +51,60 @@
   display: none;
 }
 
-/* Fade the edge that has more links behind it. */
 .scroller.fade-start {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5rem);
-  mask-image: linear-gradient(to right, transparent, #000 1.5rem);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 40px);
+  mask-image: linear-gradient(to right, transparent, #000 40px);
 }
 
 .scroller.fade-end {
-  -webkit-mask-image: linear-gradient(to left, transparent, #000 1.5rem);
-  mask-image: linear-gradient(to left, transparent, #000 1.5rem);
+  -webkit-mask-image: linear-gradient(to left, transparent, #000 40px);
+  mask-image: linear-gradient(to left, transparent, #000 40px);
 }
 
 .scroller.fade-start.fade-end {
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
-  mask-image: linear-gradient(to right, transparent, #000 1.5rem, #000 calc(100% - 1.5rem), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent);
 }
 
 .activity-links {
-  display: inline-flex;
-  gap: 0.3rem;
+  display: flex;
+  gap: 8px;
+  width: max-content;
   margin: 0;
-  padding: 1px;
+  padding: 2px;
   list-style: none;
 }
 
 .activity-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.2rem 0.6rem;
-  border: 1px solid #e3ebf2;
+  gap: 8px;
+  height: var(--touch);
+  padding: 0 16px 0 10px;
+  border: 1.5px solid var(--line);
   border-radius: 999px;
   background: #ffffff;
-  color: #4f626d;
-  font-weight: 600;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.activity-link:hover,
-.activity-link:focus-visible {
-  border-color: #5b8def;
-  background: #e8f0fd;
-  color: #2f3b45;
+.activity-link:hover {
+  border-color: var(--input-line);
 }
 
 .activity-link.is-current {
-  border-color: #5b8def;
-  background: #5b8def;
+  border-color: var(--ink);
+  background: var(--ink);
   color: #ffffff;
 }
 
-.scroll-button {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0 0 0.1rem;
-  border: 1px solid #e3ebf2;
+/* Icons sit on a small white disc on the dark current chip, so their colours still read. */
+.activity-link.is-current app-activity-icon {
   border-radius: 50%;
   background: #ffffff;
-  color: #5b8def;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.scroll-button:disabled {
-  border-color: #eef1f4;
-  background: transparent;
-  color: #c3cdd6;
-  cursor: default;
-}
-
-.scroll-button:not(:disabled):hover {
-  border-color: #5b8def;
-  background: #e8f0fd;
-}
-
-.activity-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 1.25rem 0 0;
-  color: #1f3b4d;
-  font-size: 1.75rem;
-  line-height: 1.2;
-}
-
-@media (max-width: 640px) {
-  .activity-title {
-    font-size: 1.4rem;
-  }
 }
 
 @media print {

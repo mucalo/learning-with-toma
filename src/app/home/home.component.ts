@@ -1,10 +1,8 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LanguageService } from '../i18n/language.service';
-import { ACTIVITIES, Activity } from '../activities';
-import { CONTACT_EMAIL } from '../links';
+import { ACTIVITIES, Activity, ActivityCategory, CATEGORIES } from '../activities';
 import { scrollToSection } from './home-sections';
-import { HomeTile, layoutHomeTiles } from './home-tiles';
 
 @Component({
   selector: 'app-home',
@@ -13,18 +11,19 @@ import { HomeTile, layoutHomeTiles } from './home-tiles';
 })
 export class HomeComponent implements AfterViewInit {
   readonly activities = ACTIVITIES;
+  readonly categories = CATEGORIES;
 
-  /** Activities with testimonials mixed in; shuffled once per visit, so switching language keeps the layout. */
-  readonly tiles: HomeTile<Activity>[];
+  /** Category picked in the activity filter; `null` shows every activity. */
+  category: ActivityCategory | null = null;
 
-  /** Photos beside the About text; their alt texts are `about.photoAlts`, in the same order. */
-  /** A hand-drawn worksheet first, then a child solving a printed one. */
-  readonly aboutPhotos = ['assets/about-hand-drawn.jpg', 'assets/about-child-solving.jpg'];
+  constructor(readonly i18n: LanguageService, private readonly route: ActivatedRoute) {}
 
-  readonly contactEmail = CONTACT_EMAIL;
+  get visibleActivities(): Activity[] {
+    return this.category ? this.activities.filter(activity => activity.category === this.category) : this.activities;
+  }
 
-  constructor(readonly i18n: LanguageService, private readonly route: ActivatedRoute) {
-    this.tiles = layoutHomeTiles(this.activities, i18n.t.testimonials.items.length);
+  get allLabel(): string {
+    return this.i18n.t.activitiesSection.all.replace('{count}', String(this.activities.length));
   }
 
   /** Arriving from another page through the menu (e.g. `#/#about`): scroll once everything is rendered. */

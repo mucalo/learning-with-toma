@@ -1,0 +1,32 @@
+<section id="testimonials" class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="container testimonials-inner">
+    <div class="testimonials-head">
+      <div>
+        <p class="eyebrow">{{ i18n.t.testimonials.eyebrow }}</p>
+        <h2 id="testimonials-heading" class="section-title">{{ i18n.t.testimonials.title }}</h2>
+      </div>
+      <div class="arrows">
+        <button type="button" class="arrow" [attr.aria-label]="i18n.t.testimonials.previous" [disabled]="atStart" (click)="scroll(-1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+        </button>
+        <button type="button" class="arrow" [attr.aria-label]="i18n.t.testimonials.next" [disabled]="atEnd" (click)="scroll(1)">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div #track class="track" (scroll)="updateEnds()">
+      <figure *ngFor="let testimonial of i18n.t.testimonials.items" class="note">
+        <span class="tape" aria-hidden="true"></span>
+        <svg class="quote-mark" width="36" height="28" viewBox="0 0 36 28" aria-hidden="true">
+          <path d="M0 28V16C0 7 5 1 14 0v6c-5 1-7 4-7 9h7v13zm20 0V16c0-9 5-15 14-16v6c-5 1-7 4-7 9h7v13z" />
+        </svg>
+        <blockquote>{{ testimonial.quote }}</blockquote>
+        <figcaption>
+          <strong>{{ testimonial.name }}</strong>
+          <span class="relation">{{ testimonial.relation }}</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

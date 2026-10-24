@@ -1,56 +1,3 @@
-.maze-card {
-  margin: 2rem auto 0;
-  max-width: 980px;
-  padding: 0 2rem 2rem;
-}
-
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: end;
-  margin-bottom: 1.5rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.field label {
-  font-weight: 700;
-}
-
-.field input,
-.field select {
-  padding: 0.7rem 0.8rem;
-  border: 1px solid #d9dce2;
-  border-radius: 8px;
-  min-width: 150px;
-  font: inherit;
-}
-
-.generate-button,
-.print-button {
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 999px;
-  color: white;
-  cursor: pointer;
-  font-weight: 700;
-  background: #5b8def;
-}
-
-.print-button {
-  background: #f28c82;
-}
-
-.print-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .problem-row {
   display: flex;
   align-items: center;
@@ -113,32 +60,28 @@
   color: #f28c82;
 }
 
+/* The worksheet as it prints, which is also how it shows on screen. */
+/*
+ * Two mazes per A4 page. The printable height is about 267mm with our page margins, and the
+ * repeated instruction takes ~12mm, so 2 × 105mm leaves 40mm+ spare for printer minimum margins,
+ * other browsers and US Letter paper. Don't push these sizes up to "just fit": it breaks easily.
+ */
+.problem-row {
+  height: 105mm;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+.maze {
+  width: auto;
+  height: 97mm;
+}
+
+/* Buttons and revealed answers are only for the screen. */
 @media print {
-  .controls,
   .action-area,
   .solution {
     display: none;
-  }
-
-  .maze-card {
-    margin: 0;
-    padding: 0;
-  }
-
-  /*
-   * Two mazes per A4 page. The printable height is about 267mm with our page margins, and the
-   * repeated instruction takes ~12mm, so 2 × 105mm leaves 40mm+ spare for printer minimum margins,
-   * other browsers and US Letter paper. Don't push these sizes up to "just fit": it breaks easily.
-   */
-  .problem-row {
-    height: 105mm;
-    padding: 0;
-    border: none;
-    box-sizing: border-box;
-  }
-
-  .maze {
-    width: auto;
-    height: 97mm;
   }
 }

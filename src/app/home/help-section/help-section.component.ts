@@ -22,7 +22,7 @@ const SHARE_NETWORKS: ShareNetwork[] = [
   { name: 'LinkedIn', icon: SHARE_ICONS.linkedin, evenOdd: true, color: '#0a66c2', href: url => `https://www.linkedin.com/sharing/share-offsite/?url=${url}` }
 ];
 
-/** "Want to help?": donate, spread the word, send feedback. Shown on the home page. */
+/** "Want to help?": donate, spread the word, send feedback, share photos. Shown on the home page. */
 @Component({
   selector: 'app-help-section',
   templateUrl: './help-section.component.html',
@@ -33,6 +33,7 @@ export class HelpSectionComponent implements OnDestroy {
   readonly contactEmail = CONTACT_EMAIL;
   readonly networks = SHARE_NETWORKS;
   readonly icons = SHARE_ICONS;
+  readonly heart = 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z';
   /** The device's own share sheet (phones, some browsers), which also reaches Slack, Messenger, etc. */
   readonly canUseNativeShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
@@ -54,6 +55,10 @@ export class HelpSectionComponent implements OnDestroy {
 
   get feedbackMailto(): string {
     return `mailto:${this.contactEmail}?subject=${encodeURIComponent(this.i18n.t.help.feedback.emailSubject)}`;
+  }
+
+  get photosMailto(): string {
+    return `mailto:${this.contactEmail}?subject=${encodeURIComponent(this.i18n.t.help.photos.emailSubject)}`;
   }
 
   get emailShareHref(): string {

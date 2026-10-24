@@ -1,0 +1,290 @@
+/* About: the story beside two tilted photos, on squared paper. */
+.about {
+  border-top: 1px solid var(--line);
+}
+
+.about-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 860px;
+}
+
+.about-intro .eyebrow,
+.about-intro .section-title {
+  margin: 0;
+}
+
+.about-lead {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 6px 0 0;
+  list-style: none;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 18px;
+  border: 1.5px solid var(--line);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.about-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 56px;
+}
+
+.about-photos {
+  display: flex;
+  flex: 1 1 340px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding-top: 12px;
+}
+
+/* Photos like prints on a table: white border, handwritten caption, a little tilt. */
+.about-figure {
+  width: 100%;
+  max-width: 360px;
+  margin: 0;
+  padding: 14px 14px 18px;
+  background: #ffffff;
+  box-shadow: 0 14px 32px rgba(26, 34, 56, 0.14);
+  transform: rotate(-3deg);
+}
+
+.about-figure + .about-figure {
+  max-width: 320px;
+  margin: 24px 0 0 80px;
+  transform: rotate(4deg);
+}
+
+.about-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-figure figcaption {
+  padding-top: 12px;
+  font-family: var(--font-hand);
+  font-size: 17px;
+  text-align: center;
+}
+
+.about-story {
+  display: flex;
+  flex: 1.4 1 480px;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+  max-width: 680px;
+  color: var(--body-copy);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about-story p {
+  margin: 0;
+}
+
+.about-story strong,
+.learner-box strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* "a" and "b" in yellow circles. */
+.about-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: reason;
+}
+
+.about-reasons li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  counter-increment: reason;
+}
+
+.about-reasons li::before {
+  content: counter(reason, lower-alpha);
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--highlight);
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.learner-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 8px 0;
+  padding: 24px;
+  border: 1.5px solid var(--line);
+  border-radius: 20px;
+  background: #ffffff;
+  font-size: 17px;
+}
+
+.learner-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.learner-head h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.learner-icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--thinking-bg);
+}
+
+.learner-icon svg {
+  fill: none;
+  stroke: var(--thinking-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.learner-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.learner-tags li {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--thinking-bg);
+  color: #4c1d95;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.about-story .about-handwritten {
+  color: var(--ink);
+  font-family: var(--font-hand);
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.about-story .about-signature {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.support-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--soft-yellow);
+}
+
+.about-story .support-note p {
+  flex: 1 1 260px;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.support-note svg {
+  fill: #ffffff;
+}
+
+/* Narrow screens: the two photos sit side by side above the story. */
+@media (max-width: 760px) {
+  .about-body {
+    gap: 40px;
+  }
+
+  .about-photos {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 0;
+  }
+
+  .about-figure,
+  .about-figure + .about-figure {
+    width: calc(50% - 10px);
+    max-width: 260px;
+    margin: 0;
+    padding: 8px 8px 12px;
+  }
+
+  .about-figure figcaption {
+    padding-top: 8px;
+    font-size: 14px;
+  }
+
+  .about-lead {
+    font-size: 19px;
+  }
+}

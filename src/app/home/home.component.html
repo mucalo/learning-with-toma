@@ -1,83 +1,93 @@
 <div class="home-page">
-  <section id="activities" class="home-section" [attr.aria-label]="i18n.t.home.activitiesLabel">
-    <div class="section-inner">
-      <div class="home-intro">
-        <h1>{{ i18n.t.home.heading }}</h1>
-        <p>{{ i18n.t.home.intro }}</p>
-      </div>
+  <app-hero></app-hero>
 
-      <div class="activity-grid">
-        <ng-container *ngFor="let tile of tiles">
-          <a
-            *ngIf="tile.kind === 'activity'"
-            class="activity-card"
-            [routerLink]="tile.activity.route"
-            [attr.aria-label]="i18n.t.activities[tile.activity.key].title"
+  <section id="how" class="how" aria-labelledby="how-heading">
+    <h2 id="how-heading" class="visually-hidden">{{ i18n.t.hero.howItWorks }}</h2>
+    <ol class="container how-steps">
+      <li *ngFor="let step of i18n.t.howItWorks; let i = index" class="how-step">
+        <span class="how-number" aria-hidden="true">{{ i + 1 }}</span>
+        <div>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.text }}</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="activities" class="activities" aria-labelledby="activities-heading">
+    <div class="container activities-inner">
+      <div class="activities-head">
+        <div>
+          <p class="eyebrow">{{ i18n.t.activitiesSection.eyebrow }}</p>
+          <h2 id="activities-heading" class="section-title">{{ i18n.t.activitiesSection.title }}</h2>
+        </div>
+
+        <div class="filters" role="group" [attr.aria-label]="i18n.t.activitiesSection.filterLabel">
+          <button type="button" class="filter" [attr.aria-pressed]="category === null" (click)="category = null">
+            {{ allLabel }}
+          </button>
+          <button
+            *ngFor="let option of categories"
+            type="button"
+            class="filter"
+            [ngClass]="'cat-' + option"
+            [attr.aria-pressed]="category === option"
+            (click)="category = option"
           >
-            <div class="activity-illustration" aria-hidden="true">{{ tile.activity.emoji }}</div>
-            <div class="activity-content">
-              <h2>{{ i18n.t.activities[tile.activity.key].title }}</h2>
-              <p>{{ i18n.t.activities[tile.activity.key].description }}</p>
+            <span class="filter-dot" aria-hidden="true"></span>
+            {{ i18n.t.activitiesSection.categories[option] }}
+          </button>
+        </div>
+      </div>
+
+      <ul class="activity-grid">
+        <li *ngFor="let activity of visibleActivities">
+          <a
+            class="activity-card"
+            [ngClass]="'cat-' + activity.category"
+            [routerLink]="activity.route"
+            [attr.aria-labelledby]="'card-title-' + activity.key"
+            [attr.aria-describedby]="'card-text-' + activity.key"
+          >
+            <div class="card-art">
+              <span class="card-category">{{ i18n.t.activitiesSection.categories[activity.category] }}</span>
+              <span class="card-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+              <app-activity-icon [activity]="activity.key"></app-activity-icon>
             </div>
+            <h3 [id]="'card-title-' + activity.key" class="card-title">{{ i18n.t.activities[activity.key].title }}</h3>
+            <p [id]="'card-text-' + activity.key" class="card-text">{{ i18n.t.activities[activity.key].description }}</p>
           </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-          <figure *ngIf="tile.kind === 'testimonial' && i18n.t.testimonials.items[tile.index] as testimonial" class="testimonial-card">
-            <blockquote class="testimonial-quote">
-              <p><span class="testimonial-mark" aria-hidden="true">“</span>{{ testimonial.quote }}</p>
-            </blockquote>
-            <figcaption class="testimonial-author">
-              <span class="testimonial-name">{{ testimonial.name }}</span>
-              <span class="testimonial-relation">{{ testimonial.relation }}</span>
-            </figcaption>
-          </figure>
-        </ng-container>
+  <section class="languages-band" aria-labelledby="languages-heading">
+    <div class="container languages-inner">
+      <div class="languages-copy">
+        <h2 id="languages-heading">{{ i18n.t.languagesBand.title }}</h2>
+        <p>{{ i18n.t.languagesBand.text }}</p>
+      </div>
+      <div class="language-buttons" role="group" [attr.aria-label]="i18n.t.header.languageLabel">
+        <button
+          *ngFor="let option of i18n.languages"
+          type="button"
+          class="language-button"
+          [attr.lang]="option.htmlLang"
+          [attr.aria-pressed]="option.value === i18n.language"
+          (click)="i18n.language = option.value"
+        >
+          {{ option.label }}
+        </button>
       </div>
     </div>
   </section>
 
-  <section id="about" class="home-section about-section" aria-labelledby="about-heading">
-    <div class="section-inner about-layout">
-      <div class="about-text">
-        <h2 id="about-heading" class="section-heading">{{ i18n.t.about.heading }}</h2>
-        <p *ngFor="let paragraph of i18n.t.about.opening">
-          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
-        </p>
-        <ol class="about-list">
-          <li *ngFor="let reason of i18n.t.about.drawingReasons">
-            <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: reason }"></ng-container>
-          </li>
-        </ol>
-        <p *ngFor="let paragraph of i18n.t.about.closing">
-          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
-        </p>
-      </div>
+  <app-testimonials></app-testimonials>
 
-      <div class="about-photos">
-        <figure class="about-figure" *ngFor="let photo of aboutPhotos; let i = index">
-          <img [src]="photo" width="300" height="400" loading="lazy" [alt]="i18n.t.about.photoAlts[i]" />
-        </figure>
-      </div>
-    </div>
-  </section>
+  <app-about></app-about>
 
-  <section id="help" class="home-section help-section" aria-labelledby="help-heading">
-    <div class="section-inner">
-      <h2 id="help-heading" class="section-heading">{{ i18n.t.help.heading }}</h2>
-      <app-help-section></app-help-section>
-    </div>
-  </section>
-
-  <section id="contact" class="home-section contact-section" aria-labelledby="contact-heading">
-    <div class="section-inner contact-text">
-      <h2 id="contact-heading" class="section-heading">{{ i18n.t.contact.heading }}</h2>
-      <p *ngFor="let paragraph of i18n.t.contact.paragraphs">{{ paragraph }}</p>
-      <p class="contact-email">
-        {{ i18n.t.contact.emailLabel }}
-        <a class="email-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
-      </p>
-    </div>
-  </section>
+  <app-help-section></app-help-section>
 </div>
-
-<!-- Renders translated text with its **key phrases** in bold. -->
-<ng-template #emphasized let-text><ng-container *ngFor="let part of text | emphasis"><strong *ngIf="part.bold">{{ part.text }}</strong><ng-container *ngIf="!part.bold">{{ part.text }}</ng-container></ng-container></ng-template>

@@ -1,0 +1,144 @@
+.testimonials-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.testimonials-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.testimonials-head .eyebrow {
+  margin-bottom: 8px;
+}
+
+.arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.arrow:hover:not(:disabled) {
+  background: var(--soft);
+}
+
+.arrow:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.arrow svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Notes snap into place while scrolling; the padding leaves room for the tape and the tilt. */
+.track {
+  display: flex;
+  gap: 28px;
+  margin: 0 -8px;
+  padding: 24px 8px 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 8px;
+  scrollbar-width: thin;
+}
+
+.note {
+  position: relative;
+  display: flex;
+  flex: 0 0 320px;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding: 40px 28px 28px;
+  border-radius: 4px;
+  background: var(--soft-yellow);
+  box-shadow: 0 10px 24px rgba(26, 34, 56, 0.08);
+  scroll-snap-align: start;
+  transform: rotate(-1.5deg);
+}
+
+/* Colours and tilt repeat every four notes. */
+.note:nth-child(4n + 2) {
+  background: var(--letters-bg);
+  transform: rotate(1deg);
+}
+
+.note:nth-child(4n + 3) {
+  background: var(--thinking-bg);
+  transform: rotate(-1deg);
+}
+
+.note:nth-child(4n + 4) {
+  background: var(--numbers-bg);
+  transform: rotate(1.5deg);
+}
+
+/* A strip of tape holding the note up. */
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 96px;
+  height: 26px;
+  margin-left: -48px;
+  background: rgba(203, 213, 230, 0.75);
+  transform: rotate(-3deg);
+}
+
+.quote-mark {
+  fill: var(--accent);
+}
+
+blockquote {
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+figcaption {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1.5px dashed rgba(26, 34, 56, 0.2);
+  font-size: 15px;
+}
+
+.relation {
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .testimonials-inner {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .note {
+    flex-basis: min(300px, 82vw);
+  }
+}

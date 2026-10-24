@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ACTIVITIES } from '../activities';
 import { LanguageService } from '../i18n/language.service';
+import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
 import { ActivityNavComponent } from './activity-nav.component';
 
 @Component({ template: '<app-activity-nav></app-activity-nav>' })
@@ -21,7 +22,7 @@ describe('ActivityNavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes([{ path: 'maze', component: MazePageComponent }])],
-      declarations: [ActivityNavComponent, MazePageComponent, ShellComponent]
+      declarations: [ActivityNavComponent, ActivityIconComponent, MazePageComponent, ShellComponent]
     }).compileComponents();
 
     TestBed.inject(LanguageService).language = 'english';
@@ -33,11 +34,11 @@ describe('ActivityNavComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should link back to all activities and to every activity', () => {
-    expect(element.querySelector('.all-activities')?.getAttribute('href')).toBe('/#activities');
+  it('should link to every activity, each with its icon', () => {
     const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('.activity-link'));
     expect(links.map(link => link.getAttribute('href'))).toEqual(ACTIVITIES.map(activity => activity.route));
     expect(links[0].textContent).toContain('Spelling');
+    links.forEach(link => expect(link.querySelector('app-activity-icon svg')).withContext(link.href).toBeTruthy());
   });
 
   it('should mark the current activity', () => {
@@ -45,10 +46,6 @@ describe('ActivityNavComponent', () => {
     expect(current.length).toBe(1);
     expect(current[0].textContent).toContain('Maze');
     expect(current[0].classList).toContain('is-current');
-  });
-
-  it('should show the current activity title as the page heading', () => {
-    expect(element.querySelector('h2.activity-title')?.textContent).toContain('Maze');
   });
 
   it('should enable scroll arrows only on the side with more links', () => {

@@ -5,10 +5,10 @@
   [attr.aria-expanded]="open"
   (click)="open = !open"
 >
-  <img class="flag" [src]="current.flag" width="21" height="14" alt="" />
+  <img class="flag" [src]="current.flag" width="24" height="16" alt="" />
   <span class="visually-hidden">{{ i18n.t.header.languageLabel }}:</span>
-  {{ current.shortLabel }}
-  <span class="caret" aria-hidden="true">▾</span>
+  <span class="language-name">{{ current.label }}</span>
+  <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
 </button>
 
 <ul id="language-list" class="language-list" *ngIf="open">
@@ -20,7 +20,7 @@
       [attr.aria-pressed]="option.value === i18n.language"
       (click)="choose(option.value)"
     >
-      <img class="flag" [src]="option.flag" width="21" height="14" alt="" />
+      <img class="flag" [src]="option.flag" width="24" height="16" alt="" />
       {{ option.label }}
     </button>
   </li>

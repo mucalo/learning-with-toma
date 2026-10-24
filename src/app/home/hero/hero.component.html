@@ -1,0 +1,83 @@
+<section id="top" class="hero paper-grid">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <ul class="badges">
+        <li *ngFor="let badge of i18n.t.hero.badges" class="badge">{{ badge }}</li>
+      </ul>
+
+      <h1 class="hero-title">
+        {{ i18n.t.hero.title.before }}<span class="highlight">{{ i18n.t.hero.title.highlight }}</span>{{ i18n.t.hero.title.after }}
+      </h1>
+
+      <p class="hero-intro">{{ i18n.t.hero.intro }}</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-accent btn-large" routerLink="/" fragment="activities" (click)="goTo('activities')">
+          {{ i18n.t.hero.chooseActivity }}
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+        <a class="btn btn-outline btn-large" routerLink="/" fragment="how" (click)="goTo('how')">{{ i18n.t.hero.howItWorks }}</a>
+      </div>
+
+      <p class="made-for">
+        <span class="made-for-label">{{ i18n.t.hero.madeFor }}</span>
+        <span *ngFor="let audience of i18n.t.hero.audiences; let i = index" class="audience" [ngClass]="audienceClasses[i % audienceClasses.length]">{{ audience }}</span>
+      </p>
+    </div>
+
+    <!-- A small stack of example worksheets, using the real instructions of three activities. -->
+    <div class="hero-art" aria-hidden="true">
+      <div class="stack">
+        <div class="sheet-back sheet-back-blue"></div>
+        <div class="sheet-back sheet-back-peach"></div>
+
+        <div class="sheet">
+          <div class="sheet-block">
+            <div class="sheet-label">{{ i18n.t.shadow.instruction }}</div>
+            <svg viewBox="0 0 344 132">
+              <g transform="translate(43 30)"><circle cx="0" cy="-6" r="13" fill="#E5484D" /><path d="M-3 7 L3 7 L0 4 Z" fill="#E5484D" /><path d="M0 7 q-5 7 1 15" fill="none" stroke="#3E6FD8" stroke-width="2" stroke-linecap="round" /><circle cx="-5" cy="-11" r="3" fill="#FFFFFF" opacity="0.5" /></g>
+              <g transform="translate(129 30)"><path d="M-2 -19 L-2 5 L-17 5 Z" fill="#F5B83D" /><path d="M2 -14 L2 5 L13 5 Z" fill="#F7D07A" /><path d="M-19 9 H19 L13 18 H-13 Z" fill="#3E8EDE" /></g>
+              <g transform="translate(215 30)"><path d="M-18 -1 L0 -19 L18 -1 Z" fill="#E8590C" /><rect x="-13" y="-1" width="26" height="20" fill="#F6C58F" /><rect x="-4" y="7" width="8" height="12" fill="#8C5A3C" /></g>
+              <g transform="translate(301 30)"><ellipse cx="-4" cy="0" rx="14" ry="10" fill="#2BB3A3" /><path d="M8 0 L20 -10 L20 10 Z" fill="#2BB3A3" /><circle cx="-10" cy="-2" r="2" fill="#1A2238" /></g>
+              <g fill="#2B2F38">
+                <g transform="translate(43 104)"><ellipse cx="-4" cy="0" rx="14" ry="10" /><path d="M8 0 L20 -10 L20 10 Z" /></g>
+                <g transform="translate(129 104)"><path d="M-18 -1 L0 -19 L18 -1 Z" /><rect x="-13" y="-1" width="26" height="20" /></g>
+                <g transform="translate(215 104)"><path d="M-2 -19 L-2 5 L-17 5 Z" /><path d="M2 -14 L2 5 L13 5 Z" /><path d="M-19 9 H19 L13 18 H-13 Z" /></g>
+                <g transform="translate(301 104)"><circle cx="0" cy="-6" r="13" /><path d="M-3 7 L3 7 L0 4 Z" /><path d="M0 7 q-5 7 1 15" fill="none" stroke="#2B2F38" stroke-width="2" stroke-linecap="round" /></g>
+              </g>
+              <path d="M46 56 C110 62 200 70 296 82" fill="none" stroke="#E8590C" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+            </svg>
+          </div>
+
+          <div class="sheet-block">
+            <div class="sheet-label">{{ i18n.t.sequence.instruction }}</div>
+            <svg viewBox="0 0 344 86">
+              <g stroke="#333C48" stroke-width="2" stroke-linejoin="round">
+                <path d="M3 29 L14 10 L25 29 Z" fill="#F6D365" /><circle cx="48" cy="20" r="10" fill="#CFE3FF" /><path d="M71 29 L82 10 L93 29 Z" fill="#F6D365" /><circle cx="116" cy="20" r="10" fill="#CFE3FF" />
+                <rect x="5" y="53" width="18" height="18" rx="3" fill="#A9CBA4" /><circle cx="48" cy="62" r="10" fill="#CFE3FF" /><circle cx="82" cy="62" r="10" fill="#CFE3FF" /><rect x="107" y="53" width="18" height="18" rx="3" fill="#A9CBA4" /><circle cx="150" cy="62" r="10" fill="#CFE3FF" /><circle cx="184" cy="62" r="10" fill="#CFE3FF" />
+              </g>
+              <g fill="none" stroke="#BDBDBD" stroke-width="1.5" stroke-dasharray="4 3">
+                <rect x="137" y="7" width="26" height="26" rx="5" /><rect x="171" y="7" width="26" height="26" rx="5" /><rect x="205" y="7" width="26" height="26" rx="5" /><rect x="239" y="7" width="26" height="26" rx="5" /><rect x="273" y="7" width="26" height="26" rx="5" /><rect x="307" y="7" width="26" height="26" rx="5" />
+                <rect x="205" y="49" width="26" height="26" rx="5" /><rect x="239" y="49" width="26" height="26" rx="5" /><rect x="273" y="49" width="26" height="26" rx="5" /><rect x="307" y="49" width="26" height="26" rx="5" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="sheet-block sheet-block-last">
+            <div class="sheet-label">{{ i18n.t.spelling.instruction }}</div>
+            <div class="spelling-row">
+              <div class="spelling-picture">
+                <svg width="30" height="30" viewBox="0 0 30 30"><circle cx="11" cy="17" r="9" fill="#E5484D" /><circle cx="19" cy="17" r="9" fill="#E5484D" /><path d="M15 9 C15 5 18 3 22 4 C21 8 18 9 15 9 Z" fill="#5BB55B" /></svg>
+              </div>
+              <div class="spelling-lines"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+
+          <div class="sheet-footer">www.learningwithtoma.com</div>
+        </div>
+
+        <div class="sticker">{{ i18n.t.hero.sticker[0] }}<br />{{ i18n.t.hero.sticker[1] }}</div>
+      </div>
+    </div>
+  </div>
+</section>

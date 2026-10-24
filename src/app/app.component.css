@@ -1,42 +1,15 @@
 :host {
   display: block;
   min-height: 100vh;
-  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-  color: #2f3b45;
-  background: #fff9f3;
-}
-
-@page {
-  margin: 1.2cm 1.2cm 1.8cm;
-  @bottom-center {
-    content: "www.learningwithtoma.com";
-    font-size: 10pt;
-    color: #64748b;
-  }
-}
-
-.hero {
-  max-width: 760px;
-  margin: 4rem auto 0;
-  padding: 0 2rem;
-}
-
-.hero-copy {
-  font-size: 1.15rem;
-  line-height: 1.75;
-  color: #475569;
-  font-weight: 500;
 }
 
 @media print {
+  :host {
+    min-height: 0;
+  }
+
   :host ::ng-deep app-header,
   :host ::ng-deep app-footer {
     display: none !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
-    margin-top: 2rem;
   }
 }

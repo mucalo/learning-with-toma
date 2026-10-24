@@ -1,7 +1,5 @@
-<section class="biggest-smallest-card">
-  <app-activity-nav></app-activity-nav>
-
-  <div class="controls">
+<app-activity-page activity="biggestSmallest" [hasWorksheet]="generatedItems.length > 0" (generate)="generateProblems()" (print)="printWorksheet()">
+  <div settings>
     <div class="field">
       <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
       <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
@@ -12,11 +10,8 @@
       <input id="maxItems" type="number" min="3" max="20" [(ngModel)]="maxItems" />
     </div>
 
-    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
-    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
+    <p class="error-message" role="alert" *ngIf="showMinItemsError">{{ i18n.t.biggestSmallest.minItemsError }}</p>
   </div>
-
-  <div class="error-message" *ngIf="showMinItemsError">{{ i18n.t.biggestSmallest.minItemsError }}</div>
 
   <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.biggestSmallest.instruction" [items]="generatedItems">
     <ng-template let-item let-i="index">
@@ -35,4 +30,4 @@
       </div>
     </ng-template>
   </app-worksheet>
-</section>
+</app-activity-page>

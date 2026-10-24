@@ -20,7 +20,7 @@ describe('LanguageService', () => {
 
   it('should switch translations with the language', () => {
     service.language = 'serbian';
-    expect(service.t.common.print).toBe('Štampaj');
+    expect(service.t.activityPage.print).toBe('Odštampajte radni list');
     expect(document.documentElement.lang).toBe('sr-Latn');
     expect(document.title).toBe('Učimo s Tomom');
 

@@ -1,51 +1,95 @@
-.worksheet {
-  border: 1px solid rgba(47, 59, 69, 0.12);
-  background: white;
-  border-radius: 16px;
-  padding: 1.25rem;
+:host {
+  display: block;
 }
 
-.worksheet-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Equal room on both sides keeps the paper centred, with space on the right for the buttons. */
+.sheets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 0 56px;
 }
 
-.worksheet-header {
-  padding: 0 0 1rem;
-  text-align: left;
-  font-weight: normal;
+/* An A4 sheet, the same on screen and on paper. */
+.sheet {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 210mm;
+  height: 297mm;
+  padding: 10mm 12mm 0;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(26, 34, 56, 0.12);
+}
+
+/* No line under the instruction: most activities draw their own line above each problem. */
+.sheet-header {
+  flex: none;
+  margin-bottom: 2mm;
 }
 
 .worksheet-instruction {
-  margin: 0 0 0.5rem;
-  color: #5b8def;
-  font-weight: 600;
+  margin: 0;
+  color: #3d5a99;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
-.worksheet-row > td {
-  padding: 0;
+.sheet-body {
+  flex: 1;
+  min-height: 0;
+}
+
+/* flow-root keeps each row's margins inside it, so the measured height is the real height. */
+.worksheet-row {
+  position: relative;
+  display: flow-root;
+}
+
+.sheet-footer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8mm;
+  height: 10mm;
+  color: #6b7590;
+  font-size: 11px;
+}
+
+/* The ? and ✕ buttons sit just outside the paper's right edge, stacked, in line with their row. */
+:host ::ng-deep .worksheet-row .action-area {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 12mm + 10px);
+  flex-direction: column;
+  margin: 0;
+  transform: translateY(-50%);
 }
 
 @media print {
-  .worksheet {
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
+  .sheets {
+    gap: 0;
     padding: 0;
+    zoom: 1 !important;
   }
 
-  /* Repeat the instruction at the top of every printed page. */
-  .worksheet-table thead {
-    display: table-header-group;
+  .sheet {
+    /* A hair under 297mm, so rounding never spills onto an extra blank page. */
+    height: 296.5mm;
+    overflow: hidden;
+    box-shadow: none;
+    break-after: page;
   }
 
-  .worksheet-instruction {
-    text-transform: uppercase;
+  .sheet:last-child {
+    break-after: auto;
   }
 
-  /* Never split a problem across two pages. */
-  .worksheet-row {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  :host ::ng-deep .action-area {
+    display: none !important;
   }
 }

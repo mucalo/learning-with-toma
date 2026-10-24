@@ -26,7 +26,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('header h1')?.textContent).toContain('Learning with Toma');
+    expect(compiled.querySelector('header .logo')?.getAttribute('aria-label')).toBe('Learning with Toma');
   });
 
   it('should translate the header when the language changes', () => {
@@ -34,7 +34,7 @@ describe('AppComponent', () => {
     TestBed.inject(LanguageService).language = 'croatian';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('header a.menu-link')?.textContent).toContain('O projektu');
-    expect(compiled.querySelector('header h1')?.textContent).toContain('Učimo s Tomom');
+    expect(compiled.querySelector('header a.menu-link')?.textContent).toContain('Aktivnosti');
+    expect(compiled.querySelector('header .logo')?.getAttribute('aria-label')).toBe('Učimo s Tomom');
   });
 });

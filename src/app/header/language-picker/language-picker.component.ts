@@ -2,7 +2,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { LanguageKey, LanguageOption } from '../../i18n/languages';
 
-/** Compact language switch in the header: a 🌐 button with the current language code, opening a short list. */
+/** Language switch in the header: a pill with the current flag and language name, opening a short list. */
 @Component({
   selector: 'app-language-picker',
   templateUrl: './language-picker.component.html',

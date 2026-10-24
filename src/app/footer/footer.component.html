@@ -1,12 +1,49 @@
-<footer class="footer-bar">
-  <p class="footer-message">{{ i18n.t.footer.message }}</p>
+<footer class="site-footer" [class.compact]="onActivityPage">
+  <!-- Activity pages: one quiet line, so the worksheet stays the focus. -->
+  <div *ngIf="onActivityPage" class="container footer-compact">
+    <span>{{ year(i18n.t.footer.activityCopyright) }}</span>
+    <a routerLink="/" (click)="toTop()">{{ i18n.t.footer.backHome }}</a>
+  </div>
 
-  <a
-    class="donate-button"
-    [href]="ctaUrl"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    {{ i18n.t.donate }}
-  </a>
+  <div *ngIf="!onActivityPage" class="container footer-inner">
+    <div class="footer-columns">
+      <div class="footer-brand">
+        <a routerLink="/" class="footer-logo" (click)="toTop()">
+          <span class="logo-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24"><path d="M9 3v14a3 3 0 0 0 5 2" /><path d="M5 8h9" /></svg>
+          </span>
+          {{ i18n.t.header.appTitle }}
+        </a>
+        <p>{{ i18n.t.footer.description }}</p>
+      </div>
+
+      <nav class="footer-links" [attr.aria-labelledby]="'footer-explore'">
+        <p id="footer-explore" class="footer-label">{{ i18n.t.footer.explore }}</p>
+        <a *ngFor="let section of sections" routerLink="/" [fragment]="section.id" (click)="goTo(section.id)">
+          {{ i18n.t.menu.items[section.key] }}
+        </a>
+      </nav>
+
+      <div class="footer-links">
+        <p class="footer-label">{{ i18n.t.footer.getInTouch }}</p>
+        <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+        <a [href]="mailto(i18n.t.help.feedback.emailSubject)">{{ i18n.t.help.feedback.title }}</a>
+        <a [href]="mailto(i18n.t.help.photos.emailSubject)">{{ i18n.t.help.photos.title }}</a>
+      </div>
+
+      <div class="keep-free">
+        <div class="keep-free-head">
+          <svg class="heart" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="heart" /></svg>
+          <span>{{ i18n.t.footer.keepFree.title }}</span>
+        </div>
+        <p>{{ i18n.t.footer.keepFree.text }}</p>
+        <a class="btn btn-dark" [href]="donateUrl" target="_blank" rel="noopener noreferrer">
+          <svg class="heart-white" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="heart" /></svg>
+          {{ i18n.t.footer.keepFree.button }}
+        </a>
+      </div>
+    </div>
+
+    <p class="footer-bottom">{{ year(i18n.t.footer.copyright) }}</p>
+  </div>
 </footer>

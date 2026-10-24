@@ -1,14 +1,15 @@
-import { Component, ElementRef, HostListener, Input, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
-import { ACTIVITIES } from '../activities';
+import { isActivityUrl } from '../activities';
 import { LanguageService } from '../i18n/language.service';
-import { BUY_ME_A_COFFEE_URL } from '../links';
 import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
 
 /**
- * Title, menu, language picker and donate button. "Activities" opens a dropdown with every
- * activity; on small screens the whole menu folds away behind a ☰ button.
+ * Sticky header: logo, links to the home page sections, language picker and a Support button that
+ * leads to the "Want to help?" section. On activity pages "Activities" is highlighted and an
+ * "All activities" button leads back to the activity cards. On small screens the links fold away
+ * behind a ☰ button.
  */
 @Component({
   selector: 'app-header',
@@ -16,30 +17,25 @@ import { HOME_SECTIONS, scrollToSection } from '../home/home-sections';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnDestroy {
-  @Input() ctaUrl = BUY_ME_A_COFFEE_URL;
-
-  readonly activities = ACTIVITIES;
-  /** "Activities" has its own dropdown, so only the other sections are plain menu links. */
-  readonly sections = HOME_SECTIONS.filter(section => section.id !== 'activities');
+  readonly sections = HOME_SECTIONS;
 
   /** The ☰ menu on small screens. */
   menuOpen = false;
-  activitiesOpen = false;
+  onActivityPage = false;
 
   private readonly navigation: Subscription;
 
-  constructor(readonly i18n: LanguageService, router: Router, private readonly host: ElementRef<HTMLElement>) {
+  constructor(readonly i18n: LanguageService, private readonly router: Router, private readonly host: ElementRef<HTMLElement>) {
     this.navigation = router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => this.closeAll());
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe(event => {
+        this.onActivityPage = isActivityUrl(event.urlAfterRedirects);
+        this.menuOpen = false;
+      });
   }
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
-  }
-
-  toggleActivities(): void {
-    this.activitiesOpen = !this.activitiesOpen;
   }
 
   /**
@@ -47,29 +43,30 @@ export class HeaderComponent implements OnDestroy {
    * on the home page, scroll straight away (this also works when clicking the same item twice).
    */
   goToSection(id: string): void {
-    this.closeAll();
+    this.menuOpen = false;
     scrollToSection(id);
   }
 
-  closeAll(): void {
+  /** The logo goes to the top of the home page, also when we are already there. */
+  goHome(): void {
     this.menuOpen = false;
-    this.activitiesOpen = false;
+    window.scrollTo({ top: 0 });
   }
 
+  /**
+   * Uses the click's path rather than its target: the ☰ icon swaps its path when the menu opens,
+   * so by now the clicked element may already be gone from the page.
+   */
   @HostListener('document:click', ['$event'])
   closeOnOutsideClick(event: MouseEvent): void {
-    const target = event.target as Node;
-    if (!this.host.nativeElement.querySelector('.activities-item')?.contains(target)) {
-      this.activitiesOpen = false;
-    }
-    if (!this.host.nativeElement.contains(target)) {
+    if (!event.composedPath().includes(this.host.nativeElement)) {
       this.menuOpen = false;
     }
   }
 
   @HostListener('document:keydown.escape')
   closeOnEscape(): void {
-    this.closeAll();
+    this.menuOpen = false;
   }
 
   ngOnDestroy(): void {

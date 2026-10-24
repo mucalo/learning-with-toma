@@ -1,14 +1,12 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ACTIVITIES, Activity } from '../activities';
+import { ACTIVITIES } from '../activities';
 import { LanguageService } from '../i18n/language.service';
 
 /**
- * A slim, single-line strip of links to every activity, shown at the top of each activity page,
- * so users can jump straight from one activity to another. The current activity is highlighted.
- * When the links don't fit, they scroll sideways; the arrow buttons are always shown, and enabled
- * only on the side that has more.
- * Below it, the current activity's title as the page heading. Hidden when printing.
+ * A single-line row of links to every activity, with their icons, at the top of each activity
+ * page, so users can jump straight from one activity to another. The current activity is dark and
+ * scrolled into the middle. When the links don't fit, they scroll sideways; the arrow buttons are
+ * always shown, and enabled only on the side that has more. Hidden when printing.
  */
 @Component({
   selector: 'app-activity-nav',
@@ -17,8 +15,6 @@ import { LanguageService } from '../i18n/language.service';
 })
 export class ActivityNavComponent implements AfterViewInit, OnDestroy {
   readonly activities = ACTIVITIES;
-  /** The activity whose page this is, matched by its route. */
-  readonly current?: Activity;
 
   @ViewChild('scroller') scroller?: ElementRef<HTMLElement>;
   @ViewChild('track') track?: ElementRef<HTMLElement>;
@@ -28,10 +24,7 @@ export class ActivityNavComponent implements AfterViewInit, OnDestroy {
 
   private resizeObserver?: ResizeObserver;
 
-  constructor(readonly i18n: LanguageService, private readonly zone: NgZone, route: ActivatedRoute) {
-    const path = route.snapshot.routeConfig?.path;
-    this.current = ACTIVITIES.find(activity => activity.route === `/${path}`);
-  }
+  constructor(readonly i18n: LanguageService, private readonly zone: NgZone) {}
 
   ngAfterViewInit(): void {
     // The arrows depend on both the visible width (window size) and the links' width (language).
@@ -46,6 +39,11 @@ export class ActivityNavComponent implements AfterViewInit, OnDestroy {
       this.scrollToCurrent();
       this.updateArrows();
     });
+    // The links change width once the web fonts arrive, so centre the current one again then.
+    document.fonts?.ready.then(() => this.zone.run(() => {
+      this.scrollToCurrent();
+      this.updateArrows();
+    }));
   }
 
   ngOnDestroy(): void {
@@ -76,7 +74,10 @@ export class ActivityNavComponent implements AfterViewInit, OnDestroy {
     const scroller = this.scroller?.nativeElement;
     const current = scroller?.querySelector<HTMLElement>('[aria-current="page"]');
     if (scroller && current && scroller.scrollWidth > scroller.clientWidth) {
-      scroller.scrollLeft = current.offsetLeft - (scroller.clientWidth - current.offsetWidth) / 2;
+      // Measured on screen, so it doesn't matter which element the link's offsets are relative to.
+      const link = current.getBoundingClientRect();
+      const view = scroller.getBoundingClientRect();
+      scroller.scrollLeft += link.left + link.width / 2 - (view.left + view.width / 2);
     }
   }
 }

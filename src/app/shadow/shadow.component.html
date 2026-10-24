@@ -1,7 +1,5 @@
-<section class="shadow-card">
-  <app-activity-nav></app-activity-nav>
-
-  <div class="controls">
+<app-activity-page activity="shadow" [hasWorksheet]="generatedItems.length > 0" (generate)="generateProblems()" (print)="printWorksheet()">
+  <div settings>
     <div class="field">
       <label for="problemCount">{{ i18n.t.common.numberOfProblems }}</label>
       <input id="problemCount" type="number" min="1" max="100" [(ngModel)]="problemCount" />
@@ -20,9 +18,6 @@
         <option *ngFor="let option of difficulties" [ngValue]="option">{{ i18n.t.shadow[option] }}</option>
       </select>
     </div>
-
-    <button type="button" class="generate-button" (click)="generateProblems()">{{ i18n.t.common.generate }}</button>
-    <button type="button" class="print-button" (click)="printWorksheet()" [disabled]="generatedItems.length === 0">{{ i18n.t.common.print }}</button>
   </div>
 
   <app-worksheet *ngIf="generatedItems.length > 0" [instruction]="i18n.t.shadow.instruction" [items]="generatedItems">
@@ -59,4 +54,4 @@
       </div>
     </ng-template>
   </app-worksheet>
-</section>
+</app-activity-page>

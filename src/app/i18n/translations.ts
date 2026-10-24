@@ -1,3 +1,4 @@
+import { ActivityCategory, ActivityKey } from '../activities';
 import { LanguageKey } from './languages';
 
 /**
@@ -7,43 +8,95 @@ import { LanguageKey } from './languages';
 export interface Translations {
   header: {
     appTitle: string;
+    /** The logo's two lines, e.g. "Learning" / "with Toma". */
+    logoLines: [string, string];
     languageLabel: string;
+    /** Header button that leads to the "Want to help?" section. */
+    support: string;
+    /** Header button on activity pages, back to the activity cards on the home page. */
+    allActivities: string;
   };
   footer: {
-    message: string;
+    /** Short description under the logo. */
+    description: string;
+    explore: string;
+    getInTouch: string;
+    keepFree: { title: string; text: string; button: string };
+    /** Bottom line on the home page; `{year}` becomes the current year. */
+    copyright: string;
+    /** Bottom line on activity pages; `{year}` becomes the current year. */
+    activityCopyright: string;
+    backHome: string;
   };
   donate: string;
-  home: {
-    heading: string;
+  /** The activity cards on the home page, with a filter by category. */
+  activitiesSection: {
+    eyebrow: string;
+    title: string;
+    filterLabel: string;
+    /** First filter chip; `{count}` becomes the number of activities. */
+    all: string;
+    categories: Record<ActivityCategory, string>;
+  };
+  /** First section of the home page. */
+  hero: {
+    badges: string[];
+    /** The heading, split around the highlighted words. */
+    title: { before: string; highlight: string; after: string };
     intro: string;
-    activitiesLabel: string;
+    chooseActivity: string;
+    howItWorks: string;
+    madeFor: string;
+    audiences: string[];
+    /** Round sticker on the worksheet illustration, one entry per line. */
+    sticker: [string, string];
+  };
+  /** The three numbered steps below the hero; the section's heading is `hero.howItWorks`. */
+  howItWorks: Array<{ title: string; text: string }>;
+  /** Dark band below the activities; its buttons switch the site's language. */
+  languagesBand: {
+    title: string;
+    text: string;
   };
   /** Header menu; each item scrolls to a section of the home page (see `home/home-sections.ts`). */
   menu: {
     label: string;
     /** Accessible label of the ☰ button that opens the menu on small screens. */
     openMenu: string;
-    /** Last link in the Activities dropdown, to the activity cards on the home page. */
-    allActivities: string;
     items: {
       activities: string;
+      testimonials: string;
       about: string;
       help: string;
-      contact: string;
     };
   };
+  /** About section of the home page. Text may mark key phrases in bold with `**…**`. */
   about: {
+    eyebrow: string;
     heading: string;
+    /** Short summary of the project below the heading. */
+    lead: string;
+    stats: Array<{ value: string; label: string }>;
     /** Paragraphs before the list of reasons why drawing problems by hand didn't work out. */
-    opening: string[];
+    story: string[];
     drawingReasons: string[];
+    afterReasons: string[];
+    /** Box about neurodivergent children. */
+    learner: { title: string; text: string; tags: string[] };
     closing: string[];
-    /** Alt text for each photo beside the text (`aboutPhotos` in the home component). */
-    photoAlts: string[];
+    /** Closing line, shown in handwriting. */
+    handwritten: string;
+    signature: string;
+    /** Note after the story that leads to the "Want to help?" section. */
+    supportNote: { text: string; button: string };
+    /** One entry per photo (`aboutPhotos` in the home component), in the same order. */
+    photos: Array<{ alt: string; caption: string }>;
   };
   /** "Want to help?" section of the home page. Text may mark key phrases in bold with `**…**`. */
   help: {
+    eyebrow: string;
     heading: string;
+    intro: string;
     donate: {
       title: string;
       paragraphs: string[];
@@ -65,25 +118,36 @@ export interface Translations {
       title: string;
       /** `{email}` becomes the contact e-mail address, as a link. */
       intro: string;
-      items: string[];
+      /** What kind of message helps, each with an example shown below it. */
+      items: Array<{ text: string; example: string }>;
+      button: string;
+      emailSubject: string;
+    };
+    photos: {
+      title: string;
+      text: string;
+      /** The example photo is the second About photo. */
+      exampleAlt: string;
+      exampleCaption: string;
+      /** Kinds of photos that keep children unrecognisable. */
+      kinds: string[];
+      note: string;
       button: string;
       emailSubject: string;
     };
   };
-  /** "Contact" section of the home page. */
-  contact: {
-    heading: string;
-    paragraphs: string[];
-    /** Shown just before the contact e-mail address. */
-    emailLabel: string;
-  };
-  /** Testimonials shown among the activity cards on the home page (see `home/home-tiles.ts`). */
+  /** Testimonials on the home page. */
   testimonials: {
+    eyebrow: string;
+    title: string;
+    /** Accessible labels of the arrow buttons that scroll the row. */
+    previous: string;
+    next: string;
     items: Array<{
       quote: string;
       /** Who said it; names are not translated. */
       name: string;
-      /** Who they are, e.g. "mother of Kylie (5)". */
+      /** Who they are, e.g. "Mother of Kylie (5)". */
       relation: string;
     }>;
   };
@@ -101,15 +165,37 @@ export interface Translations {
     trace: { title: string; description: string };
     dotToDot: { title: string; description: string };
   };
-  /** Links to every activity at the top of each activity page. */
-  activityNav: {
-    label: string;
-    allActivities: string;
-  };
-  common: {
-    numberOfProblems: string;
+  /** Everything around the worksheet on an activity page. */
+  activityPage: {
+    /** Heading of the settings panel. */
+    makeWorksheet: string;
+    language: string;
     generate: string;
     print: string;
+    preview: string;
+    /** Shown in the preview before the first worksheet is generated. */
+    emptyPreview: string;
+    /** Support note below the buttons: a bold first sentence, then the rest and a link. */
+    supportBold: string;
+    supportText: string;
+    supportLink: string;
+    tips: string;
+    tryNext: string;
+    /** `{count}` becomes the number of activities. */
+    seeAll: string;
+    /** Accessible name of the activity switcher. */
+    switcher: string;
+    /** Number of pages above the preview, by plural form; `{count}` becomes the number. */
+    pageCount: { one: string; few: string; other: string };
+  };
+  worksheet: {
+    /** Accessible name of each page; `{page}` and `{count}` become numbers. */
+    pageLabel: string;
+  };
+  /** Per activity: why it helps (after its description) and three tips for grown-ups. */
+  activityInfo: Record<ActivityKey, { benefit: string; tips: Array<{ title: string; text: string }> }>;
+  common: {
+    numberOfProblems: string;
     removeRow: string;
   };
   spelling: {
@@ -295,52 +381,112 @@ export interface Translations {
 const english: Translations = {
   header: {
     appTitle: 'Learning with Toma',
-    languageLabel: 'Language'
+    logoLines: ['Learning', 'with Toma'],
+    languageLabel: 'Language',
+    support: 'Support',
+    allActivities: 'All activities'
   },
   footer: {
-    message: 'If this work helps a child, a parent, or a professional feel supported, a small donation can help keep it going with compassion and care.'
+    description: 'Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, teachers and therapists.',
+    explore: 'Explore',
+    getInTouch: 'Get in touch',
+    keepFree: {
+      title: 'Keep it free',
+      text: 'Every worksheet is free for every family, thanks to parents who chip in.',
+      button: 'Donate'
+    },
+    copyright: '© {year} Learning with Toma · Made by a dad of three',
+    activityCopyright: '© {year} Learning with Toma · Free printable worksheets for ages 4–7',
+    backHome: 'Back to home'
   },
   donate: 'Donate to help children learn',
-  home: {
-    heading: 'Choose an activity',
-    intro: 'Pick an activity → Generate a worksheet → Print it → Learn and have fun together!',
-    activitiesLabel: 'Learning activities'
+  activitiesSection: {
+    eyebrow: 'Activities',
+    title: 'What shall we practise today?',
+    filterLabel: 'Filter activities',
+    all: 'All {count}',
+    categories: { letters: 'Letters & words', numbers: 'Numbers & size', motor: 'Fine motor', thinking: 'Thinking' }
+  },
+  hero: {
+    badges: ['100% free', 'Ages 4–7', '3 languages'],
+    title: { before: 'Printable worksheets for ', highlight: 'little learners', after: ', ready in seconds.' },
+    intro: 'Pick one of 12 activities, choose your language, adjust a few settings and print. A fresh worksheet every time — no cost, no fuss.',
+    chooseActivity: 'Choose an activity',
+    howItWorks: 'How it works',
+    madeFor: 'Made for',
+    audiences: ['parents', 'teachers', 'kindergartens', 'speech therapists'],
+    sticker: ['Free', 'to print']
+  },
+  howItWorks: [
+    { title: 'Pick an activity', text: 'Letters, numbers, fine motor or thinking games — 12 to choose from.' },
+    { title: 'Make it yours', text: 'Choose the language, difficulty and number of problems, then generate a fresh worksheet.' },
+    { title: 'Print and play', text: 'Print straight away or save it as a PDF for later.' }
+  ],
+  languagesBand: {
+    title: 'Every worksheet, in your language',
+    text: 'Instructions, words and pictures change with the language — great for bilingual families and language therapy.'
   },
   menu: {
     label: 'Main menu',
     openMenu: 'Menu',
-    allActivities: 'See all activities on the home page',
     items: {
       activities: 'Activities',
+      testimonials: 'Testimonials',
       about: 'About',
-      help: 'Want to help?',
-      contact: 'Contact'
+      help: 'Want to help?'
     }
   },
   about: {
-    heading: 'About Learning with Toma',
-    opening: [
-      'All three of my kids **loved solving little puzzles, tasks and problems on paper** when they were small. Simple things like “draw a circle”, “complete the word” or “find the biggest item”. It made them genuinely happy, right up until they were about six or seven. (These days they’re in a phase where they’d answer that in an extremely annoying voice: “Six seveeeen!”)',
-      'We used to buy them activity workbooks, but they’d always find my wife and me having coffee at 9 on a Sunday morning and ask, “**Hey, Dad, can you give us some problems to solve?**” And at 9 on a Sunday morning you can’t exactly pop out for a new workbook.',
-      'So I started **drawing the problems for them by hand**. However:'
+    eyebrow: 'About',
+    heading: 'A dad who couldn’t draw fast enough',
+    lead: 'Learning with Toma is a free website that creates printable learning worksheets for children in seconds — spelling, counting, mazes, letter tracing and more. It’s made for parents, teachers and therapists, especially those supporting children with autism, ADHD, dyslexia or dyspraxia.',
+    stats: [
+      { value: '12', label: 'activities' },
+      { value: '4–7', label: 'years old' },
+      { value: '3', label: 'languages' },
+      { value: '0 €', label: 'always free' }
+    ],
+    story: [
+      'All three of my kids **loved solving little puzzles, tasks and problems on paper** when they were small. Simple things like “draw a circle”, “complete the word” or “find the biggest item”. It made them genuinely happy, right up until they were about six or seven. (These days they’d answer that in an extremely annoying voice: “Six seveeeen!”)',
+      'We used to buy them activity workbooks, but they’d always find my wife and me having coffee at 9 on a Sunday morning and ask, **“Hey, Dad, can you give us some problems to solve?”** And at 9 on a Sunday morning you can’t exactly pop out for a new workbook.',
+      'So I started **drawing the problems by hand**. Two small issues:'
     ],
     drawingReasons: [
-      'that got repetitive really fast, because **I really can’t draw**, and',
+      'it got repetitive really fast, because **I really can’t draw**, and',
       '**I couldn’t draw as fast as they could solve.**'
     ],
-    closing: [
-      'Being a software developer, I started looking for **a way to automate it**, and maybe make it a bit easier for other parents to keep their kids busy while they try to have a normal, uninterrupted conversation over coffee. My advice, though: **keep the conversation short**. It won’t stay uninterrupted for long! :)',
-      'One very important thing: my son is **neuroatypical** (I won’t go into details), and he really dislikes drawing and anything to do with pencils. But developing **graphomotor and fine motor skills** at an early age is crucially important, and **practising with a pencil in your fingers is vital!** Luckily, at some point, out of nowhere, he became interested in letters and writing… and these little exercises **held his focus longer than anything else** we tried.',
-      'So, not to ramble on for too long: **I built this website for myself**, so I can quickly make little problems for my youngest daughter (the other two have outgrown them, for now ;)). But I hope there are **other parents out there who will find it useful too**.',
-      'And I hope some kids out there will **have fun with these**!'
+    afterReasons: [
+      'Being a software developer, I started looking for **a way to automate it** — and maybe make it a bit easier for other parents to keep their kids busy while they try to have a normal, uninterrupted conversation over coffee. My advice, though: **keep the conversation short**. It won’t stay uninterrupted for long! :)'
     ],
-    photoAlts: [
-      'A worksheet I drew by hand for my kids',
-      'A child solving a printed worksheet'
+    learner: {
+      title: 'Made with every kind of learner in mind',
+      text: 'My son is **neurodivergent**, and he really dislikes drawing and anything to do with pencils. But developing **graphomotor and fine motor skills** early is so important, and **practising with a pencil in your fingers is vital**. Then, out of nowhere, he became interested in letters and writing — and these little exercises **held his focus longer than anything else** we tried.',
+      tags: ['Autism', 'ADHD', 'Dyslexia', 'Dyspraxia']
+    },
+    closing: [
+      'So, not to ramble on for too long: **I built this website for myself**, so I can quickly make little problems for my youngest daughter (the other two have outgrown them, for now ;)). But I hope there are **other parents out there who will find it useful too**.'
+    ],
+    handwritten: 'And I hope some kids out there will have fun with these!',
+    signature: '— Mario, dad of three',
+    supportNote: {
+      text: 'If these little worksheets have brought a smile to your table, you can help keep them coming.',
+      button: 'Support the project'
+    },
+    photos: [
+      {
+        alt: 'A hand-drawn worksheet: small pencil drawings of a bee, sun, cloud, sheep, bell, piano and cat, each followed by dashes for the letters of its name',
+        caption: 'Where it all started'
+      },
+      {
+        alt: 'A child at a wooden table, pencil in hand, working on a printed worksheet',
+        caption: 'Sunday morning practice'
+      }
     ]
   },
   help: {
+    eyebrow: 'Get involved',
     heading: 'Want to help?',
+    intro: 'Learning with Toma is free for everyone. If your little ones enjoy it, here are four ways to help keep it going.',
     donate: {
       title: 'Donate',
       paragraphs: [
@@ -351,7 +497,7 @@ const english: Translations = {
     share: {
       title: 'Spread the word',
       paragraphs: [
-        'Share Learning with Toma on your social networks, in your WhatsApp, Viber or other groups (especially the ones with parents of little kids), with schools, kindergartens… I’d love for **as many people as possible** to have the chance to play with their kids using these worksheets, and I’d love to know that they helped improve the **graphomotor, focus and logic skills** of as many children as possible!'
+        'Share Learning with Toma on your social networks, in your WhatsApp, Viber or other groups (especially the ones with parents of little kids), with schools, kindergartens… I’d love for **as many people as possible** to have the chance to play with their kids using these worksheets, and to know they helped improve the **graphomotor, focus and logic skills** of as many children as possible!'
       ],
       shareOn: 'Share on {network}',
       email: 'Share by e-mail',
@@ -364,32 +510,43 @@ const english: Translations = {
       title: 'Send feedback',
       intro: 'Feel free to reach out at {email} and let me know what you think. I’ll cherish:',
       items: [
-        '**any constructive feedback**, e.g. “My kid (age 6) loved Find the Intruder, but Copy the Pattern didn’t go as well, because she couldn’t recognise the patterns.” This helps me improve the activities for other kids down the road.',
-        '**any testimonials** I can publicly put on the website, e.g. “My son (6) and I spent three afternoons this week playing with these. The worksheets are an amazing thing to have around the house. – Irene, mom of John (6)”. The more of these I get, the more assured I am that the project is on the right track.',
-        '**any photos or videos** I can publicly use for promotion. Obviously, none of us want to send photos of our kids or have companies and projects post them online. But I’ll take any real photos or videos with faces blurred, just the backs of heads, just the hands… Anything real is awesome, because it’s the only thing that tells the true story!'
+        {
+          text: '**Any constructive feedback** — it helps me improve the activities for other kids down the road.',
+          example: 'e.g. “My kid (age 6) loved Find the Intruder, but Copy the Pattern didn’t go as well, because she couldn’t recognise the patterns.”'
+        },
+        {
+          text: '**Any testimonials** I can put on the website — the more I get, the more assured I am that the project is on the right track.',
+          example: 'e.g. “My son (6) and I spent three afternoons this week playing with these.” — Irene, mom of John (6)'
+        }
       ],
-      button: 'Send feedback, a testimonial or photos',
+      button: 'Send feedback or a testimonial',
       emailSubject: 'Learning with Toma – feedback'
+    },
+    photos: {
+      title: 'Share photos or videos',
+      text: 'Real moments tell the true story better than anything I could write. Obviously, none of us want to send photos of our kids or have companies post them online — so I’ll only ever use photos and videos where **no child can be recognised**.',
+      exampleAlt: 'Example: a child writing on a worksheet, seen from behind, no face visible',
+      exampleCaption: 'Like this one',
+      kinds: ['Faces blurred', 'Backs of heads', 'Just the hands', 'Finished worksheets'],
+      note: 'Anything real is awesome — a few seconds of video is plenty.',
+      button: 'Send photos or videos',
+      emailSubject: 'Learning with Toma – photos and videos'
     }
   },
-  contact: {
-    heading: 'Contact',
-    paragraphs: [
-      'I’m always happy to hear from you! Whether you have a question, an idea for a new activity, or you’ve noticed something that doesn’t work quite right, feel free to get in touch.',
-      'I read every message and I’ll do my best to reply as soon as I can.'
-    ],
-    emailLabel: 'Write to me at'
-  },
   testimonials: {
+    eyebrow: 'Testimonials',
+    title: 'What parents are saying',
+    previous: 'Previous testimonials',
+    next: 'Next testimonials',
     items: [
-      { quote: 'This is bringing my kid and me hours of playtime weekly. She just loves it!', name: 'Mary', relation: 'mother of Kylie (5)' },
-      { quote: 'Mak was playing with this for an unusually long time and loved the activities, especially “Find the Intruder”!', name: 'Nela', relation: 'mother of Mak (5)' },
-      { quote: 'The letters and the lines are still bumpy :) but Mary Jane is doing it with a smile on her face, which helps me a lot!', name: 'Peter', relation: 'father of Mary Jane (7)' },
-      { quote: 'This is awesome, I’m running out of printing paper! My kids just adore it!', name: 'Ivana', relation: 'mother of Petar (6) and Maja (4)' }
+      { quote: 'The letters and the lines are still bumpy :) but Mary Jane is doing it with a smile on her face, which helps me a lot!', name: 'Peter', relation: 'Father of Mary Jane (7)' },
+      { quote: 'Mak was playing with this for an unusually long time and loved the activities, especially “Find the Intruder”!', name: 'Nela', relation: 'Mother of Mak (5)' },
+      { quote: 'This is bringing my kid and me hours of playtime weekly. She just loves it!', name: 'Mary', relation: 'Mother of Kylie (5)' },
+      { quote: 'This is awesome, I’m running out of printing paper! My kids just adore it!', name: 'Ivana', relation: 'Mother of Petar (6) and Maja (4)' }
     ]
   },
   activities: {
-    spelling: { title: 'Spelling', description: 'Practice spelling with picture prompts.' },
+    spelling: { title: 'Spelling', description: 'Practise spelling with picture prompts.' },
     counting: { title: 'Counting', description: 'Count objects and write the number.' },
     biggestSmallest: { title: 'Biggest and Smallest', description: 'Circle the biggest and smallest objects.' },
     sequence: { title: 'Continue the Sequence', description: 'Spot the pattern and continue it.' },
@@ -402,14 +559,125 @@ const english: Translations = {
     trace: { title: 'Trace the Letters', description: 'Trace dotted letters and numbers, then write them alone.' },
     dotToDot: { title: 'Dot to Dot', description: 'Join the dots in order to reveal a picture.' }
   },
-  activityNav: {
-    label: 'Activities',
-    allActivities: '← All activities'
+  activityPage: {
+    makeWorksheet: 'Make your worksheet',
+    language: 'Language',
+    generate: 'Generate worksheet',
+    print: 'Print worksheet',
+    preview: 'Preview',
+    emptyPreview: 'Choose your settings and press “Generate worksheet”. Your worksheet will appear here, just as it will print.',
+    supportBold: 'This worksheet was free.',
+    supportText: 'A coffee’s worth helps keep it that way for every family.',
+    supportLink: 'Support the project',
+    tips: 'Tips for grown-ups',
+    tryNext: 'Try next',
+    seeAll: 'See all {count} activities',
+    switcher: 'All activities',
+    pageCount: { one: '{count} page · A4', few: '{count} pages · A4', other: '{count} pages · A4' }
+  },
+  worksheet: {
+    pageLabel: 'Page {page} of {count}'
+  },
+  activityInfo: {
+    spelling: {
+      benefit: 'Links pictures to words and builds early spelling.',
+      tips: [
+        { title: 'Say it slowly', text: 'Stretch the word out loud together (“c-a-t”) before writing, so each sound gets its own line.' },
+        { title: 'Start short', text: 'Begin with three- or four-letter words and raise the maximum only when it feels easy.' },
+        { title: 'Check the grip', text: 'Chunky crayons or short pencils help small hands find a comfortable hold.' }
+      ]
+    },
+    counting: {
+      benefit: 'Practises counting one by one and writing numbers.',
+      tips: [
+        { title: 'Touch and count', text: 'Let your child touch each picture while counting aloud, so every item is counted once.' },
+        { title: 'Tick them off', text: 'A small tick on each counted picture helps when the pictures are scattered.' },
+        { title: 'Start small', text: 'Keep the maximum at five or ten until counting feels confident, then go higher.' }
+      ]
+    },
+    biggestSmallest: {
+      benefit: 'Trains visual comparison and the words for size.',
+      tips: [
+        { title: 'Talk about size', text: 'Use words like big, bigger and biggest while pointing — they learn the words as well as the idea.' },
+        { title: 'Fewer is easier', text: 'With fewer items the difference is clearer; add more items to make it harder.' },
+        { title: 'Two colours, two jobs', text: 'Have a green and a blue crayon ready before you start, so the instruction is easy to follow.' }
+      ]
+    },
+    sequence: {
+      benefit: 'Builds pattern spotting, the basis of early maths and logic.',
+      tips: [
+        { title: 'Say the pattern', text: 'Read it aloud like a rhythm (“triangle, circle, triangle, circle…”) — hearing it makes it easier to see.' },
+        { title: 'Start with two', text: 'Patterns of two items are the best start; move to longer ones step by step.' },
+        { title: 'Ask, then draw', text: 'Ask what comes next before drawing, so your child explains the rule in their own words.' }
+      ]
+    },
+    intruder: {
+      benefit: 'Practises grouping, vocabulary and explaining choices.',
+      tips: [
+        { title: 'Ask “why?”', text: 'When your child circles a picture, ask why it doesn’t belong — explaining is half the learning.' },
+        { title: 'Name the theme', text: 'First say what the pictures have in common (“these are all fruit”), then look for the odd one out.' },
+        { title: 'More pictures, more challenge', text: 'Add theme pictures and intruders gradually as your child gets quicker.' }
+      ]
+    },
+    line: {
+      benefit: 'Strengthens pencil control for the shapes used in handwriting.',
+      tips: [
+        { title: 'Trace first', text: 'Go over the dashed part slowly before continuing alone — speed comes later.' },
+        { title: 'Big before small', text: 'Large patterns are easier for small hands; move to smaller ones as control improves.' },
+        { title: 'Check the grip', text: 'Chunky crayons or short pencils help small hands find a comfortable hold.' }
+      ]
+    },
+    shadow: {
+      benefit: 'Trains visual discrimination and attention to shape.',
+      tips: [
+        { title: 'Name the shape', text: 'Talk about what makes each shadow different — a tail, a handle, a pointy roof.' },
+        { title: 'Easy first', text: 'Start with the easy level, where the shapes are very different, before trying a single group.' },
+        { title: 'No ruler needed', text: 'Straight lines aren’t the goal; any line that connects the right pair counts.' }
+      ]
+    },
+    maze: {
+      benefit: 'Builds planning, focus and pencil control.',
+      tips: [
+        { title: 'Finger first', text: 'Let your child find the way with a finger first, then with the pencil.' },
+        { title: 'Small mazes first', text: 'Start with 5 × 5 or 6 × 6 and go bigger as patience grows.' },
+        { title: 'Mistakes are fine', text: 'If the pencil ends up in a dead end, go back and try again — that’s part of the fun.' }
+      ]
+    },
+    where: {
+      benefit: 'Teaches position words like on, under, next to and above.',
+      tips: [
+        { title: 'Act it out', text: 'First put a toy on, under or next to a real table — then the pictures make sense.' },
+        { title: 'Read together', text: 'Read the sentence aloud and let your child point before circling.' },
+        { title: 'Two words to start', text: 'Begin with two position words and add more once they feel secure.' }
+      ]
+    },
+    copyPattern: {
+      benefit: 'Develops visual-spatial skills and careful pencil movements.',
+      tips: [
+        { title: 'Count the dots', text: 'Find where a line starts together by counting dots from a corner.' },
+        { title: 'Small grid first', text: 'A 3 × 3 or 4 × 4 grid is the best start; go bigger as copying gets easier.' },
+        { title: 'Straight lines first', text: 'Leave diagonal lines off until straight lines feel easy.' }
+      ]
+    },
+    trace: {
+      benefit: 'Builds pencil control and letter recognition.',
+      tips: [
+        { title: 'Say it out loud', text: 'Name the letter and its sound together while tracing — it links shape, sound and movement.' },
+        { title: 'Short and often', text: 'One row a day beats a full page once a week. Stop while it’s still fun.' },
+        { title: 'Check the grip', text: 'Chunky crayons or short pencils help small hands find a comfortable hold.' }
+      ]
+    },
+    dotToDot: {
+      benefit: 'Practises number order and steady hand movements.',
+      tips: [
+        { title: 'Say each number', text: 'Count out loud from dot to dot — it practises number order along the way.' },
+        { title: 'Guess the picture', text: 'Before you start, guess together what the picture will be.' },
+        { title: 'Fewer dots to start', text: 'Begin with 10–15 dots; more dots make a longer, trickier path.' }
+      ]
+    }
   },
   common: {
     numberOfProblems: 'Number of problems',
-    generate: 'Generate',
-    print: 'Print',
     removeRow: 'Remove this row'
   },
   spelling: {
@@ -594,52 +862,112 @@ const english: Translations = {
 const croatian: Translations = {
   header: {
     appTitle: 'Učimo s Tomom',
-    languageLabel: 'Jezik'
+    logoLines: ['Učimo', 's Tomom'],
+    languageLabel: 'Jezik',
+    support: 'Podrška',
+    allActivities: 'Sve aktivnosti'
   },
   footer: {
-    message: 'Ako ovaj rad pomaže djetetu, roditelju ili stručnjaku da se osjeća podržano, mala donacija može pomoći da se nastavi s pažnjom i brigom.'
+    description: 'Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, učitelje i terapeute.',
+    explore: 'Istražite',
+    getInTouch: 'Javite se',
+    keepFree: {
+      title: 'Neka ostane besplatno',
+      text: 'Svaki radni list besplatan je za svaku obitelj, zahvaljujući roditeljima koji pomognu.',
+      button: 'Donirajte'
+    },
+    copyright: '© {year} Učimo s Tomom · Napravio tata troje djece',
+    activityCopyright: '© {year} Učimo s Tomom · Besplatni radni listovi za djecu od 4 do 7 godina',
+    backHome: 'Natrag na početnu'
   },
   donate: 'Donirajte i pomozite djeci učiti',
-  home: {
-    heading: 'Odaberi aktivnost',
-    intro: 'Odaberi aktivnost → Izradi radni list → Ispiši ga → Učite i zabavite se zajedno!',
-    activitiesLabel: 'Aktivnosti za učenje'
+  activitiesSection: {
+    eyebrow: 'Aktivnosti',
+    title: 'Što ćemo danas vježbati?',
+    filterLabel: 'Filtriraj aktivnosti',
+    all: 'Svih {count}',
+    categories: { letters: 'Slova i riječi', numbers: 'Brojevi i veličine', motor: 'Fina motorika', thinking: 'Razmišljanje' }
+  },
+  hero: {
+    badges: ['100% besplatno', 'Dob 4–7', '3 jezika'],
+    title: { before: 'Radni listovi za ', highlight: 'male učenike', after: ', spremni za ispis u par sekundi.' },
+    intro: 'Odaberite jednu od 12 aktivnosti, jezik i nekoliko postavki pa ispišite. Svaki put novi radni list — bez troškova i bez muke.',
+    chooseActivity: 'Odaberite aktivnost',
+    howItWorks: 'Kako funkcionira',
+    madeFor: 'Namijenjeno za',
+    audiences: ['roditelje', 'učitelje', 'vrtiće', 'logopede'],
+    sticker: ['Besplatno', 'za ispis']
+  },
+  howItWorks: [
+    { title: 'Odaberite aktivnost', text: 'Slova, brojevi, fina motorika ili igre razmišljanja — 12 aktivnosti na izbor.' },
+    { title: 'Prilagodite je', text: 'Odaberite jezik, težinu i broj zadataka pa izradite novi radni list.' },
+    { title: 'Ispišite i igrajte se', text: 'Ispišite ga odmah ili ga spremite kao PDF za kasnije.' }
+  ],
+  languagesBand: {
+    title: 'Svaki radni list na vašem jeziku',
+    text: 'Upute, riječi i slike mijenjaju se s jezikom — idealno za dvojezične obitelji i logopedsku terapiju.'
   },
   menu: {
     label: 'Glavni izbornik',
     openMenu: 'Izbornik',
-    allActivities: 'Pogledaj sve aktivnosti na početnoj stranici',
     items: {
       activities: 'Aktivnosti',
+      testimonials: 'Dojmovi',
       about: 'O projektu',
-      help: 'Želite pomoći?',
-      contact: 'Kontakt'
+      help: 'Želite pomoći?'
     }
   },
   about: {
-    heading: 'O projektu Učimo s Tomom',
-    opening: [
-      'Svo troje moje djece **obožavalo je rješavati male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni riječ” ili „pronađi najveći predmet”. To ih je iskreno veselilo, sve dok nisu imali šest-sedam godina. (Sad su u fazi kad bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
-      'Kupovali smo im radne bilježnice, ali uvijek bi nas pronašli dok supruga i ja pijemo kavu u nedjelju u 9 ujutro i pitali: „**Tata, možeš nam dati neke zadatke?**” A u nedjelju u 9 ujutro baš i ne možeš skoknuti po novu radnu bilježnicu.',
-      'Zato sam im počeo **crtati zadatke rukom**. Međutim:'
+    eyebrow: 'O projektu',
+    heading: 'Tata koji nije mogao crtati dovoljno brzo',
+    lead: 'Učimo s Tomom besplatna je stranica koja u nekoliko sekundi izrađuje radne listove za ispis za djecu — pisanje riječi, brojanje, labirinte, praćenje slova i još mnogo toga. Namijenjena je roditeljima, učiteljima i terapeutima, osobito onima koji rade s djecom s autizmom, ADHD-om, disleksijom ili dispraksijom.',
+    stats: [
+      { value: '12', label: 'aktivnosti' },
+      { value: '4–7', label: 'godina' },
+      { value: '3', label: 'jezika' },
+      { value: '0 €', label: 'uvijek besplatno' }
+    ],
+    story: [
+      'Svo troje moje djece **obožavalo je rješavati male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni riječ” ili „pronađi najveći predmet”. To ih je iskreno veselilo, sve dok nisu imali šest-sedam godina. (Danas bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
+      'Kupovali smo im radne bilježnice, ali uvijek bi nas pronašli dok supruga i ja pijemo kavu u nedjelju u 9 ujutro i pitali: **„Tata, možeš nam dati neke zadatke?”** A u nedjelju u 9 ujutro baš i ne možeš skoknuti po novu radnu bilježnicu.',
+      'Zato sam im počeo **crtati zadatke rukom**. Dva mala problema:'
     ],
     drawingReasons: [
       'to je jako brzo postalo jednolično, jer **stvarno ne znam crtati**, i',
       '**nisam mogao crtati brže nego što su oni rješavali.**'
     ],
-    closing: [
-      'Kako sam i sam programer, počeo sam tražiti **način da to automatiziram**, i da možda drugim roditeljima malo olakšam da zaposle djecu dok pokušavaju normalno, bez prekidanja, porazgovarati uz kavu. Ali moj savjet: **neka razgovor bude kratak**, neće dugo ostati neprekinut! :)',
-      'Jedna jako važna napomena: moj sin je **neuroatipičan** (neću ulaziti u detalje) i jako ne voli crtanje i sve što ima veze s olovkom. A razvoj **grafomotorike i fine motorike** u ranoj dobi iznimno je važan, i **vježbanje s olovkom u prstima je ključno!** Srećom, u jednom trenutku, niotkuda, zainteresirao se za slova i pisanje… i ovi mali zadaci **zadržali su mu pažnju dulje od bilo čega drugog** što smo pokušali.',
-      'Da ne duljim previše: **ovu sam stranicu napravio za sebe**, da mogu brzo napraviti male zadatke za svoju najmlađu kćer (starije dvoje ih je zasad preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti korisna**.',
-      'I nadam se da će se neka djeca uz ovo **dobro zabaviti**!'
+    afterReasons: [
+      'Kako sam i sam programer, počeo sam tražiti **način da to automatiziram** — i da možda drugim roditeljima malo olakšam da zaposle djecu dok pokušavaju normalno, bez prekidanja, porazgovarati uz kavu. Ali moj savjet: **neka razgovor bude kratak**. Neće dugo ostati neprekinut! :)'
     ],
-    photoAlts: [
-      'Radni list koji sam rukom nacrtao za svoju djecu',
-      'Dijete rješava ispisani radni list'
+    learner: {
+      title: 'Napravljeno s mislima na svako dijete',
+      text: 'Moj sin je **neurodivergentan** i jako ne voli crtanje i sve što ima veze s olovkom. A razvoj **grafomotorike i fine motorike** u ranoj dobi jako je važan, i **vježbanje s olovkom u prstima je ključno**. A onda se, niotkuda, zainteresirao za slova i pisanje — i ovi mali zadaci **zadržali su mu pažnju dulje od bilo čega drugog** što smo pokušali.',
+      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija']
+    },
+    closing: [
+      'Da ne duljim previše: **ovu sam stranicu napravio za sebe**, da mogu brzo napraviti male zadatke za svoju najmlađu kćer (starije dvoje ih je zasad preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti korisna**.'
+    ],
+    handwritten: 'I nadam se da će se neka djeca uz ovo dobro zabaviti!',
+    signature: '— Mario, tata troje djece',
+    supportNote: {
+      text: 'Ako su vam ovi mali radni listovi izmamili osmijeh za stolom, možete pomoći da ih bude još.',
+      button: 'Podržite projekt'
+    },
+    photos: [
+      {
+        alt: 'Rukom nacrtan radni list: mali crteži pčele, sunca, oblaka, ovce, zvona, klavira i mačke, a uz svaki crtice za slova njegova imena',
+        caption: 'Ovdje je sve počelo'
+      },
+      {
+        alt: 'Dijete za drvenim stolom, s olovkom u ruci, rješava ispisani radni list',
+        caption: 'Nedjeljno jutarnje vježbanje'
+      }
     ]
   },
   help: {
+    eyebrow: 'Uključite se',
     heading: 'Želite pomoći?',
+    intro: 'Učimo s Tomom besplatno je za sve. Ako se vaši mališani zabavljaju uz njega, evo četiri načina da pomognete da tako i ostane.',
     donate: {
       title: 'Donirajte',
       paragraphs: [
@@ -663,28 +991,39 @@ const croatian: Translations = {
       title: 'Pošaljite povratnu informaciju',
       intro: 'Slobodno mi se javite na {email} i recite mi što mislite. Posebno će mi značiti:',
       items: [
-        '**svaka konstruktivna povratna informacija**, npr. „Moje dijete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj uzorak nije prošao tako dobro jer nije prepoznavala uzorke.” To mi pomaže poboljšati aktivnosti za drugu djecu.',
-        '**svako iskustvo** koje mogu javno objaviti na stranici, npr. „Moj sin (6) i ja proveli smo tri popodneva ovaj tjedan igrajući se s ovim. Radni listovi su divna stvar za imati kod kuće. – Ana, mama Luke (6)”. Što ih više dobijem, to sam sigurniji da je projekt na dobrom putu.',
-        '**sve fotografije ili videozapise** koje mogu javno koristiti za promociju. Naravno, nitko od nas ne želi slati fotografije svoje djece niti da ih tvrtke i projekti objavljuju na internetu. Ali rado ću uzeti bilo kakve stvarne fotografije ili videozapise sa zamućenim licima, samo s potiljkom, samo s rukama… Sve što je stvarno je super, jer jedino to priča pravu priču!'
+        {
+          text: '**Svaka konstruktivna povratna informacija** — pomaže mi poboljšati aktivnosti za drugu djecu.',
+          example: 'npr. „Moje dijete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj uzorak nije prošao tako dobro jer nije prepoznavala uzorke.”'
+        },
+        {
+          text: '**Svako iskustvo** koje mogu objaviti na stranici — što ih više dobijem, to sam sigurniji da je projekt na dobrom putu.',
+          example: 'npr. „Moj sin (6) i ja proveli smo tri popodneva ovaj tjedan igrajući se s ovim.” — Ana, mama Luke (6)'
+        }
       ],
-      button: 'Pošaljite povratnu informaciju, iskustvo ili fotografije',
+      button: 'Pošaljite povratnu informaciju ili iskustvo',
       emailSubject: 'Učimo s Tomom – povratna informacija'
+    },
+    photos: {
+      title: 'Podijelite fotografije ili videozapise',
+      text: 'Stvarni trenuci pričaju pravu priču bolje od bilo čega što bih ja mogao napisati. Naravno, nitko od nas ne želi slati fotografije svoje djece niti da ih tvrtke objavljuju na internetu — zato ću koristiti samo fotografije i videozapise na kojima **nijedno dijete nije prepoznatljivo**.',
+      exampleAlt: 'Primjer: dijete piše po radnom listu, snimljeno s leđa, lice se ne vidi',
+      exampleCaption: 'Poput ove',
+      kinds: ['Zamućena lica', 'Samo potiljak', 'Samo ruke', 'Gotovi radni listovi'],
+      note: 'Sve što je stvarno je super — dovoljno je i nekoliko sekundi videa.',
+      button: 'Pošaljite fotografije ili videozapise',
+      emailSubject: 'Učimo s Tomom – fotografije i videozapisi'
     }
   },
-  contact: {
-    heading: 'Kontakt',
-    paragraphs: [
-      'Uvijek se veselim vašim porukama! Imate li pitanje, ideju za novu aktivnost ili ste primijetili da nešto ne radi baš kako treba, slobodno mi se javite.',
-      'Pročitam svaku poruku i potrudit ću se odgovoriti što prije.'
-    ],
-    emailLabel: 'Pišite mi na'
-  },
   testimonials: {
+    eyebrow: 'Dojmovi',
+    title: 'Što kažu roditelji',
+    previous: 'Prethodni dojmovi',
+    next: 'Sljedeći dojmovi',
     items: [
-      { quote: 'Uz ovo moje dijete i ja svaki tjedan provedemo sate u igri. Ona to jednostavno obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
-      { quote: 'Mak se ovime igrao neobično dugo i aktivnosti su mu se jako svidjele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
-      { quote: 'Slova i crte još uvijek malo vijugaju :) ali Mary Jane to radi s osmijehom na licu, što mi jako puno pomaže!', name: 'Peter', relation: 'tata Mary Jane (7)' },
-      { quote: 'Ovo je fantastično, ponestaje mi papira za ispis! Moja djeca to jednostavno obožavaju!', name: 'Ivana', relation: 'mama Petra (6) i Maje (4)' }
+      { quote: 'Slova i crte još uvijek malo vijugaju :) ali Mary Jane to radi s osmijehom na licu, što mi jako puno pomaže!', name: 'Peter', relation: 'Tata Mary Jane (7)' },
+      { quote: 'Mak se ovime igrao neobično dugo i aktivnosti su mu se jako svidjele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'Mama Maka (5)' },
+      { quote: 'Uz ovo moje dijete i ja svaki tjedan provedemo sate u igri. Ona to jednostavno obožava!', name: 'Mary', relation: 'Mama Kylie (5)' },
+      { quote: 'Ovo je fantastično, ponestaje mi papira za ispis! Moja djeca to jednostavno obožavaju!', name: 'Ivana', relation: 'Mama Petra (6) i Maje (4)' }
     ]
   },
   activities: {
@@ -701,14 +1040,125 @@ const croatian: Translations = {
     trace: { title: 'Prati slova', description: 'Prati slova i brojke po točkicama, a zatim ih napiši samostalno.' },
     dotToDot: { title: 'Spoji točkice', description: 'Spoji točkice redom i otkrij sliku.' }
   },
-  activityNav: {
-    label: 'Aktivnosti',
-    allActivities: '← Sve aktivnosti'
+  activityPage: {
+    makeWorksheet: 'Vaš radni list',
+    language: 'Jezik',
+    generate: 'Izradite radni list',
+    print: 'Ispišite radni list',
+    preview: 'Pregled',
+    emptyPreview: 'Odaberite postavke i pritisnite „Izradite radni list”. Radni list pojavit će se ovdje, točno onakav kakav će biti ispisan.',
+    supportBold: 'Ovaj radni list bio je besplatan.',
+    supportText: 'Vrijednost jedne kave pomaže da tako i ostane za svaku obitelj.',
+    supportLink: 'Podržite projekt',
+    tips: 'Savjeti za odrasle',
+    tryNext: 'Probajte i ovo',
+    seeAll: 'Pogledajte svih {count} aktivnosti',
+    switcher: 'Sve aktivnosti',
+    pageCount: { one: '{count} stranica · A4', few: '{count} stranice · A4', other: '{count} stranica · A4' }
+  },
+  worksheet: {
+    pageLabel: 'Stranica {page} od {count}'
+  },
+  activityInfo: {
+    spelling: {
+      benefit: 'Povezuje slike s riječima i razvija rano pisanje.',
+      tips: [
+        { title: 'Izgovarajte polako', text: 'Prije pisanja zajedno naglas razvucite riječ („m-a-č-k-a”), tako da svaki glas dobije svoju crtu.' },
+        { title: 'Počnite s kratkim riječima', text: 'Krenite s riječima od tri ili četiri slova, a najveći broj slova povećajte tek kad postane lako.' },
+        { title: 'Provjerite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    counting: {
+      benefit: 'Vježba brojanje jedan po jedan i pisanje brojeva.',
+      tips: [
+        { title: 'Dodirni i broji', text: 'Neka dijete dodirne svaku sličicu dok broji naglas, kako bi svaki predmet prebrojilo jednom.' },
+        { title: 'Označite prebrojeno', text: 'Mala kvačica na svakoj prebrojenoj sličici pomaže kad su sličice razbacane.' },
+        { title: 'Počnite s malim brojevima', text: 'Neka najveći broj bude pet ili deset dok brojanje ne postane sigurno, a onda idite više.' }
+      ]
+    },
+    biggestSmallest: {
+      benefit: 'Vježba vizualno uspoređivanje i riječi za veličinu.',
+      tips: [
+        { title: 'Pričajte o veličini', text: 'Dok pokazujete, koristite riječi veliko, veće i najveće — tako dijete uči i riječi i pojam.' },
+        { title: 'Manje je lakše', text: 'S manje predmeta razlika je jasnija; dodajte predmete kad želite da bude teže.' },
+        { title: 'Dvije boje, dva zadatka', text: 'Prije početka pripremite zelenu i plavu bojicu, tako je uputu lako slijediti.' }
+      ]
+    },
+    sequence: {
+      benefit: 'Razvija prepoznavanje uzoraka, temelj rane matematike i logike.',
+      tips: [
+        { title: 'Izgovorite uzorak', text: 'Pročitajte ga naglas kao ritam („trokut, krug, trokut, krug…”) — kad se čuje, lakše se vidi.' },
+        { title: 'Počnite s dva', text: 'Uzorci od dva elementa najbolji su početak; na dulje prelazite korak po korak.' },
+        { title: 'Prvo pitajte, onda crtajte', text: 'Prije crtanja pitajte što slijedi, kako bi dijete svojim riječima objasnilo pravilo.' }
+      ]
+    },
+    intruder: {
+      benefit: 'Vježba razvrstavanje, rječnik i objašnjavanje izbora.',
+      tips: [
+        { title: 'Pitajte „zašto?”', text: 'Kad dijete zaokruži sličicu, pitajte zašto ne pripada — objašnjavanje je pola učenja.' },
+        { title: 'Imenujte temu', text: 'Najprije recite što je sličicama zajedničko („ovo je sve voće”), a onda tražite uljeza.' },
+        { title: 'Više sličica, veći izazov', text: 'Postupno dodajte sličice i uljeze kako dijete postaje brže.' }
+      ]
+    },
+    line: {
+      benefit: 'Jača kontrolu olovke za oblike koji se koriste u pisanju.',
+      tips: [
+        { title: 'Prvo prijeđite', text: 'Polako prijeđite preko isprekidanog dijela prije nego što nastavite samostalno — brzina dolazi kasnije.' },
+        { title: 'Prvo veliko, onda malo', text: 'Veliki uzorci lakši su malim rukama; na manje prijeđite kad kontrola postane bolja.' },
+        { title: 'Provjerite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    shadow: {
+      benefit: 'Vježba vizualno razlikovanje i pažnju na oblik.',
+      tips: [
+        { title: 'Imenujte oblik', text: 'Razgovarajte o tome po čemu se svaka sjena razlikuje — rep, ručka, šiljasti krov.' },
+        { title: 'Prvo lakše', text: 'Počnite s lakom razinom, na kojoj su oblici vrlo različiti, a tek onda probajte jednu skupinu.' },
+        { title: 'Ravnalo nije potrebno', text: 'Ravne crte nisu cilj; vrijedi svaka crta koja spaja pravi par.' }
+      ]
+    },
+    maze: {
+      benefit: 'Razvija planiranje, koncentraciju i kontrolu olovke.',
+      tips: [
+        { title: 'Prvo prstom', text: 'Neka dijete najprije prstom pronađe put, a onda olovkom.' },
+        { title: 'Prvo mali labirinti', text: 'Počnite s 5 × 5 ili 6 × 6, a veće uzmite kako strpljenje raste.' },
+        { title: 'Pogreške su u redu', text: 'Ako olovka završi u slijepoj ulici, vratite se i pokušajte ponovno — i to je dio zabave.' }
+      ]
+    },
+    where: {
+      benefit: 'Uči riječi za položaj: na, ispod, pokraj i iznad.',
+      tips: [
+        { title: 'Odglumite', text: 'Najprije stavite igračku na pravi stol, ispod njega ili pokraj njega — tada slike imaju smisla.' },
+        { title: 'Čitajte zajedno', text: 'Pročitajte rečenicu naglas i pustite dijete da pokaže prije nego što zaokruži.' },
+        { title: 'Počnite s dvije riječi', text: 'Krenite s dvije riječi za položaj, a nove dodajte kad ih dijete sigurno zna.' }
+      ]
+    },
+    copyPattern: {
+      benefit: 'Razvija vizualno-prostorne vještine i pažljive pokrete olovkom.',
+      tips: [
+        { title: 'Brojite točkice', text: 'Zajedno pronađite gdje crta počinje brojeći točkice od kuta.' },
+        { title: 'Prvo mala mreža', text: 'Mreža 3 × 3 ili 4 × 4 najbolji je početak; veću uzmite kad precrtavanje postane lakše.' },
+        { title: 'Prvo ravne crte', text: 'Isključite kose crte dok ravne ne postanu lake.' }
+      ]
+    },
+    trace: {
+      benefit: 'Razvija kontrolu olovke i prepoznavanje slova.',
+      tips: [
+        { title: 'Izgovorite naglas', text: 'Dok prati slovo, neka ga dijete imenuje i izgovori njegov glas — tako povezuje oblik, glas i pokret.' },
+        { title: 'Kratko i često', text: 'Jedan red dnevno vrijedi više od cijele stranice jednom tjedno. Stanite dok je još zabavno.' },
+        { title: 'Provjerite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    dotToDot: {
+      benefit: 'Vježba redoslijed brojeva i mirne pokrete ruke.',
+      tips: [
+        { title: 'Izgovorite svaki broj', text: 'Brojite naglas od točkice do točkice — usput se vježba i redoslijed brojeva.' },
+        { title: 'Pogodite sliku', text: 'Prije početka zajedno pogađajte što će se pojaviti na slici.' },
+        { title: 'Za početak manje točkica', text: 'Počnite s 10–15 točkica; više točkica znači dulji i zahtjevniji put.' }
+      ]
+    }
   },
   common: {
     numberOfProblems: 'Broj zadataka',
-    generate: 'Generiraj',
-    print: 'Ispiši',
     removeRow: 'Ukloni ovaj redak'
   },
   spelling: {
@@ -893,52 +1343,112 @@ const croatian: Translations = {
 const serbian: Translations = {
   header: {
     appTitle: 'Učimo s Tomom',
-    languageLabel: 'Jezik'
+    logoLines: ['Učimo', 's Tomom'],
+    languageLabel: 'Jezik',
+    support: 'Podrška',
+    allActivities: 'Sve aktivnosti'
   },
   footer: {
-    message: 'Ako ovaj rad pomaže detetu, roditelju ili stručnjaku da se oseća podržano, mala donacija može pomoći da se nastavi s pažnjom i brigom.'
+    description: 'Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, učitelje i terapeute.',
+    explore: 'Istražite',
+    getInTouch: 'Javite se',
+    keepFree: {
+      title: 'Neka ostane besplatno',
+      text: 'Svaki radni list je besplatan za svaku porodicu, zahvaljujući roditeljima koji pomognu.',
+      button: 'Donirajte'
+    },
+    copyright: '© {year} Učimo s Tomom · Napravio tata troje dece',
+    activityCopyright: '© {year} Učimo s Tomom · Besplatni radni listovi za decu od 4 do 7 godina',
+    backHome: 'Nazad na početnu'
   },
   donate: 'Donirajte i pomozite deci da uče',
-  home: {
-    heading: 'Izaberi aktivnost',
-    intro: 'Izaberi aktivnost → Napravi radni list → Odštampaj ga → Učite i zabavite se zajedno!',
-    activitiesLabel: 'Aktivnosti za učenje'
+  activitiesSection: {
+    eyebrow: 'Aktivnosti',
+    title: 'Šta ćemo danas da vežbamo?',
+    filterLabel: 'Filtriraj aktivnosti',
+    all: 'Svih {count}',
+    categories: { letters: 'Slova i reči', numbers: 'Brojevi i veličine', motor: 'Fina motorika', thinking: 'Razmišljanje' }
+  },
+  hero: {
+    badges: ['100% besplatno', 'Uzrast 4–7', '3 jezika'],
+    title: { before: 'Radni listovi za ', highlight: 'male učenike', after: ', spremni za štampu za par sekundi.' },
+    intro: 'Izaberite jednu od 12 aktivnosti, jezik i nekoliko podešavanja i odštampajte. Svaki put nov radni list — bez troškova i bez muke.',
+    chooseActivity: 'Izaberite aktivnost',
+    howItWorks: 'Kako funkcioniše',
+    madeFor: 'Namenjeno za',
+    audiences: ['roditelje', 'učitelje', 'vrtiće', 'logopede'],
+    sticker: ['Besplatno', 'za štampu']
+  },
+  howItWorks: [
+    { title: 'Izaberite aktivnost', text: 'Slova, brojevi, fina motorika ili igre razmišljanja — 12 aktivnosti na izbor.' },
+    { title: 'Prilagodite je', text: 'Izaberite jezik, težinu i broj zadataka i napravite nov radni list.' },
+    { title: 'Odštampajte i igrajte se', text: 'Odštampajte ga odmah ili ga sačuvajte kao PDF za kasnije.' }
+  ],
+  languagesBand: {
+    title: 'Svaki radni list na vašem jeziku',
+    text: 'Uputstva, reči i slike menjaju se sa jezikom — idealno za dvojezične porodice i logopedsku terapiju.'
   },
   menu: {
     label: 'Glavni meni',
     openMenu: 'Meni',
-    allActivities: 'Pogledaj sve aktivnosti na početnoj strani',
     items: {
       activities: 'Aktivnosti',
+      testimonials: 'Utisci',
       about: 'O projektu',
-      help: 'Želite da pomognete?',
-      contact: 'Kontakt'
+      help: 'Želite da pomognete?'
     }
   },
   about: {
-    heading: 'O projektu Učimo s Tomom',
-    opening: [
-      'Svo troje moje dece **obožavalo je da rešava male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni reč” ili „pronađi najveći predmet”. To ih je iskreno radovalo, sve dok nisu napunili šest-sedam godina. (Sada su u fazi kada bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
-      'Kupovali smo im radne sveske, ali uvek bi nas pronašli dok supruga i ja pijemo kafu u nedelju u 9 ujutru i pitali: „**Tata, možeš li da nam daš neke zadatke?**” A u nedelju u 9 ujutru baš i ne možeš da skokneš po novu radnu svesku.',
-      'Zato sam počeo da im **crtam zadatke rukom**. Međutim:'
+    eyebrow: 'O projektu',
+    heading: 'Tata koji nije mogao da crta dovoljno brzo',
+    lead: 'Učimo s Tomom je besplatan sajt koji za nekoliko sekundi pravi radne listove za štampanje za decu — pisanje reči, brojanje, lavirinte, praćenje slova i još mnogo toga. Namenjen je roditeljima, učiteljima i terapeutima, posebno onima koji rade sa decom sa autizmom, ADHD-om, disleksijom ili dispraksijom.',
+    stats: [
+      { value: '12', label: 'aktivnosti' },
+      { value: '4–7', label: 'godina' },
+      { value: '3', label: 'jezika' },
+      { value: '0 €', label: 'uvek besplatno' }
+    ],
+    story: [
+      'Svo troje moje dece **obožavalo je da rešava male zagonetke, zadatke i probleme na papiru** dok su bili mali. Jednostavne stvari poput „nacrtaj krug”, „dopuni reč” ili „pronađi najveći predmet”. To ih je iskreno radovalo, sve dok nisu napunili šest-sedam godina. (Danas bi na to odgovorili užasno iritantnim glasom: „Six seveeeen!”)',
+      'Kupovali smo im radne sveske, ali uvek bi nas pronašli dok supruga i ja pijemo kafu u nedelju u 9 ujutru i pitali: **„Tata, možeš li da nam daš neke zadatke?”** A u nedelju u 9 ujutru baš i ne možeš da skokneš po novu radnu svesku.',
+      'Zato sam počeo da im **crtam zadatke rukom**. Dva mala problema:'
     ],
     drawingReasons: [
       'to je vrlo brzo postalo jednolično, jer **stvarno ne znam da crtam**, i',
       '**nisam mogao da crtam brže nego što su oni rešavali.**'
     ],
-    closing: [
-      'Pošto sam i sam programer, počeo sam da tražim **način da to automatizujem**, i da možda drugim roditeljima malo olakšam da zaposle decu dok pokušavaju da normalno, bez prekidanja, porazgovaraju uz kafu. Ali moj savet: **neka razgovor bude kratak**, neće dugo ostati neprekinut! :)',
-      'Jedna veoma važna napomena: moj sin je **neuroatipičan** (neću da ulazim u detalje) i baš ne voli crtanje i sve što ima veze sa olovkom. A razvoj **grafomotorike i fine motorike** u ranom uzrastu izuzetno je važan, i **vežbanje sa olovkom u prstima je ključno!** Srećom, u jednom trenutku, niotkuda, zainteresovao se za slova i pisanje… i ovi mali zadaci **zadržali su mu pažnju duže od bilo čega drugog** što smo pokušali.',
-      'Da ne dužim previše: **ovaj sajt sam napravio za sebe**, da mogu brzo da napravim male zadatke za svoju najmlađu ćerku (starije dvoje ih je za sada preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti koristan**.',
-      'I nadam se da će se neka deca uz ovo **lepo zabaviti**!'
+    afterReasons: [
+      'Pošto sam i sam programer, počeo sam da tražim **način da to automatizujem** — i da možda drugim roditeljima malo olakšam da zaposle decu dok pokušavaju da normalno, bez prekidanja, porazgovaraju uz kafu. Ali moj savet: **neka razgovor bude kratak**. Neće dugo ostati neprekinut! :)'
     ],
-    photoAlts: [
-      'Radni list koji sam rukom nacrtao za svoju decu',
-      'Dete rešava odštampani radni list'
+    learner: {
+      title: 'Napravljeno sa mislima na svako dete',
+      text: 'Moj sin je **neurodivergentan** i baš ne voli crtanje i sve što ima veze sa olovkom. A razvoj **grafomotorike i fine motorike** u ranom uzrastu veoma je važan, i **vežbanje sa olovkom u prstima je ključno**. A onda se, niotkuda, zainteresovao za slova i pisanje — i ovi mali zadaci **zadržali su mu pažnju duže od bilo čega drugog** što smo pokušali.',
+      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija']
+    },
+    closing: [
+      'Da ne dužim previše: **ovaj sajt sam napravio za sebe**, da mogu brzo da napravim male zadatke za svoju najmlađu ćerku (starije dvoje ih je za sada preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti koristan**.'
+    ],
+    handwritten: 'I nadam se da će se neka deca uz ovo lepo zabaviti!',
+    signature: '— Mario, tata troje dece',
+    supportNote: {
+      text: 'Ako su vam ovi mali radni listovi izmamili osmeh za stolom, možete da pomognete da ih bude još.',
+      button: 'Podržite projekat'
+    },
+    photos: [
+      {
+        alt: 'Rukom nacrtan radni list: mali crteži pčele, sunca, oblaka, ovce, zvona, klavira i mačke, a uz svaki crtice za slova njegovog imena',
+        caption: 'Ovde je sve počelo'
+      },
+      {
+        alt: 'Dete za drvenim stolom, sa olovkom u ruci, rešava odštampani radni list',
+        caption: 'Nedeljno jutarnje vežbanje'
+      }
     ]
   },
   help: {
+    eyebrow: 'Uključite se',
     heading: 'Želite da pomognete?',
+    intro: 'Učimo s Tomom je besplatno za sve. Ako se vaši mališani zabavljaju uz njega, evo četiri načina da pomognete da tako i ostane.',
     donate: {
       title: 'Donirajte',
       paragraphs: [
@@ -962,28 +1472,39 @@ const serbian: Translations = {
       title: 'Pošaljite utiske',
       intro: 'Slobodno mi se javite na {email} i recite mi šta mislite. Posebno će mi značiti:',
       items: [
-        '**svaki konstruktivan komentar**, npr. „Moje dete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj obrazac nije prošao tako dobro jer nije prepoznavala obrasce.” To mi pomaže da poboljšam aktivnosti za drugu decu.',
-        '**svako iskustvo** koje mogu javno da objavim na sajtu, npr. „Moj sin (6) i ja proveli smo tri popodneva ove nedelje igrajući se sa ovim. Radni listovi su divna stvar za imati kod kuće. – Jelena, mama Marka (6)”. Što ih više dobijem, to sam sigurniji da je projekat na dobrom putu.',
-        '**sve fotografije ili video snimke** koje mogu javno da koristim za promociju. Naravno, niko od nas ne želi da šalje fotografije svoje dece niti da ih kompanije i projekti objavljuju na internetu. Ali rado ću uzeti bilo kakve stvarne fotografije ili snimke sa zamućenim licima, samo sa potiljkom, samo sa rukama… Sve što je stvarno je super, jer jedino to priča pravu priču!'
+        {
+          text: '**Svaki konstruktivan komentar** — pomaže mi da poboljšam aktivnosti za drugu decu.',
+          example: 'npr. „Moje dete (6 godina) obožavalo je Pronađi uljeza, ali Precrtaj obrazac nije prošao tako dobro jer nije prepoznavala obrasce.”'
+        },
+        {
+          text: '**Svako iskustvo** koje mogu da objavim na sajtu — što ih više dobijem, to sam sigurniji da je projekat na dobrom putu.',
+          example: 'npr. „Moj sin (6) i ja proveli smo tri popodneva ove nedelje igrajući se sa ovim.” — Jelena, mama Marka (6)'
+        }
       ],
-      button: 'Pošaljite utiske, iskustvo ili fotografije',
+      button: 'Pošaljite utiske ili iskustvo',
       emailSubject: 'Učimo s Tomom – utisci'
+    },
+    photos: {
+      title: 'Podelite fotografije ili snimke',
+      text: 'Stvarni trenuci pričaju pravu priču bolje od bilo čega što bih ja mogao da napišem. Naravno, niko od nas ne želi da šalje fotografije svoje dece niti da ih kompanije objavljuju na internetu — zato ću koristiti samo fotografije i snimke na kojima **nijedno dete ne može da se prepozna**.',
+      exampleAlt: 'Primer: dete piše po radnom listu, snimljeno s leđa, lice se ne vidi',
+      exampleCaption: 'Poput ove',
+      kinds: ['Zamućena lica', 'Samo potiljak', 'Samo ruke', 'Gotovi radni listovi'],
+      note: 'Sve što je stvarno je super — dovoljno je i nekoliko sekundi snimka.',
+      button: 'Pošaljite fotografije ili snimke',
+      emailSubject: 'Učimo s Tomom – fotografije i snimci'
     }
   },
-  contact: {
-    heading: 'Kontakt',
-    paragraphs: [
-      'Uvek se radujem vašim porukama! Bilo da imate pitanje, ideju za novu aktivnost ili ste primetili da nešto ne radi baš kako treba, slobodno mi se javite.',
-      'Pročitam svaku poruku i potrudiću se da odgovorim što pre.'
-    ],
-    emailLabel: 'Pišite mi na'
-  },
   testimonials: {
+    eyebrow: 'Utisci',
+    title: 'Šta kažu roditelji',
+    previous: 'Prethodni utisci',
+    next: 'Sledeći utisci',
     items: [
-      { quote: 'Uz ovo moje dete i ja svake nedelje provedemo sate u igri. Ona to prosto obožava!', name: 'Mary', relation: 'mama Kylie (5)' },
-      { quote: 'Mak se ovim igrao neobično dugo i aktivnosti su mu se baš svidele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'mama Maka (5)' },
-      { quote: 'Slova i linije još uvek malo vijugaju :) ali Mary Jane to radi sa osmehom na licu, što mi mnogo pomaže!', name: 'Peter', relation: 'tata Mary Jane (7)' },
-      { quote: 'Ovo je fantastično, nestaje mi papira za štampanje! Moja deca to prosto obožavaju!', name: 'Ivana', relation: 'mama Petra (6) i Maje (4)' }
+      { quote: 'Slova i linije još uvek malo vijugaju :) ali Mary Jane to radi sa osmehom na licu, što mi mnogo pomaže!', name: 'Peter', relation: 'Tata Mary Jane (7)' },
+      { quote: 'Mak se ovim igrao neobično dugo i aktivnosti su mu se baš svidele, a najviše „Pronađi uljeza“!', name: 'Nela', relation: 'Mama Maka (5)' },
+      { quote: 'Uz ovo moje dete i ja svake nedelje provedemo sate u igri. Ona to prosto obožava!', name: 'Mary', relation: 'Mama Kylie (5)' },
+      { quote: 'Ovo je fantastično, nestaje mi papira za štampanje! Moja deca to prosto obožavaju!', name: 'Ivana', relation: 'Mama Petra (6) i Maje (4)' }
     ]
   },
   activities: {
@@ -1000,14 +1521,125 @@ const serbian: Translations = {
     trace: { title: 'Prati slova', description: 'Prati slova i brojeve po tačkicama, pa ih napiši samostalno.' },
     dotToDot: { title: 'Spoji tačkice', description: 'Spoji tačkice redom i otkrij sliku.' }
   },
-  activityNav: {
-    label: 'Aktivnosti',
-    allActivities: '← Sve aktivnosti'
+  activityPage: {
+    makeWorksheet: 'Vaš radni list',
+    language: 'Jezik',
+    generate: 'Napravite radni list',
+    print: 'Odštampajte radni list',
+    preview: 'Pregled',
+    emptyPreview: 'Izaberite podešavanja i pritisnite „Napravite radni list”. Radni list će se pojaviti ovde, tačno onakav kakav će biti odštampan.',
+    supportBold: 'Ovaj radni list je bio besplatan.',
+    supportText: 'Vrednost jedne kafe pomaže da tako i ostane za svaku porodicu.',
+    supportLink: 'Podržite projekat',
+    tips: 'Saveti za odrasle',
+    tryNext: 'Probajte i ovo',
+    seeAll: 'Pogledajte svih {count} aktivnosti',
+    switcher: 'Sve aktivnosti',
+    pageCount: { one: '{count} strana · A4', few: '{count} strane · A4', other: '{count} strana · A4' }
+  },
+  worksheet: {
+    pageLabel: 'Strana {page} od {count}'
+  },
+  activityInfo: {
+    spelling: {
+      benefit: 'Povezuje slike sa rečima i razvija rano pisanje.',
+      tips: [
+        { title: 'Izgovarajte polako', text: 'Pre pisanja zajedno naglas razvucite reč („m-a-č-k-a”), tako da svaki glas dobije svoju crtu.' },
+        { title: 'Počnite sa kratkim rečima', text: 'Krenite sa rečima od tri ili četiri slova, a najveći broj slova povećajte tek kad postane lako.' },
+        { title: 'Proverite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    counting: {
+      benefit: 'Vežba brojanje jedan po jedan i pisanje brojeva.',
+      tips: [
+        { title: 'Dodirni i broji', text: 'Neka dete dodirne svaku sličicu dok broji naglas, kako bi svaki predmet prebrojalo jednom.' },
+        { title: 'Označite prebrojano', text: 'Mala kvačica na svakoj prebrojanoj sličici pomaže kad su sličice razbacane.' },
+        { title: 'Počnite sa malim brojevima', text: 'Neka najveći broj bude pet ili deset dok brojanje ne postane sigurno, pa onda idite više.' }
+      ]
+    },
+    biggestSmallest: {
+      benefit: 'Vežba vizuelno upoređivanje i reči za veličinu.',
+      tips: [
+        { title: 'Pričajte o veličini', text: 'Dok pokazujete, koristite reči veliko, veće i najveće — tako dete uči i reči i pojam.' },
+        { title: 'Manje je lakše', text: 'Sa manje predmeta razlika je jasnija; dodajte predmete kad želite da bude teže.' },
+        { title: 'Dve boje, dva zadatka', text: 'Pre početka pripremite zelenu i plavu bojicu, tako je uputstvo lako pratiti.' }
+      ]
+    },
+    sequence: {
+      benefit: 'Razvija prepoznavanje obrazaca, osnovu rane matematike i logike.',
+      tips: [
+        { title: 'Izgovorite obrazac', text: 'Pročitajte ga naglas kao ritam („trougao, krug, trougao, krug…”) — kad se čuje, lakše se vidi.' },
+        { title: 'Počnite sa dva', text: 'Obrasci od dva elementa su najbolji početak; na duže prelazite korak po korak.' },
+        { title: 'Prvo pitajte, pa crtajte', text: 'Pre crtanja pitajte šta sledi, kako bi dete svojim rečima objasnilo pravilo.' }
+      ]
+    },
+    intruder: {
+      benefit: 'Vežba razvrstavanje, rečnik i objašnjavanje izbora.',
+      tips: [
+        { title: 'Pitajte „zašto?”', text: 'Kad dete zaokruži sličicu, pitajte zašto ne pripada — objašnjavanje je pola učenja.' },
+        { title: 'Imenujte temu', text: 'Najpre recite šta je sličicama zajedničko („ovo je sve voće”), pa onda tražite uljeza.' },
+        { title: 'Više sličica, veći izazov', text: 'Postepeno dodajte sličice i uljeze kako dete postaje brže.' }
+      ]
+    },
+    line: {
+      benefit: 'Jača kontrolu olovke za oblike koji se koriste u pisanju.',
+      tips: [
+        { title: 'Prvo pređite', text: 'Polako pređite preko isprekidanog dela pre nego što nastavite samostalno — brzina dolazi kasnije.' },
+        { title: 'Prvo veliko, pa malo', text: 'Veliki obrasci su lakši malim rukama; na manje pređite kad kontrola postane bolja.' },
+        { title: 'Proverite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    shadow: {
+      benefit: 'Vežba vizuelno razlikovanje i pažnju na oblik.',
+      tips: [
+        { title: 'Imenujte oblik', text: 'Razgovarajte o tome po čemu se svaka senka razlikuje — rep, drška, šiljati krov.' },
+        { title: 'Prvo lakše', text: 'Počnite sa lakim nivoom, na kom su oblici veoma različiti, a tek onda probajte jednu grupu.' },
+        { title: 'Lenjir nije potreban', text: 'Prave linije nisu cilj; važi svaka linija koja spaja pravi par.' }
+      ]
+    },
+    maze: {
+      benefit: 'Razvija planiranje, koncentraciju i kontrolu olovke.',
+      tips: [
+        { title: 'Prvo prstom', text: 'Neka dete najpre prstom pronađe put, a onda olovkom.' },
+        { title: 'Prvo mali lavirinti', text: 'Počnite sa 5 × 5 ili 6 × 6, a veće uzmite kako strpljenje raste.' },
+        { title: 'Greške su u redu', text: 'Ako olovka završi u ćorsokaku, vratite se i pokušajte ponovo — i to je deo zabave.' }
+      ]
+    },
+    where: {
+      benefit: 'Uči reči za položaj: na, ispod, pored i iznad.',
+      tips: [
+        { title: 'Odglumite', text: 'Najpre stavite igračku na pravi sto, ispod njega ili pored njega — tada slike imaju smisla.' },
+        { title: 'Čitajte zajedno', text: 'Pročitajte rečenicu naglas i pustite dete da pokaže pre nego što zaokruži.' },
+        { title: 'Počnite sa dve reči', text: 'Krenite sa dve reči za položaj, a nove dodajte kad ih dete sigurno zna.' }
+      ]
+    },
+    copyPattern: {
+      benefit: 'Razvija vizuelno-prostorne veštine i pažljive pokrete olovkom.',
+      tips: [
+        { title: 'Brojite tačkice', text: 'Zajedno pronađite gde linija počinje brojeći tačkice od ugla.' },
+        { title: 'Prvo mala mreža', text: 'Mreža 3 × 3 ili 4 × 4 je najbolji početak; veću uzmite kad precrtavanje postane lakše.' },
+        { title: 'Prvo prave linije', text: 'Isključite kose linije dok prave ne postanu lake.' }
+      ]
+    },
+    trace: {
+      benefit: 'Razvija kontrolu olovke i prepoznavanje slova.',
+      tips: [
+        { title: 'Izgovorite naglas', text: 'Dok prati slovo, neka ga dete imenuje i izgovori njegov glas — tako povezuje oblik, glas i pokret.' },
+        { title: 'Kratko i često', text: 'Jedan red dnevno vredi više od cele strane jednom nedeljno. Stanite dok je još zabavno.' },
+        { title: 'Proverite hvat', text: 'Debele bojice ili kratke olovke pomažu malim rukama da ih udobno drže.' }
+      ]
+    },
+    dotToDot: {
+      benefit: 'Vežba redosled brojeva i mirne pokrete ruke.',
+      tips: [
+        { title: 'Izgovorite svaki broj', text: 'Brojite naglas od tačkice do tačkice — usput se vežba i redosled brojeva.' },
+        { title: 'Pogodite sliku', text: 'Pre početka zajedno pogađajte šta će se pojaviti na slici.' },
+        { title: 'Za početak manje tačkica', text: 'Počnite sa 10–15 tačkica; više tačkica znači duži i zahtevniji put.' }
+      ]
+    }
   },
   common: {
     numberOfProblems: 'Broj zadataka',
-    generate: 'Generiši',
-    print: 'Štampaj',
     removeRow: 'Ukloni ovaj red'
   },
   spelling: {

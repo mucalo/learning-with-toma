@@ -1,70 +1,117 @@
-<ol class="help-steps">
-  <!-- 1. Donate -->
-  <li class="help-step">
-    <h3 class="step-title"><span class="step-number" aria-hidden="true">1</span>{{ i18n.t.help.donate.title }}</h3>
-    <div class="step-body">
-      <p *ngFor="let paragraph of i18n.t.help.donate.paragraphs">
-        <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
-      </p>
-      <a class="step-button donate" [href]="donateUrl" target="_blank" rel="noopener noreferrer">{{ i18n.t.donate }}</a>
+<section id="help" class="help" aria-labelledby="help-heading">
+  <div class="container help-inner">
+    <div class="help-intro">
+      <p class="eyebrow">{{ i18n.t.help.eyebrow }}</p>
+      <h2 id="help-heading" class="section-title">{{ i18n.t.help.heading }}</h2>
+      <p class="help-lead">{{ i18n.t.help.intro }}</p>
     </div>
-  </li>
 
-  <!-- 2. Spread the word -->
-  <li class="help-step">
-    <h3 class="step-title"><span class="step-number" aria-hidden="true">2</span>{{ i18n.t.help.share.title }}</h3>
-    <div class="step-body">
-      <p *ngFor="let paragraph of i18n.t.help.share.paragraphs">
-        <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
-      </p>
-
-      <div class="share-buttons">
-        <a
-          *ngFor="let network of networks"
-          class="share-button"
-          [href]="shareHref(network)"
-          target="_blank"
-          rel="noopener noreferrer"
-          [title]="shareLabel(network)"
-          [attr.aria-label]="shareLabel(network)"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true" [attr.fill-rule]="network.evenOdd ? 'evenodd' : null" [style.fill]="network.color">
-            <path [attr.d]="network.icon" />
-          </svg>
+    <ol class="help-cards">
+      <!-- 1. Donate -->
+      <li class="help-card help-card-donate">
+        <div class="card-head">
+          <span class="card-number number-yellow" aria-hidden="true">1</span>
+          <h3>{{ i18n.t.help.donate.title }}</h3>
+        </div>
+        <p *ngFor="let paragraph of i18n.t.help.donate.paragraphs">
+          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
+        </p>
+        <a class="card-button card-button-dark" [href]="donateUrl" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="heart" /></svg>
+          {{ i18n.t.donate }}
         </a>
+      </li>
 
-        <a class="share-button" [href]="emailShareHref" [title]="i18n.t.help.share.email" [attr.aria-label]="i18n.t.help.share.email">
-          <svg viewBox="0 0 24 24" aria-hidden="true" fill-rule="evenodd"><path [attr.d]="icons.email" /></svg>
+      <!-- 2. Spread the word -->
+      <li class="help-card">
+        <div class="card-head">
+          <span class="card-number number-blue" aria-hidden="true">2</span>
+          <h3>{{ i18n.t.help.share.title }}</h3>
+        </div>
+        <p *ngFor="let paragraph of i18n.t.help.share.paragraphs">
+          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: paragraph }"></ng-container>
+        </p>
+
+        <div class="share-buttons">
+          <a
+            *ngFor="let network of networks"
+            class="share-button"
+            [href]="shareHref(network)"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="shareLabel(network)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" [attr.fill-rule]="network.evenOdd ? 'evenodd' : null" [style.fill]="network.color">
+              <path [attr.d]="network.icon" />
+            </svg>
+            <span aria-hidden="true">{{ network.name }}</span>
+          </a>
+
+          <a class="share-button" [href]="emailShareHref" [attr.aria-label]="i18n.t.help.share.email">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill-rule="evenodd"><path [attr.d]="icons.email" /></svg>
+            <span aria-hidden="true">E-mail</span>
+          </a>
+
+          <button type="button" class="share-button share-button-strong" (click)="copyLink()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="icons.link" /></svg>
+            <span>{{ linkCopied ? i18n.t.help.share.linkCopied : i18n.t.help.share.copyLink }}</span>
+          </button>
+
+          <button *ngIf="canUseNativeShare" type="button" class="share-button share-button-strong" (click)="shareNatively()">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="icons.share" /></svg>
+            <span>{{ i18n.t.help.share.more }}</span>
+          </button>
+        </div>
+        <p class="visually-hidden" aria-live="polite">{{ linkCopied ? i18n.t.help.share.linkCopied : '' }}</p>
+      </li>
+
+      <!-- 3. Send feedback -->
+      <li class="help-card">
+        <div class="card-head">
+          <span class="card-number number-green" aria-hidden="true">3</span>
+          <h3>{{ i18n.t.help.feedback.title }}</h3>
+        </div>
+        <p>{{ feedbackIntro[0] }}<a class="email-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>{{ feedbackIntro[1] }}</p>
+        <ul class="feedback-list">
+          <li *ngFor="let item of i18n.t.help.feedback.items">
+            <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: item.text }"></ng-container>
+            <span class="example">{{ item.example }}</span>
+          </li>
+        </ul>
+        <a class="card-button" [href]="feedbackMailto">
+          <svg class="outline" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" /></svg>
+          {{ i18n.t.help.feedback.button }}
         </a>
+      </li>
 
-        <button type="button" class="share-button with-label" (click)="copyLink()">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="icons.link" /></svg>
-          <span>{{ linkCopied ? i18n.t.help.share.linkCopied : i18n.t.help.share.copyLink }}</span>
-        </button>
-
-        <button *ngIf="canUseNativeShare" type="button" class="share-button with-label" (click)="shareNatively()">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path [attr.d]="icons.share" /></svg>
-          <span>{{ i18n.t.help.share.more }}</span>
-        </button>
-      </div>
-      <p class="visually-hidden" aria-live="polite">{{ linkCopied ? i18n.t.help.share.linkCopied : '' }}</p>
-    </div>
-  </li>
-
-  <!-- 3. Send feedback -->
-  <li class="help-step">
-    <h3 class="step-title"><span class="step-number" aria-hidden="true">3</span>{{ i18n.t.help.feedback.title }}</h3>
-    <div class="step-body">
-      <p>{{ feedbackIntro[0] }}<a class="email-link" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>{{ feedbackIntro[1] }}</p>
-      <ul class="feedback-list">
-        <li *ngFor="let item of i18n.t.help.feedback.items">
-          <ng-container *ngTemplateOutlet="emphasized; context: { $implicit: item }"></ng-container>
-        </li>
-      </ul>
-      <a class="step-button" [href]="feedbackMailto">{{ i18n.t.help.feedback.button }}</a>
-    </div>
-  </li>
-</ol>
+      <!-- 4. Share photos or videos -->
+      <li class="help-card">
+        <div class="card-head">
+          <span class="card-number number-lilac" aria-hidden="true">4</span>
+          <h3>{{ i18n.t.help.photos.title }}</h3>
+        </div>
+        <div class="photos-intro">
+          <p><ng-container *ngTemplateOutlet="emphasized; context: { $implicit: i18n.t.help.photos.text }"></ng-container></p>
+          <figure class="photo-example">
+            <img src="assets/about-child-solving.jpg" width="720" height="960" loading="lazy" [alt]="i18n.t.help.photos.exampleAlt" />
+            <figcaption>{{ i18n.t.help.photos.exampleCaption }}</figcaption>
+          </figure>
+        </div>
+        <ul class="photo-kinds">
+          <li *ngFor="let kind of i18n.t.help.photos.kinds">
+            <svg class="outline" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg>
+            {{ kind }}
+          </li>
+        </ul>
+        <p class="photos-note">{{ i18n.t.help.photos.note }}</p>
+        <a class="card-button" [href]="photosMailto">
+          <svg class="outline" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+          {{ i18n.t.help.photos.button }}
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
 
 <!-- Renders translated text with its **key phrases** in bold. -->
 <ng-template #emphasized let-text><ng-container *ngFor="let part of text | emphasis"><strong *ngIf="part.bold">{{ part.text }}</strong><ng-container *ngIf="!part.bold">{{ part.text }}</ng-container></ng-container></ng-template>

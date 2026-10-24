@@ -5,7 +5,11 @@ import { LanguageService } from '../i18n/language.service';
 import { HOME_SECTIONS } from './home-sections';
 import { EmphasisPipe } from '../i18n/emphasis.pipe';
 import { HelpSectionComponent } from './help-section/help-section.component';
-import { CONTACT_EMAIL } from '../links';
+import { HeroComponent } from './hero/hero.component';
+import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { AboutComponent } from './about/about.component';
+import { ACTIVITIES } from '../activities';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,7 +18,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [HomeComponent, HelpSectionComponent, EmphasisPipe]
+      declarations: [HomeComponent, HeroComponent, ActivityIconComponent, TestimonialsComponent, AboutComponent, HelpSectionComponent, EmphasisPipe]
     }).compileComponents();
   });
 
@@ -38,32 +42,53 @@ describe('HomeComponent', () => {
     }
   });
 
-  it('should render the about section', () => {
-    const about = (fixture.nativeElement as HTMLElement).querySelector('#about') as HTMLElement;
-    expect(about.querySelector('h2')?.textContent).toContain('About Learning with Toma');
-    expect(about.querySelectorAll('.about-list li').length).toBe(2);
-    expect(about.querySelectorAll('.about-figure img').length).toBe(component.aboutPhotos.length);
+  it('should render the three "How it works" steps, which the hero links to', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const steps = Array.from(compiled.querySelectorAll('#how .how-step'));
+    expect(steps.map(step => step.querySelector('h3')?.textContent)).toEqual(['Pick an activity', 'Make it yours', 'Print and play']);
+    expect(steps.map(step => step.querySelector('.how-number')?.textContent)).toEqual(['1', '2', '3']);
+    expect(compiled.querySelector('#how h2')?.textContent).toBe('How it works');
   });
 
-  it('should render every testimonial among the activity cards', () => {
-    const grid = (fixture.nativeElement as HTMLElement).querySelector('.activity-grid') as HTMLElement;
-    const testimonials = grid.querySelectorAll('.testimonial-card');
-    expect(grid.querySelectorAll('.activity-card').length).toBe(component.activities.length);
-    expect(testimonials.length).toBe(4);
-    const peter = Array.from(testimonials).find(card => card.querySelector('.testimonial-name')?.textContent === 'Peter');
-    expect(peter?.querySelector('.testimonial-relation')?.textContent).toBe('father of Mary Jane (7)');
-    expect(peter?.querySelector('blockquote')?.textContent).toContain('Mary Jane is doing it with a smile');
+  it('should switch the site language from the languages band', () => {
+    const i18n = TestBed.inject(LanguageService);
+    const compiled = fixture.nativeElement as HTMLElement;
+    const buttons = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.language-buttons button'));
+    expect(buttons.map(button => button.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski']);
+    expect(buttons[0].getAttribute('aria-pressed')).toBe('true');
+
+    buttons[2].click();
+    fixture.detectChanges();
+
+    expect(i18n.language).toBe('serbian');
+    expect(buttons[2].getAttribute('aria-pressed')).toBe('true');
+    expect(compiled.querySelector('#languages-heading')?.textContent).toBe('Svaki radni list na vašem jeziku');
+    i18n.language = 'english';
   });
 
-  it('should render the contact section with the e-mail link', () => {
-    const contact = (fixture.nativeElement as HTMLElement).querySelector('#contact') as HTMLElement;
-    expect(contact.querySelector('h2')?.textContent).toContain('Contact');
-    expect(contact.querySelector(`a[href="mailto:${CONTACT_EMAIL}"]`)?.textContent).toBe(CONTACT_EMAIL);
+  it('should link a card with its icon to every activity, in order', () => {
+    const cards = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll<HTMLAnchorElement>('.activity-card'));
+    expect(cards.map(card => card.getAttribute('href'))).toEqual(ACTIVITIES.map(activity => activity.route));
+    cards.forEach(card => expect(card.querySelector('app-activity-icon svg')).withContext(card.href).toBeTruthy());
+    expect(cards[0].querySelector('.card-category')?.textContent).toBe('Letters & words');
   });
 
-  it('should show key phrases in bold without the ** markers', () => {
-    const about = (fixture.nativeElement as HTMLElement).querySelector('#about') as HTMLElement;
-    expect(about.querySelector('strong')?.textContent).toBe('loved solving little puzzles, tasks and problems on paper');
-    expect(about.textContent).not.toContain('**');
+  it('should filter the activities by category and mark the pressed filter', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const filters = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.filters .filter'));
+    expect(filters.map(button => button.textContent?.trim())).toEqual(['All 12', 'Letters & words', 'Numbers & size', 'Fine motor', 'Thinking']);
+    expect(filters[0].getAttribute('aria-pressed')).toBe('true');
+
+    filters[3].click();
+    fixture.detectChanges();
+
+    const shown = Array.from(compiled.querySelectorAll<HTMLAnchorElement>('.activity-card')).map(card => card.getAttribute('href'));
+    expect(shown).toEqual(ACTIVITIES.filter(activity => activity.category === 'motor').map(activity => activity.route));
+    expect(filters[3].getAttribute('aria-pressed')).toBe('true');
+    expect(filters[0].getAttribute('aria-pressed')).toBe('false');
+
+    filters[0].click();
+    fixture.detectChanges();
+    expect(compiled.querySelectorAll('.activity-card').length).toBe(ACTIVITIES.length);
   });
 });
