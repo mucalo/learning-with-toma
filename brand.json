@@ -1,10 +1,22 @@
 {
   "brand": {
     "name": "Learning with Toma",
-    "tagline": "Beautiful learning activities in seconds.",
+    "localNames": {
+      "hr": "Učimo s Tomom",
+      "sr": "Učimo s Tomom"
+    },
+    "tagline": "Printable worksheets for little learners, ready in seconds.",
     "mission": "Help parents, speech-language professionals, and educators create engaging, personalized learning activities for every child.",
     "vision": "Make quality learning materials accessible, beautiful, and effortless to create.",
-    "positioning": "A friendly AI-powered platform for creating personalized printable learning activities for children.",
+    "positioning": "A free, friendly website that makes personalized printable learning worksheets for children aged 4–7 in seconds, in English, Croatian and Serbian.",
+    "audience": [
+      "parents",
+      "teachers",
+      "kindergartens",
+      "speech therapists",
+      "special-education teachers",
+      "psychologists"
+    ],
     "personality": [
       "warm",
       "encouraging",
@@ -41,142 +53,165 @@
     ]
   },
   "colors": {
-    "primary": {
-      "name": "Sky Blue",
-      "hex": "#5B8DEF"
+    "ink": {
+      "name": "Ink",
+      "hex": "#1A2238",
+      "use": "text, dark buttons, worksheet lines"
     },
-    "secondary": {
-      "name": "Soft Coral",
-      "hex": "#F28C82"
+    "muted": {
+      "name": "Muted",
+      "hex": "#4A5470",
+      "use": "secondary text"
+    },
+    "bodyCopy": {
+      "name": "Body copy",
+      "hex": "#3A4460",
+      "use": "long text in About and Want to help?"
+    },
+    "accent": {
+      "name": "Accent orange",
+      "hex": "#C2410C",
+      "use": "main buttons, step numbers, quote marks, logo tile, starting dots on worksheets"
+    },
+    "highlight": {
+      "name": "Highlighter yellow",
+      "hex": "#FFD43B",
+      "use": "highlighted words, stickers, a/b markers"
+    },
+    "softYellow": {
+      "name": "Soft yellow",
+      "hex": "#FFF8D6",
+      "use": "donate card and support notes"
+    },
+    "heart": {
+      "name": "Heart red",
+      "hex": "#E5484D",
+      "use": "the support heart"
     },
     "background": {
-      "name": "Warm Cream",
-      "hex": "#FFF9F3"
+      "page": "#FFFFFF",
+      "soft": "#F6F8FC"
     },
-    "text": {
-      "name": "Slate",
-      "hex": "#2F3B45"
+    "lines": {
+      "border": "#E3EAF5",
+      "input": "#CBD5E6",
+      "paperGrid": "#EDF2FA"
     },
-    "accent": [
-      {
-        "name": "Sage",
-        "hex": "#A7C7A5"
+    "categories": {
+      "letters": {
+        "name": "Letters & words",
+        "background": "#E7F0FF",
+        "ink": "#1D4ED8",
+        "fill": "#9EC1FF"
       },
-      {
-        "name": "Sunshine",
-        "hex": "#F6D365"
+      "numbers": {
+        "name": "Numbers & size",
+        "background": "#FFF1E6",
+        "ink": "#C2410C",
+        "fill": "#FFB38A"
       },
-      {
-        "name": "Lavender",
-        "hex": "#C8B6FF"
+      "motor": {
+        "name": "Fine motor",
+        "background": "#E6F6EC",
+        "ink": "#047857",
+        "fill": "#8FD9B6"
+      },
+      "thinking": {
+        "name": "Thinking",
+        "background": "#F1ECFF",
+        "ink": "#6D28D9",
+        "fill": "#C9B5FF"
       }
-    ],
-    "status": {
-      "success": "#7CB342",
-      "warning": "#F4B400",
-      "error": "#E57373",
-      "info": "#5B8DEF"
     }
   },
   "typography": {
     "headings": {
-      "primary": "Nunito",
-      "fallback": [
-        "Avenir Next",
-        "Segoe UI",
-        "sans-serif"
-      ],
-      "weight": [
-        700,
-        800
-      ]
+      "primary": "Bricolage Grotesque",
+      "fallback": ["system-ui", "sans-serif"],
+      "weight": [800],
+      "sizes": {
+        "hero": "clamp(44px, 6vw, 76px)",
+        "section": "clamp(32px, 4.2vw, 52px)"
+      },
+      "letterSpacing": "-0.02em"
     },
     "body": {
-      "primary": "Inter",
-      "fallback": [
-        "Segoe UI",
-        "Roboto",
-        "Arial",
-        "sans-serif"
-      ],
-      "weight": [
-        400,
-        500
-      ]
+      "primary": "Atkinson Hyperlegible",
+      "fallback": ["Segoe UI", "Roboto", "Arial", "sans-serif"],
+      "weight": [400, 700],
+      "size": "17px",
+      "lineHeight": 1.6
     },
     "buttons": {
-      "font": "Nunito",
+      "font": "Atkinson Hyperlegible",
       "weight": 700
+    },
+    "handwritten": {
+      "primary": "Andika",
+      "use": "photo captions, testimonial quotes, the About sign-off line and worksheet lettering"
     }
   },
   "logo": {
-    "style": "Minimal hand-drawn illustration",
-    "elements": [
-      "child",
-      "open book",
-      "small heart",
-      "soft smile"
-    ],
-    "stroke": {
-      "width": 2,
-      "linecap": "round",
-      "linejoin": "round"
-    },
-    "color": "currentColor"
+    "mark": "A rounded orange (#C2410C) tile, tilted -6°, with a white handwritten lowercase \"t\" (2.6px round stroke on a 24px grid)",
+    "wordmark": "\"Learning\" / \"with Toma\" on two lines in Bricolage Grotesque, 800 and 500 weight",
+    "favicon": "The same tile upright, so it stays crisp at 16px (src/favicon.svg, favicon.ico, apple-touch-icon.png)"
   },
   "illustration": {
-    "style": "Simple line art",
-    "strokeWidth": 2,
-    "cornerRadius": 16,
+    "style": "Flat, friendly shapes with 2px ink outlines on a 64×64 grid, filled with the category colours",
+    "activityIcons": "One per activity, in src/app/activity-icon/activity-icons.ts",
     "motifs": [
-      "books",
-      "stars",
-      "paper airplane",
-      "heart",
-      "leaf",
-      "spark",
-      "pencil",
-      "speech bubble"
+      "worksheets",
+      "dot grids",
+      "dotted letters",
+      "pencils",
+      "simple shapes",
+      "hearts"
     ]
   },
   "iconography": {
     "style": "Outlined",
-    "strokeWidth": 2,
+    "strokeWidth": 2.2,
     "cornerStyle": "rounded",
     "sizeGrid": 24
   },
   "layout": {
+    "contentWidth": 1240,
+    "sidePadding": 24,
+    "sectionPadding": "88–96px top and bottom",
     "borderRadius": {
-      "small": 8,
-      "medium": 16,
-      "large": 24
+      "small": 12,
+      "medium": 20,
+      "large": 24,
+      "pill": 999
     },
-    "spacing": {
-      "base": 8,
-      "scale": [
-        8,
-        16,
-        24,
-        32,
-        48,
-        64
-      ]
-    },
+    "borderWidth": 1.5,
+    "touchTarget": 44,
+    "paperGrid": "28px grid of 1px #EDF2FA lines on white (hero and About)",
     "shadow": {
-      "color": "rgba(47,59,69,0.08)",
-      "blur": 20,
-      "offsetY": 8
+      "color": "rgba(26,34,56,0.08)",
+      "blur": 28,
+      "offsetY": 12
     }
+  },
+  "worksheets": {
+    "paper": "A4 sheets, the same on screen and in print",
+    "instruction": "Uppercase, 15px bold, #3D5A99, repeated at the top of every page",
+    "footer": "Learning with Toma · activity name, and learningwithtoma.com with the page number",
+    "ink": "#1A2238",
+    "startingDots": "#C2410C"
   },
   "imagery": {
     "style": "Natural, authentic, bright",
     "subjects": [
       "parents and children learning together",
-      "educators preparing activities",
       "children solving worksheets",
-      "books",
+      "hand-drawn worksheets",
       "paper",
       "pencils"
+    ],
+    "rules": [
+      "No child can be recognised: faces blurred, backs of heads, just the hands, finished worksheets",
+      "Photos are shown like prints: a white border, a slight tilt and a handwritten caption"
     ],
     "avoid": [
       "overly staged stock photos",
@@ -185,13 +220,15 @@
     ]
   },
   "ui": {
-    "style": "Minimal",
+    "style": "Minimal and paper-like",
     "cards": true,
     "whiteSpace": "generous",
-    "animations": "subtle",
+    "animations": "subtle, and none when the user prefers reduced motion",
     "buttons": {
-      "shape": "rounded",
-      "size": "large"
+      "shape": "fully rounded",
+      "size": "large",
+      "primary": "accent orange with white text",
+      "secondary": "white with a 2px ink outline"
     }
   },
   "mascot": {
@@ -211,10 +248,10 @@
     ]
   },
   "messaging": {
-    "homepageHeadline": "Beautiful learning activities in seconds.",
-    "homepageSubheadline": "Create personalized printable learning activities for children with the help of AI.",
-    "ctaPrimary": "Create your first activity",
-    "ctaSecondary": "Explore examples"
+    "homepageHeadline": "Printable worksheets for little learners, ready in seconds.",
+    "homepageSubheadline": "Pick one of 12 activities, choose your language, adjust a few settings and print. A fresh worksheet every time — no cost, no fuss.",
+    "ctaPrimary": "Choose an activity",
+    "ctaSecondary": "How it works",
+    "support": "If these little worksheets have brought a smile to your table, you can help keep them coming."
   }
 }
-

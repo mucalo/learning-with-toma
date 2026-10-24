@@ -70,6 +70,36 @@
   transform: translateY(-50%);
 }
 
+/* The ? (show the answer) and ✕ (remove the row) buttons, the same in every activity. */
+:host ::ng-deep .action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+:host ::ng-deep .hint-button {
+  background: var(--letters-bg);
+  color: var(--letters-ink);
+}
+
+:host ::ng-deep .remove-button {
+  background: #fde8e8;
+  color: #b42318;
+}
+
+:host ::ng-deep .action-button:hover {
+  border-color: currentColor;
+}
+
 @media print {
   .sheets {
     gap: 0;

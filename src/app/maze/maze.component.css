@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 1.5rem;
   padding: 1.25rem 0;
-  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+  border-top: 1px dashed rgba(26, 34, 56, 0.16);
 }
 
 .maze {
@@ -15,14 +15,14 @@
 }
 
 .walls {
-  stroke: #2f3b45;
+  stroke: var(--ink);
   stroke-width: 3;
   stroke-linecap: square;
   vector-effect: non-scaling-stroke;
 }
 
 .solution {
-  stroke: #f28c82;
+  stroke: var(--accent);
   stroke-width: 4;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -30,7 +30,7 @@
 }
 
 .picture {
-  fill: #2f3b45;
+  fill: var(--ink);
   text-anchor: middle;
   dominant-baseline: central;
 }
@@ -39,25 +39,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.action-button {
-  width: 2.2rem;
-  height: 2.2rem;
-  border: none;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.hint-button {
-  background: #e9f2ff;
-  color: #5b8def;
-}
-
-.remove-button {
-  background: #fde7e4;
-  color: #f28c82;
 }
 
 /* The worksheet as it prints, which is also how it shows on screen. */

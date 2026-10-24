@@ -3,7 +3,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 0;
-  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+  border-top: 1px dashed rgba(26, 34, 56, 0.16);
 }
 
 .grids {
@@ -22,33 +22,19 @@
 }
 
 .stroke {
-  stroke: #2f3b45;
+  stroke: var(--ink);
   stroke-width: 4;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
 }
 
 .dot {
-  fill: #2f3b45;
+  fill: var(--ink);
 }
 
 .arrow {
   font-size: 2rem;
   color: #9aa5b1;
-}
-
-.action-button {
-  width: 2.2rem;
-  height: 2.2rem;
-  border: none;
-  border-radius: 999px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.remove-button {
-  background: #fde7e4;
-  color: #f28c82;
 }
 
 /* The worksheet as it prints, which is also how it shows on screen. */

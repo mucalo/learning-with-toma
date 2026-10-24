@@ -4,7 +4,7 @@
   align-items: center;
   gap: 1.5rem;
   padding: 1.25rem 0;
-  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+  border-top: 1px dashed rgba(26, 34, 56, 0.16);
 }
 
 .items-container {
@@ -32,8 +32,8 @@
 .answer-line {
   width: 60px;
   height: 2px;
-  background: #1f3b4d;
-  border-bottom: 3px solid #1f3b4d;
+  background: var(--ink);
+  border-bottom: 3px solid var(--ink);
 }
 
 .action-area {
@@ -47,42 +47,12 @@
   position: relative;
 }
 
-.action-button {
-  width: 2.2rem;
-  height: 2.2rem;
-  border: none;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(47, 59, 69, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.action-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(47, 59, 69, 0.12);
-}
-
-.hint-button {
-  background: #e9f2ff;
-  color: #5b8def;
-}
-
-.remove-button {
-  background: #fde7e4;
-  color: #f28c82;
-}
-
 .hint-bubble {
   position: absolute;
   top: -2.5rem;
   left: 50%;
   transform: translateX(-50%);
-  background: #1f3b4d;
+  background: var(--ink);
   color: white;
   padding: 0.4rem 0.7rem;
   border-radius: 0.4rem;
@@ -103,7 +73,7 @@
   height: 0;
   border-left: 0.3rem solid transparent;
   border-right: 0.3rem solid transparent;
-  border-top: 0.3rem solid #1f3b4d;
+  border-top: 0.3rem solid var(--ink);
 }
 
 /* The worksheet as it prints, which is also how it shows on screen. */

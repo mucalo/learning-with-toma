@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr;
   padding: 1.25rem 0;
-  border-top: 1px dashed rgba(47, 59, 69, 0.16);
+  border-top: 1px dashed rgba(26, 34, 56, 0.16);
 }
 
 .items-container {
