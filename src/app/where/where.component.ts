@@ -96,16 +96,34 @@ export const CHARACTERS: Character[] = [
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /**
+ * A task sentence split around its preposition, so the preposition can be shown in bold without
+ * searching for it in the text (in Croatian, "na" could also be part of another word).
+ */
+export interface SentenceParts {
+  before: string;
+  preposition: string;
+  after: string;
+}
+
+export const sentenceText = (parts: SentenceParts) => parts.before + parts.preposition + parts.after;
+
+/**
  * Builds the task sentence. Each language has its own grammar, so a new language must add a
  * builder here (the Record type makes a missing one a compile error).
  */
-export const SENTENCES: Record<LanguageKey, (character: Character, thing: Thing, preposition: string, position: Position) => string> = {
-  english: (c, t, prep) => `The ${c.names.english} is ${prep} the ${t.names.english}.`,
+export const SENTENCES: Record<LanguageKey, (character: Character, thing: Thing, preposition: string, position: Position) => SentenceParts> = {
+  english: (c, t, prep) => ({ before: `The ${c.names.english} is `, preposition: prep, after: ` the ${t.names.english}.` }),
   // "na" takes the locative (na stolu); "ispod", "iznad" and "pokraj" take the genitive (ispod stola).
-  croatian: (c, t, prep, position) =>
-    `${capitalise(c.names.croatian)} je ${prep} ${position === 'on' ? t.names.croatian.loc : t.names.croatian.gen}.`,
-  serbian: (c, t, prep, position) =>
-    `${capitalise(c.names.serbian)} je ${prep} ${position === 'on' ? t.names.serbian.loc : t.names.serbian.gen}.`
+  croatian: (c, t, prep, position) => ({
+    before: `${capitalise(c.names.croatian)} je `,
+    preposition: prep,
+    after: ` ${position === 'on' ? t.names.croatian.loc : t.names.croatian.gen}.`
+  }),
+  serbian: (c, t, prep, position) => ({
+    before: `${capitalise(c.names.serbian)} je `,
+    preposition: prep,
+    after: ` ${position === 'on' ? t.names.serbian.loc : t.names.serbian.gen}.`
+  })
 };
 
 interface Scene {
@@ -207,7 +225,7 @@ export class WhereComponent {
     }
   }
 
-  sentence(item: WhereItem): string {
+  sentence(item: WhereItem): SentenceParts {
     const language = this.i18n.language;
     return SENTENCES[language](item.character, item.thing, this.i18n.t.where.positions[item.target], item.target);
   }

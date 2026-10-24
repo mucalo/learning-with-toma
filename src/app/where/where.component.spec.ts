@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../i18n/language.service';
 import { WorksheetComponent } from '../worksheet/worksheet.component';
-import { CHARACTERS, FLOOR_Y, Position, POSITIONS, SENTENCES, SCENE_HEIGHT, SCENE_WIDTH, spotFor, THINGS, WhereComponent } from './where.component';
+import { CHARACTERS, FLOOR_Y, Position, POSITIONS, SENTENCES, SCENE_HEIGHT, SCENE_WIDTH, sentenceText, spotFor, THINGS, WhereComponent } from './where.component';
 
 describe('WhereComponent', () => {
   let component: WhereComponent;
@@ -32,14 +32,28 @@ describe('WhereComponent', () => {
       return i18n.t.where.positions[position];
     };
 
-    expect(SENTENCES.english(cat, table, prep('english', 'under'), 'under')).toBe('The cat is under the table.');
-    expect(SENTENCES.english(cat, table, prep('english', 'nextTo'), 'nextTo')).toBe('The cat is next to the table.');
+    expect(sentenceText(SENTENCES.english(cat, table, prep('english', 'under'), 'under'))).toBe('The cat is under the table.');
+    expect(sentenceText(SENTENCES.english(cat, table, prep('english', 'nextTo'), 'nextTo'))).toBe('The cat is next to the table.');
     // Croatian / Serbian: "na" + locative, the others + genitive.
-    expect(SENTENCES.croatian(cat, table, prep('croatian', 'on'), 'on')).toBe('Mačka je na stolu.');
-    expect(SENTENCES.croatian(cat, table, prep('croatian', 'under'), 'under')).toBe('Mačka je ispod stola.');
-    expect(SENTENCES.croatian(cat, table, prep('croatian', 'nextTo'), 'nextTo')).toBe('Mačka je pokraj stola.');
-    expect(SENTENCES.serbian(cat, table, prep('serbian', 'nextTo'), 'nextTo')).toBe('Mačka je pored stola.');
-    expect(SENTENCES.serbian(cat, THINGS.find(t => t.key === 'chair')!, prep('serbian', 'on'), 'on')).toBe('Mačka je na stolici.');
+    expect(sentenceText(SENTENCES.croatian(cat, table, prep('croatian', 'on'), 'on'))).toBe('Mačka je na stolu.');
+    expect(sentenceText(SENTENCES.croatian(cat, table, prep('croatian', 'under'), 'under'))).toBe('Mačka je ispod stola.');
+    expect(sentenceText(SENTENCES.croatian(cat, table, prep('croatian', 'nextTo'), 'nextTo'))).toBe('Mačka je pokraj stola.');
+    expect(sentenceText(SENTENCES.serbian(cat, table, prep('serbian', 'nextTo'), 'nextTo'))).toBe('Mačka je pored stola.');
+    expect(sentenceText(SENTENCES.serbian(cat, THINGS.find(t => t.key === 'chair')!, prep('serbian', 'on'), 'on'))).toBe('Mačka je na stolici.');
+  });
+
+  it('should split out exactly the preposition, as a whole word, in every language', () => {
+    i18n.languages.forEach(({ value: language }) => {
+      i18n.language = language;
+      CHARACTERS.forEach(character => THINGS.forEach(thing => POSITIONS.forEach(position => {
+        const preposition = i18n.t.where.positions[position];
+        const parts = SENTENCES[language](character, thing, preposition, position);
+        const context = `${language} ${character.emoji} ${thing.key} ${position}`;
+        expect(parts.preposition).withContext(context).toBe(preposition);
+        expect(parts.before).withContext(context).toMatch(/ $/);
+        expect(parts.after).withContext(context).toMatch(/^ /);
+      })));
+    });
   });
 
   it('should keep every character inside the scene and on the right side of the object', () => {
@@ -101,6 +115,7 @@ describe('WhereComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
 
     expect(compiled.querySelector('.sentence')?.textContent).toMatch(/ je (na|ispod|pokraj|iznad) /);
+    expect(compiled.querySelector('.sentence .preposition')?.textContent).toBe(i18n.t.where.positions[component.generatedItems[0].target]);
     expect(compiled.querySelectorAll('.scene.correct').length).toBe(0);
 
     component.revealAnswer(component.generatedItems[0]);

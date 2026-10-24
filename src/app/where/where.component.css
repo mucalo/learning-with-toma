@@ -95,7 +95,12 @@
 .sentence {
   margin: 0 0 0.6rem;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 500;
+}
+
+/* The position word is the key to the task, so it stands out from the rest of the sentence. */
+.preposition {
+  font-weight: 800;
 }
 
 .scenes {
@@ -175,5 +180,9 @@
 
   .problem-row {
     border: none;
+  }
+
+  .sentence {
+    text-transform: uppercase;
   }
 }

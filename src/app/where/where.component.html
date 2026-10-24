@@ -35,7 +35,7 @@
     <ng-template let-item let-i="index">
       <div class="problem-row">
         <div class="content">
-          <p class="sentence">{{ sentence(item) }}</p>
+          <p *ngIf="sentence(item) as parts" class="sentence">{{ parts.before }}<strong class="preposition">{{ parts.preposition }}</strong>{{ parts.after }}</p>
           <ul class="scenes">
             <li *ngFor="let scene of item.scenes" class="scene" [class.correct]="item.answerRevealed && scene.position === item.target">
               <svg [attr.viewBox]="viewBox" role="img" [attr.aria-label]="i18n.t.where.sceneLabel">
