@@ -85,6 +85,18 @@ describe('ActivityPageComponent', () => {
     expect(fixture.componentInstance.printed).toBeTrue();
   });
 
+  it('should offer a second Print button below the preview once there is a worksheet', () => {
+    expect(element.querySelector('.preview-actions')).toBeNull();
+
+    buttons()[0].click();
+    fixture.detectChanges();
+
+    const second = element.querySelector<HTMLButtonElement>('.preview-actions button');
+    expect(second?.textContent?.trim()).toBe('Print worksheet');
+    second?.click();
+    expect(fixture.componentInstance.printed).toBeTrue();
+  });
+
   it('should bring the top of the preview into view after generating', fakeAsync(() => {
     const preview = element.querySelector('.preview') as HTMLElement;
     const scrollIntoView = spyOn(preview, 'scrollIntoView');

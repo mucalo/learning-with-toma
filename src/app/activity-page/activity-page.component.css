@@ -157,6 +157,19 @@
   background: #e4eaf4;
 }
 
+/* A second Print button below the pages, only shown when the panel isn't beside the preview. */
+.preview-actions {
+  display: none;
+}
+
+.preview-actions svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .preview-empty {
   max-width: 32em;
   margin: 120px auto;
@@ -280,6 +293,17 @@
   .settings-panel {
     position: static;
   }
+
+  .preview-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .preview-actions .btn {
+    width: 100%;
+    max-width: 420px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -320,6 +344,7 @@
   .activity-head,
   .settings-panel,
   .preview-head,
+  .preview-actions,
   .preview-empty,
   .tips,
   .try-next {
