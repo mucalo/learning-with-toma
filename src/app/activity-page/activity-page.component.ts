@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
 import { scrollBehavior } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
@@ -19,7 +20,7 @@ import { LanguageService } from '../i18n/language.service';
   templateUrl: './activity-page.component.html',
   styleUrls: ['./activity-page.component.css']
 })
-export class ActivityPageComponent {
+export class ActivityPageComponent implements DoCheck, OnDestroy {
   @Input() hasWorksheet = false;
   @Output() generate = new EventEmitter<void>();
   @Output() print = new EventEmitter<void>();
@@ -32,7 +33,42 @@ export class ActivityPageComponent {
   /** One other activity from each category, so "Try next" always offers some variety. */
   tryNext: Activity[] = [];
 
-  constructor(readonly i18n: LanguageService) {}
+  /** While the print dialog is open, the title holds the file-name-safe version. */
+  private printing = false;
+
+  constructor(readonly i18n: LanguageService, private readonly title: Title) {}
+
+  /**
+   * "Learning with Toma - Find the Intruder". Browsers use the page title for the tab, the print
+   * job's name and the suggested file name when saving as PDF.
+   */
+  get pageTitle(): string {
+    return `${this.i18n.t.header.appTitle} - ${this.i18n.t.activities[this.current.key].title}`;
+  }
+
+  /** Keeps the title in step with the activity and the language (which also sets the title). */
+  ngDoCheck(): void {
+    if (!this.printing && this.title.getTitle() !== this.pageTitle) {
+      this.title.setTitle(this.pageTitle);
+    }
+  }
+
+  /** Characters that aren't allowed in file names (e.g. the "?" in "Where Is It?") are left out. */
+  @HostListener('window:beforeprint')
+  beforePrint(): void {
+    this.printing = true;
+    this.title.setTitle(this.pageTitle.replace(/[\\/:*?"<>|]+/g, '').trim());
+  }
+
+  @HostListener('window:afterprint')
+  afterPrint(): void {
+    this.printing = false;
+    this.title.setTitle(this.pageTitle);
+  }
+
+  ngOnDestroy(): void {
+    this.title.setTitle(this.i18n.t.header.appTitle);
+  }
 
   @Input() set activity(key: ActivityKey) {
     this.current = ACTIVITIES.find(activity => activity.key === key) ?? ACTIVITIES[0];

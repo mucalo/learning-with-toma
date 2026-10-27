@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
 import { ActivityNavComponent } from '../activity-nav/activity-nav.component';
@@ -107,6 +108,34 @@ describe('ActivityPageComponent', () => {
 
     expect(scrollIntoView).toHaveBeenCalledWith(jasmine.objectContaining({ block: 'start' }));
   }));
+
+  it('should title the page with the site and activity name, in the current language', () => {
+    expect(document.title).toBe('Learning with Toma - Maze');
+
+    i18n.language = 'croatian';
+    fixture.detectChanges();
+    expect(document.title).toBe('Učimo s Tomom - Labirint');
+  });
+
+  it('should leave characters that are not allowed in file names out of the title while printing', () => {
+    const page = fixture.debugElement.query(By.directive(ActivityPageComponent)).componentInstance as ActivityPageComponent;
+    page.activity = 'where';
+    fixture.detectChanges();
+    expect(document.title).toBe('Learning with Toma - Where Is It?');
+
+    window.dispatchEvent(new Event('beforeprint'));
+    fixture.detectChanges();
+    expect(document.title).toBe('Learning with Toma - Where Is It');
+
+    window.dispatchEvent(new Event('afterprint'));
+    fixture.detectChanges();
+    expect(document.title).toBe('Learning with Toma - Where Is It?');
+  });
+
+  it('should give the page back the site title when leaving it', () => {
+    fixture.destroy();
+    expect(document.title).toBe('Learning with Toma');
+  });
 
   it('should show three tips and one activity from each other category to try next', () => {
     expect(element.querySelectorAll('.tips li').length).toBe(3);
