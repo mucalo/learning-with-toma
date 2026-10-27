@@ -45,6 +45,7 @@
           <ul class="learner-tags">
             <li *ngFor="let tag of i18n.t.about.learner.tags">{{ tag }}</li>
           </ul>
+          <p class="learner-disclaimer"><strong>{{ i18n.t.about.learner.disclaimer.label }}</strong> {{ i18n.t.about.learner.disclaimer.text }}</p>
         </aside>
 
         <p *ngFor="let paragraph of i18n.t.about.closing">

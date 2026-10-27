@@ -224,6 +224,17 @@
   font-size: 14px;
 }
 
+/* A word of caution, set apart in soft yellow. */
+.learner-disclaimer {
+  padding: 12px 16px;
+  border-left: 4px solid var(--highlight);
+  border-radius: 12px;
+  background: var(--soft-yellow);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 .about-story .about-handwritten {
   color: var(--ink);
   font-family: var(--font-hand);

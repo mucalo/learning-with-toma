@@ -30,6 +30,12 @@ describe('AboutComponent', () => {
     figures.forEach(figure => expect(figure.querySelector('img')?.getAttribute('alt')).toBeTruthy());
   });
 
+  it('should end the learner box with a note to ask the child\'s teacher or speech therapist first', () => {
+    const disclaimer = (fixture.nativeElement as HTMLElement).querySelector('.learner-box .learner-disclaimer');
+    expect(disclaimer?.querySelector('strong')?.textContent).toBe('Important:');
+    expect(disclaimer?.textContent).toContain('speech and language therapist');
+  });
+
   it('should lead the About support note to the "Want to help?" section', () => {
     const about = fixture.nativeElement as HTMLElement;
     expect(about.querySelector('.support-note a')?.getAttribute('href')).toBe('/#help');

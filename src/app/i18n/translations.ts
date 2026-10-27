@@ -81,8 +81,8 @@ export interface Translations {
     story: string[];
     drawingReasons: string[];
     afterReasons: string[];
-    /** Box about neurodivergent children. */
-    learner: { title: string; text: string; tags: string[] };
+    /** Box about neurodivergent children, ending with a note to ask their teacher or speech therapist first. */
+    learner: { title: string; text: string; tags: string[]; disclaimer: { label: string; text: string } };
     closing: string[];
     /** Closing line, shown in handwriting. */
     handwritten: string;
@@ -387,7 +387,7 @@ const english: Translations = {
     allActivities: 'All activities'
   },
   footer: {
-    description: 'Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, teachers and therapists.',
+    description: 'Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, preschool educators and school teachers.',
     explore: 'Explore',
     getInTouch: 'Get in touch',
     keepFree: {
@@ -414,7 +414,7 @@ const english: Translations = {
     chooseActivity: 'Choose an activity',
     howItWorks: 'How it works',
     madeFor: 'Made for',
-    audiences: ['parents', 'teachers', 'kindergartens', 'speech therapists'],
+    audiences: ['parents', 'teachers', 'kindergartens'],
     sticker: ['Free', 'to print']
   },
   howItWorks: [
@@ -439,7 +439,7 @@ const english: Translations = {
   about: {
     eyebrow: 'About',
     heading: 'A dad who couldn’t draw fast enough',
-    lead: 'Learning with Toma is a free website that creates printable learning worksheets for children in seconds — spelling, counting, mazes, letter tracing and more. It’s made for parents, teachers and therapists, especially those supporting children with autism, ADHD, dyslexia or dyspraxia.',
+    lead: 'Learning with Toma is a free website that creates printable learning worksheets for children in seconds — spelling, counting, mazes, letter tracing and more. It’s made for parents, preschool educators and school teachers.',
     stats: [
       { value: '12', label: 'activities' },
       { value: '4–7', label: 'years old' },
@@ -461,7 +461,11 @@ const english: Translations = {
     learner: {
       title: 'Made with every kind of learner in mind',
       text: 'My son is **neurodivergent**, and he really dislikes drawing and anything to do with pencils. But developing **graphomotor and fine motor skills** early is so important, and **practising with a pencil in your fingers is vital**. Then, out of nowhere, he became interested in letters and writing — and these little exercises **held his focus longer than anything else** we tried.',
-      tags: ['Autism', 'ADHD', 'Dyslexia', 'Dyspraxia']
+      tags: ['Autism', 'ADHD', 'Dyslexia', 'Dyspraxia'],
+      disclaimer: {
+        label: 'Important:',
+        text: 'every child is different. Before using these worksheets with a neurodivergent child, please talk to their preschool educator, teacher or speech and language therapist. The wrong activity can sometimes do more harm than good.'
+      }
     },
     closing: [
       'So, not to ramble on for too long: **I built this website for myself**, so I can quickly make little problems for my youngest daughter (the other two have outgrown them, for now ;)). But I hope there are **other parents out there who will find it useful too**.'
@@ -868,7 +872,7 @@ const croatian: Translations = {
     allActivities: 'Sve aktivnosti'
   },
   footer: {
-    description: 'Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, učitelje i terapeute.',
+    description: 'Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, odgojitelje i učitelje.',
     explore: 'Istražite',
     getInTouch: 'Javite se',
     keepFree: {
@@ -895,7 +899,7 @@ const croatian: Translations = {
     chooseActivity: 'Odaberite aktivnost',
     howItWorks: 'Kako funkcionira',
     madeFor: 'Namijenjeno za',
-    audiences: ['roditelje', 'učitelje', 'vrtiće', 'logopede'],
+    audiences: ['roditelje', 'učitelje', 'vrtiće'],
     sticker: ['Besplatno', 'za ispis']
   },
   howItWorks: [
@@ -920,7 +924,7 @@ const croatian: Translations = {
   about: {
     eyebrow: 'O projektu',
     heading: 'Tata koji nije mogao crtati dovoljno brzo',
-    lead: 'Učimo s Tomom besplatna je stranica koja u nekoliko sekundi izrađuje radne listove za ispis za djecu — pisanje riječi, brojanje, labirinte, praćenje slova i još mnogo toga. Namijenjena je roditeljima, učiteljima i terapeutima, osobito onima koji rade s djecom s autizmom, ADHD-om, disleksijom ili dispraksijom.',
+    lead: 'Učimo s Tomom besplatna je stranica koja u nekoliko sekundi izrađuje radne listove za ispis za djecu — pisanje riječi, brojanje, labirinte, praćenje slova i još mnogo toga. Namijenjena je roditeljima, odgojiteljima i učiteljima.',
     stats: [
       { value: '12', label: 'aktivnosti' },
       { value: '4–7', label: 'godina' },
@@ -942,7 +946,11 @@ const croatian: Translations = {
     learner: {
       title: 'Napravljeno s mislima na svako dijete',
       text: 'Moj sin je **neurodivergentan** i jako ne voli crtanje i sve što ima veze s olovkom. A razvoj **grafomotorike i fine motorike** u ranoj dobi jako je važan, i **vježbanje s olovkom u prstima je ključno**. A onda se, niotkuda, zainteresirao za slova i pisanje — i ovi mali zadaci **zadržali su mu pažnju dulje od bilo čega drugog** što smo pokušali.',
-      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija']
+      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija'],
+      disclaimer: {
+        label: 'Važno:',
+        text: 'svako je dijete drukčije. Prije nego što ove radne listove date neurodivergentnom djetetu, posavjetujte se s njegovim odgojiteljem, učiteljem ili logopedom. Pogrešno odabrana aktivnost ponekad može više naštetiti nego pomoći.'
+      }
     },
     closing: [
       'Da ne duljim previše: **ovu sam stranicu napravio za sebe**, da mogu brzo napraviti male zadatke za svoju najmlađu kćer (starije dvoje ih je zasad preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti korisna**.'
@@ -1349,7 +1357,7 @@ const serbian: Translations = {
     allActivities: 'Sve aktivnosti'
   },
   footer: {
-    description: 'Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, učitelje i terapeute.',
+    description: 'Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, vaspitače i učitelje.',
     explore: 'Istražite',
     getInTouch: 'Javite se',
     keepFree: {
@@ -1376,7 +1384,7 @@ const serbian: Translations = {
     chooseActivity: 'Izaberite aktivnost',
     howItWorks: 'Kako funkcioniše',
     madeFor: 'Namenjeno za',
-    audiences: ['roditelje', 'učitelje', 'vrtiće', 'logopede'],
+    audiences: ['roditelje', 'učitelje', 'vrtiće'],
     sticker: ['Besplatno', 'za štampu']
   },
   howItWorks: [
@@ -1401,7 +1409,7 @@ const serbian: Translations = {
   about: {
     eyebrow: 'O projektu',
     heading: 'Tata koji nije mogao da crta dovoljno brzo',
-    lead: 'Učimo s Tomom je besplatan sajt koji za nekoliko sekundi pravi radne listove za štampanje za decu — pisanje reči, brojanje, lavirinte, praćenje slova i još mnogo toga. Namenjen je roditeljima, učiteljima i terapeutima, posebno onima koji rade sa decom sa autizmom, ADHD-om, disleksijom ili dispraksijom.',
+    lead: 'Učimo s Tomom je besplatan sajt koji za nekoliko sekundi pravi radne listove za štampanje za decu — pisanje reči, brojanje, lavirinte, praćenje slova i još mnogo toga. Namenjen je roditeljima, vaspitačima i učiteljima.',
     stats: [
       { value: '12', label: 'aktivnosti' },
       { value: '4–7', label: 'godina' },
@@ -1423,7 +1431,11 @@ const serbian: Translations = {
     learner: {
       title: 'Napravljeno sa mislima na svako dete',
       text: 'Moj sin je **neurodivergentan** i baš ne voli crtanje i sve što ima veze sa olovkom. A razvoj **grafomotorike i fine motorike** u ranom uzrastu veoma je važan, i **vežbanje sa olovkom u prstima je ključno**. A onda se, niotkuda, zainteresovao za slova i pisanje — i ovi mali zadaci **zadržali su mu pažnju duže od bilo čega drugog** što smo pokušali.',
-      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija']
+      tags: ['Autizam', 'ADHD', 'Disleksija', 'Dispraksija'],
+      disclaimer: {
+        label: 'Važno:',
+        text: 'svako dete je drugačije. Pre nego što ove radne listove date neurodivergentnom detetu, posavetujte se sa njegovim vaspitačem, učiteljem ili logopedom. Pogrešno izabrana aktivnost ponekad može više da odmogne nego da pomogne.'
+      }
     },
     closing: [
       'Da ne dužim previše: **ovaj sajt sam napravio za sebe**, da mogu brzo da napravim male zadatke za svoju najmlađu ćerku (starije dvoje ih je za sada preraslo ;)). Ali nadam se da postoje i **drugi roditelji kojima će biti koristan**.'
