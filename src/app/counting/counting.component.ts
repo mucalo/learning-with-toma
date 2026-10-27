@@ -22,7 +22,8 @@ interface CountingItem {
   styleUrls: ['./counting.component.css']
 })
 export class CountingComponent {
-  problemCount = 10;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 6;
   maxItems = 10;
   generatedItems: CountingItem[] = [];
 

@@ -164,7 +164,8 @@ export function spotFor(thing: Thing, position: Position): Spot {
   styleUrls: ['./where.component.css']
 })
 export class WhereComponent {
-  problemCount = 6;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 10;
   sceneCount = 3;
   selectedPositions: Record<Position, boolean> = { on: true, under: true, nextTo: true, above: true };
   generatedItems: WhereItem[] = [];

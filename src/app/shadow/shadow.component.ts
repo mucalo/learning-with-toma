@@ -55,6 +55,7 @@ function shuffle<T>(values: T[]): T[] {
   styleUrls: ['./shadow.component.css']
 })
 export class ShadowComponent {
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
   problemCount = 6;
   pairCount = 4;
   difficulty: Difficulty = 'easy';

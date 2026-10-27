@@ -159,7 +159,8 @@ interface LineItem {
   styleUrls: ['./line.component.css']
 })
 export class LineComponent {
-  problemCount = 8;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 16;
   shape: ShapeChoice = 'mixed';
   size: LineSize = 'medium';
   showGuides = true;

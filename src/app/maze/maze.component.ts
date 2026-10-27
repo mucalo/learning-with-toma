@@ -155,7 +155,8 @@ interface MazeItem {
   styleUrls: ['./maze.component.css']
 })
 export class MazeComponent {
-  problemCount = 2;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 4;
   size: MazeSize = 'small';
   generatedItems: MazeItem[] = [];
 

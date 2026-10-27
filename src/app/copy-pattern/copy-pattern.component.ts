@@ -164,7 +164,8 @@ interface PatternItem {
   styleUrls: ['./copy-pattern.component.css']
 })
 export class CopyPatternComponent {
-  problemCount = 4;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 10;
   gridSize = 4;
   lineCount = 6;
   diagonals = false;

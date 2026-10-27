@@ -56,7 +56,8 @@ export function isValidPattern(pattern: readonly string[]): boolean {
   styleUrls: ['./sequence.component.css']
 })
 export class SequenceComponent {
-  problemCount = 10;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 24;
   elementType: ElementType = 'shapes';
   patternLength = 3;
   lengthMode: LengthMode = 'exactly';

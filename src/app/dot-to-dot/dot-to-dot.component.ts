@@ -68,6 +68,7 @@ export function placeDots(points: Point[], labels: string[], closed = false): Do
   styleUrls: ['./dot-to-dot.component.css']
 })
 export class DotToDotComponent {
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
   problemCount = 4;
   dotCount = 15;
   labelType: LabelType = 'numbers';

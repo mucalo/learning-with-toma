@@ -30,7 +30,8 @@ interface ProblemItem {
   styleUrls: ['./biggest-smallest.component.css']
 })
 export class BiggestSmallestComponent {
-  problemCount = 10;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 6;
   maxItems = 10;
   readonly biggestColour = 'green';
   readonly smallestColour = 'blue';

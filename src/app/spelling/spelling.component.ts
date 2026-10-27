@@ -21,7 +21,8 @@ interface DisplayLetterGroup {
   styleUrls: ['./spelling.component.css']
 })
 export class SpellingComponent {
-  problemCount = 10;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 16;
   maxLetters = 10;
   generatedItems: SpellingItem[] = [];
 

@@ -126,7 +126,8 @@ interface TraceItem {
   styleUrls: ['./trace.component.css']
 })
 export class TraceComponent {
-  problemCount = 8;
+  /** Fills exactly two A4 pages with the other settings at their defaults. */
+  problemCount = 14;
   traceType: TraceType = 'uppercase';
   order: TraceOrder = 'alphabet';
   size: TraceSize = 'medium';
