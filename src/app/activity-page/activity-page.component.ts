@@ -1,8 +1,10 @@
 import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
 import { scrollBehavior } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
+import { SITE_URL } from '../links';
+import { PageMetaService } from '../page-meta.service';
 
 /**
  * The page around every activity's worksheet: activity switcher, title, the settings panel (with
@@ -38,7 +40,7 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
   /** While the print dialog is open, the title holds the file-name-safe version. */
   private printing = false;
 
-  constructor(readonly i18n: LanguageService, private readonly title: Title, private readonly meta: Meta) {}
+  constructor(readonly i18n: LanguageService, private readonly title: Title, private readonly pageMeta: PageMetaService) {}
 
   /**
    * "Learning with Toma - Find the Intruder". Browsers use the page title for the tab, the print
@@ -54,15 +56,49 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
   }
 
   /**
-   * Keeps the title and description in step with the activity and the language (which also sets
-   * them, to the home page's).
+   * For search engines: the page is a free worksheet for ages 4–7, one step below the home page
+   * (shown in results as "learningwithtoma.com › Maze").
+   */
+  get structuredData(): object {
+    const url = SITE_URL + this.current.route.slice(1);
+    const name = this.i18n.t.activities[this.current.key].title;
+    return {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'LearningResource',
+          name,
+          description: this.pageDescription,
+          url,
+          learningResourceType: 'Worksheet',
+          typicalAgeRange: '4-7',
+          isAccessibleForFree: true,
+          inLanguage: this.i18n.languages.map(language => language.htmlLang),
+          audience: { '@type': 'EducationalAudience', educationalRole: ['parent', 'teacher'] },
+          isPartOf: { '@id': `${SITE_URL}#website` }
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: this.i18n.t.header.appTitle, item: SITE_URL },
+            { '@type': 'ListItem', position: 2, name, item: url }
+          ]
+        }
+      ]
+    };
+  }
+
+  /**
+   * Keeps the title, description and structured data in step with the activity and the language
+   * (which also sets the title and description, to the home page's).
    */
   ngDoCheck(): void {
     if (!this.printing && this.title.getTitle() !== this.pageTitle) {
-      this.title.setTitle(this.pageTitle);
+      this.pageMeta.setTitle(this.pageTitle);
     }
-    if (this.meta.getTag('name="description"')?.content !== this.pageDescription) {
-      this.meta.updateTag({ name: 'description', content: this.pageDescription });
+    if (this.pageMeta.description !== this.pageDescription) {
+      this.pageMeta.setDescription(this.pageDescription);
+      this.pageMeta.setStructuredData(this.structuredData);
     }
   }
 
@@ -80,8 +116,9 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.title.setTitle(this.i18n.t.header.appTitle);
-    this.meta.updateTag({ name: 'description', content: this.i18n.t.footer.description });
+    this.pageMeta.setTitle(this.i18n.t.header.appTitle);
+    this.pageMeta.setDescription(this.i18n.t.footer.description);
+    this.pageMeta.setStructuredData(null);
   }
 
   @Input() set activity(key: ActivityKey) {

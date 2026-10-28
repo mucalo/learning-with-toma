@@ -29,6 +29,8 @@
               "src/favicon.svg",
               "src/apple-touch-icon.png",
               "src/CNAME",
+              "src/robots.txt",
+              "src/og-image.png",
               "src/assets"
             ],
             "styles": [

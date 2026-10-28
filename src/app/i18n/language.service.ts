@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { PageMetaService } from '../page-meta.service';
 import { DEFAULT_LANGUAGE, LANGUAGES, LanguageKey } from './languages';
 import { TRANSLATIONS, Translations } from './translations';
 
@@ -14,7 +14,7 @@ export class LanguageService {
   readonly languages = LANGUAGES;
   private current: LanguageKey = DEFAULT_LANGUAGE;
 
-  constructor(private readonly title: Title, private readonly meta: Meta) {
+  constructor(private readonly pageMeta: PageMetaService) {
     this.language = this.readStoredLanguage() ?? DEFAULT_LANGUAGE;
   }
 
@@ -30,8 +30,8 @@ export class LanguageService {
     this.current = value;
     this.storeLanguage(value);
 
-    this.title.setTitle(TRANSLATIONS[value].header.appTitle);
-    this.meta.updateTag({ name: 'description', content: TRANSLATIONS[value].footer.description });
+    this.pageMeta.setTitle(TRANSLATIONS[value].header.appTitle);
+    this.pageMeta.setDescription(TRANSLATIONS[value].footer.description);
 
     const option = LANGUAGES.find(language => language.value === value);
     if (option && typeof document !== 'undefined') {

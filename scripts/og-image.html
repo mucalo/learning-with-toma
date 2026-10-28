@@ -1,0 +1,320 @@
+<!doctype html>
+<!--
+  The link preview image (1200×630) shown when someone shares the site. To regenerate
+  src/og-image.png after changing this page, from the project folder:
+
+    chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630
+      --virtual-time-budget=5000 --screenshot=src/og-image.png scripts/og-image.html
+
+  The example worksheet is copied from the home page hero (src/app/home/hero).
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=block" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 1200px;
+      height: 630px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 0 64px 0 80px;
+      color: #1a2238;
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      background-color: #ffffff;
+      background-image:
+        linear-gradient(#edf2fa 1px, transparent 1px),
+        linear-gradient(90deg, #edf2fa 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .copy {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: #c2410c;
+      transform: rotate(-6deg);
+    }
+
+    .logo-tile svg {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .logo-text {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-second { font-weight: 500; }
+
+    h1 {
+      margin: 0;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 76px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .highlight {
+      padding: 0 4px;
+      background: linear-gradient(transparent 58%, #ffd43b 58%, #ffd43b 92%, transparent 92%);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .badges {
+      display: flex;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .badge {
+      padding: 6px 18px;
+      border: 2px solid #1a2238;
+      border-radius: 999px;
+      background: #ffffff;
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    .url {
+      color: #c2410c;
+      font-weight: 700;
+      font-size: 24px;
+    }
+
+    /* The hero's worksheet stack at a fixed 420px width (1cqw = 4.2px). */
+    .stack {
+      position: relative;
+      flex: none;
+      width: 420px;
+      aspect-ratio: 440 / 540;
+      container-type: inline-size;
+    }
+
+    .sheet-back {
+      position: absolute;
+      border-radius: 6px;
+    }
+
+    .sheet-back-blue {
+      inset: 5.5cqw 0 0 8.2cqw;
+      border: 1.5px solid #cbd5e6;
+      background: #e7f0ff;
+      transform: rotate(6deg);
+    }
+
+    .sheet-back-peach {
+      inset: 2.7cqw 4.1cqw;
+      border: 1.5px solid #f2cdb4;
+      background: #fff1e6;
+      transform: rotate(-4deg);
+    }
+
+    .sheet {
+      position: absolute;
+      inset: 0 6.8cqw 5.5cqw 2.3cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 3.2cqw;
+      padding: 5.9cqw 5.9cqw 3.6cqw;
+      overflow: hidden;
+      border: 1.5px solid #cbd5e6;
+      border-radius: 6px;
+      background: #ffffff;
+      box-shadow: 0 18px 40px rgba(26, 34, 56, 0.14);
+    }
+
+    .sheet-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2.3cqw;
+      padding-bottom: 2.7cqw;
+      border-bottom: 1.5px dashed #d5d9e0;
+    }
+
+    .sheet-block-last { border-bottom: none; }
+
+    .sheet-block svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sheet-label {
+      color: #3d5a99;
+      font-weight: 700;
+      font-size: 2.5cqw;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .spelling-row {
+      display: flex;
+      align-items: center;
+      gap: 3.6cqw;
+    }
+
+    .spelling-picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 13.2cqw;
+      height: 11.4cqw;
+      border: 1.5px solid #e6e8ec;
+      border-radius: 2.3cqw;
+    }
+
+    .spelling-picture svg {
+      width: 6.8cqw;
+      height: 6.8cqw;
+    }
+
+    .spelling-lines {
+      display: flex;
+      gap: 2cqw;
+    }
+
+    .spelling-lines span {
+      width: 5cqw;
+      height: 0.6cqw;
+      background: #333c48;
+    }
+
+    .sheet-footer {
+      margin-top: auto;
+      color: #4a5470;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.3cqw;
+      text-align: center;
+    }
+
+    .sticker {
+      position: absolute;
+      top: -3.2cqw;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 22.7cqw;
+      height: 22.7cqw;
+      padding: 1.4cqw;
+      border: 2px solid #1a2238;
+      border-radius: 50%;
+      background: #ffd43b;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 3.6cqw;
+      line-height: 1.05;
+      text-align: center;
+      transform: rotate(12deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="copy">
+    <div class="logo">
+      <span class="logo-tile">
+        <svg width="34" height="34" viewBox="0 0 24 24"><path d="M9 3v14a3 3 0 0 0 5 2" /><path d="M5 8h9" /></svg>
+      </span>
+      <span class="logo-text">Learning<br /><span class="logo-second">with Toma</span></span>
+    </div>
+
+    <h1>Printable worksheets for <span class="highlight">little learners</span></h1>
+
+    <ul class="badges">
+      <li class="badge">100% free</li>
+      <li class="badge">Ages 4–7</li>
+      <li class="badge">3 languages</li>
+    </ul>
+
+    <div class="url">learningwithtoma.com</div>
+  </div>
+
+  <div class="stack">
+    <div class="sheet-back sheet-back-blue"></div>
+    <div class="sheet-back sheet-back-peach"></div>
+
+    <div class="sheet">
+      <div class="sheet-block">
+        <div class="sheet-label">Draw a line from each picture to its shadow.</div>
+        <svg viewBox="0 0 344 132">
+          <g transform="translate(43 30)"><circle cx="0" cy="-6" r="13" fill="#E5484D" /><path d="M-3 7 L3 7 L0 4 Z" fill="#E5484D" /><path d="M0 7 q-5 7 1 15" fill="none" stroke="#3E6FD8" stroke-width="2" stroke-linecap="round" /><circle cx="-5" cy="-11" r="3" fill="#FFFFFF" opacity="0.5" /></g>
+          <g transform="translate(129 30)"><path d="M-2 -19 L-2 5 L-17 5 Z" fill="#F5B83D" /><path d="M2 -14 L2 5 L13 5 Z" fill="#F7D07A" /><path d="M-19 9 H19 L13 18 H-13 Z" fill="#3E8EDE" /></g>
+          <g transform="translate(215 30)"><path d="M-18 -1 L0 -19 L18 -1 Z" fill="#E8590C" /><rect x="-13" y="-1" width="26" height="20" fill="#F6C58F" /><rect x="-4" y="7" width="8" height="12" fill="#8C5A3C" /></g>
+          <g transform="translate(301 30)"><ellipse cx="-4" cy="0" rx="14" ry="10" fill="#2BB3A3" /><path d="M8 0 L20 -10 L20 10 Z" fill="#2BB3A3" /><circle cx="-10" cy="-2" r="2" fill="#1A2238" /></g>
+          <g fill="#2B2F38">
+            <g transform="translate(43 104)"><ellipse cx="-4" cy="0" rx="14" ry="10" /><path d="M8 0 L20 -10 L20 10 Z" /></g>
+            <g transform="translate(129 104)"><path d="M-18 -1 L0 -19 L18 -1 Z" /><rect x="-13" y="-1" width="26" height="20" /></g>
+            <g transform="translate(215 104)"><path d="M-2 -19 L-2 5 L-17 5 Z" /><path d="M2 -14 L2 5 L13 5 Z" /><path d="M-19 9 H19 L13 18 H-13 Z" /></g>
+            <g transform="translate(301 104)"><circle cx="0" cy="-6" r="13" /><path d="M-3 7 L3 7 L0 4 Z" /><path d="M0 7 q-5 7 1 15" fill="none" stroke="#2B2F38" stroke-width="2" stroke-linecap="round" /></g>
+          </g>
+          <path d="M46 56 C110 62 200 70 296 82" fill="none" stroke="#E8590C" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+        </svg>
+      </div>
+
+      <div class="sheet-block">
+        <div class="sheet-label">Look at the pattern and continue the sequence.</div>
+        <svg viewBox="0 0 344 86">
+          <g stroke="#333C48" stroke-width="2" stroke-linejoin="round">
+            <path d="M3 29 L14 10 L25 29 Z" fill="#F6D365" /><circle cx="48" cy="20" r="10" fill="#CFE3FF" /><path d="M71 29 L82 10 L93 29 Z" fill="#F6D365" /><circle cx="116" cy="20" r="10" fill="#CFE3FF" />
+            <rect x="5" y="53" width="18" height="18" rx="3" fill="#A9CBA4" /><circle cx="48" cy="62" r="10" fill="#CFE3FF" /><circle cx="82" cy="62" r="10" fill="#CFE3FF" /><rect x="107" y="53" width="18" height="18" rx="3" fill="#A9CBA4" /><circle cx="150" cy="62" r="10" fill="#CFE3FF" /><circle cx="184" cy="62" r="10" fill="#CFE3FF" />
+          </g>
+          <g fill="none" stroke="#BDBDBD" stroke-width="1.5" stroke-dasharray="4 3">
+            <rect x="137" y="7" width="26" height="26" rx="5" /><rect x="171" y="7" width="26" height="26" rx="5" /><rect x="205" y="7" width="26" height="26" rx="5" /><rect x="239" y="7" width="26" height="26" rx="5" /><rect x="273" y="7" width="26" height="26" rx="5" /><rect x="307" y="7" width="26" height="26" rx="5" />
+            <rect x="205" y="49" width="26" height="26" rx="5" /><rect x="239" y="49" width="26" height="26" rx="5" /><rect x="273" y="49" width="26" height="26" rx="5" /><rect x="307" y="49" width="26" height="26" rx="5" />
+          </g>
+        </svg>
+      </div>
+
+      <div class="sheet-block sheet-block-last">
+        <div class="sheet-label">Write what is in the image.</div>
+        <div class="spelling-row">
+          <div class="spelling-picture">
+            <svg width="30" height="30" viewBox="0 0 30 30"><circle cx="11" cy="17" r="9" fill="#E5484D" /><circle cx="19" cy="17" r="9" fill="#E5484D" /><path d="M15 9 C15 5 18 3 22 4 C21 8 18 9 15 9 Z" fill="#5BB55B" /></svg>
+          </div>
+          <div class="spelling-lines"><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+
+      <div class="sheet-footer">www.learningwithtoma.com</div>
+    </div>
+
+    <div class="sticker">Free<br />to print</div>
+  </div>
+</body>
+</html>

@@ -156,6 +156,32 @@ describe('ActivityPageComponent', () => {
     expect(description()).toBe(i18n.t.footer.description);
   });
 
+  function structuredData(): any {
+    const script = document.head.querySelector('script#page-data');
+    return script ? JSON.parse(script.textContent ?? '') : null;
+  }
+
+  it('should tell search engines the page is a free worksheet, one step below the home page, in the current language', () => {
+    const [resource, breadcrumbs] = structuredData()['@graph'];
+    expect(resource).toEqual(jasmine.objectContaining({
+      '@type': 'LearningResource',
+      name: 'Maze',
+      url: 'https://learningwithtoma.com/maze',
+      isAccessibleForFree: true,
+      inLanguage: ['en', 'hr', 'sr-Latn']
+    }));
+    expect(breadcrumbs.itemListElement.map((item: { name: string }) => item.name)).toEqual(['Learning with Toma', 'Maze']);
+
+    i18n.language = 'croatian';
+    fixture.detectChanges();
+    expect(structuredData()['@graph'][0].name).toBe('Labirint');
+  });
+
+  it('should remove the page\'s structured data when leaving it', () => {
+    fixture.destroy();
+    expect(structuredData()).toBeNull();
+  });
+
   it('should show three tips and one activity from each other category to try next', () => {
     expect(element.querySelectorAll('.tips li').length).toBe(3);
     const tryNext = Array.from(element.querySelectorAll<HTMLAnchorElement>('.try-card')).map(card => card.getAttribute('href'));
