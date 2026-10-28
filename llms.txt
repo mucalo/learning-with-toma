@@ -1,0 +1,34 @@
+# Learning with Toma
+
+> Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, preschool educators and school teachers.
+
+Learning with Toma (in Croatian and Serbian: Učimo s Tomom) is a free website that makes printable
+learning worksheets for children in seconds. Pick an activity, choose the language (English,
+Croatian or Serbian), adjust a few settings and press Generate: every worksheet is new. Print it
+on A4 paper or save it as a PDF. There is no account, sign-up or payment.
+
+## Activities
+
+- [Spelling](https://learningwithtoma.com/spelling): Practise spelling with picture prompts. Links pictures to words and builds early spelling.
+- [Counting](https://learningwithtoma.com/counting): Count objects and write the number. Practises counting one by one and writing numbers.
+- [Biggest and Smallest](https://learningwithtoma.com/biggest-smallest): Circle the biggest and smallest objects. Trains visual comparison and the words for size.
+- [Continue the Sequence](https://learningwithtoma.com/sequence): Spot the pattern and continue it. Builds pattern spotting, the basis of early maths and logic.
+- [Find the Intruder](https://learningwithtoma.com/intruder): Spot the pictures that don't fit the theme. Practises grouping, vocabulary and explaining choices.
+- [Complete the Line](https://learningwithtoma.com/line): Trace the pattern and continue it to the edge. Strengthens pencil control for the shapes used in handwriting.
+- [Match the Shadow](https://learningwithtoma.com/shadow): Connect each picture to its shadow. Trains visual discrimination and attention to shape.
+- [Maze](https://learningwithtoma.com/maze): Find the way through the maze. Builds planning, focus and pencil control.
+- [Where Is It?](https://learningwithtoma.com/where): Find the picture that matches the sentence. Teaches position words like on, under, next to and above.
+- [Copy the Pattern](https://learningwithtoma.com/copy-pattern): Copy a line drawing onto a dot grid. Develops visual-spatial skills and careful pencil movements.
+- [Trace the Letters](https://learningwithtoma.com/trace): Trace dotted letters and numbers, then write them alone. Builds pencil control and letter recognition.
+- [Dot to Dot](https://learningwithtoma.com/dot-to-dot): Join the dots in order to reveal a picture. Practises number order and steady hand movements.
+
+## In Croatian and Serbian
+
+The whole site, worksheets included, is also in Croatian and Serbian (Latin script), with its own addresses:
+
+- [Učimo s Tomom](https://learningwithtoma.com/hr/): Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, odgojitelje i učitelje.
+- [Učimo s Tomom](https://learningwithtoma.com/sr/): Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, vaspitače i učitelje.
+
+## More
+
+- [Home page](https://learningwithtoma.com/): how it works, what parents say, the story behind the site and how to help keep it free.

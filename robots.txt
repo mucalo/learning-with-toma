@@ -1,0 +1,5 @@
+# Every page is open to search engines and AI tools.
+User-agent: *
+Allow: /
+
+Sitemap: https://learningwithtoma.com/sitemap.xml
