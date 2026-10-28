@@ -42,10 +42,13 @@ export class ActivityNavComponent implements AfterViewInit, OnDestroy {
       this.updateArrows();
     });
     // The links change width once the web fonts arrive, so centre the current one again then.
-    document.fonts?.ready.then(() => this.zone.run(() => {
-      this.scrollToCurrent();
-      this.updateArrows();
-    }));
+    // (There are no fonts to wait for while the page is prerendered.)
+    if (typeof document !== 'undefined') {
+      document.fonts?.ready.then(() => this.zone.run(() => {
+        this.scrollToCurrent();
+        this.updateArrows();
+      }));
+    }
   }
 
   ngOnDestroy(): void {
