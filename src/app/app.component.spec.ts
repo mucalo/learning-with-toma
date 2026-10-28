@@ -10,9 +10,9 @@ import { LanguagePickerComponent } from './header/language-picker/language-picke
 import { LanguageService } from './i18n/language.service';
 
 @Component({
-    template: 'Page',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  template: 'Page',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 class PageComponent {}
 

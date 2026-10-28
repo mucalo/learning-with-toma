@@ -16,11 +16,11 @@ import { LanguageService } from '../i18n/language.service';
  *   </app-activity-page>
  */
 @Component({
-    selector: 'app-activity-page',
-    templateUrl: './activity-page.component.html',
-    styleUrls: ['./activity-page.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-activity-page',
+  templateUrl: './activity-page.component.html',
+  styleUrls: ['./activity-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class ActivityPageComponent implements DoCheck, OnDestroy {
   @Input() hasWorksheet = false;

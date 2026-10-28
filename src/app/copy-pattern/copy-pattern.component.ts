@@ -159,11 +159,11 @@ interface PatternItem {
 }
 
 @Component({
-    selector: 'app-copy-pattern',
-    templateUrl: './copy-pattern.component.html',
-    styleUrls: ['./copy-pattern.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-copy-pattern',
+  templateUrl: './copy-pattern.component.html',
+  styleUrls: ['./copy-pattern.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class CopyPatternComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

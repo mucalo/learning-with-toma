@@ -63,11 +63,11 @@ export function placeDots(points: Point[], labels: string[], closed = false): Do
 }
 
 @Component({
-    selector: 'app-dot-to-dot',
-    templateUrl: './dot-to-dot.component.html',
-    styleUrls: ['./dot-to-dot.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-dot-to-dot',
+  templateUrl: './dot-to-dot.component.html',
+  styleUrls: ['./dot-to-dot.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class DotToDotComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

@@ -9,17 +9,17 @@ import { ActivityIconComponent } from '../activity-icon/activity-icon.component'
 import { ActivityNavComponent } from './activity-nav.component';
 
 @Component({
-    template: '<app-activity-nav></app-activity-nav>',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  template: '<app-activity-nav></app-activity-nav>',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 class MazePageComponent {}
 
 /** Opens pages through the router, as the app does, so the nav sees the page's route. */
 @Component({
-    template: '<router-outlet></router-outlet>',
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  template: '<router-outlet></router-outlet>',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 class ShellComponent {}
 

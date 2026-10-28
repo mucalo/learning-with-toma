@@ -11,11 +11,11 @@ import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../links';
  * card; on activity pages, a single line with a link back home.
  */
 @Component({
-    selector: 'app-footer',
-    templateUrl: './footer.component.html',
-    styleUrls: ['./footer.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class FooterComponent implements OnDestroy {
   readonly sections = HOME_SECTIONS;

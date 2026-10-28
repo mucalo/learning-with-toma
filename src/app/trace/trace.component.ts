@@ -121,11 +121,11 @@ interface TraceItem {
 }
 
 @Component({
-    selector: 'app-trace',
-    templateUrl: './trace.component.html',
-    styleUrls: ['./trace.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-trace',
+  templateUrl: './trace.component.html',
+  styleUrls: ['./trace.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class TraceComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

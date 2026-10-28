@@ -15,8 +15,8 @@ export interface TextPart {
  *   </ng-container>
  */
 @Pipe({
-    name: 'emphasis',
-    standalone: false
+  name: 'emphasis',
+  standalone: false
 })
 export class EmphasisPipe implements PipeTransform {
   transform(text: string): TextPart[] {

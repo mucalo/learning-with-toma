@@ -4,11 +4,11 @@ import { scrollToSection } from '../home-sections';
 
 /** The story behind the project, beside two photos, with a note leading to "Want to help?". */
 @Component({
-    selector: 'app-about',
-    templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class AboutComponent {
   /**

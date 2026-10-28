@@ -25,11 +25,11 @@ interface ProblemItem {
 }
 
 @Component({
-    selector: 'app-biggest-smallest',
-    templateUrl: './biggest-smallest.component.html',
-    styleUrls: ['./biggest-smallest.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-biggest-smallest',
+  templateUrl: './biggest-smallest.component.html',
+  styleUrls: ['./biggest-smallest.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class BiggestSmallestComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

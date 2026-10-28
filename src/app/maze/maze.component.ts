@@ -150,11 +150,11 @@ interface MazeItem {
 }
 
 @Component({
-    selector: 'app-maze',
-    templateUrl: './maze.component.html',
-    styleUrls: ['./maze.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-maze',
+  templateUrl: './maze.component.html',
+  styleUrls: ['./maze.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class MazeComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

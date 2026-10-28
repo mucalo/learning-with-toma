@@ -51,11 +51,11 @@ export function isValidPattern(pattern: readonly string[]): boolean {
 }
 
 @Component({
-    selector: 'app-sequence',
-    templateUrl: './sequence.component.html',
-    styleUrls: ['./sequence.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-sequence',
+  templateUrl: './sequence.component.html',
+  styleUrls: ['./sequence.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class SequenceComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

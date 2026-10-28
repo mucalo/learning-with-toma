@@ -5,11 +5,11 @@ import { ACTIVITY_ICONS } from './activity-icons';
 
 /** An activity's illustrated icon, used on the home page cards and around the activity pages. */
 @Component({
-    selector: 'app-activity-icon',
-    template: '',
-    styles: [':host { display: inline-flex; flex: none; } :host ::ng-deep svg { display: block; }'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-activity-icon',
+  template: '',
+  styles: [':host { display: inline-flex; flex: none; } :host ::ng-deep svg { display: block; }'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ActivityIconComponent implements OnChanges {
   @Input() activity!: ActivityKey;

@@ -17,11 +17,11 @@ interface CountingItem {
 }
 
 @Component({
-    selector: 'app-counting',
-    templateUrl: './counting.component.html',
-    styleUrls: ['./counting.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-counting',
+  templateUrl: './counting.component.html',
+  styleUrls: ['./counting.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class CountingComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

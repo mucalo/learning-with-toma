@@ -12,11 +12,11 @@ import { HOME_SECTIONS, scrollBehavior, scrollToSection } from '../home/home-sec
  * behind a ☰ button.
  */
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class HeaderComponent implements OnDestroy {
   readonly sections = HOME_SECTIONS;

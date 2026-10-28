@@ -154,11 +154,11 @@ interface LineItem {
 }
 
 @Component({
-    selector: 'app-line',
-    templateUrl: './line.component.html',
-    styleUrls: ['./line.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-line',
+  templateUrl: './line.component.html',
+  styleUrls: ['./line.component.css'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
 export class LineComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */
