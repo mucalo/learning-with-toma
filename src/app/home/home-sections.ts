@@ -1,7 +1,7 @@
 import { Translations } from '../i18n/translations';
 
 export interface HomeSection {
-  /** Element id of the section on the home page, also used as the URL fragment (`#/#about`). */
+  /** Element id of the section on the home page, also used as the URL fragment (`/#about`). */
   id: string;
   key: keyof Translations['menu']['items'];
 }

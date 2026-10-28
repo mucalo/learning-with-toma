@@ -1,5 +1,5 @@
 import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
 import { scrollBehavior } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
@@ -38,7 +38,7 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
   /** While the print dialog is open, the title holds the file-name-safe version. */
   private printing = false;
 
-  constructor(readonly i18n: LanguageService, private readonly title: Title) {}
+  constructor(readonly i18n: LanguageService, private readonly title: Title, private readonly meta: Meta) {}
 
   /**
    * "Learning with Toma - Find the Intruder". Browsers use the page title for the tab, the print
@@ -48,10 +48,21 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
     return `${this.i18n.t.header.appTitle} - ${this.i18n.t.activities[this.current.key].title}`;
   }
 
-  /** Keeps the title in step with the activity and the language (which also sets the title). */
+  /** What search results show under the title: the same text as under the page heading. */
+  get pageDescription(): string {
+    return `${this.i18n.t.activities[this.current.key].description} ${this.i18n.t.activityInfo[this.current.key].benefit}`;
+  }
+
+  /**
+   * Keeps the title and description in step with the activity and the language (which also sets
+   * them, to the home page's).
+   */
   ngDoCheck(): void {
     if (!this.printing && this.title.getTitle() !== this.pageTitle) {
       this.title.setTitle(this.pageTitle);
+    }
+    if (this.meta.getTag('name="description"')?.content !== this.pageDescription) {
+      this.meta.updateTag({ name: 'description', content: this.pageDescription });
     }
   }
 
@@ -70,6 +81,7 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
 
   ngOnDestroy(): void {
     this.title.setTitle(this.i18n.t.header.appTitle);
+    this.meta.updateTag({ name: 'description', content: this.i18n.t.footer.description });
   }
 
   @Input() set activity(key: ActivityKey) {

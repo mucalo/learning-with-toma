@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HelpSectionComponent } from './help-section.component';
 import { EmphasisPipe } from '../../i18n/emphasis.pipe';
 import { LanguageService } from '../../i18n/language.service';
-import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../../links';
+import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL, SITE_URL } from '../../links';
 
 describe('HelpSectionComponent', () => {
   let component: HelpSectionComponent;
@@ -47,10 +47,10 @@ describe('HelpSectionComponent', () => {
     expect(element.textContent).not.toContain('{email}');
   });
 
-  it('should share the home page address, without the in-app route', () => {
+  it('should share the home page address', () => {
     const facebook = element.querySelector('a[aria-label="Share on Facebook"]') as HTMLAnchorElement;
     const sharedUrl = new URL(facebook.href).searchParams.get('u');
-    expect(sharedUrl).toBe(`${window.location.origin}${window.location.pathname}`);
+    expect(sharedUrl).toBe(SITE_URL);
   });
 
   it('should confirm when the link is copied', async () => {

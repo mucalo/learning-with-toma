@@ -27,11 +27,12 @@ const routes: Routes = [
   { path: 'where', component: WhereComponent },
   { path: 'copy-pattern', component: CopyPatternComponent },
   { path: 'trace', component: TraceComponent },
-  { path: 'dot-to-dot', component: DotToDotComponent }
+  { path: 'dot-to-dot', component: DotToDotComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

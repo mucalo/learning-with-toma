@@ -1,6 +1,6 @@
 import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
-import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../../links';
+import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL, SITE_URL } from '../../links';
 import { SHARE_ICONS } from '../share-icons';
 
 interface ShareNetwork {
@@ -44,10 +44,8 @@ export class HelpSectionComponent implements OnDestroy {
 
   constructor(readonly i18n: LanguageService) {}
 
-  /** The site's address without the in-app route, so shares always open the home page. */
-  get pageUrl(): string {
-    return `${window.location.origin}${window.location.pathname}`;
-  }
+  /** The live site's home page, also when sharing from a local copy. */
+  readonly pageUrl = SITE_URL;
 
   /** The feedback intro, split around the e-mail address so it can be rendered as a link. */
   get feedbackIntro(): [string, string] {

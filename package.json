@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "node scripts/prepare-pages.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -17,7 +18,9 @@
     "@angular/forms": "^22.2.3",
     "@angular/platform-browser": "^22.2.3",
     "@angular/platform-browser-dynamic": "^22.2.3",
+    "@angular/platform-server": "^22.2.3",
     "@angular/router": "^22.2.3",
+    "@angular/ssr": "^22.2.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"

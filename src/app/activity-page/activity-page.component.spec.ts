@@ -139,6 +139,23 @@ describe('ActivityPageComponent', () => {
     expect(document.title).toBe('Learning with Toma');
   });
 
+  function description(): string | null {
+    return document.querySelector('meta[name="description"]')?.getAttribute('content') ?? null;
+  }
+
+  it('should describe the page with the activity\'s description and why it helps, in the current language', () => {
+    expect(description()).toBe('Find the way through the maze. Builds planning, focus and pencil control.');
+
+    i18n.language = 'croatian';
+    fixture.detectChanges();
+    expect(description()).toBe(`${i18n.t.activities.maze.description} ${i18n.t.activityInfo.maze.benefit}`);
+  });
+
+  it('should give the page back the site description when leaving it', () => {
+    fixture.destroy();
+    expect(description()).toBe(i18n.t.footer.description);
+  });
+
   it('should show three tips and one activity from each other category to try next', () => {
     expect(element.querySelectorAll('.tips li').length).toBe(3);
     const tryNext = Array.from(element.querySelectorAll<HTMLAnchorElement>('.try-card')).map(card => card.getAttribute('href'));

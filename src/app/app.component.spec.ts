@@ -67,4 +67,16 @@ describe('AppComponent', () => {
     await fixture.ngZone?.run(() => router.navigateByUrl('/maze#top'));
     expect(scrollTo).not.toHaveBeenCalled();
   });
+
+  it('should give each page its own address on the live site as the canonical link', async () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const router = TestBed.inject(Router);
+    const canonical = () => document.querySelector('link[rel="canonical"]')?.getAttribute('href');
+
+    await fixture.ngZone?.run(() => router.navigateByUrl('/'));
+    expect(canonical()).toBe('https://learningwithtoma.com/');
+
+    await fixture.ngZone?.run(() => router.navigateByUrl('/maze#top'));
+    expect(canonical()).toBe('https://learningwithtoma.com/maze');
+  });
 });

@@ -4,6 +4,21 @@
   <meta charset="utf-8">
   <title>Learning with Toma</title>
   <base href="/">
+  <script>
+    // Old addresses had the page after a # (/#/maze, /#/#about); open the real one instead.
+    if (location.hash.indexOf('#/') === 0) {
+      location.replace(location.hash.slice(1));
+    }
+    // Pages are prerendered in English. For visitors who chose another language, keep the page
+    // hidden until the app has switched it, rather than flash the English text first.
+    try {
+      var language = localStorage.getItem('lwt-language');
+      if (language && language !== 'english') {
+        document.documentElement.classList.add('lwt-switching-language');
+      }
+    } catch (e) {}
+  </script>
+  <style>.lwt-switching-language app-root { visibility: hidden; }</style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Printable worksheets for little learners, ready in seconds. Free activities for children aged 4–7 in English, Croatian and Serbian.">
   <link rel="icon" href="favicon.ico" sizes="48x48">

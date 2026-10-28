@@ -28,7 +28,7 @@ export class HomeComponent implements AfterViewInit {
     return this.i18n.t.activitiesSection.all.replace('{count}', String(this.activities.length));
   }
 
-  /** Arriving from another page through the menu (e.g. `#/#about`): scroll once everything is rendered. */
+  /** Arriving from another page through the menu (e.g. `/#about`): scroll once everything is rendered. */
   ngAfterViewInit(): void {
     const fragment = this.route.snapshot.fragment;
     if (fragment) {
