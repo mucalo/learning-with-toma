@@ -15,7 +15,7 @@
       <li *ngFor="let activity of activities">
         <a
           class="activity-link"
-          [routerLink]="activity.route"
+          [routerLink]="i18n.activityPath(activity)"
           routerLinkActive="is-current"
           #link="routerLinkActive"
           [attr.aria-current]="link.isActive ? 'page' : null"

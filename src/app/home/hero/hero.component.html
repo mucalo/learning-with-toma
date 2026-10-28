@@ -12,11 +12,11 @@
       <p class="hero-intro">{{ i18n.t.hero.intro }}</p>
 
       <div class="hero-actions">
-        <a class="btn btn-accent btn-large" routerLink="/" fragment="activities" (click)="goTo('activities')">
+        <a class="btn btn-accent btn-large" [routerLink]="i18n.homePath" fragment="activities" (click)="goTo('activities')">
           {{ i18n.t.hero.chooseActivity }}
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </a>
-        <a class="btn btn-outline btn-large" routerLink="/" fragment="how" (click)="goTo('how')">{{ i18n.t.hero.howItWorks }}</a>
+        <a class="btn btn-outline btn-large" [routerLink]="i18n.homePath" fragment="how" (click)="goTo('how')">{{ i18n.t.hero.howItWorks }}</a>
       </div>
 
       <p class="made-for">

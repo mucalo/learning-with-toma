@@ -20,7 +20,7 @@ export class LanguagePickerComponent {
   }
 
   choose(value: LanguageKey): void {
-    this.i18n.language = value;
+    this.i18n.choose(value);
     this.open = false;
   }
 

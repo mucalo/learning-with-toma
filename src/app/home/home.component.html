@@ -45,7 +45,7 @@
           <a
             class="activity-card"
             [ngClass]="'cat-' + activity.category"
-            [routerLink]="activity.route"
+            [routerLink]="i18n.activityPath(activity)"
             [attr.aria-labelledby]="'card-title-' + activity.key"
             [attr.aria-describedby]="'card-text-' + activity.key"
           >
@@ -77,7 +77,7 @@
           class="language-button"
           [attr.lang]="option.htmlLang"
           [attr.aria-pressed]="option.value === i18n.language"
-          (click)="i18n.language = option.value"
+          (click)="i18n.choose(option.value)"
         >
           {{ option.label }}
         </button>

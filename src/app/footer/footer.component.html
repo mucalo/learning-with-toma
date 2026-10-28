@@ -2,13 +2,13 @@
   <!-- Activity pages: one quiet line, so the worksheet stays the focus. -->
   <div *ngIf="onActivityPage" class="container footer-compact">
     <span>{{ year(i18n.t.footer.activityCopyright) }}</span>
-    <a routerLink="/" (click)="toTop()">{{ i18n.t.footer.backHome }}</a>
+    <a [routerLink]="i18n.homePath" (click)="toTop()">{{ i18n.t.footer.backHome }}</a>
   </div>
 
   <div *ngIf="!onActivityPage" class="container footer-inner">
     <div class="footer-columns">
       <div class="footer-brand">
-        <a routerLink="/" class="footer-logo" (click)="toTop()">
+        <a [routerLink]="i18n.homePath" class="footer-logo" (click)="toTop()">
           <span class="logo-tile" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24"><path d="M9 3v14a3 3 0 0 0 5 2" /><path d="M5 8h9" /></svg>
           </span>
@@ -19,7 +19,7 @@
 
       <nav class="footer-links" [attr.aria-labelledby]="'footer-explore'">
         <p id="footer-explore" class="footer-label">{{ i18n.t.footer.explore }}</p>
-        <a *ngFor="let section of sections" routerLink="/" [fragment]="section.id" (click)="goTo(section.id)">
+        <a *ngFor="let section of sections" [routerLink]="i18n.homePath" [fragment]="section.id" (click)="goTo(section.id)">
           {{ i18n.t.menu.items[section.key] }}
         </a>
       </nav>

@@ -9,7 +9,7 @@ import { HeroComponent } from './hero/hero.component';
 import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { AboutComponent } from './about/about.component';
-import { ACTIVITIES } from '../activities';
+import { ACTIVITIES, Activity, pagePath } from '../activities';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -52,6 +52,8 @@ describe('HomeComponent', () => {
 
   it('should switch the site language from the languages band', () => {
     const i18n = TestBed.inject(LanguageService);
+    // Choosing opens the same page in that language (see LanguageService); here it just switches.
+    spyOn(i18n, 'choose').and.callFake(value => (i18n.language = value));
     const compiled = fixture.nativeElement as HTMLElement;
     const buttons = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.language-buttons button'));
     expect(buttons.map(button => button.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski']);
@@ -60,7 +62,7 @@ describe('HomeComponent', () => {
     buttons[2].click();
     fixture.detectChanges();
 
-    expect(i18n.language).toBe('serbian');
+    expect(i18n.choose).toHaveBeenCalledWith('serbian');
     expect(buttons[2].getAttribute('aria-pressed')).toBe('true');
     expect(compiled.querySelector('#languages-heading')?.textContent).toBe('Svaki radni list na vašem jeziku');
     i18n.language = 'english';
@@ -68,7 +70,7 @@ describe('HomeComponent', () => {
 
   it('should link a card with its icon to every activity, in order', () => {
     const cards = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll<HTMLAnchorElement>('.activity-card'));
-    expect(cards.map(card => card.getAttribute('href'))).toEqual(ACTIVITIES.map(activity => activity.route));
+    expect(cards.map(card => card.getAttribute('href'))).toEqual(ACTIVITIES.map(englishPath));
     cards.forEach(card => expect(card.querySelector('app-activity-icon svg')).withContext(card.href).toBeTruthy());
     expect(cards[0].querySelector('.card-category')?.textContent).toBe('Letters & words');
   });
@@ -83,7 +85,7 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
 
     const shown = Array.from(compiled.querySelectorAll<HTMLAnchorElement>('.activity-card')).map(card => card.getAttribute('href'));
-    expect(shown).toEqual(ACTIVITIES.filter(activity => activity.category === 'motor').map(activity => activity.route));
+    expect(shown).toEqual(ACTIVITIES.filter(activity => activity.category === 'motor').map(englishPath));
     expect(filters[3].getAttribute('aria-pressed')).toBe('true');
     expect(filters[0].getAttribute('aria-pressed')).toBe('false');
 
@@ -92,3 +94,7 @@ describe('HomeComponent', () => {
     expect(compiled.querySelectorAll('.activity-card').length).toBe(ACTIVITIES.length);
   });
 });
+
+function englishPath(activity: Activity): string {
+  return pagePath(activity.key, 'english');
+}

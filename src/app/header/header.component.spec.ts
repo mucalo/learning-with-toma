@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './header.component';
 import { LanguageService } from '../i18n/language.service';
-import { ACTIVITIES } from '../activities';
+import { ACTIVITIES, Activity, pagePath } from '../activities';
 import { LanguagePickerComponent } from './language-picker/language-picker.component';
 
 describe('HeaderComponent', () => {
@@ -13,7 +13,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(ACTIVITIES.map(activity => ({ path: activity.route.slice(1), children: [] })))],
+      imports: [RouterTestingModule.withRoutes(ACTIVITIES.map(activity => ({ path: englishPath(activity).slice(1), children: [] })))],
       declarations: [HeaderComponent, LanguagePickerComponent]
     }).compileComponents();
 
@@ -48,7 +48,7 @@ describe('HeaderComponent', () => {
   it('should highlight Activities and offer a way back on activity pages', async () => {
     expect(element.querySelector('.all-activities')).toBeNull();
 
-    await TestBed.inject(Router).navigateByUrl(ACTIVITIES[0].route);
+    await TestBed.inject(Router).navigateByUrl(englishPath(ACTIVITIES[0]));
     fixture.detectChanges();
 
     expect(element.querySelector('.menu-link.is-current')?.textContent?.trim()).toBe('Activities');
@@ -56,6 +56,8 @@ describe('HeaderComponent', () => {
   });
 
   it('should switch language from the language picker', () => {
+    // Choosing opens the same page in that language (see LanguageService); here it just switches.
+    spyOn(i18n, 'choose').and.callFake(value => (i18n.language = value));
     expect(element.querySelector('.language-toggle')?.textContent).toContain('English');
 
     click('.language-toggle');
@@ -64,7 +66,7 @@ describe('HeaderComponent', () => {
     options[1].click();
     fixture.detectChanges();
 
-    expect(i18n.language).toBe('croatian');
+    expect(i18n.choose).toHaveBeenCalledWith('croatian');
     expect(element.querySelector('.language-list')).toBeNull();
     expect(element.querySelector('.language-toggle')?.textContent).toContain('Hrvatski');
     expect(element.querySelector('.logo-text')?.textContent).toContain('Učimo');
@@ -84,3 +86,7 @@ describe('HeaderComponent', () => {
     expect(element.querySelector('.site-header')?.classList).not.toContain('menu-open');
   });
 });
+
+function englishPath(activity: Activity): string {
+  return pagePath(activity.key, 'english');
+}

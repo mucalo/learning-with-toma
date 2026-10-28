@@ -62,12 +62,14 @@ describe('ActivityPageComponent', () => {
   });
 
   it('should switch the site language from the settings panel', async () => {
+    // Choosing opens the same page in that language (see LanguageService); here it just switches.
+    spyOn(i18n, 'choose').and.callFake(value => (i18n.language = value));
     const select = element.querySelector('#worksheetLanguage') as HTMLSelectElement;
     await fixture.whenStable();
     select.value = select.options[1].value;
     select.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    expect(i18n.language).toBe('croatian');
+    expect(i18n.choose).toHaveBeenCalledWith('croatian');
     expect(element.querySelector('h1')?.textContent).toBe('Labirint');
   });
 

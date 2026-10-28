@@ -19,7 +19,7 @@
         <div class="settings-fields">
           <div class="field">
             <label for="worksheetLanguage">{{ i18n.t.activityPage.language }}</label>
-            <select id="worksheetLanguage" [ngModel]="i18n.language" (ngModelChange)="i18n.language = $event">
+            <select id="worksheetLanguage" [ngModel]="i18n.language" (ngModelChange)="i18n.choose($event)">
               <option *ngFor="let option of i18n.languages" [ngValue]="option.value" [attr.lang]="option.htmlLang">{{ option.label }}</option>
             </select>
           </div>
@@ -44,7 +44,7 @@
           </span>
           <div>
             <p><strong>{{ i18n.t.activityPage.supportBold }}</strong> {{ i18n.t.activityPage.supportText }}</p>
-            <a routerLink="/" fragment="help">{{ i18n.t.activityPage.supportLink }} →</a>
+            <a [routerLink]="i18n.homePath" fragment="help">{{ i18n.t.activityPage.supportLink }} →</a>
           </div>
         </div>
       </aside>
@@ -82,11 +82,11 @@
     <section class="try-next" aria-labelledby="try-next-heading">
       <div class="try-next-head">
         <h2 id="try-next-heading">{{ i18n.t.activityPage.tryNext }}</h2>
-        <a routerLink="/" fragment="activities">{{ seeAllLabel }}</a>
+        <a [routerLink]="i18n.homePath" fragment="activities">{{ seeAllLabel }}</a>
       </div>
       <ul>
         <li *ngFor="let activity of tryNext">
-          <a class="try-card" [routerLink]="activity.route">
+          <a class="try-card" [routerLink]="i18n.activityPath(activity)">
             <span class="try-icon" [ngClass]="'cat-' + activity.category">
               <app-activity-icon [activity]="activity.key" [size]="40"></app-activity-icon>
             </span>

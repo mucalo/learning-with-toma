@@ -1,7 +1,9 @@
 // Runs after `npm run build`, to fit the prerendered site to GitHub Pages.
 //
-// - Angular writes each page as `maze/index.html`. GitHub Pages would answer `/maze` with a
-//   redirect to `/maze/`, so each page becomes `maze.html` instead, which it serves at `/maze`.
+// - Angular writes each page as `maze/index.html` or `hr/labirint/index.html`. GitHub Pages would
+//   answer `/maze` with a redirect to `/maze/`, so each page becomes `maze.html` instead, which it
+//   serves at `/maze`. The Croatian and Serbian home pages stay `hr/index.html` and
+//   `sr/index.html`, in the folder with their activity pages, and are served at `/hr/` and `/sr/`.
 // - `index.csr.html` (the app without a prerendered page) becomes `404.html`, which GitHub Pages
 //   shows for any other address; the app then opens and shows the right page, or the home page.
 // - `sitemap.xml` (for search engines) and `llms.txt` (for AI tools) list every page, read from
@@ -12,27 +14,29 @@ import { join } from 'node:path';
 
 const root = 'dist/learning-with-toma/browser';
 const siteUrl = 'https://learningwithtoma.com/';
+/** Folders of the Croatian and Serbian pages (`path` in `src/app/i18n/languages.ts`). */
+const languageFolders = ['hr', 'sr'];
 
-for (const entry of readdirSync(root, { withFileTypes: true })) {
-  const page = join(root, entry.name, 'index.html');
-  if (entry.isDirectory() && existsSync(page)) {
-    renameSync(page, join(root, `${entry.name}.html`));
-    if (readdirSync(join(root, entry.name)).length === 0) {
-      rmdirSync(join(root, entry.name));
+/** `dir/page/index.html` → `dir/page.html`, deepest first; a folder with more in it keeps its index.html. */
+function flatten(dir) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) {
+      continue;
+    }
+    const folder = join(dir, entry.name);
+    flatten(folder);
+    const page = join(folder, 'index.html');
+    if (existsSync(page) && readdirSync(folder).length === 1) {
+      renameSync(page, `${folder}.html`);
+      rmdirSync(folder);
     }
   }
 }
 
+flatten(root);
 renameSync(join(root, 'index.csr.html'), join(root, '404.html'));
 
-// The pages, in the order the home page links to them (the activity cards).
-
-const home = readFileSync(join(root, 'index.html'), 'utf8');
-const names = readdirSync(root)
-  .filter(file => file.endsWith('.html') && file !== 'index.html' && file !== '404.html')
-  .map(file => file.slice(0, -'.html'.length));
-const linkOrder = [...home.matchAll(/href="\/([\w-]+)"/g)].map(match => match[1]);
-names.sort((a, b) => linkOrder.indexOf(a) - linkOrder.indexOf(b));
+// Each language's pages, in the order its home page links to them (the activity cards).
 
 function decode(text) {
   return text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
@@ -44,33 +48,54 @@ function describe(html) {
   return { title, description };
 }
 
-const site = describe(home);
-const activities = names.map(name => {
-  const { title, description } = describe(readFileSync(join(root, `${name}.html`), 'utf8'));
-  // "Learning with Toma - Maze" → "Maze"
-  return { url: siteUrl + name, title: title.replace(`${site.title} - `, ''), description };
-});
+function languagePages(folder) {
+  const dir = folder ? join(root, folder) : root;
+  const home = readFileSync(join(dir, 'index.html'), 'utf8');
+  const site = describe(home);
+  const prefix = folder ? `/${folder}/` : '/';
+  const linkOrder = [...home.matchAll(/href="([^"#]+)"/g)].map(match => match[1]);
+  const names = readdirSync(dir)
+    .filter(file => file.endsWith('.html') && file !== 'index.html' && file !== '404.html')
+    .map(file => file.slice(0, -'.html'.length));
+  names.sort((a, b) => linkOrder.indexOf(prefix + a) - linkOrder.indexOf(prefix + b));
+
+  const activities = names.map(name => {
+    const { title, description } = describe(readFileSync(join(dir, `${name}.html`), 'utf8'));
+    // "Learning with Toma - Maze" → "Maze"
+    return { url: siteUrl + (folder ? `${folder}/` : '') + name, title: title.replace(`${site.title} - `, ''), description };
+  });
+  return { url: siteUrl + (folder ? `${folder}/` : ''), ...site, activities };
+}
+
+const english = languagePages('');
+const others = languageFolders.map(languagePages);
 
 writeFileSync(join(root, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[siteUrl, ...activities.map(activity => activity.url)].map(url => `  <url><loc>${url}</loc></url>`).join('\n')}
+${[english, ...others].flatMap(language => [language.url, ...language.activities.map(activity => activity.url)]).map(url => `  <url><loc>${url}</loc></url>`).join('\n')}
 </urlset>
 `);
 
-writeFileSync(join(root, 'llms.txt'), `# ${site.title}
+writeFileSync(join(root, 'llms.txt'), `# ${english.title}
 
-> ${site.description}
+> ${english.description}
 
-${site.title} (in Croatian and Serbian: Učimo s Tomom) is a free website that makes printable
+${english.title} (in Croatian and Serbian: Učimo s Tomom) is a free website that makes printable
 learning worksheets for children in seconds. Pick an activity, choose the language (English,
 Croatian or Serbian), adjust a few settings and press Generate: every worksheet is new. Print it
 on A4 paper or save it as a PDF. There is no account, sign-up or payment.
 
 ## Activities
 
-${activities.map(activity => `- [${activity.title}](${activity.url}): ${activity.description}`).join('\n')}
+${english.activities.map(activity => `- [${activity.title}](${activity.url}): ${activity.description}`).join('\n')}
+
+## In Croatian and Serbian
+
+The whole site, worksheets included, is also in Croatian and Serbian (Latin script), with its own addresses:
+
+${others.map(language => `- [${language.title}](${language.url}): ${language.description}`).join('\n')}
 
 ## More
 
-- [Home page](${siteUrl}): how it works, what parents say, the story behind the site and how to help keep it free.
+- [Home page](${english.url}): how it works, what parents say, the story behind the site and how to help keep it free.
 `);

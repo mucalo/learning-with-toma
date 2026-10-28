@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ACTIVITIES } from '../activities';
+import { ACTIVITIES, Activity, pagePath } from '../activities';
 import { LanguageService } from '../i18n/language.service';
 import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../links';
 import { FooterComponent } from './footer.component';
@@ -13,7 +13,7 @@ describe('FooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes([{ path: '', children: [] }, ...ACTIVITIES.map(activity => ({ path: activity.route.slice(1), children: [] }))])],
+      imports: [RouterTestingModule.withRoutes([{ path: '', children: [] }, ...ACTIVITIES.map(activity => ({ path: englishPath(activity).slice(1), children: [] }))])],
       declarations: [FooterComponent]
     }).compileComponents();
 
@@ -40,7 +40,7 @@ describe('FooterComponent', () => {
   });
 
   it('should show only a short line with a way back home on activity pages', async () => {
-    await TestBed.inject(Router).navigateByUrl(ACTIVITIES[0].route);
+    await TestBed.inject(Router).navigateByUrl(englishPath(ACTIVITIES[0]));
     fixture.detectChanges();
 
     expect(element.querySelector('.footer-columns')).toBeNull();
@@ -48,3 +48,7 @@ describe('FooterComponent', () => {
     expect(element.querySelector('.footer-compact a')?.getAttribute('href')).toBe('/');
   });
 });
+
+function englishPath(activity: Activity): string {
+  return pagePath(activity.key, 'english');
+}

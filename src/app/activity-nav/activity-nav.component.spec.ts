@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ACTIVITIES } from '../activities';
+import { ACTIVITIES, Activity, pagePath } from '../activities';
 import { LanguageService } from '../i18n/language.service';
 import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
 import { ActivityNavComponent } from './activity-nav.component';
@@ -44,7 +44,7 @@ describe('ActivityNavComponent', () => {
 
   it('should link to every activity, each with its icon', () => {
     const links = Array.from(element.querySelectorAll<HTMLAnchorElement>('.activity-link'));
-    expect(links.map(link => link.getAttribute('href'))).toEqual(ACTIVITIES.map(activity => activity.route));
+    expect(links.map(link => link.getAttribute('href'))).toEqual(ACTIVITIES.map(englishPath));
     expect(links[0].textContent).toContain('Spelling');
     links.forEach(link => expect(link.querySelector('app-activity-icon svg')).withContext(link.href).toBeTruthy());
   });
@@ -76,3 +76,7 @@ describe('ActivityNavComponent', () => {
     expect(forward.disabled).toBeTrue();
   });
 });
+
+function englishPath(activity: Activity): string {
+  return pagePath(activity.key, 'english');
+}

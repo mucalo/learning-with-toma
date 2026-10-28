@@ -1,6 +1,6 @@
 import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
+import { ACTIVITIES, Activity, ActivityKey, CATEGORIES, pageUrl } from '../activities';
 import { scrollBehavior } from '../home/home-sections';
 import { LanguageService } from '../i18n/language.service';
 import { SITE_URL } from '../links';
@@ -60,7 +60,7 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
    * (shown in results as "learningwithtoma.com › Maze").
    */
   get structuredData(): object {
-    const url = SITE_URL + this.current.route.slice(1);
+    const url = pageUrl(this.current.key, this.i18n.language);
     const name = this.i18n.t.activities[this.current.key].title;
     return {
       '@context': 'https://schema.org',
@@ -80,7 +80,7 @@ export class ActivityPageComponent implements DoCheck, OnDestroy {
         {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: this.i18n.t.header.appTitle, item: SITE_URL },
+            { '@type': 'ListItem', position: 1, name: this.i18n.t.header.appTitle, item: pageUrl('home', this.i18n.language) },
             { '@type': 'ListItem', position: 2, name, item: url }
           ]
         }

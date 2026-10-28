@@ -1,12 +1,15 @@
 <!doctype html>
 <!--
-  The link preview image (1200×630) shown when someone shares the site. To regenerate
-  src/og-image.png after changing this page, from the project folder:
+  The link preview images (1200×630) shown when someone shares the site, one per language. To
+  regenerate them after changing this page, from the project folder, for each language:
 
     chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630
-      --virtual-time-budget=5000 --screenshot=src/og-image.png scripts/og-image.html
+      --virtual-time-budget=5000 --screenshot=src/og-image.png "file:///…/scripts/og-image.html"
+    … --screenshot=src/og-image-hr.png "file:///…/scripts/og-image.html?lang=hr"
+    … --screenshot=src/og-image-sr.png "file:///…/scripts/og-image.html?lang=sr"
 
-  The example worksheet is copied from the home page hero (src/app/home/hero).
+  The example worksheet is copied from the home page hero (src/app/home/hero), and the texts from
+  src/app/i18n/translations.ts.
 -->
 <html lang="en">
 <head>
@@ -251,15 +254,15 @@
       <span class="logo-tile">
         <svg width="34" height="34" viewBox="0 0 24 24"><path d="M9 3v14a3 3 0 0 0 5 2" /><path d="M5 8h9" /></svg>
       </span>
-      <span class="logo-text">Learning<br /><span class="logo-second">with Toma</span></span>
+      <span class="logo-text"><span data-text="logo1">Learning</span><br /><span class="logo-second" data-text="logo2">with Toma</span></span>
     </div>
 
-    <h1>Printable worksheets for <span class="highlight">little learners</span></h1>
+    <h1><span data-text="before">Printable worksheets for </span><span class="highlight" data-text="highlight">little learners</span></h1>
 
     <ul class="badges">
-      <li class="badge">100% free</li>
-      <li class="badge">Ages 4–7</li>
-      <li class="badge">3 languages</li>
+      <li class="badge" data-text="badge1">100% free</li>
+      <li class="badge" data-text="badge2">Ages 4–7</li>
+      <li class="badge" data-text="badge3">3 languages</li>
     </ul>
 
     <div class="url">learningwithtoma.com</div>
@@ -271,7 +274,7 @@
 
     <div class="sheet">
       <div class="sheet-block">
-        <div class="sheet-label">Draw a line from each picture to its shadow.</div>
+        <div class="sheet-label" data-text="shadow">Draw a line from each picture to its shadow.</div>
         <svg viewBox="0 0 344 132">
           <g transform="translate(43 30)"><circle cx="0" cy="-6" r="13" fill="#E5484D" /><path d="M-3 7 L3 7 L0 4 Z" fill="#E5484D" /><path d="M0 7 q-5 7 1 15" fill="none" stroke="#3E6FD8" stroke-width="2" stroke-linecap="round" /><circle cx="-5" cy="-11" r="3" fill="#FFFFFF" opacity="0.5" /></g>
           <g transform="translate(129 30)"><path d="M-2 -19 L-2 5 L-17 5 Z" fill="#F5B83D" /><path d="M2 -14 L2 5 L13 5 Z" fill="#F7D07A" /><path d="M-19 9 H19 L13 18 H-13 Z" fill="#3E8EDE" /></g>
@@ -288,7 +291,7 @@
       </div>
 
       <div class="sheet-block">
-        <div class="sheet-label">Look at the pattern and continue the sequence.</div>
+        <div class="sheet-label" data-text="sequence">Look at the pattern and continue the sequence.</div>
         <svg viewBox="0 0 344 86">
           <g stroke="#333C48" stroke-width="2" stroke-linejoin="round">
             <path d="M3 29 L14 10 L25 29 Z" fill="#F6D365" /><circle cx="48" cy="20" r="10" fill="#CFE3FF" /><path d="M71 29 L82 10 L93 29 Z" fill="#F6D365" /><circle cx="116" cy="20" r="10" fill="#CFE3FF" />
@@ -302,7 +305,7 @@
       </div>
 
       <div class="sheet-block sheet-block-last">
-        <div class="sheet-label">Write what is in the image.</div>
+        <div class="sheet-label" data-text="spelling">Write what is in the image.</div>
         <div class="spelling-row">
           <div class="spelling-picture">
             <svg width="30" height="30" viewBox="0 0 30 30"><circle cx="11" cy="17" r="9" fill="#E5484D" /><circle cx="19" cy="17" r="9" fill="#E5484D" /><path d="M15 9 C15 5 18 3 22 4 C21 8 18 9 15 9 Z" fill="#5BB55B" /></svg>
@@ -314,7 +317,38 @@
       <div class="sheet-footer">www.learningwithtoma.com</div>
     </div>
 
-    <div class="sticker">Free<br />to print</div>
+    <div class="sticker"><span><span data-text="sticker1">Free</span><br /><span data-text="sticker2">to print</span></span></div>
   </div>
+
+  <script>
+    // English is in the page itself; ?lang=hr or ?lang=sr swaps in the other texts.
+    var TEXTS = {
+      hr: {
+        logo1: 'Učimo', logo2: 's Tomom',
+        before: 'Radni listovi za ', highlight: 'male učenike',
+        badge1: '100% besplatno', badge2: 'Dob 4–7', badge3: '3 jezika',
+        shadow: 'Poveži svaku sličicu s njezinom sjenom.',
+        sequence: 'Pogledaj uzorak i nastavi niz.',
+        spelling: 'Napiši što je na slici.',
+        sticker1: 'Besplatno', sticker2: 'za ispis'
+      },
+      sr: {
+        logo1: 'Učimo', logo2: 's Tomom',
+        before: 'Radni listovi za ', highlight: 'male učenike',
+        badge1: '100% besplatno', badge2: 'Uzrast 4–7', badge3: '3 jezika',
+        shadow: 'Poveži svaku sličicu sa njenom senkom.',
+        sequence: 'Pogledaj obrazac i nastavi niz.',
+        spelling: 'Napiši šta je na slici.',
+        sticker1: 'Besplatno', sticker2: 'za štampu'
+      }
+    };
+    var lang = new URLSearchParams(location.search).get('lang');
+    if (TEXTS[lang]) {
+      document.documentElement.lang = lang === 'sr' ? 'sr-Latn' : lang;
+      document.querySelectorAll('[data-text]').forEach(function (element) {
+        element.textContent = TEXTS[lang][element.dataset.text];
+      });
+    }
+  </script>
 </body>
 </html>

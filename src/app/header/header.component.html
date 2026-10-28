@@ -1,6 +1,6 @@
 <header class="site-header" [class.menu-open]="menuOpen">
   <div class="header-inner">
-    <a routerLink="/" class="logo" [attr.aria-label]="i18n.t.header.appTitle" (click)="goHome()">
+    <a [routerLink]="i18n.homePath" class="logo" [attr.aria-label]="i18n.t.header.appTitle" (click)="goHome()">
       <span class="logo-tile" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 24 24"><path d="M9 3v14a3 3 0 0 0 5 2" /><path d="M5 8h9" /></svg>
       </span>
@@ -12,7 +12,7 @@
         *ngFor="let section of sections"
         class="menu-link"
         [class.is-current]="section.id === 'activities' && onActivityPage"
-        routerLink="/"
+        [routerLink]="i18n.homePath"
         [fragment]="section.id"
         (click)="goToSection(section.id)"
       >
@@ -27,7 +27,7 @@
         class="support-link"
         [class.btn]="!onActivityPage"
         [class.btn-outline]="!onActivityPage"
-        routerLink="/"
+        [routerLink]="i18n.homePath"
         fragment="help"
         (click)="goToSection('help')"
       >
@@ -37,7 +37,7 @@
         <span class="support-text">{{ i18n.t.header.support }}</span>
       </a>
 
-      <a *ngIf="onActivityPage" class="btn btn-outline all-activities" routerLink="/" fragment="activities" (click)="goToSection('activities')">
+      <a *ngIf="onActivityPage" class="btn btn-outline all-activities" [routerLink]="i18n.homePath" fragment="activities" (click)="goToSection('activities')">
         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
         {{ i18n.t.header.allActivities }}
       </a>

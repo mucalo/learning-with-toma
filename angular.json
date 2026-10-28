@@ -31,6 +31,8 @@
               "src/CNAME",
               "src/robots.txt",
               "src/og-image.png",
+              "src/og-image-hr.png",
+              "src/og-image-sr.png",
               "src/assets"
             ],
             "styles": [

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
@@ -29,6 +29,7 @@ import { ActivityIconComponent } from './activity-icon/activity-icon.component';
 import { TestimonialsComponent } from './home/testimonials/testimonials.component';
 import { AboutComponent } from './home/about/about.component';
 import { ActivityPageComponent } from './activity-page/activity-page.component';
+import { LanguageService } from './i18n/language.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,12 @@ import { ActivityPageComponent } from './activity-page/activity-page.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    // Started before the first page is opened, so it can take that page's language from its address.
+    provideAppInitializer(() => {
+      inject(LanguageService);
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
