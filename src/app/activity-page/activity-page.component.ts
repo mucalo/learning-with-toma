@@ -16,9 +16,10 @@ import { LanguageService } from '../i18n/language.service';
  *   </app-activity-page>
  */
 @Component({
-  selector: 'app-activity-page',
-  templateUrl: './activity-page.component.html',
-  styleUrls: ['./activity-page.component.css']
+    selector: 'app-activity-page',
+    templateUrl: './activity-page.component.html',
+    styleUrls: ['./activity-page.component.css'],
+    standalone: false
 })
 export class ActivityPageComponent implements DoCheck, OnDestroy {
   @Input() hasWorksheet = false;

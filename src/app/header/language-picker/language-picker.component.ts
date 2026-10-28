@@ -4,9 +4,10 @@ import { LanguageKey, LanguageOption } from '../../i18n/languages';
 
 /** Language switch in the header: a pill with the current flag and language name, opening a short list. */
 @Component({
-  selector: 'app-language-picker',
-  templateUrl: './language-picker.component.html',
-  styleUrls: ['./language-picker.component.css']
+    selector: 'app-language-picker',
+    templateUrl: './language-picker.component.html',
+    styleUrls: ['./language-picker.component.css'],
+    standalone: false
 })
 export class LanguagePickerComponent {
   open = false;

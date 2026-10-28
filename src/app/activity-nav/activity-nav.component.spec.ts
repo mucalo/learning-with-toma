@@ -8,11 +8,17 @@ import { LanguageService } from '../i18n/language.service';
 import { ActivityIconComponent } from '../activity-icon/activity-icon.component';
 import { ActivityNavComponent } from './activity-nav.component';
 
-@Component({ template: '<app-activity-nav></app-activity-nav>' })
+@Component({
+    template: '<app-activity-nav></app-activity-nav>',
+    standalone: false
+})
 class MazePageComponent {}
 
 /** Opens pages through the router, as the app does, so the nav sees the page's route. */
-@Component({ template: '<router-outlet></router-outlet>' })
+@Component({
+    template: '<router-outlet></router-outlet>',
+    standalone: false
+})
 class ShellComponent {}
 
 describe('ActivityNavComponent', () => {

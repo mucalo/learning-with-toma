@@ -48,9 +48,10 @@ const BUTTON_GUTTER_PX = 2 * 56;
  *   </app-worksheet>
  */
 @Component({
-  selector: 'app-worksheet',
-  templateUrl: './worksheet.component.html',
-  styleUrls: ['./worksheet.component.css']
+    selector: 'app-worksheet',
+    templateUrl: './worksheet.component.html',
+    styleUrls: ['./worksheet.component.css'],
+    standalone: false
 })
 export class WorksheetComponent<T = unknown> implements OnInit, DoCheck, AfterViewChecked, OnDestroy {
   @Input() instruction = '';

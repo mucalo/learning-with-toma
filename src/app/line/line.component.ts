@@ -154,9 +154,10 @@ interface LineItem {
 }
 
 @Component({
-  selector: 'app-line',
-  templateUrl: './line.component.html',
-  styleUrls: ['./line.component.css']
+    selector: 'app-line',
+    templateUrl: './line.component.html',
+    styleUrls: ['./line.component.css'],
+    standalone: false
 })
 export class LineComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

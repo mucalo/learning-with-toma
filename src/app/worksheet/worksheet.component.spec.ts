@@ -4,13 +4,14 @@ import { paginate } from './paginate';
 import { WorksheetComponent } from './worksheet.component';
 
 @Component({
-  template: `
+    template: `
     <app-worksheet instruction="Do the thing." [items]="items">
       <ng-template let-item let-i="index">
         <div class="problem-row" [style.height.px]="rowHeight">{{ i }}:{{ item }}</div>
       </ng-template>
     </app-worksheet>
-  `
+  `,
+    standalone: false
 })
 class HostComponent {
   items = ['a', 'b', 'c'];

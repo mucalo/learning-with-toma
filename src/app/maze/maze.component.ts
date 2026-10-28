@@ -150,9 +150,10 @@ interface MazeItem {
 }
 
 @Component({
-  selector: 'app-maze',
-  templateUrl: './maze.component.html',
-  styleUrls: ['./maze.component.css']
+    selector: 'app-maze',
+    templateUrl: './maze.component.html',
+    styleUrls: ['./maze.component.css'],
+    standalone: false
 })
 export class MazeComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

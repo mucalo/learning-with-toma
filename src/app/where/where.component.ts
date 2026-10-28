@@ -159,9 +159,10 @@ export function spotFor(thing: Thing, position: Position): Spot {
 }
 
 @Component({
-  selector: 'app-where',
-  templateUrl: './where.component.html',
-  styleUrls: ['./where.component.css']
+    selector: 'app-where',
+    templateUrl: './where.component.html',
+    styleUrls: ['./where.component.css'],
+    standalone: false
 })
 export class WhereComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

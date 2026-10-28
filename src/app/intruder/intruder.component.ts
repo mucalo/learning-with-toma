@@ -81,9 +81,10 @@ interface IntruderItem {
 }
 
 @Component({
-  selector: 'app-intruder',
-  templateUrl: './intruder.component.html',
-  styleUrls: ['./intruder.component.css']
+    selector: 'app-intruder',
+    templateUrl: './intruder.component.html',
+    styleUrls: ['./intruder.component.css'],
+    standalone: false
 })
 export class IntruderComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

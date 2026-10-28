@@ -50,9 +50,10 @@ function shuffle<T>(values: T[]): T[] {
 }
 
 @Component({
-  selector: 'app-shadow',
-  templateUrl: './shadow.component.html',
-  styleUrls: ['./shadow.component.css']
+    selector: 'app-shadow',
+    templateUrl: './shadow.component.html',
+    styleUrls: ['./shadow.component.css'],
+    standalone: false
 })
 export class ShadowComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

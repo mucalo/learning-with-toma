@@ -9,7 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { LanguagePickerComponent } from './header/language-picker/language-picker.component';
 import { LanguageService } from './i18n/language.service';
 
-@Component({ template: 'Page' })
+@Component({
+    template: 'Page',
+    standalone: false
+})
 class PageComponent {}
 
 describe('AppComponent', () => {

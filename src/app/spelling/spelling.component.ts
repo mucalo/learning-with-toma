@@ -16,9 +16,10 @@ interface DisplayLetterGroup {
 }
 
 @Component({
-  selector: 'app-spelling',
-  templateUrl: './spelling.component.html',
-  styleUrls: ['./spelling.component.css']
+    selector: 'app-spelling',
+    templateUrl: './spelling.component.html',
+    styleUrls: ['./spelling.component.css'],
+    standalone: false
 })
 export class SpellingComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

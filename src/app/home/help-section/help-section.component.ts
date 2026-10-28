@@ -24,9 +24,10 @@ const SHARE_NETWORKS: ShareNetwork[] = [
 
 /** "Want to help?": donate, spread the word, send feedback, share photos. Shown on the home page. */
 @Component({
-  selector: 'app-help-section',
-  templateUrl: './help-section.component.html',
-  styleUrls: ['./help-section.component.css']
+    selector: 'app-help-section',
+    templateUrl: './help-section.component.html',
+    styleUrls: ['./help-section.component.css'],
+    standalone: false
 })
 export class HelpSectionComponent implements OnDestroy {
   readonly donateUrl = BUY_ME_A_COFFEE_URL;

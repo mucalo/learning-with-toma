@@ -14,7 +14,10 @@ export interface TextPart {
  *     <ng-container *ngIf="!part.bold">{{ part.text }}</ng-container>
  *   </ng-container>
  */
-@Pipe({ name: 'emphasis' })
+@Pipe({
+    name: 'emphasis',
+    standalone: false
+})
 export class EmphasisPipe implements PipeTransform {
   transform(text: string): TextPart[] {
     return text

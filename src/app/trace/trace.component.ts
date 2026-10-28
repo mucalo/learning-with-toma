@@ -121,9 +121,10 @@ interface TraceItem {
 }
 
 @Component({
-  selector: 'app-trace',
-  templateUrl: './trace.component.html',
-  styleUrls: ['./trace.component.css']
+    selector: 'app-trace',
+    templateUrl: './trace.component.html',
+    styleUrls: ['./trace.component.css'],
+    standalone: false
 })
 export class TraceComponent {
   /** Fills exactly two A4 pages with the other settings at their defaults. */

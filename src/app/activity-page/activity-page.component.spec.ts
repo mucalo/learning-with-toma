@@ -10,12 +10,13 @@ import { LanguageService } from '../i18n/language.service';
 import { ActivityPageComponent } from './activity-page.component';
 
 @Component({
-  template: `
+    template: `
     <app-activity-page activity="maze" [hasWorksheet]="generated" (generate)="generated = true" (print)="printed = true">
       <div settings><div class="field"><label for="size">Size</label><input id="size" type="number" /></div></div>
       <p *ngIf="generated" class="fake-worksheet">Worksheet</p>
     </app-activity-page>
-  `
+  `,
+    standalone: false
 })
 class MazeHostComponent {
   generated = false;

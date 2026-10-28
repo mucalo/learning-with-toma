@@ -5,9 +5,10 @@ import { ACTIVITIES, Activity, ActivityCategory, CATEGORIES } from '../activitie
 import { scrollToSection } from './home-sections';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: false
 })
 export class HomeComponent implements AfterViewInit {
   readonly activities = ACTIVITIES;

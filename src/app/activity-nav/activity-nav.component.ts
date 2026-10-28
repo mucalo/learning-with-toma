@@ -9,9 +9,10 @@ import { LanguageService } from '../i18n/language.service';
  * always shown, and enabled only on the side that has more. Hidden when printing.
  */
 @Component({
-  selector: 'app-activity-nav',
-  templateUrl: './activity-nav.component.html',
-  styleUrls: ['./activity-nav.component.css']
+    selector: 'app-activity-nav',
+    templateUrl: './activity-nav.component.html',
+    styleUrls: ['./activity-nav.component.css'],
+    standalone: false
 })
 export class ActivityNavComponent implements AfterViewInit, OnDestroy {
   readonly activities = ACTIVITIES;

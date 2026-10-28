@@ -4,9 +4,10 @@ import { scrollToSection } from '../home-sections';
 
 /** Top of the home page: heading, short intro, the two main buttons and an example worksheet stack. */
 @Component({
-  selector: 'app-hero',
-  templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.css']
+    selector: 'app-hero',
+    templateUrl: './hero.component.html',
+    styleUrls: ['./hero.component.css'],
+    standalone: false
 })
 export class HeroComponent {
   /** Each "Made for" chip gets one of the activity category tints, in order. */

@@ -3,9 +3,10 @@ import { LanguageService } from '../../i18n/language.service';
 
 /** A horizontal row of testimonials as pinned notes, scrolled with the arrows (never automatically). */
 @Component({
-  selector: 'app-testimonials',
-  templateUrl: './testimonials.component.html',
-  styleUrls: ['./testimonials.component.css']
+    selector: 'app-testimonials',
+    templateUrl: './testimonials.component.html',
+    styleUrls: ['./testimonials.component.css'],
+    standalone: false
 })
 export class TestimonialsComponent implements AfterViewInit {
   @ViewChild('track') track!: ElementRef<HTMLElement>;
