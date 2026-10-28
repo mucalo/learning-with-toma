@@ -63,5 +63,16 @@
 </head>
 <body>
   <app-root></app-root>
+  <script>
+    // Cloudflare Web Analytics: cookie-free counts of visits and pages (it can't count clicks).
+    // Only on the live site, so local testing isn't counted.
+    if (location.hostname === 'learningwithtoma.com') {
+      var beacon = document.createElement('script');
+      beacon.type = 'module';
+      beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+      beacon.setAttribute('data-cf-beacon', '{"token": "84d8d35703b34e578ac4b1421b688b2f"}');
+      document.body.appendChild(beacon);
+    }
+  </script>
 </body>
 </html>
