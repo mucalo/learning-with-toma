@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../../links';
 import { SHARE_ICONS } from '../share-icons';
@@ -27,6 +27,7 @@ const SHARE_NETWORKS: ShareNetwork[] = [
     selector: 'app-help-section',
     templateUrl: './help-section.component.html',
     styleUrls: ['./help-section.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HelpSectionComponent implements OnDestroy {

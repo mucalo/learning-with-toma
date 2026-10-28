@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageKey } from '../i18n/languages';
 import { LanguageService } from '../i18n/language.service';
 
@@ -19,6 +19,7 @@ interface DisplayLetterGroup {
     selector: 'app-spelling',
     templateUrl: './spelling.component.html',
     styleUrls: ['./spelling.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SpellingComponent {

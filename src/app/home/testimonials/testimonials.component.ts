@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 
 /** A horizontal row of testimonials as pinned notes, scrolled with the arrows (never automatically). */
@@ -6,6 +6,7 @@ import { LanguageService } from '../../i18n/language.service';
     selector: 'app-testimonials',
     templateUrl: './testimonials.component.html',
     styleUrls: ['./testimonials.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestimonialsComponent implements AfterViewInit {

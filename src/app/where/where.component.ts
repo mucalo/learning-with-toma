@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageKey } from '../i18n/languages';
 import { LanguageService } from '../i18n/language.service';
 import { Translations } from '../i18n/translations';
@@ -162,6 +162,7 @@ export function spotFor(thing: Thing, position: Position): Spot {
     selector: 'app-where',
     templateUrl: './where.component.html',
     styleUrls: ['./where.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WhereComponent {

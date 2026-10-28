@@ -1,4 +1,4 @@
-import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import { Component, DoCheck, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ACTIVITIES, Activity, ActivityKey, CATEGORIES } from '../activities';
 import { scrollBehavior } from '../home/home-sections';
@@ -19,6 +19,7 @@ import { LanguageService } from '../i18n/language.service';
     selector: 'app-activity-page',
     templateUrl: './activity-page.component.html',
     styleUrls: ['./activity-page.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ActivityPageComponent implements DoCheck, OnDestroy {

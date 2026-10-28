@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LanguageService } from '../i18n/language.service';
 import { ACTIVITIES, Activity, ActivityCategory, CATEGORIES } from '../activities';
@@ -8,6 +8,7 @@ import { scrollToSection } from './home-sections';
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HomeComponent implements AfterViewInit {

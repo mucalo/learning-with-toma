@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class AppComponent implements OnDestroy {

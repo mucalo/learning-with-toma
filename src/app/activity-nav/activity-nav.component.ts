@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ACTIVITIES } from '../activities';
 import { LanguageService } from '../i18n/language.service';
 
@@ -12,6 +12,7 @@ import { LanguageService } from '../i18n/language.service';
     selector: 'app-activity-nav',
     templateUrl: './activity-nav.component.html',
     styleUrls: ['./activity-nav.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ActivityNavComponent implements AfterViewInit, OnDestroy {

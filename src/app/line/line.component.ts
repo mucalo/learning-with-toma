@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
 import { Translations } from '../i18n/translations';
 
@@ -157,6 +157,7 @@ interface LineItem {
     selector: 'app-line',
     templateUrl: './line.component.html',
     styleUrls: ['./line.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LineComponent {

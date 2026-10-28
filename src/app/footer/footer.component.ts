@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { isActivityUrl } from '../activities';
@@ -14,6 +14,7 @@ import { BUY_ME_A_COFFEE_URL, CONTACT_EMAIL } from '../links';
     selector: 'app-footer',
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class FooterComponent implements OnDestroy {

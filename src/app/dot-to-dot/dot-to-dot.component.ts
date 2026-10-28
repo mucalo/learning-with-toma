@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ALPHABETS } from '../i18n/alphabets';
 import { LanguageService } from '../i18n/language.service';
 import { DOT_FIGURES, DotFigure, DotFigureKey, Point, withDotCount } from './dot-figures';
@@ -66,6 +66,7 @@ export function placeDots(points: Point[], labels: string[], closed = false): Do
     selector: 'app-dot-to-dot',
     templateUrl: './dot-to-dot.component.html',
     styleUrls: ['./dot-to-dot.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class DotToDotComponent {

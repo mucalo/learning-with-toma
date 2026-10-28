@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
 import { Translations } from '../i18n/translations';
 
@@ -84,6 +84,7 @@ interface IntruderItem {
     selector: 'app-intruder',
     templateUrl: './intruder.component.html',
     styleUrls: ['./intruder.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class IntruderComponent {

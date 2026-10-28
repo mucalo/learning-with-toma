@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { isActivityUrl } from '../activities';
@@ -15,6 +15,7 @@ import { HOME_SECTIONS, scrollBehavior, scrollToSection } from '../home/home-sec
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HeaderComponent implements OnDestroy {

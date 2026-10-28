@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ import { ActivityPageComponent } from './activity-page.component';
       <p *ngIf="generated" class="fake-worksheet">Worksheet</p>
     </app-activity-page>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class MazeHostComponent {

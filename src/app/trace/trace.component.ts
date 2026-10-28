@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ALPHABETS } from '../i18n/alphabets';
 import { LanguageKey } from '../i18n/languages';
 import { LanguageService } from '../i18n/language.service';
@@ -124,6 +124,7 @@ interface TraceItem {
     selector: 'app-trace',
     templateUrl: './trace.component.html',
     styleUrls: ['./trace.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TraceComponent {

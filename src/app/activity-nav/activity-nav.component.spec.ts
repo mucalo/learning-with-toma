@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { ActivityNavComponent } from './activity-nav.component';
 
 @Component({
     template: '<app-activity-nav></app-activity-nav>',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class MazePageComponent {}
@@ -17,6 +18,7 @@ class MazePageComponent {}
 /** Opens pages through the router, as the app does, so the nav sees the page's route. */
 @Component({
     template: '<router-outlet></router-outlet>',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class ShellComponent {}

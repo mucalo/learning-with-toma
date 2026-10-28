@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
 
 /** Distance between dots in SVG units, and the margin around the grid. */
@@ -162,6 +162,7 @@ interface PatternItem {
     selector: 'app-copy-pattern',
     templateUrl: './copy-pattern.component.html',
     styleUrls: ['./copy-pattern.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CopyPatternComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../i18n/language.service';
 
 interface PositionedEmoji {
@@ -28,6 +28,7 @@ interface ProblemItem {
     selector: 'app-biggest-smallest',
     templateUrl: './biggest-smallest.component.html',
     styleUrls: ['./biggest-smallest.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BiggestSmallestComponent {

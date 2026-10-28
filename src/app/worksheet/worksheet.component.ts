@@ -10,7 +10,8 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivityPageComponent } from '../activity-page/activity-page.component';
 import { LanguageService } from '../i18n/language.service';
@@ -51,6 +52,7 @@ const BUTTON_GUTTER_PX = 2 * 56;
     selector: 'app-worksheet',
     templateUrl: './worksheet.component.html',
     styleUrls: ['./worksheet.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WorksheetComponent<T = unknown> implements OnInit, DoCheck, AfterViewChecked, OnDestroy {

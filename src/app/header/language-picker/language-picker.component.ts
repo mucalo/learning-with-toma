@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageService } from '../../i18n/language.service';
 import { LanguageKey, LanguageOption } from '../../i18n/languages';
 
@@ -7,6 +7,7 @@ import { LanguageKey, LanguageOption } from '../../i18n/languages';
     selector: 'app-language-picker',
     templateUrl: './language-picker.component.html',
     styleUrls: ['./language-picker.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class LanguagePickerComponent {

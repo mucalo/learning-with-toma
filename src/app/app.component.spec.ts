@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { LanguageService } from './i18n/language.service';
 
 @Component({
     template: 'Page',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class PageComponent {}

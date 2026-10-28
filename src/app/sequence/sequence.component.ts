@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LanguageKey } from '../i18n/languages';
 import { LanguageService } from '../i18n/language.service';
 
@@ -54,6 +54,7 @@ export function isValidPattern(pattern: readonly string[]): boolean {
     selector: 'app-sequence',
     templateUrl: './sequence.component.html',
     styleUrls: ['./sequence.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class SequenceComponent {

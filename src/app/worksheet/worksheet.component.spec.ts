@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { paginate } from './paginate';
 import { WorksheetComponent } from './worksheet.component';
@@ -11,6 +11,7 @@ import { WorksheetComponent } from './worksheet.component';
       </ng-template>
     </app-worksheet>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class HostComponent {
