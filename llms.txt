@@ -1,11 +1,12 @@
 # Learning with Toma
 
-> Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, preschool educators and school teachers.
+> Free printable worksheets for children aged 4–7, in English, Croatian, Serbian and Polish. Made for parents, preschool educators and school teachers.
 
-Learning with Toma (in Croatian and Serbian: Učimo s Tomom) is a free website that makes printable
-learning worksheets for children in seconds. Pick an activity, choose the language (English,
-Croatian or Serbian), adjust a few settings and press Generate: every worksheet is new. Print it
-on A4 paper or save it as a PDF. There is no account, sign-up or payment.
+Learning with Toma (in Croatian and Serbian: Učimo s Tomom; in Polish: Uczymy się z Tomą) is a free
+website that makes printable learning worksheets for children in seconds. Pick an activity,
+choose the language (English, Croatian, Serbian or Polish), adjust a few settings and press
+Generate: every worksheet is new. Print it on A4 paper or save it as a PDF. There is no account,
+sign-up or payment.
 
 ## Activities
 
@@ -22,12 +23,13 @@ on A4 paper or save it as a PDF. There is no account, sign-up or payment.
 - [Trace the Letters](https://learningwithtoma.com/trace): Trace dotted letters and numbers, then write them alone. Builds pencil control and letter recognition.
 - [Dot to Dot](https://learningwithtoma.com/dot-to-dot): Join the dots in order to reveal a picture. Practises number order and steady hand movements.
 
-## In Croatian and Serbian
+## In Croatian, Serbian and Polish
 
-The whole site, worksheets included, is also in Croatian and Serbian (Latin script), with its own addresses:
+The whole site, worksheets included, is also in Croatian, Serbian (Latin script) and Polish, with its own addresses:
 
-- [Učimo s Tomom](https://learningwithtoma.com/hr/): Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, odgojitelje i učitelje.
-- [Učimo s Tomom](https://learningwithtoma.com/sr/): Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom i srpskom. Za roditelje, vaspitače i učitelje.
+- [Učimo s Tomom](https://learningwithtoma.com/hr/): Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom, srpskom i poljskom. Za roditelje, odgojitelje i učitelje.
+- [Učimo s Tomom](https://learningwithtoma.com/sr/): Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom, srpskom i poljskom. Za roditelje, vaspitače i učitelje.
+- [Uczymy się z Tomą](https://learningwithtoma.com/pl/): Darmowe karty pracy do druku dla dzieci w wieku 4–7 lat, po angielsku, chorwacku, serbsku i polsku. Dla rodziców oraz nauczycieli w przedszkolach i szkołach.
 
 ## More
 
