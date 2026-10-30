@@ -7,6 +7,7 @@
       --virtual-time-budget=5000 --screenshot=src/og-image.png "file:///…/scripts/og-image.html"
     … --screenshot=src/og-image-hr.png "file:///…/scripts/og-image.html?lang=hr"
     … --screenshot=src/og-image-sr.png "file:///…/scripts/og-image.html?lang=sr"
+    … --screenshot=src/og-image-pl.png "file:///…/scripts/og-image.html?lang=pl"
 
   The example worksheet is copied from the home page hero (src/app/home/hero), and the texts from
   src/app/i18n/translations.ts.
@@ -262,7 +263,7 @@
     <ul class="badges">
       <li class="badge" data-text="badge1">100% free</li>
       <li class="badge" data-text="badge2">Ages 4–7</li>
-      <li class="badge" data-text="badge3">3 languages</li>
+      <li class="badge" data-text="badge3">4 languages</li>
     </ul>
 
     <div class="url">learningwithtoma.com</div>
@@ -326,7 +327,7 @@
       hr: {
         logo1: 'Učimo', logo2: 's Tomom',
         before: 'Radni listovi za ', highlight: 'male učenike',
-        badge1: '100% besplatno', badge2: 'Dob 4–7', badge3: '3 jezika',
+        badge1: '100% besplatno', badge2: 'Dob 4–7', badge3: '4 jezika',
         shadow: 'Poveži svaku sličicu s njezinom sjenom.',
         sequence: 'Pogledaj uzorak i nastavi niz.',
         spelling: 'Napiši što je na slici.',
@@ -335,11 +336,20 @@
       sr: {
         logo1: 'Učimo', logo2: 's Tomom',
         before: 'Radni listovi za ', highlight: 'male učenike',
-        badge1: '100% besplatno', badge2: 'Uzrast 4–7', badge3: '3 jezika',
+        badge1: '100% besplatno', badge2: 'Uzrast 4–7', badge3: '4 jezika',
         shadow: 'Poveži svaku sličicu sa njenom senkom.',
         sequence: 'Pogledaj obrazac i nastavi niz.',
         spelling: 'Napiši šta je na slici.',
         sticker1: 'Besplatno', sticker2: 'za štampu'
+      },
+      pl: {
+        logo1: 'Uczymy się', logo2: 'z Tomą',
+        before: 'Karty pracy do druku dla ', highlight: 'najmłodszych',
+        badge1: '100% za darmo', badge2: 'Wiek 4–7 lat', badge3: '4 języki',
+        shadow: 'Połącz każdy obrazek z jego cieniem.',
+        sequence: 'Zobacz, co się powtarza, i dokończ rytm.',
+        spelling: 'Napisz, co jest na obrazku.',
+        sticker1: 'Za darmo', sticker2: 'do druku'
       }
     };
     var lang = new URLSearchParams(location.search).get('lang');

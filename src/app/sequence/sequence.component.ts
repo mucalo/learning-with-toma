@@ -32,7 +32,8 @@ const NUMBERS = '0123456789'.split('');
 const LETTERS: Record<LanguageKey, string[]> = {
   english: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
   croatian: 'ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ'.split(''),
-  serbian: 'ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ'.split('')
+  serbian: 'ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ'.split(''),
+  polish: 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ'.split('')
 };
 
 /**

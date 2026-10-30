@@ -18,13 +18,15 @@ interface Spot {
   size: number;
 }
 
-/** Noun forms needed by the sentences: Croatian and Serbian prepositions take different cases. */
+/** Noun forms needed by the sentences: Croatian, Serbian and Polish prepositions take different cases. */
 interface ThingNames {
   /** English noun, e.g. "table". */
   english: string;
   /** Genitive (ispod / iznad / pokraj stola) and locative (na stolu). */
   croatian: { gen: string; loc: string };
   serbian: { gen: string; loc: string };
+  /** Locative (na stole), instrumental (pod / nad stołem) and genitive (obok stołu). */
+  polish: { loc: string; ins: string; gen: string };
 }
 
 /**
@@ -43,7 +45,7 @@ export interface Thing {
 export const THINGS: Thing[] = [
   {
     key: 'table',
-    names: { english: 'table', croatian: { gen: 'stola', loc: 'stolu' }, serbian: { gen: 'stola', loc: 'stolu' } },
+    names: { english: 'table', croatian: { gen: 'stola', loc: 'stolu' }, serbian: { gen: 'stola', loc: 'stolu' }, polish: { loc: 'stole', ins: 'stołem', gen: 'stołu' } },
     rects: [
       { x: 25, y: 50, width: 80, height: 6 },
       { x: 30, y: 56, width: 5, height: 40 },
@@ -54,7 +56,7 @@ export const THINGS: Thing[] = [
   },
   {
     key: 'chair',
-    names: { english: 'chair', croatian: { gen: 'stolice', loc: 'stolici' }, serbian: { gen: 'stolice', loc: 'stolici' } },
+    names: { english: 'chair', croatian: { gen: 'stolice', loc: 'stolici' }, serbian: { gen: 'stolice', loc: 'stolici' }, polish: { loc: 'krześle', ins: 'krzesłem', gen: 'krzesła' } },
     rects: [
       { x: 44, y: 64, width: 42, height: 6 },
       { x: 80, y: 30, width: 6, height: 34 },
@@ -66,7 +68,7 @@ export const THINGS: Thing[] = [
   },
   {
     key: 'bed',
-    names: { english: 'bed', croatian: { gen: 'kreveta', loc: 'krevetu' }, serbian: { gen: 'kreveta', loc: 'krevetu' } },
+    names: { english: 'bed', croatian: { gen: 'kreveta', loc: 'krevetu' }, serbian: { gen: 'kreveta', loc: 'krevetu' }, polish: { loc: 'łóżku', ins: 'łóżkiem', gen: 'łóżka' } },
     rects: [
       { x: 26, y: 60, width: 78, height: 12 },
       { x: 26, y: 42, width: 7, height: 30 },
@@ -84,13 +86,13 @@ export interface Character {
 }
 
 export const CHARACTERS: Character[] = [
-  { emoji: '🐱', names: { english: 'cat', croatian: 'mačka', serbian: 'mačka' } },
-  { emoji: '🐶', names: { english: 'dog', croatian: 'pas', serbian: 'pas' } },
-  { emoji: '🐭', names: { english: 'mouse', croatian: 'miš', serbian: 'miš' } },
-  { emoji: '🐰', names: { english: 'rabbit', croatian: 'zec', serbian: 'zec' } },
-  { emoji: '⚽', names: { english: 'ball', croatian: 'lopta', serbian: 'lopta' } },
-  { emoji: '🐦', names: { english: 'bird', croatian: 'ptica', serbian: 'ptica' } },
-  { emoji: '🧸', names: { english: 'teddy bear', croatian: 'medo', serbian: 'meda' } }
+  { emoji: '🐱', names: { english: 'cat', croatian: 'mačka', serbian: 'mačka', polish: 'kot' } },
+  { emoji: '🐶', names: { english: 'dog', croatian: 'pas', serbian: 'pas', polish: 'pies' } },
+  { emoji: '🐭', names: { english: 'mouse', croatian: 'miš', serbian: 'miš', polish: 'mysz' } },
+  { emoji: '🐰', names: { english: 'rabbit', croatian: 'zec', serbian: 'zec', polish: 'królik' } },
+  { emoji: '⚽', names: { english: 'ball', croatian: 'lopta', serbian: 'lopta', polish: 'piłka' } },
+  { emoji: '🐦', names: { english: 'bird', croatian: 'ptica', serbian: 'ptica', polish: 'ptak' } },
+  { emoji: '🧸', names: { english: 'teddy bear', croatian: 'medo', serbian: 'meda', polish: 'miś' } }
 ];
 
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
@@ -123,6 +125,12 @@ export const SENTENCES: Record<LanguageKey, (character: Character, thing: Thing,
     before: `${capitalise(c.names.serbian)} je `,
     preposition: prep,
     after: ` ${position === 'on' ? t.names.serbian.loc : t.names.serbian.gen}.`
+  }),
+  // "na" takes the locative (na stole), "pod" and "nad" the instrumental (pod stołem), "obok" the genitive (obok stołu).
+  polish: (c, t, prep, position) => ({
+    before: `${capitalise(c.names.polish)} jest `,
+    preposition: prep,
+    after: ` ${position === 'on' ? t.names.polish.loc : position === 'nextTo' ? t.names.polish.gen : t.names.polish.ins}.`
   })
 };
 

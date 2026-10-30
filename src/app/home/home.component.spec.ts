@@ -56,7 +56,7 @@ describe('HomeComponent', () => {
     spyOn(i18n, 'choose').and.callFake(value => (i18n.language = value));
     const compiled = fixture.nativeElement as HTMLElement;
     const buttons = Array.from(compiled.querySelectorAll<HTMLButtonElement>('.language-buttons button'));
-    expect(buttons.map(button => button.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski']);
+    expect(buttons.map(button => button.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski', 'Polski']);
     expect(buttons[0].getAttribute('aria-pressed')).toBe('true');
 
     buttons[2].click();

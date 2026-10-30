@@ -21,7 +21,7 @@ describe('AboutComponent', () => {
   it('should render the about section with its stats, photos and captions', () => {
     const about = fixture.nativeElement as HTMLElement;
     expect(about.querySelector('h2')?.textContent).toBe('A dad who couldn’t draw fast enough');
-    expect(Array.from(about.querySelectorAll('.stat-value')).map(stat => stat.textContent)).toEqual(['12', '4–7', '3', '0 €']);
+    expect(Array.from(about.querySelectorAll('.stat-value')).map(stat => stat.textContent)).toEqual(['12', '4–7', '4', '0 €']);
     expect(about.querySelectorAll('.about-reasons li').length).toBe(2);
     expect(about.querySelector('.learner-box h3')?.textContent).toBe('Made with every kind of learner in mind');
     const figures = Array.from(about.querySelectorAll('.about-figure'));

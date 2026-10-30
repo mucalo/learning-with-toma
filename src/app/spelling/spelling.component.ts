@@ -15,6 +15,14 @@ interface DisplayLetterGroup {
   isCombined: boolean;
 }
 
+/** Digraphs that are one letter of the alphabet (Polish ch, cz, sz… are two letters). */
+const DIGRAPHS: Record<LanguageKey, string[]> = {
+  english: [],
+  croatian: ['lj', 'nj', 'dž'],
+  serbian: ['lj', 'nj', 'dž'],
+  polish: []
+};
+
 @Component({
   selector: 'app-spelling',
   templateUrl: './spelling.component.html',
@@ -186,22 +194,70 @@ export class SpellingComponent {
       { word: 'list', emoji: '🍃', letters: ['l', 'i', 's', 't'] },
       { word: 'osmeh', emoji: '😊', letters: ['o', 's', 'm', 'e', 'h'] },
       { word: 'dvorac', emoji: '🏰', letters: ['d', 'v', 'o', 'r', 'a', 'c'] }
+    ],
+    polish: [
+      { word: 'słońce', emoji: '☀️', letters: ['s', 'ł', 'o', 'ń', 'c', 'e'] },
+      { word: 'księżyc', emoji: '🌙', letters: ['k', 's', 'i', 'ę', 'ż', 'y', 'c'] },
+      { word: 'gwiazda', emoji: '⭐', letters: ['g', 'w', 'i', 'a', 'z', 'd', 'a'] },
+      { word: 'chmura', emoji: '☁️', letters: ['c', 'h', 'm', 'u', 'r', 'a'] },
+      { word: 'deszcz', emoji: '🌧️', letters: ['d', 'e', 's', 'z', 'c', 'z'] },
+      { word: 'śnieg', emoji: '❄️', letters: ['ś', 'n', 'i', 'e', 'g'] },
+      { word: 'jabłko', emoji: '🍎', letters: ['j', 'a', 'b', 'ł', 'k', 'o'] },
+      { word: 'banan', emoji: '🍌', letters: ['b', 'a', 'n', 'a', 'n'] },
+      { word: 'ciastko', emoji: '🍪', letters: ['c', 'i', 'a', 's', 't', 'k', 'o'] },
+      { word: 'mleko', emoji: '🥛', letters: ['m', 'l', 'e', 'k', 'o'] },
+      { word: 'tort', emoji: '🎂', letters: ['t', 'o', 'r', 't'] },
+      { word: 'babeczka', emoji: '🧁', letters: ['b', 'a', 'b', 'e', 'c', 'z', 'k', 'a'] },
+      { word: 'pizza', emoji: '🍕', letters: ['p', 'i', 'z', 'z', 'a'] },
+      { word: 'kanapka', emoji: '🥪', letters: ['k', 'a', 'n', 'a', 'p', 'k', 'a'] },
+      { word: 'sok', emoji: '🧃', letters: ['s', 'o', 'k'] },
+      { word: 'woda', emoji: '💧', letters: ['w', 'o', 'd', 'a'] },
+      { word: 'ryba', emoji: '🐟', letters: ['r', 'y', 'b', 'a'] },
+      { word: 'ptak', emoji: '🐦', letters: ['p', 't', 'a', 'k'] },
+      { word: 'pszczoła', emoji: '🐝', letters: ['p', 's', 'z', 'c', 'z', 'o', 'ł', 'a'] },
+      { word: 'żaba', emoji: '🐸', letters: ['ż', 'a', 'b', 'a'] },
+      { word: 'żółw', emoji: '🐢', letters: ['ż', 'ó', 'ł', 'w'] },
+      { word: 'królik', emoji: '🐰', letters: ['k', 'r', 'ó', 'l', 'i', 'k'] },
+      { word: 'kaczka', emoji: '🦆', letters: ['k', 'a', 'c', 'z', 'k', 'a'] },
+      { word: 'kot', emoji: '🐱', letters: ['k', 'o', 't'] },
+      { word: 'pies', emoji: '🐶', letters: ['p', 'i', 'e', 's'] },
+      { word: 'książka', emoji: '📖', letters: ['k', 's', 'i', 'ą', 'ż', 'k', 'a'] },
+      { word: 'ołówek', emoji: '✏️', letters: ['o', 'ł', 'ó', 'w', 'e', 'k'] },
+      { word: 'kredka', emoji: '🖍️', letters: ['k', 'r', 'e', 'd', 'k', 'a'] },
+      { word: 'nożyczki', emoji: '✂️', letters: ['n', 'o', 'ż', 'y', 'c', 'z', 'k', 'i'] },
+      { word: 'plecak', emoji: '🎒', letters: ['p', 'l', 'e', 'c', 'a', 'k'] },
+      { word: 'szkoła', emoji: '🏫', letters: ['s', 'z', 'k', 'o', 'ł', 'a'] },
+      { word: 'piłka', emoji: '⚽', letters: ['p', 'i', 'ł', 'k', 'a'] },
+      { word: 'latawiec', emoji: '🪁', letters: ['l', 'a', 't', 'a', 'w', 'i', 'e', 'c'] },
+      { word: 'rower', emoji: '🚲', letters: ['r', 'o', 'w', 'e', 'r'] },
+      { word: 'samolot', emoji: '✈️', letters: ['s', 'a', 'm', 'o', 'l', 'o', 't'] },
+      { word: 'pociąg', emoji: '🚆', letters: ['p', 'o', 'c', 'i', 'ą', 'g'] },
+      { word: 'łódka', emoji: '⛵', letters: ['ł', 'ó', 'd', 'k', 'a'] },
+      { word: 'autobus', emoji: '🚌', letters: ['a', 'u', 't', 'o', 'b', 'u', 's'] },
+      { word: 'auto', emoji: '🚗', letters: ['a', 'u', 't', 'o'] },
+      { word: 'dom', emoji: '🏠', letters: ['d', 'o', 'm'] },
+      { word: 'łóżko', emoji: '🛏️', letters: ['ł', 'ó', 'ż', 'k', 'o'] },
+      { word: 'buty', emoji: '👟', letters: ['b', 'u', 't', 'y'] },
+      { word: 'kapelusz', emoji: '🎩', letters: ['k', 'a', 'p', 'e', 'l', 'u', 's', 'z'] },
+      { word: 'parasol', emoji: '☔', letters: ['p', 'a', 'r', 'a', 's', 'o', 'l'] },
+      { word: 'kwiat', emoji: '🌸', letters: ['k', 'w', 'i', 'a', 't'] },
+      { word: 'drzewo', emoji: '🌳', letters: ['d', 'r', 'z', 'e', 'w', 'o'] },
+      { word: 'liść', emoji: '🍃', letters: ['l', 'i', 'ś', 'ć'] },
+      { word: 'uśmiech', emoji: '😊', letters: ['u', 'ś', 'm', 'i', 'e', 'c', 'h'] },
+      { word: 'zamek', emoji: '🏰', letters: ['z', 'a', 'm', 'e', 'k'] }
     ]
   };
 
+  /** One box per letter; Croatian and Serbian digraphs (lj, nj, dž) share a box, as they are one letter. */
   private getDisplayLetterGroups(word: string, language: LanguageKey): DisplayLetterGroup[] {
-    if (language === 'english') {
-      return word.split('').map(letter => ({ value: letter, isCombined: false }));
-    }
-
-    const pattern = /(lj|nj|dž|[A-Za-zČčĆćĐđŠšŽž])/gi;
-    const matches = word.matchAll(pattern);
+    const lower = word.toLowerCase();
     const groups: DisplayLetterGroup[] = [];
 
-    for (const match of matches) {
-      const value = match[0].toLowerCase();
-      const isCombined = ['lj', 'nj', 'dž'].includes(value);
-      groups.push({ value, isCombined });
+    for (let i = 0; i < lower.length; ) {
+      const digraph = DIGRAPHS[language].find(candidate => lower.startsWith(candidate, i));
+      const value = digraph ?? lower[i];
+      groups.push({ value, isCombined: !!digraph });
+      i += value.length;
     }
 
     return groups;

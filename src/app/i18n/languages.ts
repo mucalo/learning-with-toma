@@ -7,7 +7,7 @@
  *  3. Add language-specific content (e.g. the spelling word bank) where the compiler asks for it.
  *  4. Give every activity an address in it (`slugs` in `activities.ts`).
  */
-export type LanguageKey = 'english' | 'croatian' | 'serbian';
+export type LanguageKey = 'english' | 'croatian' | 'serbian' | 'polish';
 
 export interface LanguageOption {
   value: LanguageKey;
@@ -30,7 +30,8 @@ export interface LanguageOption {
 export const LANGUAGES: LanguageOption[] = [
   { value: 'english', label: 'English', shortLabel: 'EN', flag: 'assets/flags/gb.svg', htmlLang: 'en', path: '', ogLocale: 'en_GB', ogImage: 'og-image.png' },
   { value: 'croatian', label: 'Hrvatski', shortLabel: 'HR', flag: 'assets/flags/hr.svg', htmlLang: 'hr', path: 'hr', ogLocale: 'hr_HR', ogImage: 'og-image-hr.png' },
-  { value: 'serbian', label: 'Srpski', shortLabel: 'SR', flag: 'assets/flags/rs.svg', htmlLang: 'sr-Latn', path: 'sr', ogLocale: 'sr_RS', ogImage: 'og-image-sr.png' }
+  { value: 'serbian', label: 'Srpski', shortLabel: 'SR', flag: 'assets/flags/rs.svg', htmlLang: 'sr-Latn', path: 'sr', ogLocale: 'sr_RS', ogImage: 'og-image-sr.png' },
+  { value: 'polish', label: 'Polski', shortLabel: 'PL', flag: 'assets/flags/pl.svg', htmlLang: 'pl', path: 'pl', ogLocale: 'pl_PL', ogImage: 'og-image-pl.png' }
 ];
 
 /** The language of the pages at the root of the site, and of new visitors with no preference. */

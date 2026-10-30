@@ -9,12 +9,12 @@
     if (location.hash.indexOf('#/') === 0) {
       location.replace(location.hash.slice(1));
     }
-    // On an English page, the app sends visitors who prefer Croatian or Serbian to the same page in
+    // On an English page, the app sends visitors who prefer another language to the same page in
     // their language. Keep the page hidden until then, rather than flash the English text first.
     // The same guess as LanguageService.preferredLanguage(): their earlier choice, or else the
     // first of the browser's languages that the site has.
     (function () {
-      if (/^\/(hr|sr)(\/|$)/.test(location.pathname)) {
+      if (/^\/(hr|sr|pl)(\/|$)/.test(location.pathname)) {
         return;
       }
       var preferred = null;
@@ -22,20 +22,20 @@
         preferred = localStorage.getItem('lwt-language');
       } catch (e) {}
       if (!preferred) {
-        var languages = { en: 'english', hr: 'croatian', sr: 'serbian', bs: 'serbian', cnr: 'serbian' };
+        var languages = { en: 'english', hr: 'croatian', sr: 'serbian', bs: 'serbian', cnr: 'serbian', pl: 'polish' };
         var codes = navigator.languages || [navigator.language];
         for (var i = 0; i < codes.length && !preferred; i++) {
           preferred = languages[String(codes[i]).toLowerCase().split('-')[0]] || null;
         }
       }
-      if (preferred === 'croatian' || preferred === 'serbian') {
+      if (preferred === 'croatian' || preferred === 'serbian' || preferred === 'polish') {
         document.documentElement.classList.add('lwt-switching-language');
       }
     })();
   </script>
   <style>.lwt-switching-language app-root { visibility: hidden; }</style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Printable worksheets for little learners, ready in seconds. Free activities for children aged 4–7 in English, Croatian and Serbian.">
+  <meta name="description" content="Printable worksheets for little learners, ready in seconds. Free activities for children aged 4–7 in English, Croatian, Serbian and Polish.">
   <link rel="icon" href="favicon.ico" sizes="48x48">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -50,10 +50,10 @@
       "@type": "WebSite",
       "@id": "https://learningwithtoma.com/#website",
       "name": "Learning with Toma",
-      "alternateName": "Učimo s Tomom",
+      "alternateName": ["Učimo s Tomom", "Uczymy się z Tomą"],
       "url": "https://learningwithtoma.com/",
-      "description": "Free printable worksheets for children aged 4–7, in English, Croatian and Serbian. Made for parents, preschool educators and school teachers.",
-      "inLanguage": ["en", "hr", "sr-Latn"],
+      "description": "Free printable worksheets for children aged 4–7, in English, Croatian, Serbian and Polish. Made for parents, preschool educators and school teachers.",
+      "inLanguage": ["en", "hr", "sr-Latn", "pl"],
       "isAccessibleForFree": true
     }
   </script>

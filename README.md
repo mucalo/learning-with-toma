@@ -37,7 +37,7 @@ The preview shows the worksheet as **A4 pages, exactly as they print**: rows are
 
 ## Languages
 
-The app currently supports **English, Croatian (Hrvatski) and Serbian (Srpski, Latin script)**. You switch language with the flag picker in the header, the buttons in the languages band on the home page, or the **Language** field in each activity's settings panel. The choice applies to the whole site, including the worksheet content (for example the spelling word list), and is saved in `localStorage`.
+The app currently supports **English, Croatian (Hrvatski), Serbian (Srpski, Latin script) and Polish (Polski)**. Each language has its own addresses: English at the root (`/maze`), the others under their code with translated words (`/hr/labirint`, `/sr/lavirint`, `/pl/labirynt`), so every page is prerendered in its language. You switch language with the flag picker in the header, the buttons in the languages band on the home page, or the **Language** field in each activity's settings panel; that opens the same page in the other language, applies to the worksheet content too (for example the spelling word list), and is remembered in `localStorage` for the next visit.
 
 Keeping every language complete is a core project rule (see [`.github/copilot-instructions.md`](.github/copilot-instructions.md)). **When you add or change any UI text, update all languages in the same change.**
 
@@ -125,7 +125,8 @@ Longer texts may mark key phrases in bold with `**…**`, which the `emphasis` p
 
 1. Add the key to `LanguageKey` and an entry to `LANGUAGES` in `i18n/languages.ts`. Use the language's own name as the label (e.g. `Deutsch`), give a BCP 47 code, and add a flag in `src/assets/flags/`.
 2. Add a complete dictionary in `i18n/translations.ts` and register it in `TRANSLATIONS`. Words that change with numbers (e.g. the page count) have `one` / `few` / `other` forms, picked with `Intl.PluralRules`.
-3. Run `npm run build`. The compiler points to any `Record<LanguageKey, …>` that still needs content, such as the spelling word bank.
+3. Run `npm run build`. The compiler points to any `Record<LanguageKey, …>` that still needs content, such as the spelling word bank, the activity addresses (`slugs` in `activities.ts`) and the noun forms in Where Is It?. Letters that the tracing activity doesn't have yet need a shape in `trace/glyphs.ts`.
+4. Outside the app: add the language's folder to `languageFolders` in `scripts/prepare-pages.mjs`, its path and browser code to the early script in `src/index.html` (and `BROWSER_LANGUAGES` in `language.service.ts`), and make its link preview image from `scripts/og-image.html` (add its texts there, and the image to the assets in `angular.json`).
 
 ## Adding a new activity
 

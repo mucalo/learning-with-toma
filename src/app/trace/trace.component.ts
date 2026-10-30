@@ -25,7 +25,9 @@ export const DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 const DIGRAPHS: Record<LanguageKey, string[]> = {
   english: [],
   croatian: ['dž', 'lj', 'nj'],
-  serbian: ['dž', 'lj', 'nj']
+  serbian: ['dž', 'lj', 'nj'],
+  // Polish ch, cz, sz… are written as two separate letters.
+  polish: []
 };
 
 export interface PlacedStroke {

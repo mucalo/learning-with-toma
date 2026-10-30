@@ -27,7 +27,7 @@ describe('WhereComponent', () => {
   it('should build grammatical sentences in every language', () => {
     const cat = CHARACTERS.find(c => c.emoji === '🐱')!;
     const table = THINGS.find(t => t.key === 'table')!;
-    const prep = (language: 'english' | 'croatian' | 'serbian', position: Position) => {
+    const prep = (language: 'english' | 'croatian' | 'serbian' | 'polish', position: Position) => {
       i18n.language = language;
       return i18n.t.where.positions[position];
     };
@@ -40,6 +40,11 @@ describe('WhereComponent', () => {
     expect(sentenceText(SENTENCES.croatian(cat, table, prep('croatian', 'nextTo'), 'nextTo'))).toBe('Mačka je pokraj stola.');
     expect(sentenceText(SENTENCES.serbian(cat, table, prep('serbian', 'nextTo'), 'nextTo'))).toBe('Mačka je pored stola.');
     expect(sentenceText(SENTENCES.serbian(cat, THINGS.find(t => t.key === 'chair')!, prep('serbian', 'on'), 'on'))).toBe('Mačka je na stolici.');
+    // Polish: na + locative, pod / nad + instrumental, obok + genitive.
+    expect(sentenceText(SENTENCES.polish(cat, table, prep('polish', 'on'), 'on'))).toBe('Kot jest na stole.');
+    expect(sentenceText(SENTENCES.polish(cat, table, prep('polish', 'under'), 'under'))).toBe('Kot jest pod stołem.');
+    expect(sentenceText(SENTENCES.polish(cat, table, prep('polish', 'nextTo'), 'nextTo'))).toBe('Kot jest obok stołu.');
+    expect(sentenceText(SENTENCES.polish(cat, THINGS.find(t => t.key === 'bed')!, prep('polish', 'above'), 'above'))).toBe('Kot jest nad łóżkiem.');
   });
 
   it('should split out exactly the preposition, as a whole word, in every language', () => {
