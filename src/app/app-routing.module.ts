@@ -35,9 +35,9 @@ const ACTIVITY_COMPONENTS: Record<ActivityKey, Type<unknown>> = {
 };
 
 /**
- * The first page someone opens, if it is an English one: visitors who chose Croatian or Serbian
+ * The first page someone opens, if it is an English one: visitors who chose another language
  * before, or whose browser is set to it, go to the same page in that language instead. Later
- * links, and the Croatian and Serbian addresses themselves, are left as they are.
+ * links, and the other languages' addresses themselves, are left as they are.
  */
 const preferredLanguageGuard: CanActivateFn = route => {
   const router = inject(Router);

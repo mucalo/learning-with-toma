@@ -170,7 +170,7 @@ describe('ActivityPageComponent', () => {
       name: 'Maze',
       url: 'https://learningwithtoma.com/maze',
       isAccessibleForFree: true,
-      inLanguage: ['en', 'hr', 'sr-Latn', 'pl']
+      inLanguage: ['en', 'hr', 'sr-Latn', 'pl', 'fr']
     }));
     expect(breadcrumbs.itemListElement.map((item: { name: string }) => item.name)).toEqual(['Learning with Toma', 'Maze']);
 

@@ -20,7 +20,8 @@ const DIGRAPHS: Record<LanguageKey, string[]> = {
   english: [],
   croatian: ['lj', 'nj', 'dž'],
   serbian: ['lj', 'nj', 'dž'],
-  polish: []
+  polish: [],
+  french: []
 };
 
 @Component({
@@ -245,6 +246,52 @@ export class SpellingComponent {
       { word: 'liść', emoji: '🍃', letters: ['l', 'i', 'ś', 'ć'] },
       { word: 'uśmiech', emoji: '😊', letters: ['u', 'ś', 'm', 'i', 'e', 'c', 'h'] },
       { word: 'zamek', emoji: '🏰', letters: ['z', 'a', 'm', 'e', 'k'] }
+    ],
+    french: [
+      { word: 'soleil', emoji: '☀️', letters: ['s', 'o', 'l', 'e', 'i', 'l'] },
+      { word: 'lune', emoji: '🌙', letters: ['l', 'u', 'n', 'e'] },
+      { word: 'étoile', emoji: '⭐', letters: ['é', 't', 'o', 'i', 'l', 'e'] },
+      { word: 'nuage', emoji: '☁️', letters: ['n', 'u', 'a', 'g', 'e'] },
+      { word: 'pluie', emoji: '🌧️', letters: ['p', 'l', 'u', 'i', 'e'] },
+      { word: 'neige', emoji: '❄️', letters: ['n', 'e', 'i', 'g', 'e'] },
+      { word: 'pomme', emoji: '🍎', letters: ['p', 'o', 'm', 'm', 'e'] },
+      { word: 'banane', emoji: '🍌', letters: ['b', 'a', 'n', 'a', 'n', 'e'] },
+      { word: 'fraise', emoji: '🍓', letters: ['f', 'r', 'a', 'i', 's', 'e'] },
+      { word: 'biscuit', emoji: '🍪', letters: ['b', 'i', 's', 'c', 'u', 'i', 't'] },
+      { word: 'lait', emoji: '🥛', letters: ['l', 'a', 'i', 't'] },
+      { word: 'gâteau', emoji: '🎂', letters: ['g', 'â', 't', 'e', 'a', 'u'] },
+      { word: 'pizza', emoji: '🍕', letters: ['p', 'i', 'z', 'z', 'a'] },
+      { word: 'jus', emoji: '🧃', letters: ['j', 'u', 's'] },
+      { word: 'eau', emoji: '💧', letters: ['e', 'a', 'u'] },
+      { word: 'poisson', emoji: '🐟', letters: ['p', 'o', 'i', 's', 's', 'o', 'n'] },
+      { word: 'oiseau', emoji: '🐦', letters: ['o', 'i', 's', 'e', 'a', 'u'] },
+      { word: 'abeille', emoji: '🐝', letters: ['a', 'b', 'e', 'i', 'l', 'l', 'e'] },
+      { word: 'tortue', emoji: '🐢', letters: ['t', 'o', 'r', 't', 'u', 'e'] },
+      { word: 'lapin', emoji: '🐰', letters: ['l', 'a', 'p', 'i', 'n'] },
+      { word: 'canard', emoji: '🦆', letters: ['c', 'a', 'n', 'a', 'r', 'd'] },
+      { word: 'chat', emoji: '🐱', letters: ['c', 'h', 'a', 't'] },
+      { word: 'chien', emoji: '🐶', letters: ['c', 'h', 'i', 'e', 'n'] },
+      { word: 'livre', emoji: '📖', letters: ['l', 'i', 'v', 'r', 'e'] },
+      { word: 'crayon', emoji: '✏️', letters: ['c', 'r', 'a', 'y', 'o', 'n'] },
+      { word: 'ciseaux', emoji: '✂️', letters: ['c', 'i', 's', 'e', 'a', 'u', 'x'] },
+      { word: 'cartable', emoji: '🎒', letters: ['c', 'a', 'r', 't', 'a', 'b', 'l', 'e'] },
+      { word: 'école', emoji: '🏫', letters: ['é', 'c', 'o', 'l', 'e'] },
+      { word: 'ballon', emoji: '⚽', letters: ['b', 'a', 'l', 'l', 'o', 'n'] },
+      { word: 'vélo', emoji: '🚲', letters: ['v', 'é', 'l', 'o'] },
+      { word: 'avion', emoji: '✈️', letters: ['a', 'v', 'i', 'o', 'n'] },
+      { word: 'train', emoji: '🚆', letters: ['t', 'r', 'a', 'i', 'n'] },
+      { word: 'bateau', emoji: '⛵', letters: ['b', 'a', 't', 'e', 'a', 'u'] },
+      { word: 'bus', emoji: '🚌', letters: ['b', 'u', 's'] },
+      { word: 'voiture', emoji: '🚗', letters: ['v', 'o', 'i', 't', 'u', 'r', 'e'] },
+      { word: 'maison', emoji: '🏠', letters: ['m', 'a', 'i', 's', 'o', 'n'] },
+      { word: 'lit', emoji: '🛏️', letters: ['l', 'i', 't'] },
+      { word: 'chapeau', emoji: '🎩', letters: ['c', 'h', 'a', 'p', 'e', 'a', 'u'] },
+      { word: 'parapluie', emoji: '☔', letters: ['p', 'a', 'r', 'a', 'p', 'l', 'u', 'i', 'e'] },
+      { word: 'fleur', emoji: '🌸', letters: ['f', 'l', 'e', 'u', 'r'] },
+      { word: 'arbre', emoji: '🌳', letters: ['a', 'r', 'b', 'r', 'e'] },
+      { word: 'feuille', emoji: '🍃', letters: ['f', 'e', 'u', 'i', 'l', 'l', 'e'] },
+      { word: 'sourire', emoji: '😊', letters: ['s', 'o', 'u', 'r', 'i', 'r', 'e'] },
+      { word: 'château', emoji: '🏰', letters: ['c', 'h', 'â', 't', 'e', 'a', 'u'] }
     ]
   };
 

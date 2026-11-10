@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../i18n/language.service';
+import { LanguageKey } from '../i18n/languages';
 import { WorksheetComponent } from '../worksheet/worksheet.component';
 import { CHARACTERS, FLOOR_Y, Position, POSITIONS, SENTENCES, SCENE_HEIGHT, SCENE_WIDTH, sentenceText, spotFor, THINGS, WhereComponent } from './where.component';
 
@@ -27,7 +28,7 @@ describe('WhereComponent', () => {
   it('should build grammatical sentences in every language', () => {
     const cat = CHARACTERS.find(c => c.emoji === '🐱')!;
     const table = THINGS.find(t => t.key === 'table')!;
-    const prep = (language: 'english' | 'croatian' | 'serbian' | 'polish', position: Position) => {
+    const prep = (language: LanguageKey, position: Position) => {
       i18n.language = language;
       return i18n.t.where.positions[position];
     };
@@ -45,6 +46,12 @@ describe('WhereComponent', () => {
     expect(sentenceText(SENTENCES.polish(cat, table, prep('polish', 'under'), 'under'))).toBe('Kot jest pod stołem.');
     expect(sentenceText(SENTENCES.polish(cat, table, prep('polish', 'nextTo'), 'nextTo'))).toBe('Kot jest obok stołu.');
     expect(sentenceText(SENTENCES.polish(cat, THINGS.find(t => t.key === 'bed')!, prep('polish', 'above'), 'above'))).toBe('Kot jest nad łóżkiem.');
+    // French: sur / sous + the noun with its article, à côté / au-dessus + de (du before a masculine noun).
+    const bird = CHARACTERS.find(c => c.emoji === '🐦')!;
+    expect(sentenceText(SENTENCES.french(cat, table, prep('french', 'on'), 'on'))).toBe('Le chat est sur la table.');
+    expect(sentenceText(SENTENCES.french(cat, table, prep('french', 'nextTo'), 'nextTo'))).toBe('Le chat est à côté de la table.');
+    expect(sentenceText(SENTENCES.french(bird, THINGS.find(t => t.key === 'bed')!, prep('french', 'above'), 'above'))).toBe('L’oiseau est au-dessus du lit.');
+    expect(sentenceText(SENTENCES.french(bird, THINGS.find(t => t.key === 'chair')!, prep('french', 'under'), 'under'))).toBe('L’oiseau est sous la chaise.');
   });
 
   it('should split out exactly the preposition, as a whole word, in every language', () => {

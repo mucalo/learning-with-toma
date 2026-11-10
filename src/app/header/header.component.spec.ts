@@ -62,7 +62,7 @@ describe('HeaderComponent', () => {
 
     click('.language-toggle');
     const options = Array.from(element.querySelectorAll<HTMLButtonElement>('.language-option'));
-    expect(options.map(option => option.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski', 'Polski']);
+    expect(options.map(option => option.textContent?.trim())).toEqual(['English', 'Hrvatski', 'Srpski', 'Polski', 'Français']);
     options[1].click();
     fixture.detectChanges();
 

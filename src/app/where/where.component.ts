@@ -27,6 +27,8 @@ interface ThingNames {
   serbian: { gen: string; loc: string };
   /** Locative (na stole), instrumental (pod / nad stołem) and genitive (obok stołu). */
   polish: { loc: string; ins: string; gen: string };
+  /** With its article (sur la table) and after "de" (à côté de la table, à côté du lit). */
+  french: { article: string; de: string };
 }
 
 /**
@@ -45,7 +47,7 @@ export interface Thing {
 export const THINGS: Thing[] = [
   {
     key: 'table',
-    names: { english: 'table', croatian: { gen: 'stola', loc: 'stolu' }, serbian: { gen: 'stola', loc: 'stolu' }, polish: { loc: 'stole', ins: 'stołem', gen: 'stołu' } },
+    names: { english: 'table', croatian: { gen: 'stola', loc: 'stolu' }, serbian: { gen: 'stola', loc: 'stolu' }, polish: { loc: 'stole', ins: 'stołem', gen: 'stołu' }, french: { article: 'la table', de: 'de la table' } },
     rects: [
       { x: 25, y: 50, width: 80, height: 6 },
       { x: 30, y: 56, width: 5, height: 40 },
@@ -56,7 +58,7 @@ export const THINGS: Thing[] = [
   },
   {
     key: 'chair',
-    names: { english: 'chair', croatian: { gen: 'stolice', loc: 'stolici' }, serbian: { gen: 'stolice', loc: 'stolici' }, polish: { loc: 'krześle', ins: 'krzesłem', gen: 'krzesła' } },
+    names: { english: 'chair', croatian: { gen: 'stolice', loc: 'stolici' }, serbian: { gen: 'stolice', loc: 'stolici' }, polish: { loc: 'krześle', ins: 'krzesłem', gen: 'krzesła' }, french: { article: 'la chaise', de: 'de la chaise' } },
     rects: [
       { x: 44, y: 64, width: 42, height: 6 },
       { x: 80, y: 30, width: 6, height: 34 },
@@ -68,7 +70,7 @@ export const THINGS: Thing[] = [
   },
   {
     key: 'bed',
-    names: { english: 'bed', croatian: { gen: 'kreveta', loc: 'krevetu' }, serbian: { gen: 'kreveta', loc: 'krevetu' }, polish: { loc: 'łóżku', ins: 'łóżkiem', gen: 'łóżka' } },
+    names: { english: 'bed', croatian: { gen: 'kreveta', loc: 'krevetu' }, serbian: { gen: 'kreveta', loc: 'krevetu' }, polish: { loc: 'łóżku', ins: 'łóżkiem', gen: 'łóżka' }, french: { article: 'le lit', de: 'du lit' } },
     rects: [
       { x: 26, y: 60, width: 78, height: 12 },
       { x: 26, y: 42, width: 7, height: 30 },
@@ -82,17 +84,18 @@ export const THINGS: Thing[] = [
 
 export interface Character {
   emoji: string;
+  /** The noun on its own; in French with its article (le chat, la souris, l’oiseau), as the gender decides it. */
   names: Record<LanguageKey, string>;
 }
 
 export const CHARACTERS: Character[] = [
-  { emoji: '🐱', names: { english: 'cat', croatian: 'mačka', serbian: 'mačka', polish: 'kot' } },
-  { emoji: '🐶', names: { english: 'dog', croatian: 'pas', serbian: 'pas', polish: 'pies' } },
-  { emoji: '🐭', names: { english: 'mouse', croatian: 'miš', serbian: 'miš', polish: 'mysz' } },
-  { emoji: '🐰', names: { english: 'rabbit', croatian: 'zec', serbian: 'zec', polish: 'królik' } },
-  { emoji: '⚽', names: { english: 'ball', croatian: 'lopta', serbian: 'lopta', polish: 'piłka' } },
-  { emoji: '🐦', names: { english: 'bird', croatian: 'ptica', serbian: 'ptica', polish: 'ptak' } },
-  { emoji: '🧸', names: { english: 'teddy bear', croatian: 'medo', serbian: 'meda', polish: 'miś' } }
+  { emoji: '🐱', names: { english: 'cat', croatian: 'mačka', serbian: 'mačka', polish: 'kot', french: 'le chat' } },
+  { emoji: '🐶', names: { english: 'dog', croatian: 'pas', serbian: 'pas', polish: 'pies', french: 'le chien' } },
+  { emoji: '🐭', names: { english: 'mouse', croatian: 'miš', serbian: 'miš', polish: 'mysz', french: 'la souris' } },
+  { emoji: '🐰', names: { english: 'rabbit', croatian: 'zec', serbian: 'zec', polish: 'królik', french: 'le lapin' } },
+  { emoji: '⚽', names: { english: 'ball', croatian: 'lopta', serbian: 'lopta', polish: 'piłka', french: 'le ballon' } },
+  { emoji: '🐦', names: { english: 'bird', croatian: 'ptica', serbian: 'ptica', polish: 'ptak', french: 'l’oiseau' } },
+  { emoji: '🧸', names: { english: 'teddy bear', croatian: 'medo', serbian: 'meda', polish: 'miś', french: 'le nounours' } }
 ];
 
 const capitalise = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
@@ -131,6 +134,12 @@ export const SENTENCES: Record<LanguageKey, (character: Character, thing: Thing,
     before: `${capitalise(c.names.polish)} jest `,
     preposition: prep,
     after: ` ${position === 'on' ? t.names.polish.loc : position === 'nextTo' ? t.names.polish.gen : t.names.polish.ins}.`
+  }),
+  // "sur" and "sous" take the noun with its article (sur la table); "à côté" and "au-dessus" add "de" (à côté de la table, au-dessus du lit).
+  french: (c, t, prep, position) => ({
+    before: `${capitalise(c.names.french)} est `,
+    preposition: prep,
+    after: ` ${position === 'on' || position === 'under' ? t.names.french.article : t.names.french.de}.`
   })
 };
 

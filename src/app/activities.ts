@@ -15,7 +15,7 @@ export const CATEGORIES: ActivityCategory[] = ['letters', 'numbers', 'motor', 't
 
 export interface Activity {
   key: ActivityKey;
-  /** The activity's address in each language, from its title: `maze`, `labirint`, `lavirint`, `labirynt`. */
+  /** The activity's address in each language, from its title: `maze`, `labirint`, `lavirint`, `labirynt`, `labyrinthe`. */
   slugs: Record<LanguageKey, string>;
   emoji: string;
   category: ActivityCategory;
@@ -27,18 +27,18 @@ export interface Activity {
  * icon in `activity-icon/activity-icons.ts`).
  */
 export const ACTIVITIES: Activity[] = [
-  { key: 'spelling', slugs: { english: 'spelling', croatian: 'pisanje-rijeci', serbian: 'pisanje-reci', polish: 'pisanie-wyrazow' }, emoji: '✏️', category: 'letters' },
-  { key: 'counting', slugs: { english: 'counting', croatian: 'brojanje', serbian: 'brojanje', polish: 'liczenie' }, emoji: '🔢', category: 'numbers' },
-  { key: 'biggestSmallest', slugs: { english: 'biggest-smallest', croatian: 'najvece-i-najmanje', serbian: 'najvece-i-najmanje', polish: 'najwieksze-i-najmniejsze' }, emoji: '📏', category: 'numbers' },
-  { key: 'sequence', slugs: { english: 'sequence', croatian: 'nastavi-niz', serbian: 'nastavi-niz', polish: 'dokoncz-rytm' }, emoji: '🔺', category: 'thinking' },
-  { key: 'intruder', slugs: { english: 'intruder', croatian: 'pronadji-uljeza', serbian: 'pronadji-uljeza', polish: 'znajdz-intruza' }, emoji: '🔍', category: 'thinking' },
-  { key: 'line', slugs: { english: 'line', croatian: 'dovrsi-crtu', serbian: 'dovrsi-liniju', polish: 'dokoncz-szlaczek' }, emoji: '〰️', category: 'motor' },
-  { key: 'shadow', slugs: { english: 'shadow', croatian: 'pronadji-sjenu', serbian: 'pronadji-senku', polish: 'dopasuj-cien' }, emoji: '👤', category: 'thinking' },
-  { key: 'maze', slugs: { english: 'maze', croatian: 'labirint', serbian: 'lavirint', polish: 'labirynt' }, emoji: '🧩', category: 'motor' },
-  { key: 'where', slugs: { english: 'where', croatian: 'gdje-je', serbian: 'gde-je', polish: 'gdzie-to-jest' }, emoji: '📍', category: 'letters' },
-  { key: 'copyPattern', slugs: { english: 'copy-pattern', croatian: 'precrtaj-uzorak', serbian: 'precrtaj-obrazac', polish: 'przerysuj-wzor' }, emoji: '📐', category: 'motor' },
-  { key: 'trace', slugs: { english: 'trace', croatian: 'prati-slova', serbian: 'prati-slova', polish: 'pisz-po-sladzie' }, emoji: '✍️', category: 'letters' },
-  { key: 'dotToDot', slugs: { english: 'dot-to-dot', croatian: 'spoji-tockice', serbian: 'spoji-tackice', polish: 'polacz-kropki' }, emoji: '⭐', category: 'numbers' }
+  { key: 'spelling', slugs: { english: 'spelling', croatian: 'pisanje-rijeci', serbian: 'pisanje-reci', polish: 'pisanie-wyrazow', french: 'ecris-le-mot' }, emoji: '✏️', category: 'letters' },
+  { key: 'counting', slugs: { english: 'counting', croatian: 'brojanje', serbian: 'brojanje', polish: 'liczenie', french: 'compte' }, emoji: '🔢', category: 'numbers' },
+  { key: 'biggestSmallest', slugs: { english: 'biggest-smallest', croatian: 'najvece-i-najmanje', serbian: 'najvece-i-najmanje', polish: 'najwieksze-i-najmniejsze', french: 'le-plus-grand-et-le-plus-petit' }, emoji: '📏', category: 'numbers' },
+  { key: 'sequence', slugs: { english: 'sequence', croatian: 'nastavi-niz', serbian: 'nastavi-niz', polish: 'dokoncz-rytm', french: 'continue-la-suite' }, emoji: '🔺', category: 'thinking' },
+  { key: 'intruder', slugs: { english: 'intruder', croatian: 'pronadji-uljeza', serbian: 'pronadji-uljeza', polish: 'znajdz-intruza', french: 'trouve-l-intrus' }, emoji: '🔍', category: 'thinking' },
+  { key: 'line', slugs: { english: 'line', croatian: 'dovrsi-crtu', serbian: 'dovrsi-liniju', polish: 'dokoncz-szlaczek', french: 'continue-la-ligne' }, emoji: '〰️', category: 'motor' },
+  { key: 'shadow', slugs: { english: 'shadow', croatian: 'pronadji-sjenu', serbian: 'pronadji-senku', polish: 'dopasuj-cien', french: 'relie-a-l-ombre' }, emoji: '👤', category: 'thinking' },
+  { key: 'maze', slugs: { english: 'maze', croatian: 'labirint', serbian: 'lavirint', polish: 'labirynt', french: 'labyrinthe' }, emoji: '🧩', category: 'motor' },
+  { key: 'where', slugs: { english: 'where', croatian: 'gdje-je', serbian: 'gde-je', polish: 'gdzie-to-jest', french: 'ou-est-il' }, emoji: '📍', category: 'letters' },
+  { key: 'copyPattern', slugs: { english: 'copy-pattern', croatian: 'precrtaj-uzorak', serbian: 'precrtaj-obrazac', polish: 'przerysuj-wzor', french: 'recopie-le-modele' }, emoji: '📐', category: 'motor' },
+  { key: 'trace', slugs: { english: 'trace', croatian: 'prati-slova', serbian: 'prati-slova', polish: 'pisz-po-sladzie', french: 'trace-les-lettres' }, emoji: '✍️', category: 'letters' },
+  { key: 'dotToDot', slugs: { english: 'dot-to-dot', croatian: 'spoji-tockice', serbian: 'spoji-tackice', polish: 'polacz-kropki', french: 'relie-les-points' }, emoji: '⭐', category: 'numbers' }
 ];
 
 /** A page's path in a language, for links: `/`, `/maze`, `/hr` (Croatian home), `/hr/labirint`. */

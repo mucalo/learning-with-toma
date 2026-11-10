@@ -33,7 +33,8 @@ const LETTERS: Record<LanguageKey, string[]> = {
   english: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
   croatian: 'ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ'.split(''),
   serbian: 'ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ'.split(''),
-  polish: 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ'.split('')
+  polish: 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWYZŹŻ'.split(''),
+  french: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 };
 
 /**

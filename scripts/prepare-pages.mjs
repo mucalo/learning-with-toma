@@ -2,8 +2,9 @@
 //
 // - Angular writes each page as `maze/index.html` or `hr/labirint/index.html`. GitHub Pages would
 //   answer `/maze` with a redirect to `/maze/`, so each page becomes `maze.html` instead, which it
-//   serves at `/maze`. The other languages' home pages stay `hr/index.html`, `sr/index.html` and
-//   `pl/index.html`, in the folder with their activity pages, and are served at `/hr/`, `/sr/`, `/pl/`.
+//   serves at `/maze`. The other languages' home pages stay `hr/index.html`, `sr/index.html`,
+//   `pl/index.html` and `fr/index.html`, in the folder with their activity pages, and are served
+//   at `/hr/`, `/sr/`, `/pl/` and `/fr/`.
 // - `index.csr.html` (the app without a prerendered page) becomes `404.html`, which GitHub Pages
 //   shows for any other address; the app then opens and shows the right page, or the home page.
 // - `sitemap.xml` (for search engines) and `llms.txt` (for AI tools) list every page, read from
@@ -14,8 +15,8 @@ import { join } from 'node:path';
 
 const root = 'dist/learning-with-toma/browser';
 const siteUrl = 'https://learningwithtoma.com/';
-/** Folders of the Croatian, Serbian and Polish pages (`path` in `src/app/i18n/languages.ts`). */
-const languageFolders = ['hr', 'sr', 'pl'];
+/** Folders of the Croatian, Serbian, Polish and French pages (`path` in `src/app/i18n/languages.ts`). */
+const languageFolders = ['hr', 'sr', 'pl', 'fr'];
 
 /** `dir/page/index.html` → `dir/page.html`, deepest first; a folder with more in it keeps its index.html. */
 function flatten(dir) {
@@ -39,7 +40,7 @@ renameSync(join(root, 'index.csr.html'), join(root, '404.html'));
 // Each language's pages, in the order its home page links to them (the activity cards).
 
 function decode(text) {
-  return text.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+  return text.replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
 }
 
 function describe(html) {
@@ -80,19 +81,19 @@ writeFileSync(join(root, 'llms.txt'), `# ${english.title}
 
 > ${english.description}
 
-${english.title} (in Croatian and Serbian: Učimo s Tomom; in Polish: Uczymy się z Tomą) is a free
-website that makes printable learning worksheets for children in seconds. Pick an activity,
-choose the language (English, Croatian, Serbian or Polish), adjust a few settings and press
-Generate: every worksheet is new. Print it on A4 paper or save it as a PDF. There is no account,
+${english.title} (in Croatian and Serbian: Učimo s Tomom; in Polish: Uczymy się z Tomą; in French:
+Apprendre avec Toma) is a free website that makes printable learning worksheets for children in
+seconds. Pick an activity, choose the language (English, Croatian, Serbian, Polish or French),
+adjust a few settings and press Generate: every worksheet is new. Print it on A4 paper or save it as a PDF. There is no account,
 sign-up or payment.
 
 ## Activities
 
 ${english.activities.map(activity => `- [${activity.title}](${activity.url}): ${activity.description}`).join('\n')}
 
-## In Croatian, Serbian and Polish
+## In Croatian, Serbian, Polish and French
 
-The whole site, worksheets included, is also in Croatian, Serbian (Latin script) and Polish, with its own addresses:
+The whole site, worksheets included, is also in Croatian, Serbian (Latin script), Polish and French, with its own addresses:
 
 ${others.map(language => `- [${language.title}](${language.url}): ${language.description}`).join('\n')}
 

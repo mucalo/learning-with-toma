@@ -37,7 +37,7 @@ The preview shows the worksheet as **A4 pages, exactly as they print**: rows are
 
 ## Languages
 
-The app currently supports **English, Croatian (Hrvatski), Serbian (Srpski, Latin script) and Polish (Polski)**. Each language has its own addresses: English at the root (`/maze`), the others under their code with translated words (`/hr/labirint`, `/sr/lavirint`, `/pl/labirynt`), so every page is prerendered in its language. You switch language with the flag picker in the header, the buttons in the languages band on the home page, or the **Language** field in each activity's settings panel; that opens the same page in the other language, applies to the worksheet content too (for example the spelling word list), and is remembered in `localStorage` for the next visit.
+The app currently supports **English, Croatian (Hrvatski), Serbian (Srpski, Latin script), Polish (Polski) and French (Français)**. Each language has its own addresses: English at the root (`/maze`), the others under their code with translated words (`/hr/labirint`, `/sr/lavirint`, `/pl/labirynt`, `/fr/labyrinthe`), so every page is prerendered in its language. You switch language with the flag picker in the header, the buttons in the languages band on the home page, or the **Language** field in each activity's settings panel; that opens the same page in the other language, applies to the worksheet content too (for example the spelling word list), and is remembered in `localStorage` for the next visit.
 
 Keeping every language complete is a core project rule (see [`.github/copilot-instructions.md`](.github/copilot-instructions.md)). **When you add or change any UI text, update all languages in the same change.**
 

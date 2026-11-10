@@ -129,5 +129,6 @@ const BROWSER_LANGUAGES: Record<string, LanguageKey> = {
   sr: 'serbian',
   bs: 'serbian',
   cnr: 'serbian',
-  pl: 'polish'
+  pl: 'polish',
+  fr: 'french'
 };

@@ -8,6 +8,7 @@
     … --screenshot=src/og-image-hr.png "file:///…/scripts/og-image.html?lang=hr"
     … --screenshot=src/og-image-sr.png "file:///…/scripts/og-image.html?lang=sr"
     … --screenshot=src/og-image-pl.png "file:///…/scripts/og-image.html?lang=pl"
+    … --screenshot=src/og-image-fr.png "file:///…/scripts/og-image.html?lang=fr"
 
   The example worksheet is copied from the home page hero (src/app/home/hero), and the texts from
   src/app/i18n/translations.ts.
@@ -263,7 +264,7 @@
     <ul class="badges">
       <li class="badge" data-text="badge1">100% free</li>
       <li class="badge" data-text="badge2">Ages 4–7</li>
-      <li class="badge" data-text="badge3">4 languages</li>
+      <li class="badge" data-text="badge3">5 languages</li>
     </ul>
 
     <div class="url">learningwithtoma.com</div>
@@ -322,12 +323,12 @@
   </div>
 
   <script>
-    // English is in the page itself; ?lang=hr or ?lang=sr swaps in the other texts.
+    // English is in the page itself; ?lang=hr, sr, pl or fr swaps in the other texts.
     var TEXTS = {
       hr: {
         logo1: 'Učimo', logo2: 's Tomom',
         before: 'Radni listovi za ', highlight: 'male učenike',
-        badge1: '100% besplatno', badge2: 'Dob 4–7', badge3: '4 jezika',
+        badge1: '100% besplatno', badge2: 'Dob 4–7', badge3: '5 jezika',
         shadow: 'Poveži svaku sličicu s njezinom sjenom.',
         sequence: 'Pogledaj uzorak i nastavi niz.',
         spelling: 'Napiši što je na slici.',
@@ -336,7 +337,7 @@
       sr: {
         logo1: 'Učimo', logo2: 's Tomom',
         before: 'Radni listovi za ', highlight: 'male učenike',
-        badge1: '100% besplatno', badge2: 'Uzrast 4–7', badge3: '4 jezika',
+        badge1: '100% besplatno', badge2: 'Uzrast 4–7', badge3: '5 jezika',
         shadow: 'Poveži svaku sličicu sa njenom senkom.',
         sequence: 'Pogledaj obrazac i nastavi niz.',
         spelling: 'Napiši šta je na slici.',
@@ -345,11 +346,20 @@
       pl: {
         logo1: 'Uczymy się', logo2: 'z Tomą',
         before: 'Karty pracy do druku dla ', highlight: 'najmłodszych',
-        badge1: '100% za darmo', badge2: 'Wiek 4–7 lat', badge3: '4 języki',
+        badge1: '100% za darmo', badge2: 'Wiek 4–7 lat', badge3: '5 języków',
         shadow: 'Połącz każdy obrazek z jego cieniem.',
         sequence: 'Zobacz, co się powtarza, i dokończ rytm.',
         spelling: 'Napisz, co jest na obrazku.',
         sticker1: 'Za darmo', sticker2: 'do druku'
+      },
+      fr: {
+        logo1: 'Apprendre', logo2: 'avec Toma',
+        before: 'Des fiches à imprimer pour les ', highlight: 'petits apprenants',
+        badge1: '100 % gratuit', badge2: '4–7 ans', badge3: '5 langues',
+        shadow: 'Relie chaque image à son ombre.',
+        sequence: 'Regarde le motif et continue la suite.',
+        spelling: 'Écris ce qu’il y a sur l’image.',
+        sticker1: 'Gratuit', sticker2: 'à imprimer'
       }
     };
     var lang = new URLSearchParams(location.search).get('lang');

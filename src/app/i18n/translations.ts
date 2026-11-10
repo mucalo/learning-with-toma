@@ -387,7 +387,7 @@ const english: Translations = {
     allActivities: 'All activities'
   },
   footer: {
-    description: 'Free printable worksheets for children aged 4–7, in English, Croatian, Serbian and Polish. Made for parents, preschool educators and school teachers.',
+    description: 'Free printable worksheets for children aged 4–7, in English, Croatian, Serbian, Polish and French. Made for parents, preschool educators and school teachers.',
     explore: 'Explore',
     getInTouch: 'Get in touch',
     keepFree: {
@@ -408,7 +408,7 @@ const english: Translations = {
     categories: { letters: 'Letters & words', numbers: 'Numbers & size', motor: 'Fine motor', thinking: 'Thinking' }
   },
   hero: {
-    badges: ['100% free', 'Ages 4–7', '4 languages'],
+    badges: ['100% free', 'Ages 4–7', '5 languages'],
     title: { before: 'Printable worksheets for ', highlight: 'little learners', after: ', ready in seconds.' },
     intro: 'Pick one of 12 activities, choose your language, adjust a few settings and print. A fresh worksheet every time — no cost, no fuss.',
     chooseActivity: 'Choose an activity',
@@ -443,7 +443,7 @@ const english: Translations = {
     stats: [
       { value: '12', label: 'activities' },
       { value: '4–7', label: 'years old' },
-      { value: '4', label: 'languages' },
+      { value: '5', label: 'languages' },
       { value: '0 €', label: 'always free' }
     ],
     story: [
@@ -872,7 +872,7 @@ const croatian: Translations = {
     allActivities: 'Sve aktivnosti'
   },
   footer: {
-    description: 'Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom, srpskom i poljskom. Za roditelje, odgojitelje i učitelje.',
+    description: 'Besplatni radni listovi za ispis za djecu od 4 do 7 godina, na engleskom, hrvatskom, srpskom, poljskom i francuskom. Za roditelje, odgojitelje i učitelje.',
     explore: 'Istražite',
     getInTouch: 'Javite se',
     keepFree: {
@@ -893,7 +893,7 @@ const croatian: Translations = {
     categories: { letters: 'Slova i riječi', numbers: 'Brojevi i veličine', motor: 'Fina motorika', thinking: 'Razmišljanje' }
   },
   hero: {
-    badges: ['100% besplatno', 'Dob 4–7', '4 jezika'],
+    badges: ['100% besplatno', 'Dob 4–7', '5 jezika'],
     title: { before: 'Radni listovi za ', highlight: 'male učenike', after: ', spremni za ispis u par sekundi.' },
     intro: 'Odaberite jednu od 12 aktivnosti, jezik i nekoliko postavki pa ispišite. Svaki put novi radni list — bez troškova i bez muke.',
     chooseActivity: 'Odaberite aktivnost',
@@ -928,7 +928,7 @@ const croatian: Translations = {
     stats: [
       { value: '12', label: 'aktivnosti' },
       { value: '4–7', label: 'godina' },
-      { value: '4', label: 'jezika' },
+      { value: '5', label: 'jezika' },
       { value: '0 €', label: 'uvijek besplatno' }
     ],
     story: [
@@ -1357,7 +1357,7 @@ const serbian: Translations = {
     allActivities: 'Sve aktivnosti'
   },
   footer: {
-    description: 'Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom, srpskom i poljskom. Za roditelje, vaspitače i učitelje.',
+    description: 'Besplatni radni listovi za štampu za decu od 4 do 7 godina, na engleskom, hrvatskom, srpskom, poljskom i francuskom. Za roditelje, vaspitače i učitelje.',
     explore: 'Istražite',
     getInTouch: 'Javite se',
     keepFree: {
@@ -1378,7 +1378,7 @@ const serbian: Translations = {
     categories: { letters: 'Slova i reči', numbers: 'Brojevi i veličine', motor: 'Fina motorika', thinking: 'Razmišljanje' }
   },
   hero: {
-    badges: ['100% besplatno', 'Uzrast 4–7', '4 jezika'],
+    badges: ['100% besplatno', 'Uzrast 4–7', '5 jezika'],
     title: { before: 'Radni listovi za ', highlight: 'male učenike', after: ', spremni za štampu za par sekundi.' },
     intro: 'Izaberite jednu od 12 aktivnosti, jezik i nekoliko podešavanja i odštampajte. Svaki put nov radni list — bez troškova i bez muke.',
     chooseActivity: 'Izaberite aktivnost',
@@ -1413,7 +1413,7 @@ const serbian: Translations = {
     stats: [
       { value: '12', label: 'aktivnosti' },
       { value: '4–7', label: 'godina' },
-      { value: '4', label: 'jezika' },
+      { value: '5', label: 'jezika' },
       { value: '0 €', label: 'uvek besplatno' }
     ],
     story: [
@@ -1842,7 +1842,7 @@ const polish: Translations = {
     allActivities: 'Wszystkie ćwiczenia'
   },
   footer: {
-    description: 'Darmowe karty pracy do druku dla dzieci w wieku 4–7 lat, po angielsku, chorwacku, serbsku i polsku. Dla rodziców oraz nauczycieli w przedszkolach i szkołach.',
+    description: 'Darmowe karty pracy do druku dla dzieci w wieku 4–7 lat, po angielsku, chorwacku, serbsku, polsku i francusku. Dla rodziców oraz nauczycieli w przedszkolach i szkołach.',
     explore: 'Odkrywaj',
     getInTouch: 'Odezwij się',
     keepFree: {
@@ -1863,7 +1863,7 @@ const polish: Translations = {
     categories: { letters: 'Litery i wyrazy', numbers: 'Liczby i wielkość', motor: 'Motoryka mała', thinking: 'Myślenie' }
   },
   hero: {
-    badges: ['100% za darmo', 'Wiek 4–7 lat', '4 języki'],
+    badges: ['100% za darmo', 'Wiek 4–7 lat', '5 języków'],
     title: { before: 'Karty pracy do druku dla ', highlight: 'najmłodszych', after: ', gotowe w kilka sekund.' },
     intro: 'Wybierz jedno z 12 ćwiczeń, język i kilka ustawień, a potem wydrukuj. Za każdym razem nowa karta pracy — bez kosztów i bez zachodu.',
     chooseActivity: 'Wybierz ćwiczenie',
@@ -1898,7 +1898,7 @@ const polish: Translations = {
     stats: [
       { value: '12', label: 'ćwiczeń' },
       { value: '4–7', label: 'lat' },
-      { value: '4', label: 'języki' },
+      { value: '5', label: 'języków' },
       { value: '0 zł', label: 'zawsze za darmo' }
     ],
     story: [
@@ -2318,9 +2318,495 @@ const polish: Translations = {
   }
 };
 
+const french: Translations = {
+  header: {
+    appTitle: 'Apprendre avec Toma',
+    logoLines: ['Apprendre', 'avec Toma'],
+    languageLabel: 'Langue',
+    support: 'Soutenir',
+    allActivities: 'Toutes les activités'
+  },
+  footer: {
+    description: 'Fiches d’exercices gratuites à imprimer pour les enfants de 4 à 7 ans, en anglais, croate, serbe, polonais et français. Pour les parents, les éducateurs et les enseignants.',
+    explore: 'Découvrir',
+    getInTouch: 'Nous écrire',
+    keepFree: {
+      title: 'Pour que ça reste gratuit',
+      text: 'Chaque fiche est gratuite pour toutes les familles, grâce aux parents qui donnent un coup de pouce.',
+      button: 'Faire un don'
+    },
+    copyright: '© {year} Apprendre avec Toma · Fait par un papa de trois enfants',
+    activityCopyright: '© {year} Apprendre avec Toma · Fiches gratuites à imprimer pour les 4–7 ans',
+    backHome: 'Retour à l’accueil'
+  },
+  donate: 'Faire un don pour aider les enfants à apprendre',
+  activitiesSection: {
+    eyebrow: 'Activités',
+    title: 'On s’entraîne à quoi aujourd’hui ?',
+    filterLabel: 'Filtrer les activités',
+    all: 'Toutes ({count})',
+    categories: { letters: 'Lettres et mots', numbers: 'Nombres et tailles', motor: 'Motricité fine', thinking: 'Réflexion' }
+  },
+  hero: {
+    badges: ['100 % gratuit', '4–7 ans', '5 langues'],
+    title: { before: 'Des fiches à imprimer pour les ', highlight: 'petits apprenants', after: ', prêtes en quelques secondes.' },
+    intro: 'Choisissez l’une des 12 activités et votre langue, réglez quelques options et imprimez. Une nouvelle fiche à chaque fois, gratuite et sans prise de tête.',
+    chooseActivity: 'Choisir une activité',
+    howItWorks: 'Comment ça marche',
+    madeFor: 'Pour',
+    audiences: ['les parents', 'les enseignants', 'les écoles maternelles'],
+    sticker: ['Gratuit', 'à imprimer']
+  },
+  howItWorks: [
+    { title: 'Choisissez une activité', text: 'Lettres, nombres, motricité fine ou jeux de réflexion : 12 au choix.' },
+    { title: 'Adaptez-la', text: 'Choisissez la langue, la difficulté et le nombre d’exercices, puis créez une nouvelle fiche.' },
+    { title: 'Imprimez et jouez', text: 'Imprimez tout de suite ou enregistrez-la en PDF pour plus tard.' }
+  ],
+  languagesBand: {
+    title: 'Chaque fiche, dans votre langue',
+    text: 'Les consignes, les mots et les images changent avec la langue : idéal pour les familles bilingues et l’orthophonie.'
+  },
+  menu: {
+    label: 'Menu principal',
+    openMenu: 'Menu',
+    items: {
+      activities: 'Activités',
+      testimonials: 'Témoignages',
+      about: 'À propos',
+      help: 'Envie d’aider ?'
+    }
+  },
+  about: {
+    eyebrow: 'À propos',
+    heading: 'Un papa qui ne dessinait pas assez vite',
+    lead: 'Apprendre avec Toma est un site gratuit qui crée en quelques secondes des fiches d’exercices à imprimer pour les enfants : écriture de mots, dénombrement, labyrinthes, tracé de lettres et bien plus. Il est pensé pour les parents, les éducateurs de jeunes enfants et les enseignants.',
+    stats: [
+      { value: '12', label: 'activités' },
+      { value: '4–7', label: 'ans' },
+      { value: '5', label: 'langues' },
+      { value: '0 €', label: 'toujours gratuit' }
+    ],
+    story: [
+      'Quand ils étaient petits, mes trois enfants **adoraient résoudre de petites énigmes, des exercices et des problèmes sur papier**. Des choses toutes simples, comme « dessine un rond », « complète le mot » ou « trouve le plus grand objet ». Ça les rendait vraiment heureux, jusque vers six ou sept ans. (Aujourd’hui, ils répondraient à ça d’une voix terriblement agaçante : « Six seveeeen ! »)',
+      'On leur achetait des cahiers d’activités, mais ils venaient toujours nous trouver, ma femme et moi, en train de prendre un café à 9 h un dimanche matin, pour demander : **« Dis papa, tu nous donnes des exercices ? »** Et à 9 h un dimanche matin, impossible de filer acheter un nouveau cahier.',
+      'Alors j’ai commencé à **dessiner les exercices à la main**. Deux petits problèmes :'
+    ],
+    drawingReasons: [
+      'c’est vite devenu répétitif, parce que **je ne sais vraiment pas dessiner**, et',
+      '**je ne dessinais pas aussi vite qu’ils résolvaient.**'
+    ],
+    afterReasons: [
+      'Comme je suis développeur, j’ai cherché **un moyen d’automatiser tout ça**, et peut-être de faciliter un peu la vie d’autres parents qui veulent occuper leurs enfants le temps d’une conversation normale, sans interruption, autour d’un café. Un conseil, quand même : **faites court**. La conversation ne restera pas longtemps sans interruption ! :)'
+    ],
+    learner: {
+      title: 'Pensé pour tous les enfants',
+      text: 'Mon fils est **neuroatypique**, et il déteste dessiner et tout ce qui touche aux crayons. Pourtant, développer tôt **le graphisme et la motricité fine** est très important, et **s’exercer un crayon entre les doigts est essentiel**. Puis, sans prévenir, il s’est intéressé aux lettres et à l’écriture, et ces petits exercices **ont retenu son attention plus longtemps que tout ce que nous avions essayé**.',
+      tags: ['Autisme', 'TDAH', 'Dyslexie', 'Dyspraxie'],
+      disclaimer: {
+        label: 'Important :',
+        text: 'chaque enfant est différent. Avant d’utiliser ces fiches avec un enfant neuroatypique, parlez-en à son éducateur, à son enseignant ou à son orthophoniste. Une activité mal choisie peut parfois faire plus de mal que de bien.'
+      }
+    },
+    closing: [
+      'Bref, pour ne pas m’étendre trop longtemps : **j’ai créé ce site pour moi**, pour préparer vite de petits exercices à ma fille cadette (les deux autres sont devenus trop grands, pour l’instant ;)). Mais j’espère que **d’autres parents le trouveront utile eux aussi**.'
+    ],
+    handwritten: 'Et j’espère que des enfants s’amuseront bien avec !',
+    signature: '— Mario, papa de trois enfants',
+    supportNote: {
+      text: 'Si ces petites fiches ont fait naître des sourires autour de votre table, vous pouvez aider à ce qu’il y en ait d’autres.',
+      button: 'Soutenir le projet'
+    },
+    photos: [
+      {
+        alt: 'Une fiche dessinée à la main : de petits dessins au crayon d’une abeille, d’un soleil, d’un nuage, d’un mouton, d’une cloche, d’un piano et d’un chat, chacun suivi de tirets pour les lettres de son nom',
+        caption: 'Là où tout a commencé'
+      },
+      {
+        alt: 'Un enfant à une table en bois, un crayon à la main, en train de remplir une fiche imprimée',
+        caption: 'Exercices du dimanche matin'
+      }
+    ]
+  },
+  help: {
+    eyebrow: 'Participer',
+    heading: 'Envie d’aider ?',
+    intro: 'Apprendre avec Toma est gratuit pour tout le monde. Si vos petits s’amusent avec, voici quatre façons d’aider à le faire vivre.',
+    donate: {
+      title: 'Faire un don',
+      paragraphs: [
+        'Faites un petit don (ou, encore mieux, **un petit don régulier** :)) pour aider à faire tourner le projet. Les jetons coûtent un peu d’argent (oui, une bonne partie a été construite avec l’aide de l’IA :)), tout comme les serveurs, les noms de domaine… Et je bois beaucoup de café en travaillant dessus, alors il y a ça aussi :)',
+        'Plus sérieusement : si votre ou vos enfants ont aimé jouer avec ces fiches, **aidez-nous à garder ce site en ligne**.'
+      ]
+    },
+    share: {
+      title: 'Faites passer le mot',
+      paragraphs: [
+        'Partagez Apprendre avec Toma sur vos réseaux sociaux, dans vos groupes WhatsApp, Messenger ou autres (surtout ceux de parents de jeunes enfants), avec les écoles, les crèches… J’aimerais que **le plus de monde possible** puisse jouer avec ses enfants grâce à ces fiches, et savoir qu’elles ont aidé à améliorer **le graphisme, la concentration et la logique** d’un maximum d’enfants !'
+      ],
+      shareOn: 'Partager sur {network}',
+      email: 'Partager par e-mail',
+      copyLink: 'Copier le lien',
+      linkCopied: 'Lien copié !',
+      more: 'Plus…',
+      message: 'Fiches gratuites à imprimer pour les enfants – Apprendre avec Toma'
+    },
+    feedback: {
+      title: 'Donner votre avis',
+      intro: 'N’hésitez pas à m’écrire à {email} pour me dire ce que vous en pensez. J’apprécierai beaucoup :',
+      items: [
+        {
+          text: '**Toute remarque constructive** : elle m’aide à améliorer les activités pour d’autres enfants.',
+          example: 'par ex. « Ma fille (6 ans) a adoré Trouve l’intrus, mais Recopie le modèle a moins bien marché, car elle ne reconnaissait pas les dessins. »'
+        },
+        {
+          text: '**Tout témoignage** que je peux publier sur le site : plus j’en reçois, plus je suis sûr que le projet va dans la bonne direction.',
+          example: 'par ex. « Mon fils (6 ans) et moi avons passé trois après-midi à jouer avec cette semaine. » — Claire, maman de Lucas (6 ans)'
+        }
+      ],
+      button: 'Envoyer un avis ou un témoignage',
+      emailSubject: 'Apprendre avec Toma – avis'
+    },
+    photos: {
+      title: 'Partager des photos ou des vidéos',
+      text: 'De vrais moments racontent l’histoire mieux que tout ce que je pourrais écrire. Bien sûr, personne n’a envie d’envoyer des photos de ses enfants ni de les voir publiées en ligne : je n’utiliserai donc que des photos et des vidéos où **aucun enfant n’est reconnaissable**.',
+      exampleAlt: 'Exemple : un enfant qui écrit sur une fiche, vu de dos, sans visage visible',
+      exampleCaption: 'Comme celle-ci',
+      kinds: ['Visages floutés', 'Vu de dos', 'Juste les mains', 'Fiches terminées'],
+      note: 'Tout ce qui est vrai est génial : quelques secondes de vidéo suffisent.',
+      button: 'Envoyer des photos ou des vidéos',
+      emailSubject: 'Apprendre avec Toma – photos et vidéos'
+    }
+  },
+  testimonials: {
+    eyebrow: 'Témoignages',
+    title: 'Ce qu’en disent les parents',
+    previous: 'Témoignages précédents',
+    next: 'Témoignages suivants',
+    items: [
+      { quote: 'Les lettres et les lignes sont encore un peu tremblantes :) mais Mary Jane le fait avec le sourire, et ça m’aide beaucoup !', name: 'Peter', relation: 'Papa de Mary Jane (7 ans)' },
+      { quote: 'Mak a joué avec ça pendant un temps inhabituellement long et a adoré les activités, surtout « Trouve l’intrus » !', name: 'Nela', relation: 'Maman de Mak (5 ans)' },
+      { quote: 'Ça nous offre, à ma fille et moi, des heures de jeu chaque semaine. Elle adore ça !', name: 'Mary', relation: 'Maman de Kylie (5 ans)' },
+      { quote: 'C’est génial, je n’ai bientôt plus de papier pour l’imprimante ! Mes enfants adorent !', name: 'Ivana', relation: 'Maman de Petar (6 ans) et Maja (4 ans)' }
+    ]
+  },
+  activities: {
+    spelling: { title: 'Écris le mot', description: 'S’entraîner à écrire des mots à partir d’images.' },
+    counting: { title: 'Compte', description: 'Compter des objets et écrire le nombre.' },
+    biggestSmallest: { title: 'Le plus grand et le plus petit', description: 'Entourer le plus grand et le plus petit objet.' },
+    sequence: { title: 'Continue la suite', description: 'Repérer le motif et le continuer.' },
+    intruder: { title: 'Trouve l’intrus', description: 'Repérer les images qui ne vont pas avec le thème.' },
+    line: { title: 'Continue la ligne', description: 'Repasser sur le motif et le continuer jusqu’au bord.' },
+    shadow: { title: 'Relie à l’ombre', description: 'Relier chaque image à son ombre.' },
+    maze: { title: 'Labyrinthe', description: 'Trouver le chemin dans le labyrinthe.' },
+    where: { title: 'Où est-il ?', description: 'Trouver l’image qui correspond à la phrase.' },
+    copyPattern: { title: 'Recopie le modèle', description: 'Recopier un dessin sur une grille de points.' },
+    trace: { title: 'Trace les lettres', description: 'Repasser sur des lettres et des chiffres en pointillés, puis les écrire seul.' },
+    dotToDot: { title: 'Relie les points', description: 'Relier les points dans l’ordre pour découvrir un dessin.' }
+  },
+  activityPage: {
+    makeWorksheet: 'Créez votre fiche',
+    language: 'Langue',
+    generate: 'Créer la fiche',
+    print: 'Imprimer la fiche',
+    preview: 'Aperçu',
+    emptyPreview: 'Choisissez vos réglages et appuyez sur « Créer la fiche ». Votre fiche apparaîtra ici, telle qu’elle sera imprimée.',
+    supportBold: 'Ces fiches resteront toujours gratuites.',
+    supportText: 'L’équivalent d’un café aide à ce qu’elles le restent pour toutes les familles.',
+    supportLink: 'Soutenir le projet',
+    tips: 'Conseils pour les adultes',
+    tryNext: 'À essayer ensuite',
+    seeAll: 'Voir les {count} activités',
+    switcher: 'Toutes les activités',
+    pageCount: { one: '{count} page · A4', few: '{count} pages · A4', other: '{count} pages · A4' }
+  },
+  worksheet: {
+    pageLabel: 'Page {page} sur {count}'
+  },
+  activityInfo: {
+    spelling: {
+      benefit: 'Relie les images aux mots et pose les bases de l’orthographe.',
+      tips: [
+        { title: 'Dites-le lentement', text: 'Étirez le mot à voix haute ensemble (« c-h-a-t ») avant d’écrire, pour que chaque son trouve sa case.' },
+        { title: 'Commencez court', text: 'Commencez par des mots de trois ou quatre lettres et n’augmentez le maximum que lorsque c’est facile.' },
+        { title: 'Vérifiez la prise', text: 'De gros crayons de cire ou des crayons courts aident les petites mains à trouver une prise confortable.' }
+      ]
+    },
+    counting: {
+      benefit: 'Entraîne à compter un par un et à écrire les nombres.',
+      tips: [
+        { title: 'Toucher et compter', text: 'Laissez votre enfant toucher chaque image en comptant à voix haute, pour que chaque objet soit compté une seule fois.' },
+        { title: 'Cochez au fur et à mesure', text: 'Une petite coche sur chaque image comptée aide quand les images sont éparpillées.' },
+        { title: 'Commencez petit', text: 'Gardez un maximum de cinq ou dix jusqu’à ce que votre enfant compte avec assurance, puis augmentez.' }
+      ]
+    },
+    biggestSmallest: {
+      benefit: 'Entraîne la comparaison visuelle et le vocabulaire des tailles.',
+      tips: [
+        { title: 'Parlez de taille', text: 'Utilisez des mots comme grand, plus grand et le plus grand en montrant du doigt : l’enfant apprend les mots en même temps que l’idée.' },
+        { title: 'Moins, c’est plus facile', text: 'Avec moins d’objets, la différence est plus nette ; ajoutez-en pour rendre l’exercice plus difficile.' },
+        { title: 'Deux couleurs, deux missions', text: 'Préparez un crayon vert et un crayon bleu avant de commencer, pour que la consigne soit facile à suivre.' }
+      ]
+    },
+    sequence: {
+      benefit: 'Développe le repérage de motifs, base des mathématiques et de la logique.',
+      tips: [
+        { title: 'Dites le motif', text: 'Lisez-le à voix haute comme un rythme (« triangle, rond, triangle, rond… ») : l’entendre aide à le voir.' },
+        { title: 'Commencez par deux', text: 'Les motifs de deux éléments sont le meilleur début ; passez aux plus longs petit à petit.' },
+        { title: 'Demander, puis dessiner', text: 'Demandez ce qui vient ensuite avant de dessiner, pour que votre enfant explique la règle avec ses propres mots.' }
+      ]
+    },
+    intruder: {
+      benefit: 'Entraîne le classement, le vocabulaire et l’explication de ses choix.',
+      tips: [
+        { title: 'Demandez « pourquoi ? »', text: 'Quand votre enfant entoure une image, demandez-lui pourquoi elle n’a pas sa place : expliquer, c’est déjà apprendre.' },
+        { title: 'Nommez le thème', text: 'Dites d’abord ce que les images ont en commun (« ce sont tous des fruits »), puis cherchez l’intrus.' },
+        { title: 'Plus d’images, plus de défi', text: 'Ajoutez progressivement des images et des intrus à mesure que votre enfant va plus vite.' }
+      ]
+    },
+    line: {
+      benefit: 'Renforce la maîtrise du crayon pour les formes de l’écriture.',
+      tips: [
+        { title: 'Repasser d’abord', text: 'Repassez lentement sur la partie en pointillés avant de continuer seul : la vitesse viendra plus tard.' },
+        { title: 'Grand avant petit', text: 'Les grands motifs sont plus faciles pour les petites mains ; passez aux plus petits quand le geste s’affine.' },
+        { title: 'Vérifiez la prise', text: 'De gros crayons de cire ou des crayons courts aident les petites mains à trouver une prise confortable.' }
+      ]
+    },
+    shadow: {
+      benefit: 'Entraîne la discrimination visuelle et l’attention aux formes.',
+      tips: [
+        { title: 'Nommez la forme', text: 'Parlez de ce qui rend chaque ombre différente : une queue, une anse, un toit pointu.' },
+        { title: 'Facile d’abord', text: 'Commencez par le niveau facile, où les formes sont très différentes, avant d’essayer un seul groupe.' },
+        { title: 'Pas besoin de règle', text: 'Les lignes droites ne sont pas le but : toute ligne qui relie la bonne paire compte.' }
+      ]
+    },
+    maze: {
+      benefit: 'Développe l’anticipation, la concentration et la maîtrise du crayon.',
+      tips: [
+        { title: 'Le doigt d’abord', text: 'Laissez votre enfant trouver le chemin avec le doigt, puis avec le crayon.' },
+        { title: 'Petits labyrinthes d’abord', text: 'Commencez par 5 × 5 ou 6 × 6 et agrandissez à mesure que la patience grandit.' },
+        { title: 'Se tromper, c’est normal', text: 'Si le crayon arrive dans une impasse, on revient en arrière et on réessaie : ça fait partie du jeu.' }
+      ]
+    },
+    where: {
+      benefit: 'Apprend les mots de position comme sur, sous, à côté et au-dessus.',
+      tips: [
+        { title: 'Jouez la scène', text: 'Posez d’abord un jouet sur, sous ou à côté d’une vraie table : ensuite, les images prennent tout leur sens.' },
+        { title: 'Lisez ensemble', text: 'Lisez la phrase à voix haute et laissez votre enfant montrer du doigt avant d’entourer.' },
+        { title: 'Deux mots pour commencer', text: 'Commencez par deux mots de position et ajoutez-en quand ils sont bien acquis.' }
+      ]
+    },
+    copyPattern: {
+      benefit: 'Développe les capacités visuo-spatiales et la précision du geste.',
+      tips: [
+        { title: 'Comptez les points', text: 'Trouvez ensemble où commence une ligne en comptant les points depuis un coin.' },
+        { title: 'Petite grille d’abord', text: 'Une grille de 3 × 3 ou 4 × 4 est le meilleur début ; agrandissez quand recopier devient plus facile.' },
+        { title: 'Lignes droites d’abord', text: 'Laissez les diagonales de côté jusqu’à ce que les lignes droites soient faciles.' }
+      ]
+    },
+    trace: {
+      benefit: 'Développe la maîtrise du crayon et la reconnaissance des lettres.',
+      tips: [
+        { title: 'Dites-le à voix haute', text: 'Nommez la lettre et son son en la traçant : cela relie la forme, le son et le geste.' },
+        { title: 'Court et souvent', text: 'Une ligne par jour vaut mieux qu’une page entière une fois par semaine. Arrêtez tant que c’est encore amusant.' },
+        { title: 'Vérifiez la prise', text: 'De gros crayons de cire ou des crayons courts aident les petites mains à trouver une prise confortable.' }
+      ]
+    },
+    dotToDot: {
+      benefit: 'Entraîne l’ordre des nombres et la régularité du geste.',
+      tips: [
+        { title: 'Dites chaque nombre', text: 'Comptez à voix haute de point en point : on révise l’ordre des nombres en chemin.' },
+        { title: 'Devinez le dessin', text: 'Avant de commencer, devinez ensemble ce que sera le dessin.' },
+        { title: 'Peu de points pour commencer', text: 'Commencez avec 10 à 15 points ; plus il y a de points, plus le chemin est long et difficile.' }
+      ]
+    }
+  },
+  common: {
+    numberOfProblems: 'Nombre d’exercices',
+    removeRow: 'Supprimer cette ligne'
+  },
+  spelling: {
+    instruction: 'Écris ce qu’il y a sur l’image.',
+    maxLetters: 'Lettres par mot (max.)',
+    picture: 'Image de l’exercice',
+    showWord: 'Afficher le mot'
+  },
+  counting: {
+    instruction: 'Compte les objets.',
+    maxItems: 'Objets par exercice (max.)',
+    itemsToCount: 'Objets à compter',
+    showAnswer: 'Afficher la réponse'
+  },
+  biggestSmallest: {
+    instruction: 'Entoure le plus grand objet en vert et le plus petit en bleu.',
+    maxItems: 'Objets par exercice (max.)',
+    itemsToCompare: 'Objets à comparer',
+    minItemsError: 'Il faut au moins 3 objets par exercice.'
+  },
+  sequence: {
+    instruction: 'Regarde le motif et continue la suite.',
+    elementType: 'Éléments',
+    shapes: 'Formes',
+    numbers: 'Chiffres',
+    letters: 'Lettres',
+    patternLength: 'Éléments dans le motif',
+    lengthMode: 'Longueur du motif',
+    exactly: 'Exactement',
+    upTo: 'Jusqu’à',
+    sequenceLabel: 'Suite à continuer',
+    blank: 'Case vide',
+    showAnswer: 'Afficher la réponse',
+    triangle: 'Triangle',
+    circle: 'Rond',
+    square: 'Carré'
+  },
+  intruder: {
+    instruction: 'Entoure ce qui n’a pas sa place.',
+    themeCount: 'Images du thème',
+    intruderCount: 'Intrus',
+    picturesLabel: 'Images',
+    intruderLabel: 'Intrus',
+    showAnswer: 'Afficher la réponse',
+    themeLabel: 'Thème',
+    themes: {
+      summer: 'L’été',
+      winter: 'L’hiver',
+      farm: 'Animaux de la ferme',
+      fruit: 'Fruits',
+      school: 'L’école',
+      transport: 'Transports',
+      sea: 'Animaux de la mer',
+      clothes: 'Vêtements',
+      sports: 'Sports'
+    }
+  },
+  line: {
+    instruction: 'Repasse sur les pointillés, puis continue le motif jusqu’au bord de la page.',
+    guidesInstruction: 'Reste entre les deux lignes.',
+    showGuides: 'Lignes guides (en haut et en bas)',
+    lineLabel: 'Motif à repasser et à continuer',
+    shape: 'Forme',
+    size: 'Taille',
+    mixed: 'Mélangé',
+    small: 'Petit',
+    medium: 'Moyen',
+    large: 'Grand',
+    patterns: {
+      zigzag: 'Zigzag',
+      wave: 'Vagues',
+      arches: 'Ponts',
+      cups: 'Coupes',
+      castle: 'Créneaux',
+      sawtooth: 'Dents de scie',
+      loops: 'Boucles'
+    }
+  },
+  shadow: {
+    instruction: 'Relie chaque image à son ombre.',
+    pairCount: 'Paires par exercice',
+    difficulty: 'Difficulté',
+    easy: 'Facile – formes différentes',
+    hard: 'Difficile – formes proches',
+    picturesLabel: 'Images',
+    shadowsLabel: 'Ombres',
+    showAnswer: 'Afficher la réponse'
+  },
+  maze: {
+    instruction: 'Aide l’animal à trouver le chemin jusqu’à sa nourriture.',
+    size: 'Taille du labyrinthe',
+    sizes: {
+      tiny: 'Très petit',
+      small: 'Petit',
+      medium: 'Moyen',
+      large: 'Grand',
+      huge: 'Très grand'
+    },
+    mazeLabel: 'Labyrinthe',
+    showAnswer: 'Afficher le chemin'
+  },
+  where: {
+    instruction: 'Entoure l’image qui correspond à la phrase.',
+    sceneCount: 'Images par exercice',
+    positionsLabel: 'Mots de position',
+    positions: {
+      on: 'sur',
+      under: 'sous',
+      nextTo: 'à côté',
+      above: 'au-dessus'
+    },
+    sceneLabel: 'Image',
+    showAnswer: 'Afficher la réponse'
+  },
+  copyPattern: {
+    instruction: 'Recopie le dessin sur les points vides.',
+    gridSize: 'Taille de la grille',
+    lineCount: 'Nombre de traits',
+    diagonals: 'Traits en diagonale',
+    modelLabel: 'Dessin à recopier',
+    copyLabel: 'Grille vide',
+    drawingType: 'Dessins',
+    drawingTypes: {
+      random: 'Formes au hasard',
+      pictures: 'Images (maison, bateau…)',
+      mixed: 'Mélangé'
+    }
+  },
+  trace: {
+    instructionLetters: 'Repasse sur les lettres en pointillés, en commençant au point de couleur. Puis écris la lettre tout seul.',
+    instructionNumbers: 'Repasse sur les chiffres en pointillés, en commençant au point de couleur. Puis écris le chiffre tout seul.',
+    type: 'À travailler',
+    types: {
+      uppercase: 'Majuscules',
+      lowercase: 'Minuscules',
+      numbers: 'Chiffres'
+    },
+    order: 'Ordre',
+    orders: {
+      alphabet: 'Dans l’ordre',
+      random: 'Au hasard'
+    },
+    size: 'Taille',
+    sizes: {
+      small: 'Petit',
+      medium: 'Moyen',
+      large: 'Grand'
+    },
+    onlyTheseLetters: 'Seulement ces lettres (facultatif)',
+    onlyTheseLettersExample: 'par ex. b d p',
+    onlyTheseNumbers: 'Seulement ces chiffres (facultatif)',
+    rowLabel: 'Trace {character}'
+  },
+  dotToDot: {
+    instructionNumbers: 'Relie les points dans l’ordre, en commençant par 1. Quel dessin as-tu trouvé ?',
+    instructionLetters: 'Relie les points dans l’ordre alphabétique, en commençant par A. Quel dessin as-tu trouvé ?',
+    labelType: 'Points marqués par',
+    labelTypes: {
+      numbers: 'Des nombres (1, 2, 3…)',
+      letters: 'Des lettres (A, B, C…)'
+    },
+    dotCount: 'Nombre de points',
+    pictureLabel: 'Points à relier',
+    showAnswer: 'Afficher le dessin',
+    figures: {
+      house: 'Maison',
+      car: 'Voiture',
+      boat: 'Voilier',
+      star: 'Étoile',
+      mushroom: 'Champignon',
+      fish: 'Poisson',
+      rocket: 'Fusée',
+      cat: 'Chat',
+      heart: 'Cœur',
+      tree: 'Sapin',
+      apple: 'Pomme',
+      butterfly: 'Papillon'
+    }
+  }
+};
+
 export const TRANSLATIONS: Record<LanguageKey, Translations> = {
   english,
   croatian,
   serbian,
-  polish
+  polish,
+  french
 };

@@ -27,7 +27,8 @@ const DIGRAPHS: Record<LanguageKey, string[]> = {
   croatian: ['dž', 'lj', 'nj'],
   serbian: ['dž', 'lj', 'nj'],
   // Polish ch, cz, sz… are written as two separate letters.
-  polish: []
+  polish: [],
+  french: []
 };
 
 export interface PlacedStroke {

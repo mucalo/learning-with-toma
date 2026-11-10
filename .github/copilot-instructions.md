@@ -25,7 +25,7 @@ Learning with Toma (Učimo s Tomom in Croatian and Serbian) is a free website wh
 ## Multi-lingual support
 - The website should support multiple languages to accommodate users from different linguistic backgrounds.
 - Languages available should be easily selectable and switchable by the user.
-- Languages available are: English, Croatian, Serbian (Latin script)
+- Languages available are: English, Croatian, Serbian (Latin script), Polish, French
 - Whenever any changes are made, always make sure that the translations are updated accordingly.
 - Whenever any changes are made or new features are added, always make sure it is architecturally easy to add new languages in the future.
 
